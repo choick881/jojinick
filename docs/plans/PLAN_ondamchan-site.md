@@ -74,7 +74,7 @@
 - [x] `sitemap.ts`, `robots.ts`(미리보기 배포는 검색 차단), JSON-LD(FoodEstablishment·Product), 상품 메타·canonical
 - [ ] Lighthouse 목표: 성능 90 / 접근성 95 / SEO 100 — 로컬 측정(모바일): 접근성·SEO·권장사항 100, 성능 메뉴 93·어르신 99·주문 91·상세 78·홈 74 (남은 원인: 명조·손글씨 웹 글꼴). Vercel에서 재측정
 - [ ] 시크릿 스캔(`.env` 추적 여부)
-- [ ] Vercel 프로젝트 연결(Root `site/`), 미리보기 배포 → 운영은 사용자 확인 후
+- [x] Vercel 프로젝트 연결(Root `site/`), 미리보기 배포 — 사용자 화면 확인 완료(2026-10-21). 운영 배포는 사용자 확인 후
 **게이트**: 미리보기 URL에서 전체 흐름 확인
 
 ---
@@ -97,3 +97,4 @@
 - Vercel 미리보기: 커넥터에 choick1 팀 권한이 없어(403) 프로젝트 생성 불가 → 사용자가 vercel.com에서 Import(Root Directory=site)하거나 커넥터 재연결 필요
 - 2026-10-21 14:16 UTC: 사용자가 vercel.com에서 프로젝트 `ondamchan`(Root Directory `site`)을 만들어 저장소와 연결. 이후 작업 브랜치에 올릴 때마다 미리보기 배포가 자동으로 생김
 - 2026-10-21: 처음 연결 때 Root Directory가 비어 있어 저장소 루트가 배포됨(3초 빌드, 사이트 없음) → 사용자가 Root Directory를 `site`로 수정 후 재배포
+- 2026-10-21 18:40 UTC: 프레임워크 사전 설정이 Other로 잡혀 있던 것을 `site/vercel.json`(framework: nextjs)으로 고정 → 21초 실제 빌드, 사용자가 미리보기에서 온담찬 홈 확인
