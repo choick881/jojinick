@@ -56,11 +56,12 @@
 **게이트**: anon 키로 `orders` select 0건, Supabase advisors 경고 없음
 **되돌리기**: 마이그레이션 down SQL
 
-## Phase 4. 주문 · 토스 테스트 결제
-- [ ] RED: 주문 검증 테스트(빈 장바구니, 품절, 지난 슬롯, 금액 위조 → 400)
-- [ ] `/checkout`(픽업 날짜·시간, 주문자, 받는 분, 배송 옵션은 스위치로 숨김), `/api/orders`(서버가 DB 가격으로 합계)
-- [ ] 토스 결제위젯, `/api/payments/confirm`(금액 대조), `/checkout/success|fail`
-- [ ] `/policy/terms`, `/policy/refund`
+## Phase 4. 주문 · 토스 테스트 결제 — 코드 완료, 미리보기 결제 확인 대기
+- [x] RED: 주문 검증 테스트(빈 장바구니, 품절, 지난 슬롯, 금액 위조 → 400)
+- [x] `/checkout`(픽업 날짜·시간, 주문자, 받는 분, 배송 옵션은 스위치로 숨김), `/api/orders`(서버가 DB 가격으로 합계)
+- [x] 토스 결제위젯, `/api/payments/confirm`(금액 대조), `/checkout/success|fail`
+- [x] `/policy/terms`, `/policy/refund`
+- [ ] 사용자: Vercel 환경변수 `SUPABASE_SECRET_KEY` 등록 → 미리보기에서 테스트 카드 결제
 **게이트**: 테스트 키로 결제 → `orders.status = paid`, 위조 금액 거절
 **되돌리기**: 결제 라우트 비활성 스위치
 
@@ -101,3 +102,5 @@
 - 2026-10-21 Phase 3 완료: 사용자 결정으로 goodgame 일시정지 → 새 프로젝트 `ondamchan`(ref dvbluucydlzkfpzcjmea, 서울, 무료). 마이그레이션 3개(`site/supabase/migrations/`): 스키마+RLS, 시드(메뉴 17·시간대 6·현황판), 픽업 시간 색인.
   - 게이트: anon으로 products 17건, orders 0건, admin_users 0건. 보안 점검 경고 없음(admin_users 정책 없음=의도). 성능 점검의 "정책 중복" 경고는 drop이 확인 대기로 시간 초과되어 보류(표가 작아 영향 미미).
   - 사이트: `lib/catalog.ts`가 Supabase REST(publishable 키)로 읽고 실패 시 메뉴 파일 사용, `use cache` + `cacheTag("catalog")`. 이 작업 환경은 supabase.co 접속이 막혀 Vercel 미리보기에서 확인(현황판의 "예시" 표시가 사라지면 DB 연결 성공).
+- 2026-10-21 Phase 4 코드: 주문 저장·결제 승인은 서버 전용 시크릿 키(`SUPABASE_SECRET_KEY`, Vercel 환경변수에만)로 DB에 쓴다. 키가 없으면 `/api/orders`가 503 NOT_CONFIGURED → 화면에 "결제 준비가 아직 끝나지 않았어요". 결제 대기 주문은 30분 동안 픽업 시간 정원을 잡는다. 승인 라우트는 DB 금액과 다르면 토스를 부르지 않고 400.
+  - 게이트(로컬): Vitest 36개, tsc·eslint 0건, `next build` 통과. 결제위젯 틀이 주문 화면에 그려짐을 확인(이 작업 환경은 토스 일부 주소가 막혀 끝까지 열리지 않음 → 미리보기에서 확인)
