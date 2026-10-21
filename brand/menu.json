@@ -1,34 +1,312 @@
 {
   "_note": "예시 메뉴 — 사업계획서 가격대 기준(2026.08.21). 오픈 전 실제 메뉴·원재료·원산지·알레르기로 교체. 빈 문자열은 사업자 확인 필요 항목.",
   "categories": [
-    { "slug": "dinner-set", "name": "저녁세트" },
-    { "slug": "basic", "name": "기본찬" },
-    { "slug": "main", "name": "메인찬" },
-    { "slug": "soup", "name": "국·찌개" },
-    { "slug": "silver", "name": "어르신 밥상" }
+    {
+      "slug": "dinner-set",
+      "name": "저녁세트"
+    },
+    {
+      "slug": "basic",
+      "name": "기본찬"
+    },
+    {
+      "slug": "main",
+      "name": "메인찬"
+    },
+    {
+      "slug": "soup",
+      "name": "국·찌개"
+    },
+    {
+      "slug": "silver",
+      "name": "어르신 밥상"
+    }
   ],
   "products": [
-    { "slug": "dinner-set-1", "category": "dinner-set", "name": "1인 저녁세트", "price": 13900, "size": "국 1 + 메인찬 1 + 기본찬 2 (1인분)", "featured": true, "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "banchan-3-set", "category": "dinner-set", "name": "3종 반찬세트", "price": 9900, "size": "기본찬 3종 (각 120g)", "featured": true, "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "spinach-namul", "category": "basic", "name": "시금치나물", "price": 3500, "size": "120g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "bean-sprout-namul", "category": "basic", "name": "콩나물무침", "price": 3000, "size": "150g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "stir-fried-anchovy", "category": "basic", "name": "멸치볶음", "price": 4500, "size": "100g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "cabbage-kimchi", "category": "basic", "name": "배추김치", "price": 4000, "size": "300g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "braised-potato", "category": "basic", "name": "감자조림", "price": 3500, "size": "150g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "egg-roll", "category": "basic", "name": "계란말이", "price": 4000, "size": "4조각", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "beef-jangjorim", "category": "main", "name": "소고기 장조림", "price": 5000, "size": "150g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "spicy-pork", "category": "main", "name": "제육볶음", "price": 5000, "size": "200g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "braised-mackerel", "category": "main", "name": "고등어 무조림", "price": 5000, "size": "1토막 + 무", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "japchae", "category": "main", "name": "잡채", "price": 4500, "size": "200g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "doenjang-jjigae", "category": "soup", "name": "된장찌개", "price": 6000, "size": "1~2인분 450g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "kimchi-jjigae", "category": "soup", "name": "김치찌개", "price": 6500, "size": "1~2인분 450g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "beef-radish-soup", "category": "soup", "name": "소고기 뭇국", "price": 7000, "size": "1~2인분 500g", "softness": null, "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "silver-soft-3-set", "category": "silver", "name": "부드러운 반찬 3종 세트", "price": 9900, "size": "두부조림·잘게 찢은 장조림·푹 익힌 나물 (각 100g)", "featured": true, "softness": "잇몸으로", "ingredients": "", "origin": "", "allergens": "" },
-    { "slug": "silver-dinner-set", "category": "silver", "name": "어르신 1인 저녁세트", "price": 11900, "size": "간을 약하게 한 국 + 부드러운 반찬 2종 (작은 분량)", "featured": true, "softness": "씹기 쉬움", "ingredients": "", "origin": "", "allergens": "" }
+    {
+      "slug": "dinner-set-1",
+      "category": "dinner-set",
+      "name": "1인 저녁세트",
+      "price": 13900,
+      "size": "국 1 + 메인찬 1 + 기본찬 2 (1인분)",
+      "featured": true,
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": "",
+      "components": [
+        {
+          "role": "국",
+          "name": "된장찌개",
+          "amount": "350g"
+        },
+        {
+          "role": "메인찬",
+          "name": "제육볶음",
+          "amount": "150g"
+        },
+        {
+          "role": "기본찬",
+          "name": "시금치나물",
+          "amount": "80g"
+        },
+        {
+          "role": "기본찬",
+          "name": "멸치볶음",
+          "amount": "80g"
+        }
+      ]
+    },
+    {
+      "slug": "banchan-3-set",
+      "category": "dinner-set",
+      "name": "3종 반찬세트",
+      "price": 9900,
+      "size": "기본찬 3종 (각 120g)",
+      "featured": true,
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": "",
+      "components": [
+        {
+          "role": "기본찬",
+          "name": "시금치나물",
+          "amount": "120g"
+        },
+        {
+          "role": "기본찬",
+          "name": "멸치볶음",
+          "amount": "120g"
+        },
+        {
+          "role": "기본찬",
+          "name": "감자조림",
+          "amount": "120g"
+        }
+      ]
+    },
+    {
+      "slug": "spinach-namul",
+      "category": "basic",
+      "name": "시금치나물",
+      "price": 3500,
+      "size": "120g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "bean-sprout-namul",
+      "category": "basic",
+      "name": "콩나물무침",
+      "price": 3000,
+      "size": "150g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "stir-fried-anchovy",
+      "category": "basic",
+      "name": "멸치볶음",
+      "price": 4500,
+      "size": "100g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "cabbage-kimchi",
+      "category": "basic",
+      "name": "배추김치",
+      "price": 4000,
+      "size": "300g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "braised-potato",
+      "category": "basic",
+      "name": "감자조림",
+      "price": 3500,
+      "size": "150g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "egg-roll",
+      "category": "basic",
+      "name": "계란말이",
+      "price": 4000,
+      "size": "4조각",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "beef-jangjorim",
+      "category": "main",
+      "name": "소고기 장조림",
+      "price": 5000,
+      "size": "150g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "spicy-pork",
+      "category": "main",
+      "name": "제육볶음",
+      "price": 5000,
+      "size": "200g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "braised-mackerel",
+      "category": "main",
+      "name": "고등어 무조림",
+      "price": 5000,
+      "size": "1토막 + 무",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "japchae",
+      "category": "main",
+      "name": "잡채",
+      "price": 4500,
+      "size": "200g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "doenjang-jjigae",
+      "category": "soup",
+      "name": "된장찌개",
+      "price": 6000,
+      "size": "1~2인분 450g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "kimchi-jjigae",
+      "category": "soup",
+      "name": "김치찌개",
+      "price": 6500,
+      "size": "1~2인분 450g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "beef-radish-soup",
+      "category": "soup",
+      "name": "소고기 뭇국",
+      "price": 7000,
+      "size": "1~2인분 500g",
+      "softness": null,
+      "ingredients": "",
+      "origin": "",
+      "allergens": ""
+    },
+    {
+      "slug": "silver-soft-3-set",
+      "category": "silver",
+      "name": "부드러운 반찬 3종 세트",
+      "price": 9900,
+      "size": "두부조림·잘게 찢은 장조림·푹 익힌 나물 (각 100g)",
+      "featured": true,
+      "softness": "잇몸으로",
+      "ingredients": "",
+      "origin": "",
+      "allergens": "",
+      "components": [
+        {
+          "role": "부드러운 반찬",
+          "name": "두부조림",
+          "amount": "100g"
+        },
+        {
+          "role": "부드러운 반찬",
+          "name": "잘게 찢은 장조림",
+          "amount": "100g"
+        },
+        {
+          "role": "부드러운 반찬",
+          "name": "푹 익힌 나물",
+          "amount": "100g"
+        }
+      ]
+    },
+    {
+      "slug": "silver-dinner-set",
+      "category": "silver",
+      "name": "어르신 1인 저녁세트",
+      "price": 11900,
+      "size": "간을 약하게 한 국 + 부드러운 반찬 2종 (작은 분량)",
+      "featured": true,
+      "softness": "씹기 쉬움",
+      "ingredients": "",
+      "origin": "",
+      "allergens": "",
+      "components": [
+        {
+          "role": "국",
+          "name": "간을 약하게 한 국",
+          "amount": "300g"
+        },
+        {
+          "role": "부드러운 반찬",
+          "name": "두부조림",
+          "amount": "80g"
+        },
+        {
+          "role": "부드러운 반찬",
+          "name": "푹 익힌 나물",
+          "amount": "80g"
+        }
+      ]
+    }
   ],
   "softness_scale": {
     "_note": "가게 자체 기준(고령친화식품 인증 아님). 사이트에 그대로 표기.",
-    "levels": ["씹기 쉬움", "잇몸으로", "혀로"]
+    "levels": [
+      "씹기 쉬움",
+      "잇몸으로",
+      "혀로"
+    ]
   },
-  "pickup": { "slots": ["17:30", "18:00", "18:30", "19:00", "19:30", "20:00"], "slot_minutes": 30, "days_ahead": 1 }
+  "pickup": {
+    "slots": [
+      "17:30",
+      "18:00",
+      "18:30",
+      "19:00",
+      "19:30",
+      "20:00"
+    ],
+    "slot_minutes": 30,
+    "days_ahead": 1
+  },
+  "_note_components": "components: 세트 구성 예시(그날 반찬에 따라 바뀜). [역할, 이름, 양]"
 }
