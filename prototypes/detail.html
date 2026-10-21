@@ -1,0 +1,579 @@
+<title>온담찬 상세페이지 3안</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@500;700;900&display=swap">
+<style>
+/* Layout: 같은 정보 구조(구매 → 후킹 → 공감 → 구성 → 약속 → 라벨 → 데우기 → 정보 고시 → 픽업 → FAQ → 마무리)를
+   data-tone="a|b|c" 세 가지 톤으로 입힌다. 모바일 375px 먼저, 데스크톱은 본문 860px.
+   라이트 모드 고정(R4 결정) — 실제 사이트의 모습을 그대로 보여 주는 시안이다. */
+:root {
+  color-scheme: light;
+  --paper: #FBF6EC; --sand: #EFE4D0; --white: #FFFFFF; --ink: #2B211A; --brand: #7A4E2D;
+  --muted: #6B5A4C; --accent: #C8462B; --accent-deep: #A93A22; --line: #E2D5BF;
+  --serif: "Noto Serif KR", "Nanum Myeongjo", serif;
+  --sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --hand: "Nanum Pen Script", "Noto Sans KR", cursive;
+  --fs: 18px;
+}
+:root.big { --fs: 22px; }
+* { box-sizing: border-box; }
+html { font-size: var(--fs); }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.7; word-break: keep-all; }
+h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible, summary:focus-visible, a:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 860px; margin: 0 auto; }
+
+/* ── 시안 고르기 막대 (사이트 바깥) ── */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: var(--ink); }
+.picker { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 25; background: var(--ink); color: var(--paper); padding-block: 10px; }
+.picker .inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; max-width: 1100px; }
+.picker strong { font-size: 15px; font-weight: 700; }
+.picker .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+.picker button { border: 1px solid #6B5A4C; background: transparent; color: var(--paper); border-radius: 999px; padding: 5px 14px; font-size: 14.5px; }
+.picker button[aria-pressed="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); font-weight: 700; }
+.picker .note { font-size: 13px; color: #C2B19E; flex-basis: 100%; }
+
+/* ── 사이트 머리글 ── */
+.site-head { background: var(--paper); border-bottom: 1px solid var(--line); }
+.site-head .inner { max-width: 1100px; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding-block: 12px; }
+.site-head svg { display: block; height: 34px; width: auto; }
+.site-head nav { display: flex; gap: 18px; font-size: 15px; color: var(--muted); }
+.site-head nav span:first-child { color: var(--ink); font-weight: 700; }
+.bigtext { border: 1px solid var(--line); background: var(--white); border-radius: 8px; padding: 4px 10px; font-size: 14px; white-space: nowrap; }
+@media (max-width: 720px) { .site-head nav { display: none; } }
+
+/* ── 사진 자리 ── */
+.ph { position: relative; background: var(--sand); color: var(--brand); display: grid; place-items: center; overflow: hidden; }
+.ph svg { width: 42%; max-width: 260px; height: auto; opacity: .55; }
+.ph .cap { position: absolute; left: 10px; bottom: 10px; right: 10px; font-size: 12.5px; color: var(--muted); line-height: 1.4; }
+.ph .cap b { color: var(--brand); }
+.r32 { aspect-ratio: 3 / 2; }
+.r11 { aspect-ratio: 1 / 1; }
+.r45 { aspect-ratio: 4 / 5; }
+.staged { font-size: 12.5px; color: var(--muted); margin-top: 6px; }
+
+/* ── 공통 구조 ── */
+.sec { padding-block: 72px; }
+.sec-head { display: grid; gap: 10px; margin-bottom: 28px; }
+.eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .08em; color: var(--brand); }
+h2 { font-size: 1.55rem; line-height: 1.35; text-wrap: balance; }
+.lead { color: var(--muted); max-width: 34em; }
+
+/* 구매 영역 */
+.buy { padding-block: 24px 48px; }
+.buy .inner { max-width: 1100px; display: grid; gap: 24px; }
+@media (min-width: 860px) { .buy .inner { grid-template-columns: 1.1fr 1fr; align-items: start; gap: 40px; } }
+.buy-photo { min-width: 0; }
+.buy-box { display: grid; gap: 18px; min-width: 0; }
+.badges { display: flex; flex-wrap: wrap; gap: 6px; }
+.badge { font-size: .72rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; background: var(--sand); color: var(--brand); }
+.badge.hot { background: var(--accent); color: var(--white); }
+.buy h1 { font-size: 1.8rem; line-height: 1.3; }
+.buy .sub { color: var(--muted); }
+.price { display: flex; align-items: baseline; gap: 8px; }
+.price b { font-size: 1.75rem; font-weight: 800; }
+.price span { color: var(--muted); font-size: .85rem; }
+.field { display: grid; gap: 8px; }
+.field > span { font-size: .85rem; font-weight: 700; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1.5px solid var(--line); background: var(--white); border-radius: 10px; padding: 8px 12px; font-size: .85rem; min-height: 44px; }
+.chip[aria-pressed="true"] { border-color: var(--brand); background: var(--brand); color: var(--white); font-weight: 700; }
+.chip:disabled { color: #B3A796; background: #F4EFE6; cursor: not-allowed; text-decoration: line-through; }
+.qty { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 10px; background: var(--white); width: max-content; }
+.qty button { width: 48px; height: 48px; border: 0; background: none; font-size: 1.2rem; }
+.qty output { min-width: 2.2em; text-align: center; font-weight: 700; }
+.total { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--line); padding-top: 14px; }
+.total b { font-size: 1.3rem; }
+.cta { display: flex; align-items: center; justify-content: center; min-height: 56px; border: 0; border-radius: 12px; background: var(--accent-deep); color: var(--white); font-weight: 800; font-size: 1.05rem; width: 100%; }
+.cta:hover { background: #8F2F1B; }
+.parent-note { font-size: .85rem; color: var(--muted); background: var(--white); border: 1px dashed var(--line); border-radius: 10px; padding: 10px 12px; }
+.parent-note b { color: var(--ink); }
+
+/* 공감 */
+.pains { display: grid; gap: 12px; }
+@media (min-width: 700px) { .pains { grid-template-columns: repeat(3, 1fr); } }
+.pain { padding: 18px; border-radius: 14px; background: var(--white); display: grid; gap: 4px; }
+.pain b { font-size: 1rem; }
+.pain span { color: var(--muted); font-size: .88rem; }
+
+/* 구성 */
+.items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 20px; }
+@media (min-width: 700px) { .items { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.item { display: grid; gap: 4px; padding: 14px; background: var(--white); border-radius: 12px; }
+.item small { color: var(--brand); font-weight: 700; font-size: .72rem; }
+.item b { font-size: .95rem; }
+.item span { color: var(--muted); font-size: .82rem; }
+.items-note { font-size: .82rem; color: var(--muted); margin-top: 10px; }
+
+/* 약속 */
+.promises { display: grid; gap: 12px; }
+@media (min-width: 700px) { .promises { grid-template-columns: repeat(3, 1fr); } }
+.promise { display: grid; gap: 6px; padding: 20px; border-radius: 14px; background: var(--white); }
+.promise .big { font-size: 2rem; font-weight: 800; color: var(--brand); line-height: 1.1; }
+.promise span { color: var(--muted); font-size: .9rem; }
+
+/* 제조시간 라벨 */
+.label-wrap { display: grid; gap: 20px; align-items: center; }
+@media (min-width: 760px) { .label-wrap { grid-template-columns: 1fr 1fr; } }
+.label {
+  width: min(100%, 360px); justify-self: center; background: var(--white); border-radius: 16px; padding: 22px 22px 18px;
+  box-shadow: 0 1px 0 var(--line), 0 10px 30px rgba(43, 33, 26, .10); display: grid; gap: 12px; color: var(--ink);
+  font-family: var(--sans);
+}
+.label-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; border-bottom: 2px solid var(--ink); padding-bottom: 10px; }
+.label-top svg { height: 26px; width: auto; display: block; }
+.label-top span { font-size: 13px; font-weight: 700; color: var(--brand); }
+.label h3 { font-size: 24px; font-family: var(--sans); font-weight: 800; }
+.label dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 15px; }
+.label dt { color: var(--muted); }
+.label dd { font-weight: 700; }
+.label .made { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; background: #FFF4EC; border: 2px solid var(--accent); border-radius: 10px; padding: 10px 12px; }
+.label .made span { font-size: 14px; font-weight: 700; color: var(--accent-deep); }
+.label .made b { font-size: 26px; font-weight: 800; letter-spacing: -.01em; }
+.label .fine { font-size: 11.5px; color: var(--muted); line-height: 1.5; }
+.label-points { display: grid; gap: 10px; }
+.label-points li { display: grid; grid-template-columns: 28px 1fr; gap: 8px; align-items: start; }
+.label-points li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); margin: .6em 0 0 8px; }
+
+/* 데우기 */
+.steps { display: grid; gap: 12px; counter-reset: s; }
+@media (min-width: 700px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.step { counter-increment: s; padding: 18px; border-radius: 14px; background: var(--white); display: grid; gap: 6px; align-content: start; }
+.step::before { content: counter(s); width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: var(--white); font-weight: 800; font-size: .85rem; }
+.step b { font-size: 1rem; }
+.step span { color: var(--muted); font-size: .88rem; }
+
+/* 정보 고시 */
+.notice-table { width: 100%; border-collapse: collapse; font-size: .85rem; background: var(--white); }
+.notice-table th, .notice-table td { text-align: left; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+.notice-table th { width: 34%; color: var(--muted); font-weight: 500; background: #FAF5EB; }
+.todo { display: inline-block; font-size: .72rem; font-weight: 700; color: var(--accent-deep); background: #FCEBE4; border-radius: 4px; padding: 0 6px; margin-left: 4px; }
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+
+/* 픽업 */
+.pickup { display: grid; gap: 24px; }
+@media (min-width: 760px) { .pickup { grid-template-columns: 1fr 1fr; align-items: start; } }
+.pickup-list { display: grid; gap: 14px; }
+.pickup-list li { display: grid; gap: 2px; padding-left: 14px; border-left: 3px solid var(--brand); }
+.pickup-list b { font-size: .95rem; }
+.pickup-list span { color: var(--muted); font-size: .88rem; }
+
+/* FAQ */
+.faq { display: grid; gap: 10px; }
+.faq details { background: var(--white); border-radius: 12px; border: 1px solid var(--line); }
+.faq summary { list-style: none; cursor: pointer; padding: 16px 48px 16px 18px; font-weight: 700; position: relative; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; position: absolute; right: 18px; top: 50%; transform: translateY(-50%); font-size: 1.3rem; color: var(--brand); }
+.faq details[open] summary::after { content: "−"; }
+.faq details p { padding: 0 18px 16px; color: var(--muted); font-size: .92rem; }
+
+/* 마무리 */
+.closing { text-align: center; display: grid; gap: 16px; justify-items: center; }
+.closing .cta { max-width: 360px; }
+.site-foot { border-top: 1px solid var(--line); padding-block: 28px 120px; font-size: .78rem; color: var(--muted); }
+.site-foot .inner { display: grid; gap: 4px; }
+
+/* 모바일 하단 고정 구매 바 */
+.buybar { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; background: var(--white); border-top: 1px solid var(--line);
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  display: flex; align-items: center; gap: 12px; box-shadow: 0 -6px 20px rgba(43, 33, 26, .08); }
+.buybar div { display: grid; line-height: 1.3; }
+.buybar small { color: var(--muted); font-size: .72rem; }
+.buybar b { font-size: 1.05rem; }
+.buybar .cta { min-height: 50px; flex: 1; }
+@media (min-width: 860px) { .buybar { display: none; } .site-foot { padding-bottom: 40px; } }
+
+/* ═════════ A · 따뜻한 집밥 ═════════ */
+[data-tone="a"] h1, [data-tone="a"] h2 { font-family: var(--serif); font-weight: 900; color: var(--brand); }
+[data-tone="a"] .ph, [data-tone="a"] .buy-photo .ph { border-radius: 22px; }
+[data-tone="a"] .hand { display: block; font-family: var(--hand); font-size: 1.55rem; line-height: 1.2; color: var(--accent-deep); transform: rotate(-3deg); }
+[data-tone="a"] .sec.alt { background: var(--sand); }
+[data-tone="a"] .sec.alt .pain, [data-tone="a"] .sec.alt .item, [data-tone="a"] .sec.alt .step { background: var(--paper); }
+[data-tone="a"] .hook { text-align: center; }
+[data-tone="a"] .hook .sec-head { justify-items: center; }
+[data-tone="a"] .pain { border-radius: 20px; }
+[data-tone="a"] .promise { border-radius: 20px; text-align: center; }
+[data-tone="a"] .promise .big { font-family: var(--serif); font-weight: 900; }
+[data-tone="a"] .label { transform: rotate(-1.5deg); }
+[data-tone="a"] .info-b, [data-tone="a"] .info-c { display: none; }
+
+/* ═════════ B · 깔끔한 정보형 ═════════ */
+[data-tone="b"] { --paper: #FFFFFF; --line: #E6DED2; }
+[data-tone="b"] body, body[data-tone="b"] { background: #FFFFFF; }
+[data-tone="b"] h1, [data-tone="b"] h2 { font-family: var(--sans); font-weight: 800; letter-spacing: -.02em; }
+[data-tone="b"] .hand { display: none; }
+[data-tone="b"] .ph { border-radius: 6px; }
+[data-tone="b"] .sec { padding-block: 56px; border-top: 8px solid #F6F1E9; }
+[data-tone="b"] .pain, [data-tone="b"] .item, [data-tone="b"] .step, [data-tone="b"] .promise { background: #FAF6EF; border-radius: 8px; }
+[data-tone="b"] .promise { border-left: 4px solid var(--accent); }
+[data-tone="b"] .promise .big { color: var(--accent-deep); font-size: 2.4rem; }
+[data-tone="b"] .chip, [data-tone="b"] .qty, [data-tone="b"] .cta { border-radius: 6px; }
+[data-tone="b"] .info-b { display: grid; }
+[data-tone="b"] .info-c { display: none; }
+[data-tone="b"] .label { border-radius: 8px; }
+.info-b { grid-template-columns: repeat(3, minmax(0, 1fr)); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.info-b div { padding: 10px 8px; text-align: center; display: grid; gap: 0; }
+.info-b div + div { border-left: 1px solid var(--line); }
+.info-b small { font-size: .7rem; color: var(--muted); }
+.info-b b { font-size: .95rem; }
+
+/* ═════════ C · 차분한 에디토리얼 ═════════ */
+[data-tone="c"] h1, [data-tone="c"] h2 { font-family: var(--serif); font-weight: 500; letter-spacing: -.01em; }
+[data-tone="c"] h2 { font-size: 1.85rem; }
+[data-tone="c"] .hand { display: none; }
+[data-tone="c"] .ph { border-radius: 0; }
+[data-tone="c"] .sec { padding-block: 96px; }
+[data-tone="c"] .eyebrow { color: var(--muted); font-weight: 500; letter-spacing: .18em; }
+[data-tone="c"] .sec.dark { background: var(--ink); color: var(--paper); }
+[data-tone="c"] .sec.dark h2 { color: var(--paper); }
+[data-tone="c"] .sec.dark .eyebrow, [data-tone="c"] .sec.dark .lead { color: #CDBEAB; }
+[data-tone="c"] .sec.dark .promise { background: transparent; border-top: 1px solid #5A4A3D; border-radius: 0; padding: 18px 0 0; }
+[data-tone="c"] .sec.dark .promise .big { color: var(--paper); font-family: var(--serif); font-weight: 500; }
+[data-tone="c"] .sec.dark .promise span { color: #CDBEAB; }
+[data-tone="c"] .pain, [data-tone="c"] .item, [data-tone="c"] .step { background: transparent; border-radius: 0; border-top: 1px solid var(--ink); padding: 16px 0 0; }
+[data-tone="c"] .step::before { background: none; color: var(--brand); border: 1px solid var(--brand); }
+[data-tone="c"] .hook h2 { font-size: 2.1rem; font-weight: 500; }
+[data-tone="c"] .chip, [data-tone="c"] .qty { border-radius: 2px; }
+[data-tone="c"] .cta { border-radius: 2px; background: var(--ink); }
+[data-tone="c"] .cta:hover { background: #000; }
+[data-tone="c"] .faq details { border-radius: 0; border-width: 1px 0 0; background: transparent; }
+[data-tone="c"] .faq { gap: 0; border-bottom: 1px solid var(--line); }
+[data-tone="c"] .info-b { display: none; }
+[data-tone="c"] .info-c { display: block; font-family: var(--serif); font-size: 1.05rem; color: var(--muted); border-left: 2px solid var(--brand); padding-left: 14px; }
+[data-tone="c"] .label { border-radius: 4px; }
+</style>
+
+<div class="picker gut" role="region" aria-label="시안 고르기">
+  <div class="inner">
+    <strong>상세페이지 시안</strong>
+    <div class="tabs">
+      <button type="button" id="tone-a" data-set="a" aria-pressed="true">A 따뜻한 집밥</button>
+      <button type="button" id="tone-b" data-set="b" aria-pressed="false">B 깔끔한 정보형</button>
+      <button type="button" id="tone-c" data-set="c" aria-pressed="false">C 차분한 에디토리얼</button>
+    </div>
+    <span class="note">세 안은 내용이 같고 분위기만 다릅니다. 가격·정책·수치는 예시이며, 사진은 생성 전이라 자리만 표시했습니다.</span>
+  </div>
+</div>
+
+<header class="site-head gut">
+  <div class="inner">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 80" width="528" height="160" role="img" aria-label="온담찬">
+  <title>온담찬</title>
+  <g transform="scale(1.25)">
+  <mask id="band-h" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64">
+    <rect width="64" height="64" fill="#fff"/>
+    <path d="M13.5 39.5H50.5" stroke="#000" stroke-width="2.2" stroke-linecap="round"/>
+  </mask>
+  <g mask="url(#band-h)">
+    <path d="M8 33H56C56 45.5 45.3 54 32 54S8 45.5 8 33Z" fill="#7A4E2D"/>
+  </g>
+  <rect x="23" y="55.5" width="18" height="4.5" rx="2.25" fill="#7A4E2D"/>
+  <path d="M21 27c-3.6-3.6 3.6-6.8 0-11.5M43 27c-3.6-3.6 3.6-6.8 0-11.5" fill="none" stroke="#7A4E2D" stroke-width="3.8" stroke-linecap="round"/>
+  <path d="M32 26c-4.2-4.2 4.2-7.8 0-13.5" fill="none" stroke="#C8462B" stroke-width="3.8" stroke-linecap="round"/>
+  </g>
+  <path d="M129.86 31.75Q129.86 34.87 128.03 37.42Q126.2 39.97 122.87 41.47Q119.54 42.97 115.04 42.97Q110.6 42.97 107.24 41.47Q103.88 39.97 102.05 37.42Q100.22 34.87 100.22 31.75Q100.22 28.63 102.05 26.11Q103.88 23.59 107.24 22.09Q110.6 20.59 115.04 20.59Q119.54 20.59 122.87 22.09Q126.2 23.59 128.03 26.11Q129.86 28.63 129.86 31.75ZM121.52 31.75Q121.52 29.95 120.74 28.6Q119.96 27.25 118.49 26.5Q117.02 25.75 115.04 25.75Q113.06 25.75 111.62 26.5Q110.18 27.25 109.37 28.6Q108.56 29.95 108.56 31.75Q108.56 33.55 109.37 34.9Q110.18 36.25 111.62 37Q113.06 37.75 115.04 37.75Q117.02 37.75 118.49 37Q119.96 36.25 120.74 34.9Q121.52 33.55 121.52 31.75ZM133.94 46.63Q135.26 46.69 136.85 46.9Q138.44 47.11 139.85 47.38Q141.26 47.65 142.04 47.95Q143.12 48.37 143.12 49.51Q143.12 50.83 142.43 51.91Q141.74 52.99 141.08 53.29Q140.36 53.17 138.83 53.11Q137.3 53.05 135.71 53.02Q134.12 52.99 133.1 52.99Q132.08 52.99 129.65 53.02Q127.22 53.05 124.01 53.08Q120.8 53.11 117.32 53.14Q113.84 53.17 110.66 53.23Q107.48 53.29 105.11 53.35Q102.74 53.41 101.78 53.47Q101 53.53 99.59 53.74Q98.18 53.95 96.8 54.22Q95.42 54.49 94.52 54.73Q92.66 53.95 90.71 52.57Q88.76 51.19 87.38 49.87Q86.96 49.45 87.2 48.91L87.8 47.77Q89.72 48.07 91.97 48.25Q94.22 48.43 96.02 48.49Q96.92 48.49 99.02 48.49Q101.12 48.49 104 48.46Q106.88 48.43 110.18 48.4Q113.48 48.37 116.78 48.31Q120.08 48.25 122.99 48.19Q125.9 48.13 128.06 48.04Q130.22 47.95 131.12 47.89ZM132.2 73.33 105.92 73.57 109.1 68.65Q110.18 68.65 111.68 68.65Q113.18 68.65 114.86 68.65Q116.54 68.65 118.19 68.62Q119.84 68.59 121.34 68.56Q122.84 68.53 123.98 68.47L126.62 67.03Q128.3 66.97 130.31 67.15Q132.32 67.33 133.46 67.57Q134.66 67.87 134.66 69.01Q134.66 70.51 134.27 71.53Q133.88 72.55 133.52 72.91Q133.1 73.33 132.2 73.33ZM105.92 73.57Q102.62 73.51 101.18 72.04Q99.74 70.57 99.74 67.75V64.03H108.02V67.15Q108.02 67.87 108.35 68.26Q108.68 68.65 109.46 68.65ZM119.42 50.77H111.26V40.63H119.42ZM108.02 65.77H99.74V62.35Q99.02 61.69 97.91 61.06Q96.8 60.43 95.6 60.01L96.14 57.97Q96.26 57.37 97.1 57.37Q98.54 57.37 100.43 57.49Q102.32 57.61 104.12 57.76Q105.92 57.91 107 58.15Q108.14 58.51 108.14 59.83L108.02 63.25ZM183.38 44.35Q179.54 45.55 175.19 46.54Q170.84 47.53 166.67 48.19Q162.5 48.85 159.14 49.15Q158.48 49.21 157.82 49.24Q157.16 49.27 156.62 49.27Q154.28 49.27 152.69 48.07Q151.1 46.87 150.44 44.83Q150.32 44.29 150.2 43.36Q150.08 42.43 150.08 41.41V33.55H158.36V41.71Q158.36 42.91 159.62 42.91Q162.08 42.91 165.08 42.7Q168.08 42.49 171.26 42.13Q174.44 41.77 177.56 41.23Q180.68 40.69 183.38 39.97ZM158.36 39.61H150.08V30.13Q149.48 29.35 148.49 28.63Q147.5 27.91 146.3 27.49L146.84 25.33Q147.08 24.91 147.56 24.91Q148.88 24.91 151.04 25Q153.2 25.09 155.3 25.27Q157.4 25.45 158.48 25.69L158.36 30.43ZM173.96 29.89 158.3 30.43V25.69Q159.02 25.69 160.22 25.63Q161.42 25.57 162.8 25.51Q164.18 25.45 165.35 25.39Q166.52 25.33 167.12 25.27L169.04 23.95Q170.42 23.95 172.22 24.04Q174.02 24.13 175.1 24.37Q176.24 24.61 176.24 25.75Q176.24 27.07 175.94 28.06Q175.64 29.05 175.22 29.47Q174.8 29.89 173.96 29.89ZM182.9 50.71Q182.72 49.99 182.54 48.58Q182.36 47.17 182.21 45.49Q182.06 43.81 182 42.28Q181.94 40.75 181.94 39.85V23.47Q181.4 22.45 180.17 21.43Q178.94 20.41 177.44 19.81L178.28 17.35Q178.46 16.87 179.3 16.87Q180.86 16.93 182.84 17.23Q184.82 17.53 186.65 17.98Q188.48 18.43 189.62 18.97Q190.64 19.39 190.52 20.77L190.28 24.55V37.87Q190.28 39.55 189.92 42.01Q189.56 44.47 188.99 46.84Q188.42 49.21 187.7 50.71ZM160.76 58.09Q159.44 56.59 157.16 55.69L157.76 53.47Q157.88 53.05 158.54 53.05Q159.86 53.05 161.78 53.14Q163.7 53.23 165.65 53.41Q167.6 53.59 168.98 53.77L169.16 59.11ZM162.8 75.13Q162.38 74.23 162.08 73.06Q161.78 71.89 161.66 70.75L160.76 58.09L169.16 57.61V69.85Q169.28 71.77 168.83 72.94Q168.38 74.11 167.36 75.13ZM188.72 72.79 168.26 72.97 168.5 67.63Q169.76 67.63 171.26 67.63Q172.76 67.63 174.32 67.63Q175.88 67.63 177.32 67.57Q178.76 67.51 179.9 67.45L181.94 66.91Q183.86 66.25 185.18 66.25Q186.5 66.25 187.52 66.97L189.32 67.99Q189.98 68.35 189.98 69.07Q189.98 70.33 189.59 71.32Q189.2 72.31 188.72 72.79ZM181.7 58.81Q178.76 58.87 175.34 58.93Q171.92 58.99 169.1 59.11L168.92 53.77Q170 53.77 171.8 53.71Q173.6 53.65 175.58 53.62Q177.56 53.59 179.33 53.53Q181.1 53.47 182.18 53.41ZM189.62 58.33 181.34 58.81 182.12 53.41 185.06 52.33Q185.78 52.03 186.44 52.33Q187.28 52.63 188.54 53.26Q189.8 53.89 190.4 54.31Q190.88 54.61 190.58 55.33ZM188.06 67.33 181.22 67.21 181.34 58.75 189.62 58.27Q189.38 60.49 188.99 62.86Q188.6 65.23 188.06 67.33ZM199.1 40.33 188.24 40.69V35.65L193.04 35.35L194.96 34.03Q196.34 33.97 197.99 34.06Q199.64 34.15 200.48 34.33Q201.8 34.63 201.92 35.89Q202.04 37.03 201.8 38.05Q201.56 39.07 201.2 39.55Q200.9 39.97 200.27 40.15Q199.64 40.33 199.1 40.33ZM240.86 60.13Q240.62 59.29 240.44 57.55Q240.26 55.81 240.14 53.71Q240.02 51.61 239.96 49.69Q239.9 47.77 239.9 46.63V23.47Q239.36 22.45 238.13 21.43Q236.9 20.41 235.4 19.81L236.24 17.35Q236.42 16.87 237.26 16.87Q238.82 16.93 240.8 17.23Q242.78 17.53 244.61 17.98Q246.44 18.43 247.58 18.97Q248.6 19.39 248.48 20.77L248.24 24.55V44.29Q248.24 46.75 247.91 49.72Q247.58 52.69 246.98 55.45Q246.38 58.21 245.48 60.13ZM249.86 73.09 225.02 73.33 228.14 68.41Q229.4 68.41 231.14 68.41Q232.88 68.41 234.83 68.38Q236.78 68.35 238.58 68.32Q240.38 68.29 241.64 68.23L244.28 66.79Q245.96 66.73 247.97 66.88Q249.98 67.03 251.12 67.33Q252.32 67.63 252.32 68.77Q252.32 70.27 251.96 71.29Q251.6 72.31 251.18 72.67Q250.76 73.09 249.86 73.09ZM257.06 43.69 246.2 44.05V39.01L251 38.71L252.92 37.39Q254.3 37.33 255.95 37.42Q257.6 37.51 258.44 37.69Q259.76 37.99 259.88 39.25Q260 40.39 259.76 41.41Q259.52 42.43 259.16 42.91Q258.86 43.33 258.23 43.51Q257.6 43.69 257.06 43.69ZM226.76 34.69Q225.8 34.69 224.27 34.69Q222.74 34.69 221.09 34.72Q219.44 34.75 218.12 34.78Q216.8 34.81 216.2 34.87Q215.24 34.93 213.86 35.2Q212.48 35.47 211.58 35.77Q210.08 35.05 208.61 34Q207.14 32.95 206.06 31.87Q205.7 31.51 205.88 30.97L206.42 30.01Q207.92 30.25 209.6 30.34Q211.28 30.43 212.6 30.43Q213.26 30.43 214.64 30.43Q216.02 30.43 217.76 30.4Q219.5 30.37 221.27 30.31Q223.04 30.25 224.51 30.19Q225.98 30.13 226.76 30.07ZM233.78 34.45 223.64 34.69 226.7 30.07 229.46 29.05Q230.3 28.75 231.02 29.05Q231.86 29.41 233.21 30.07Q234.56 30.73 235.16 31.15Q235.76 31.51 235.28 32.23ZM232.52 53.35 222.68 44.89 231.8 45.61 234.44 46.15Q235.28 46.99 236.15 48.22Q237.02 49.45 237.44 50.29Q238.1 51.61 237.8 52.51Q237.44 53.47 236.42 54.07Q235.4 54.67 234.5 54.49Q234.02 54.43 233.51 54.1Q233 53.77 232.52 53.35ZM231.8 45.61 231.32 46.21 222.68 44.89 225.8 41.05ZM204.08 54.97Q203.66 54.55 204.08 54.01Q208.34 51.31 212 48.13Q215.66 44.95 218.6 41.5Q221.54 38.05 223.64 34.69L228.74 32.95L233.78 34.45Q231.14 39.01 226.94 43.12Q222.74 47.23 217.49 50.56Q212.24 53.89 206.24 56.11Q205.4 56.41 205.16 56.17ZM213.38 20.41Q217.22 21.13 220.94 21.4Q224.66 21.67 227.24 21.61Q228.32 21.61 228.74 22.27Q229.22 23.05 229.1 24.49Q228.98 25.93 228.38 26.47Q228.02 26.83 227.12 26.83Q225.98 26.83 224.33 26.86Q222.68 26.89 221.03 26.95Q219.38 27.01 218.12 27.13Q217.52 27.19 217.19 27.13Q216.86 27.07 216.5 26.83Q215.6 26.11 214.55 24.79Q213.5 23.47 212.84 22.21Q212.54 21.61 212.78 21.19ZM225.02 73.33Q221.36 73.27 219.8 71.8Q218.24 70.33 218.24 67.51V63.07H226.7V66.91Q226.7 68.41 228.14 68.41ZM226.7 64.39H218.24V61.39Q217.52 60.73 216.41 60.04Q215.3 59.35 214.1 58.93L214.58 56.89Q214.7 56.29 215.6 56.29Q217.04 56.29 218.96 56.41Q220.88 56.53 222.71 56.71Q224.54 56.89 225.62 57.13Q226.82 57.43 226.82 58.75L226.7 62.17Z" fill="#7A4E2D"/>
+</svg>
+    <nav aria-label="사이트 메뉴(시안)"><span>메뉴</span><span>어르신 밥상</span><span>가게 이야기</span><span>이용 방법</span></nav>
+    <button type="button" class="bigtext" id="bigtext" aria-pressed="false">큰 글씨 보기</button>
+  </div>
+</header>
+
+<main>
+  <!-- 1. 구매 영역 -->
+  <section class="buy gut" aria-labelledby="pname">
+    <div class="inner">
+      <div class="buy-photo">
+        <figure class="ph r45" data-shot="hero">
+          <svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><ellipse cx="60" cy="52" rx="56" ry="22"/><circle cx="40" cy="44" r="11"/><circle cx="70" cy="40" r="13"/><circle cx="92" cy="54" r="8"/><circle cx="56" cy="62" r="8"/><path d="M68 22c-3-3 3-5 0-9M74 22c-3-3 3-5 0-9"/></svg>
+          <figcaption class="cap"><b>사진 준비 중</b> · 나무 식탁 위 1인 저녁상 (45° 자연광)</figcaption>
+        </figure>
+        <p class="staged">상품 이미지는 연출된 예시로, 실제 상품과 구성·담음새가 다를 수 있습니다.</p>
+      </div>
+      <div class="buy-box">
+        <span class="hand">오늘 아침에 만들었어요</span>
+        <div class="badges"><span class="badge hot">대표 상품</span><span class="badge">1인분</span><span class="badge">매장 픽업</span></div>
+        <div style="display:grid;gap:6px">
+          <h1 id="pname">1인 저녁세트</h1>
+          <p class="sub">국 1 + 메인찬 1 + 기본찬 2. 오늘 아침 만든 반찬으로 한 끼를 차렸어요.</p>
+        </div>
+        <div class="price"><b class="num">13,900원</b><span>1인분 · 약 660g</span></div>
+        <div class="info-b" aria-label="요약">
+          <div><small>만든 시각</small><b class="num">오전 7시</b></div>
+          <div><small>픽업</small><b class="num">17:30~20:30</b></div>
+          <div><small>보관</small><b>냉장</b></div>
+        </div>
+        <p class="info-c">아침에 끓인 국과 반찬을, 저녁에 찾아가세요.</p>
+        <div class="field">
+          <span>픽업 날짜</span>
+          <div class="chips" id="dates"></div>
+        </div>
+        <div class="field">
+          <span>픽업 시간 <small style="font-weight:400;color:var(--muted)">(30분 단위)</small></span>
+          <div class="chips" id="slots"></div>
+        </div>
+        <div class="field">
+          <span>수량</span>
+          <div class="qty"><button type="button" id="minus" aria-label="수량 줄이기">−</button><output id="q" class="num" aria-live="polite">1</output><button type="button" id="plus" aria-label="수량 늘리기">+</button></div>
+        </div>
+        <div class="total"><span>합계</span><b class="num" id="total">13,900원</b></div>
+        <button type="button" class="cta" id="cta1">미리 결제하기</button>
+        <p class="parent-note"><b>부모님께 보내시나요?</b> 결제할 때 '받는 분'에 부모님 성함을 적으면, 부모님이 그 이름으로 직접 찾아가실 수 있어요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. 후킹 -->
+  <section class="sec hook gut dark alt" aria-labelledby="h-hook">
+    <div class="inner">
+      <div class="sec-head">
+        <span class="eyebrow">퇴근길 저녁</span>
+        <h2 id="h-hook">퇴근길, 오늘 저녁이<br>준비되어 있어요</h2>
+        <p class="lead">아침에 끓인 국과 반찬을 1인분씩 담아 둡니다. 미리 결제하고, 원하는 시간에 찾아가 데우기만 하세요.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 공감 -->
+  <section class="sec gut" aria-labelledby="h-pain">
+    <div class="inner">
+      <div class="sec-head"><span class="eyebrow">이런 저녁, 익숙하시죠</span><h2 id="h-pain">저녁 한 끼가<br>제일 어렵습니다</h2></div>
+      <ul class="pains">
+        <li class="pain"><b>퇴근하면 요리할 힘이 없어요</b><span>장 보고, 다듬고, 끓이면 한 시간이 훌쩍 지나요.</span></li>
+        <li class="pain"><b>혼자 먹기엔 재료가 남아요</b><span>대파 한 단, 두부 한 모. 결국 냉장고에서 시들어요.</span></li>
+        <li class="pain"><b>부모님 저녁이 늘 마음에 걸려요</b><span>따로 사시는 부모님이 오늘은 뭘 드셨는지 궁금해요.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 4. 구성 -->
+  <section class="sec gut alt" aria-labelledby="h-set">
+    <div class="inner">
+      <div class="sec-head"><span class="eyebrow">오늘의 구성</span><h2 id="h-set">한 끼에 필요한 만큼만,<br>네 가지를 담았어요</h2></div>
+      <figure class="ph r32" data-shot="containers">
+        <svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="10" y="6" width="46" height="32" rx="6"/><rect x="64" y="6" width="46" height="32" rx="6"/><rect x="10" y="44" width="46" height="30" rx="6"/><rect x="64" y="44" width="46" height="30" rx="6"/></svg>
+        <figcaption class="cap"><b>사진 준비 중</b> · 용기 4개 탑뷰 (크림 바탕)</figcaption>
+      </figure>
+      <ul class="items">
+        <li class="item"><small>국</small><b>된장찌개</b><span class="num">350g · 두부, 애호박</span></li>
+        <li class="item"><small>메인찬</small><b>제육볶음</b><span class="num">150g</span></li>
+        <li class="item"><small>기본찬</small><b>시금치나물</b><span class="num">80g</span></li>
+        <li class="item"><small>기본찬</small><b>멸치볶음</b><span class="num">80g</span></li>
+      </ul>
+      <p class="items-note">구성은 그날 만든 반찬에 따라 바뀝니다. 오늘의 구성은 주문 화면에서 확인하세요. 밥은 들어 있지 않아요.</p>
+    </div>
+  </section>
+
+  <!-- 5. 약속 -->
+  <section class="sec gut dark" aria-labelledby="h-promise">
+    <div class="inner">
+      <div class="sec-head"><span class="eyebrow">온담찬의 약속</span><h2 id="h-promise">숫자로 말씀드릴게요</h2></div>
+      <ul class="promises">
+        <li class="promise"><span class="big num">07:00</span><b>매일 아침 만듭니다</b><span>그날 판매할 반찬은 그날 아침에 만들어요.</span></li>
+        <li class="promise"><span class="big">1인분</span><b>딱 한 끼 양으로</b><span>남기거나 버리지 않게 1~2인분으로 나눠 담아요.</span></li>
+        <li class="promise"><span class="big">모든 용기</span><b>제조 시각을 붙입니다</b><span>언제 만들었는지 라벨에서 바로 확인하세요.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 6. 제조시간 라벨 -->
+  <section class="sec gut" aria-labelledby="h-label">
+    <div class="inner label-wrap">
+      <div class="sec-head" style="margin:0">
+        <span class="eyebrow">제조시간 라벨</span>
+        <h2 id="h-label">언제 만들었는지,<br>숨기지 않습니다</h2>
+        <ul class="label-points">
+          <li>모든 용기에 만든 날짜와 시각을 분 단위로 적어요.</li>
+          <li>소비기한과 보관 온도를 같은 라벨에 함께 적어요.</li>
+          <li>주홍 칸만 보시면 됩니다. 오늘 아침 숫자인지 확인하세요.</li>
+        </ul>
+      </div>
+      <div class="label" role="img" aria-label="제조시간 라벨 예시: 된장찌개, 제조 2026년 10월 21일 오전 7시 10분">
+        <div class="label-top"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" role="img" aria-label="온담찬">
+  <title>온담찬</title>
+  <circle cx="32" cy="32" r="29.5" fill="#FBF6EC" stroke="#7A4E2D" stroke-width="4"/>
+  <g transform="translate(12 10) scale(0.625)">
+  <path d="M16 33H48C48 41.8 40.8 48 32 48S16 41.8 16 33Z" fill="#7A4E2D"/>
+  <path d="M6 37C6.6 49.6 16.6 58.4 29.6 59V54.4C20 53.8 12.6 47.8 11.2 37.6C10.7 35.2 6 34.8 6 37Z" fill="#7A4E2D"/>
+  <path d="M58 37C57.4 49.6 47.4 58.4 34.4 59V54.4C44 53.8 51.4 47.8 52.8 37.6C53.3 35.2 58 34.8 58 37Z" fill="#7A4E2D"/>
+  <path d="M23 26.5c-3.2-3.2 3.2-6 0-10M41 26.5c-3.2-3.2 3.2-6 0-10" fill="none" stroke="#7A4E2D" stroke-width="3.6" stroke-linecap="round"/>
+  <path d="M32 25.5c-3.8-3.8 3.8-7 0-12" fill="none" stroke="#C8462B" stroke-width="3.6" stroke-linecap="round"/>
+  </g>
+</svg><span>온담찬 · 양주</span></div>
+        <h3>된장찌개</h3>
+        <dl>
+          <div class="made"><span>제조</span><b class="num">10.21 07:10</b></div>
+          <dt>내용량</dt><dd class="num">350g (1인분)</dd>
+          <dt>소비기한</dt><dd class="num">10.22 까지</dd>
+          <dt>보관</dt><dd>냉장 0~10℃</dd>
+          <dt>알레르기</dt><dd>대두, 밀, 조개류</dd>
+        </dl>
+        <p class="fine">라벨 예시입니다. 소비기한과 알레르기 표시는 품목별 기준을 확정한 뒤 적습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. 데우는 법 -->
+  <section class="sec gut alt" aria-labelledby="h-heat">
+    <div class="inner">
+      <div class="sec-head"><span class="eyebrow">맛있게 드시는 법</span><h2 id="h-heat">데우기만 하면<br>저녁 준비 끝</h2></div>
+      <figure class="ph r32" data-shot="soup" style="margin-bottom:20px">
+        <svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M24 40h72c0 18-16 30-36 30S24 58 24 40z"/><path d="M18 40h84"/><path d="M48 30c-4-4 4-7 0-12M60 28c-4-4 4-8 0-14M72 30c-4-4 4-7 0-12"/></svg>
+        <figcaption class="cap"><b>사진 준비 중</b> · 뚝배기에 다시 끓인 된장찌개 클로즈업</figcaption>
+      </figure>
+      <ol class="steps">
+        <li class="step"><b>국은 냄비에</b><span>냄비에 붓고 중불에서 3~4분, 보글보글 끓으면 불을 꺼요.</span></li>
+        <li class="step"><b>메인찬은 전자레인지에</b><span>뚜껑을 살짝 열고 700W 기준 1분 30초 데워요.</span></li>
+        <li class="step"><b>기본찬은 그대로</b><span>나물과 멸치볶음은 데우지 않고 바로 드세요.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 8. 정보 고시 -->
+  <section class="sec gut" aria-labelledby="h-info">
+    <div class="inner">
+      <div class="sec-head"><span class="eyebrow">상품 정보 고시</span><h2 id="h-info">상품 정보</h2></div>
+      <div class="table-wrap">
+        <table class="notice-table">
+          <tbody>
+            <tr><th>제품명</th><td>1인 저녁세트</td></tr>
+            <tr><th>식품 유형</th><td>반찬류<span class="todo">사업자 확인 필요</span></td></tr>
+            <tr><th>내용량</th><td class="num">약 660g (국 350g, 메인찬 150g, 기본찬 80g × 2)</td></tr>
+            <tr><th>원재료명 및 원산지</th><td>품목별 표기<span class="todo">사업자 확인 필요</span></td></tr>
+            <tr><th>알레르기 유발 물질</th><td>품목별 표기<span class="todo">사업자 확인 필요</span></td></tr>
+            <tr><th>제조일시 · 소비기한</th><td>용기 라벨에 표기</td></tr>
+            <tr><th>보관 방법</th><td>냉장 보관 (0~10℃)</td></tr>
+            <tr><th>제조 · 판매</th><td>온담찬 · 경기도 양주시<span class="todo">주소 확인 필요</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. 픽업 안내 -->
+  <section class="sec gut alt" aria-labelledby="h-pick">
+    <div class="inner">
+      <div class="sec-head"><span class="eyebrow">픽업 안내</span><h2 id="h-pick">무인 매장에서<br>이렇게 찾아가세요</h2></div>
+      <div class="pickup">
+        <figure class="ph r32" data-shot="pickup">
+          <svg viewBox="0 0 120 80" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="22" y="6" width="76" height="68" rx="4"/><path d="M22 28h76M22 50h76M47 6v68M72 6v68"/></svg>
+          <figcaption class="cap"><b>사진 준비 중</b> · 매장 픽업 냉장고(번호 칸)</figcaption>
+        </figure>
+        <ul class="pickup-list">
+          <li><b>결제하면 문자로 주문번호가 와요</b><span>고른 날짜·시간과 함께 보내 드려요.</span></li>
+          <li><b>고른 시간에 매장으로 오세요</b><span>픽업 17:30~20:30, 매장은 06:00~23:00 열려 있어요.</span></li>
+          <li><b>픽업 냉장고에서 꺼내 가세요</b><span>주문번호가 붙은 봉투를 꺼내면 끝. 따로 계산할 필요가 없어요.</span></li>
+          <li><b>취소는 픽업 3시간 전까지</b><span>그 뒤에는 이미 만든 음식이라 취소가 어려워요. (정책 예시)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. FAQ -->
+  <section class="sec gut" aria-labelledby="h-faq">
+    <div class="inner">
+      <div class="sec-head"><span class="eyebrow">자주 묻는 질문</span><h2 id="h-faq">궁금한 점</h2></div>
+      <div class="faq">
+        <details open><summary>무인 매장인데 어떻게 찾아가나요?</summary><p>결제하면 문자로 주문번호가 옵니다. 고르신 시간에 매장 픽업 냉장고에서 주문번호가 붙은 봉투를 꺼내 가시면 됩니다. 부모님이 대신 찾아가실 때는 '받는 분' 이름으로 확인하세요.</p></details>
+        <details><summary>얼마나 보관할 수 있나요?</summary><p>찾아가신 날 드시는 것이 가장 맛있습니다. 냉장(0~10℃)에 두시고, 용기 라벨의 소비기한 안에 드세요.</p></details>
+        <details><summary>픽업 시간을 놓치면 어떻게 되나요?</summary><p>그날 매장 마감(23:00) 전까지는 픽업 냉장고에 보관해 둡니다. 마감 뒤에는 위생을 위해 폐기하며, 환불은 어렵습니다. (정책 예시)</p></details>
+        <details><summary>어떻게 데우면 되나요?</summary><p>국은 냄비에서 중불로 3~4분, 메인찬은 전자레인지 700W로 1분 30초 데워 주세요. 나물과 멸치볶음은 그대로 드시면 됩니다.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. 마무리 -->
+  <section class="sec gut alt dark" aria-labelledby="h-end">
+    <div class="inner closing">
+      <span class="hand">오늘 저녁은 온담찬에서</span>
+      <h2 id="h-end">매일의 식사에<br>온기를 담다</h2>
+      <p class="lead">1인 저녁세트 <b class="num">13,900원</b> · 17:30부터 픽업</p>
+      <button type="button" class="cta" id="cta2">픽업 시간 고르기</button>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot gut">
+  <div class="inner">
+    <span>온담찬 · 대표 ○○○ · 사업자등록번호 준비 중 · 통신판매업 신고번호 준비 중</span>
+    <span>경기도 양주시 (주소 준비 중) · 무인 판매 06:00~23:00 · 픽업 17:30~20:30</span>
+    <span>이용약관 · 환불 정책 · 개인정보 처리방침</span>
+  </div>
+</footer>
+
+<div class="buybar" aria-label="구매 바">
+  <div><small>1인 저녁세트 × <span id="bq" class="num">1</span></small><b class="num" id="btotal">13,900원</b></div>
+  <button type="button" class="cta" id="cta3">미리 결제하기</button>
+</div>
+
+<script>
+(() => {
+  const PRICE = 13900;
+  const won = (n) => n.toLocaleString("ko-KR") + "원";
+  const root = document.documentElement;
+
+  // 시안 전환 (#a #b #c 로 바로 열기)
+  const tabs = [...document.querySelectorAll(".picker [data-set]")];
+  function setTone(t) {
+    document.body.dataset.tone = t;
+    tabs.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.set === t)));
+    try { localStorage.setItem("ondam-detail-tone", t); } catch (e) {}
+  }
+  tabs.forEach((b) => b.addEventListener("click", () => { setTone(b.dataset.set); window.scrollTo({ top: 0 }); }));
+  let start = (location.hash || "").replace("#", "");
+  if (!["a", "b", "c"].includes(start)) { try { start = localStorage.getItem("ondam-detail-tone") || "a"; } catch (e) { start = "a"; } }
+  setTone(["a", "b", "c"].includes(start) ? start : "a");
+
+  // 큰 글씨 보기
+  const big = document.getElementById("bigtext");
+  big.addEventListener("click", () => {
+    const on = !root.classList.contains("big");
+    root.classList.toggle("big", on);
+    big.setAttribute("aria-pressed", String(on));
+    big.textContent = on ? "기본 글씨" : "큰 글씨 보기";
+  });
+
+  // 픽업 날짜 (오늘·내일)
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  const dates = document.getElementById("dates");
+  [0, 1].forEach((add, i) => {
+    const d = new Date(); d.setDate(d.getDate() + add);
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip num";
+    b.textContent = `${add ? "내일" : "오늘"} ${d.getMonth() + 1}/${d.getDate()} (${days[d.getDay()]})`;
+    b.setAttribute("aria-pressed", String(i === 0));
+    b.addEventListener("click", () => dates.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b))));
+    dates.appendChild(b);
+  });
+
+  // 픽업 시간 30분 단위 (예시: 18:00은 마감)
+  const slots = document.getElementById("slots");
+  ["17:30", "18:00", "18:30", "19:00", "19:30", "20:00"].forEach((t, i) => {
+    const b = document.createElement("button");
+    b.type = "button"; b.className = "chip num"; b.textContent = t;
+    if (t === "18:00") { b.disabled = true; b.title = "이 시간은 마감되었어요"; }
+    b.setAttribute("aria-pressed", String(t === "18:30"));
+    b.addEventListener("click", () => slots.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b))));
+    slots.appendChild(b);
+  });
+
+  // 수량
+  let q = 1;
+  const render = () => {
+    document.getElementById("q").textContent = q;
+    document.getElementById("bq").textContent = q;
+    document.getElementById("total").textContent = won(PRICE * q);
+    document.getElementById("btotal").textContent = won(PRICE * q);
+  };
+  document.getElementById("minus").addEventListener("click", () => { q = Math.max(1, q - 1); render(); });
+  document.getElementById("plus").addEventListener("click", () => { q = Math.min(5, q + 1); render(); });
+
+  // 결제 버튼: 시안이라 구매 영역으로만 이동
+  ["cta2", "cta3"].forEach((id) => document.getElementById(id).addEventListener("click", () => document.querySelector(".buy").scrollIntoView({ behavior: "smooth" })));
+  document.getElementById("cta1").addEventListener("click", (e) => { e.currentTarget.textContent = "시안입니다 · 결제 화면은 다음 단계에서"; });
+})();
+</script>

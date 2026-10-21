@@ -85,6 +85,8 @@
   - logo, horizontal, mono, symbol, favicon, OG 1200×630
 
 ### D. 상세페이지 3안 — 1인 저녁세트 (Phase 5.5)
+- **시안 완료 2026-10-21**: `prototypes/detail.html` (A 따뜻한 집밥 / B 깔끔한 정보형 / C 차분한 에디토리얼, `#a #b #c`). 템플릿 `prototypes/src/detail.tpl.html` → `python3 prototypes/src/build.py`
+- 사진 4컷 프롬프트: `brand/prompts/detail-{hero,containers,soup,pickup}.txt` — OPENAI_API_KEY 값 수정 후 생성해 사진 자리 교체
 - `references/detail-page.md` 구조를 따릅니다. 3안은 톤만 다르게 합니다.
   - 따뜻한 집밥 / 깔끔한 정보형 / 차분한 에디토리얼 — 모두 R4 색 범위 안에서
 - 꼭 들어갈 것:

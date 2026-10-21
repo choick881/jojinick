@@ -1,0 +1,5 @@
+[Purpose] Product photo showing what is inside a take-out dinner set, for an online shop.
+[Background] Plain warm cream backdrop, soft diffused daylight from above, subtle natural shadows.
+[Subject] Top-down view of four clear PP take-out containers neatly arranged in a 2x2 grid: a round 450ml container of doenjang-jjigae (soup, with tofu and zucchini), a rectangular container of spicy stir-fried pork jeyuk-bokkeum, a small container of seasoned spinach namul, a small container of stir-fried small anchovies. Each lid is set beside its container. Each container has one small blank plain white round sticker on its side (completely blank, no text).
+[Details] Exact top-down flat lay, crisp focus, colors true to life, tidy and clean like a neighborhood side-dish shop.
+[Constraints] Photorealistic. Korean home-style food in a Korean setting (not Japanese, not Western). No people, no hands, no text, no logos, no watermark, no price tags. Warm but natural color, true-to-life portions for one person.
