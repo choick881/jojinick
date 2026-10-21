@@ -95,3 +95,4 @@
   - 배운 점: 좁은 표 칸에서 `overflow-wrap: anywhere`가 "20:30"을 쪼갬 → `break-word` + `nowrap`
 - 2026-10-21 6단계 일부: 사이트맵·robots·구조화 데이터 추가. 성능 개선 — 본문 웹 글꼴(Noto Sans KR 4굵기) 제거 → 기기 한글 글꼴, 명조는 900만. 홈 FCP 7.4s→3.8s, 전송량 1.2MB→0.6MB. 픽업 선택 칸을 같은 모양의 자리로 먼저 그려 상세 CLS 0.18→0.
 - Vercel 미리보기: 커넥터에 choick1 팀 권한이 없어(403) 프로젝트 생성 불가 → 사용자가 vercel.com에서 Import(Root Directory=site)하거나 커넥터 재연결 필요
+- 2026-10-21 14:16 UTC: 사용자가 vercel.com에서 프로젝트 `ondamchan`(Root Directory `site`)을 만들어 저장소와 연결. 이후 작업 브랜치에 올릴 때마다 미리보기 배포가 자동으로 생김
