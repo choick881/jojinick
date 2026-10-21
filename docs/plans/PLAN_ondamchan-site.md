@@ -49,10 +49,10 @@
 **게이트**: 테스트 통과, 빌드·린트, 모든 라우트 375/1440 캡처, 가로 스크롤 없음
 **되돌리기**: 해당 커밋 되돌리기
 
-## Phase 3. Supabase 스키마 · RLS · 시드 *(DB 생성 방법 확정 후)*
-- [ ] 테이블: `products`, `pickup_slots`(용량), `orders`(fulfillment_type, recipient_*, address_* nullable), `order_items`, `store_status`(오늘 제조 시각)
-- [ ] RLS: anon은 `products`·`store_status` 읽기만, `orders`·`order_items` 접근 불가
-- [ ] 시드: `brand/menu.json`
+## Phase 3. Supabase 스키마 · RLS · 시드 — ✅ 2026-10-21
+- [x] 테이블: `products`, `pickup_slots`(용량), `orders`(fulfillment_type, recipient_*, address_* nullable), `order_items`, `store_status`(오늘 제조 시각)
+- [x] RLS: anon은 `products`·`store_status` 읽기만, `orders`·`order_items` 접근 불가
+- [x] 시드: `brand/menu.json`
 **게이트**: anon 키로 `orders` select 0건, Supabase advisors 경고 없음
 **되돌리기**: 마이그레이션 down SQL
 
@@ -98,3 +98,6 @@
 - 2026-10-21 14:16 UTC: 사용자가 vercel.com에서 프로젝트 `ondamchan`(Root Directory `site`)을 만들어 저장소와 연결. 이후 작업 브랜치에 올릴 때마다 미리보기 배포가 자동으로 생김
 - 2026-10-21: 처음 연결 때 Root Directory가 비어 있어 저장소 루트가 배포됨(3초 빌드, 사이트 없음) → 사용자가 Root Directory를 `site`로 수정 후 재배포
 - 2026-10-21 18:40 UTC: 프레임워크 사전 설정이 Other로 잡혀 있던 것을 `site/vercel.json`(framework: nextjs)으로 고정 → 21초 실제 빌드, 사용자가 미리보기에서 온담찬 홈 확인
+- 2026-10-21 Phase 3 완료: 사용자 결정으로 goodgame 일시정지 → 새 프로젝트 `ondamchan`(ref dvbluucydlzkfpzcjmea, 서울, 무료). 마이그레이션 3개(`site/supabase/migrations/`): 스키마+RLS, 시드(메뉴 17·시간대 6·현황판), 픽업 시간 색인.
+  - 게이트: anon으로 products 17건, orders 0건, admin_users 0건. 보안 점검 경고 없음(admin_users 정책 없음=의도). 성능 점검의 "정책 중복" 경고는 drop이 확인 대기로 시간 초과되어 보류(표가 작아 영향 미미).
+  - 사이트: `lib/catalog.ts`가 Supabase REST(publishable 키)로 읽고 실패 시 메뉴 파일 사용, `use cache` + `cacheTag("catalog")`. 이 작업 환경은 supabase.co 접속이 막혀 Vercel 미리보기에서 확인(현황판의 "예시" 표시가 사라지면 DB 연결 성공).

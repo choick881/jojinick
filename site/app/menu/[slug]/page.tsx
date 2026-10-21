@@ -5,16 +5,16 @@ import { notFound } from "next/navigation";
 import { Faq, HOW_TO, Promises, STAGED_NOTE, SectionHead, Steps } from "@/components/blocks";
 import { BuyBox } from "@/components/buy-box";
 import { PhotoSlot } from "@/components/photo-slot";
-import { categoryName, getProduct, getProducts, getStoreStatus, HEATING, type Product } from "@/lib/catalog";
+import { findProduct, getCatalog, HEATING, type Product } from "@/lib/catalog";
 import { won } from "@/lib/price";
 import { absoluteUrl, jsonLd } from "@/lib/site";
 
-export function generateStaticParams() {
-  return getProducts().map((p) => ({ slug: p.slug }));
+export async function generateStaticParams() {
+  return (await getCatalog()).products.map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/menu/[slug]">): Promise<Metadata> {
-  const p = getProduct((await params).slug);
+  const p = findProduct(await getCatalog(), (await params).slug);
   if (!p) return {};
   const description = `${p.name} ${won(p.price)} · ${p.size}. 오늘 아침 만들어 미리 결제하고 퇴근길에 찾아가세요.`;
   return { title: p.name, description, alternates: { canonical: `/menu/${p.slug}` }, openGraph: { title: `${p.name} · 온담찬`, description } };
@@ -36,13 +36,14 @@ function heatingSteps(p: Product) {
     steps.push({ title: "반찬은 그대로", body: "나물과 볶음, 부드러운 반찬은 데우지 않고 바로 드세요." });
     return steps;
   }
-  return [{ title: categoryName(p.category), body: HEATING[p.category] ?? HEATING.basic }];
+  return [{ title: p.categoryName, body: HEATING[p.category] ?? HEATING.basic }];
 }
 
 export default async function ProductPage({ params }: PageProps<"/menu/[slug]">) {
-  const p = getProduct((await params).slug);
+  const catalog = await getCatalog();
+  const p = findProduct(catalog, (await params).slug);
   if (!p) notFound();
-  const status = getStoreStatus();
+  const status = catalog.status;
   const isSet = Boolean(p.components?.length);
   const firstItem = p.components?.[0];
   const heat = heatingSteps(p);
@@ -52,7 +53,7 @@ export default async function ProductPage({ params }: PageProps<"/menu/[slug]">)
     "@type": "Product",
     name: p.name,
     description: p.size,
-    category: categoryName(p.category),
+    category: p.categoryName,
     brand: { "@type": "Brand", name: "온담찬" },
     offers: {
       "@type": "Offer",
@@ -77,7 +78,7 @@ export default async function ProductPage({ params }: PageProps<"/menu/[slug]">)
             <span className="hand">오늘 아침에 만들었어요</span>
             <div className="flex flex-wrap gap-1.5">
               {p.featured && <span className="rounded-full bg-accent px-2.5 py-0.5 text-[.72rem] font-bold text-white">대표 상품</span>}
-              <span className="rounded-full bg-sand px-2.5 py-0.5 text-[.72rem] font-bold text-brand">{categoryName(p.category)}</span>
+              <span className="rounded-full bg-sand px-2.5 py-0.5 text-[.72rem] font-bold text-brand">{p.categoryName}</span>
               <span className="rounded-full bg-sand px-2.5 py-0.5 text-[.72rem] font-bold text-brand">매장 픽업</span>
               {p.softness && <span className="rounded-full bg-sand px-2.5 py-0.5 text-[.72rem] font-bold text-brand">부드러움: {p.softness}</span>}
             </div>

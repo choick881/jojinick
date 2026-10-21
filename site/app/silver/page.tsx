@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { SectionHead, Steps } from "@/components/blocks";
 import { ProductGrid } from "@/components/product-card";
-import { getProducts } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog";
 
 export const metadata: Metadata = { title: "어르신 밥상", description: "잘게 썰고 푹 익힌 부드러운 반찬. 자녀가 결제하고 부모님이 성함으로 찾아가세요." };
 
@@ -12,8 +12,8 @@ const LEVELS = [
 ];
 
 // 이 화면은 처음부터 큰 글씨(1.15배)로 보여 준다
-export default function SilverPage() {
-  const items = getProducts().filter((p) => p.category === "silver");
+export default async function SilverPage() {
+  const items = (await getCatalog()).products.filter((p) => p.category === "silver");
   return (
     <div className="text-[1.15rem]">
       <section className="gut pt-9">

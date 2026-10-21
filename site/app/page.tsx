@@ -2,14 +2,15 @@ import Link from "next/link";
 import { HOW_TO, Promises, SectionHead, SilverBand, Steps, StoreBoard, StoreInfo } from "@/components/blocks";
 import { PhotoSlot } from "@/components/photo-slot";
 import { ProductGrid } from "@/components/product-card";
-import { getFeatured, getProduct, getProducts, getStoreStatus } from "@/lib/catalog";
+import { featured, findProduct, getCatalog } from "@/lib/catalog";
 import { won } from "@/lib/price";
 
 // 홈 = 시안 1안(두 손님 나란히) + 2안 매장 현황판
-export default function Home() {
-  const all = getProducts();
-  const me = getProduct("dinner-set-1")!;
-  const parent = getProduct("silver-dinner-set")!;
+export default async function Home() {
+  const catalog = await getCatalog();
+  const all = catalog.products;
+  const me = findProduct(catalog, "dinner-set-1")!;
+  const parent = findProduct(catalog, "silver-dinner-set")!;
   const guests = [
     { who: "나를 위한 한 끼", title: <>퇴근길, 저녁이<br />준비되어 있어요</>, body: "아침에 만든 국과 반찬을 1인분씩. 미리 결제하고 찾아가 데우기만 하세요.", p: me, href: `/menu/${me.slug}`, cta: "미리 결제하기", primary: true, drawing: "table" as const, cap: "퇴근 후 혼자 먹는 따뜻한 저녁상" },
     { who: "부모님께 전하는 한 끼", title: <>부모님 저녁,<br />대신 챙겨 드려요</>, body: "부드럽게 만든 어르신 밥상. 자녀가 결제하면 부모님이 성함으로 찾아가세요.", p: parent, href: "/silver", cta: "부모님 반찬 보내기", primary: false, drawing: "tray" as const, cap: "부드러운 반찬을 담은 어르신 밥상" },
@@ -40,7 +41,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <StoreBoard status={getStoreStatus()} total={all.length} onSale={all.filter((p) => !p.soldOut).length} />
+          <StoreBoard status={catalog.status} total={all.length} onSale={all.filter((p) => !p.soldOut).length} />
         </div>
       </section>
 
@@ -57,7 +58,7 @@ export default function Home() {
             <div className="grid gap-2"><span className="eyebrow">오늘의 반찬</span><h2 className="h2">오늘 아침에 만들었어요</h2></div>
             <Link href="/menu" className="text-[.85rem] font-bold text-brand underline underline-offset-4">전체 메뉴 보기</Link>
           </div>
-          <ProductGrid products={getFeatured()} />
+          <ProductGrid products={featured(catalog)} />
         </div>
       </section>
 

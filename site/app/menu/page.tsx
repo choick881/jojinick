@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { STAGED_NOTE } from "@/components/blocks";
 import { MenuBrowser } from "@/components/menu-browser";
 import { ProductGrid } from "@/components/product-card";
-import { categories, getProducts, getStoreStatus } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog";
 
 export const metadata: Metadata = { title: "메뉴", description: "오늘 아침 만든 저녁세트, 기본찬, 메인찬, 국·찌개, 어르신 밥상." };
 
-export default function MenuPage() {
-  const all = getProducts();
+export default async function MenuPage() {
+  const { products: all, categories, status } = await getCatalog();
   const panels: Record<string, React.ReactNode> = { all: <ProductGrid products={all} /> };
   for (const c of categories) panels[c.slug] = <ProductGrid products={all.filter((p) => p.category === c.slug)} />;
-  const status = getStoreStatus();
   return (
     <section className="gut pb-18 pt-9">
       <div className="wrap">

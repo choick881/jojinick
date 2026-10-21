@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { CheckoutForm } from "@/components/checkout-form";
-import { getProducts } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog";
 
 export const metadata: Metadata = { title: "주문하기", robots: { index: false } };
 
-export default function CheckoutPage() {
-  const products = getProducts().map(({ slug, name, price, soldOut }) => ({ slug, name, price, soldOut }));
+export default async function CheckoutPage() {
+  const products = (await getCatalog()).products.map(({ slug, name, price, soldOut }) => ({ slug, name, price, soldOut }));
   return (
     <section className="gut pt-9">
       <div className="wrap">

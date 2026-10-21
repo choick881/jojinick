@@ -1,8 +1,8 @@
 import type { MetadataRoute } from "next";
-import { getProducts } from "@/lib/catalog";
+import { getCatalog } from "@/lib/catalog";
 import { absoluteUrl } from "@/lib/site";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = [
     { path: "/", priority: 1, changeFrequency: "daily" as const },
     { path: "/menu", priority: 0.9, changeFrequency: "daily" as const },
@@ -13,6 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
   return [
     ...pages.map((p) => ({ url: absoluteUrl(p.path), priority: p.priority, changeFrequency: p.changeFrequency })),
-    ...getProducts().map((p) => ({ url: absoluteUrl(`/menu/${p.slug}`), priority: p.featured ? 0.8 : 0.6, changeFrequency: "weekly" as const })),
+    ...(await getCatalog()).products.map((p) => ({ url: absoluteUrl(`/menu/${p.slug}`), priority: p.featured ? 0.8 : 0.6, changeFrequency: "weekly" as const })),
   ];
 }

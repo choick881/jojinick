@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { categoryName, type Product } from "@/lib/catalog";
+import type { Product } from "@/lib/catalog";
 import { won } from "@/lib/price";
 import { AddToCart } from "./add-to-cart";
 import { PhotoSlot } from "./photo-slot";
@@ -15,7 +15,7 @@ export function ProductCard({ p, big = false }: { p: Product; big?: boolean }) {
       </Link>
       <div className="grid content-start gap-1 px-3.5 pb-3.5 pt-3">
         <Link href={`/menu/${p.slug}`} className={`font-bold leading-snug hover:underline ${big ? "text-[1.1rem]" : "text-[.95rem]"}`}>{p.name}</Link>
-        <span className={`leading-snug text-muted ${big ? "text-[.95rem]" : "text-[.76rem]"}`}>{categoryName(p.category)} · {p.size}</span>
+        <span className={`leading-snug text-muted ${big ? "text-[.95rem]" : "text-[.76rem]"}`}>{p.categoryName} · {p.size}</span>
         {p.softness && <span className="w-fit rounded bg-[var(--soft)] px-1.5 text-[.68rem] font-bold text-brand">{p.softness}</span>}
         <div className="mt-1.5 flex items-center justify-between gap-2">
           <span className={`num font-extrabold ${big ? "text-[1.1rem]" : ""}`}>{won(p.price)}</span>

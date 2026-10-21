@@ -1,53 +1,48 @@
-// 메뉴 데이터의 단일 진입점. 지금은 brand/menu.json 복사본(data/menu.json)을 읽고,
-// Supabase가 연결되면(Phase 3) 이 파일만 바꿔 DB에서 읽는다.
+// 메뉴 데이터의 단일 진입점. Supabase에서 읽고, 실패하면 저장소의 메뉴 파일(brand/menu.json 복사본)로 대신한다.
+import { cacheLife, cacheTag } from "next/cache";
 import menu from "@/data/menu.json";
+import { fromDb, fromMenuJson, type Catalog, type Product } from "./catalog-map";
+import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "./supabase-config";
 
-export type Softness = "씹기 쉬움" | "잇몸으로" | "혀로";
-export type Component = { role: string; name: string; amount: string };
-export type Product = {
-  slug: string;
-  category: string;
-  name: string;
-  price: number;
-  size: string;
-  featured?: boolean;
-  softness: Softness | null;
-  ingredients: string;
-  origin: string;
-  allergens: string;
-  components?: Component[];
-  soldOut?: boolean;
-};
-export type Category = { slug: string; name: string };
+export type { Catalog, Category, Component, Product, Softness, StoreStatus } from "./catalog-map";
 
-/** 매장 현황판 값. DB 연결 전에는 예시 값이며 isExample로 화면에 표시한다. */
-export type StoreStatus = { madeAt: string; isExample: boolean };
+/** 관리자 화면에서 품절·제조 시각을 바꾸면 revalidateTag(CATALOG_TAG)로 새로 읽는다 */
+export const CATALOG_TAG = "catalog";
 
-const products = menu.products as Product[];
-export const categories: Category[] = menu.categories;
-export const softnessLevels = menu.softness_scale.levels as Softness[];
-
-export function getProducts(): Product[] {
-  return products;
+async function rest<T>(path: string): Promise<T> {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    headers: { apikey: SUPABASE_PUBLISHABLE_KEY, Authorization: `Bearer ${SUPABASE_PUBLISHABLE_KEY}` },
+    signal: AbortSignal.timeout(5000),
+  });
+  if (!res.ok) throw new Error(`Supabase ${path}: ${res.status}`);
+  return res.json() as Promise<T>;
 }
 
-export function getProduct(slug: string): Product | undefined {
-  return products.find((p) => p.slug === slug);
+export async function getCatalog(): Promise<Catalog> {
+  "use cache";
+  cacheLife("minutes");
+  cacheTag(CATALOG_TAG);
+  try {
+    const [products, categories, status] = await Promise.all([
+      rest<Parameters<typeof fromDb>[0]["products"]>("products?select=slug,category,name,price,size,featured,softness,ingredients,origin,allergens,components,sort,sold_out&is_active=eq.true"),
+      rest<Parameters<typeof fromDb>[0]["categories"]>("categories?select=slug,name,sort"),
+      rest<{ made_at: string }[]>("store_status?select=made_at&id=eq.1"),
+    ]);
+    if (!products.length) throw new Error("상품이 비어 있음");
+    return fromDb({ products, categories, status });
+  } catch (e) {
+    console.warn("[catalog] Supabase를 읽지 못해 메뉴 파일을 씁니다:", (e as Error).message);
+    return fromMenuJson(menu);
+  }
 }
 
-export function categoryName(slug: string): string {
-  return categories.find((c) => c.slug === slug)?.name ?? "";
-}
-
-export function getStoreStatus(): StoreStatus {
-  return { madeAt: "07:10", isExample: true };
-}
+export const findProduct = (c: Catalog, slug: string): Product | undefined => c.products.find((p) => p.slug === slug);
 
 /** 홈 '오늘의 반찬'에 올릴 순서 */
 export const FEATURED_ORDER = ["dinner-set-1", "banchan-3-set", "beef-jangjorim", "doenjang-jjigae", "spicy-pork", "silver-soft-3-set", "spinach-namul", "japchae"];
 
-export function getFeatured(): Product[] {
-  return FEATURED_ORDER.map((s) => getProduct(s)).filter((p): p is Product => Boolean(p));
+export function featured(c: Catalog): Product[] {
+  return FEATURED_ORDER.map((s) => findProduct(c, s)).filter((p): p is Product => Boolean(p));
 }
 
 /** 분류별 데우는 법 (상세페이지) */
