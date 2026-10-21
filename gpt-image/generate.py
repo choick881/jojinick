@@ -14,7 +14,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from openai import OpenAI
+from openai import APIError, OpenAI
 
 
 def parse_args():
@@ -67,7 +67,13 @@ def main():
 
     for idx, prompt in enumerate(prompts, 1):
         print(f"[{idx}/{len(prompts)}] 생성 중: {prompt[:50]}...")
-        result = generate(client, prompt, args)
+        try:
+            result = generate(client, prompt, args)
+        except APIError as e:
+            body = e.body if isinstance(e.body, dict) else {}
+            if body.get("code") in ("credit_balance_exhausted", "insufficient_quota"):
+                sys.exit("오류: OpenAI 크레딧이 없습니다. https://platform.openai.com/settings/organization/billing 에서 충전하세요.")
+            sys.exit(f"오류: {body.get('message') or e}")
         stamp = datetime.now().strftime("%Y%m%d-%H%M%S")
         for i, item in enumerate(result.data, 1):
             path = out_dir / f"{stamp}-p{idx}-{i}.{args.format}"

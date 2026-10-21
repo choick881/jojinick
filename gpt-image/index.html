@@ -89,6 +89,7 @@
           <option value="gpt-image-1">
           <option value="gpt-image-1-mini">
           <option value="gpt-image-1.5">
+          <option value="gpt-image-2">
         </datalist>
       </div>
       <div>
@@ -204,6 +205,10 @@ async function callApi(apiKey, opts, files) {
     });
   }
   const data = await res.json().catch(() => ({}));
+  const code = data?.error?.code;
+  if (code === "credit_balance_exhausted" || code === "insufficient_quota") {
+    throw new Error("OpenAI 크레딧이 없습니다. platform.openai.com → Billing 에서 충전하세요.");
+  }
   if (!res.ok) throw new Error(data?.error?.message || `HTTP ${res.status}`);
   return data;
 }
