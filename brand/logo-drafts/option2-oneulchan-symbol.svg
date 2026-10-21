@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="오늘찬 심볼">
+  <rect x="8" y="8" width="104" height="104" rx="24" fill="#2F5D3A"/>
+  <rect x="20" y="20" width="38" height="80" rx="10" fill="#F2EBDD"/>
+  <rect x="66" y="20" width="34" height="36" rx="10" fill="#F2EBDD"/>
+  <rect x="66" y="64" width="34" height="36" rx="10" fill="#F2EBDD"/>
+  <circle cx="83" cy="38" r="10" fill="#E0A526"/>
+  <path d="M39 88C24 72 27 46 39 32C51 46 54 72 39 88Z" fill="#2F5D3A"/>
+  <path d="M39 80V46" stroke="#F2EBDD" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="74" cy="82" r="4.5" fill="#2F5D3A"/>
+  <circle cx="83" cy="82" r="4.5" fill="#2F5D3A"/>
+  <circle cx="92" cy="82" r="4.5" fill="#2F5D3A"/>
+</svg>

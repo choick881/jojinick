@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="양주찬방 심볼">
+  <rect x="8" y="8" width="104" height="104" rx="10" fill="#B3261E"/>
+  <rect x="17" y="17" width="86" height="86" rx="5" fill="none" stroke="#F4EFE6" stroke-width="2.5"/>
+  <text x="60" y="83" text-anchor="middle" font-family="'Nanum Myeongjo', serif" font-weight="800" font-size="64" fill="#F4EFE6">찬</text>
+</svg>
