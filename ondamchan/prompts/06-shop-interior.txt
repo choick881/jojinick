@@ -1,0 +1,5 @@
+[Purpose] Interior photo for the "about us" page of a small unmanned Korean side-dish shop.
+[Background] A clean 10-15 pyeong shop at evening, warm wood shelves, cream walls.
+[Subject] A glass refrigerated showcase neatly filled with small containers of Korean banchan, a self-checkout kiosk at the side, a small pickup shelf with numbered cubbies.
+[Details] Eye level, 28mm lens, warm 3000K lighting inside, calm and tidy, inviting.
+[Constraints] Photorealistic. Korean home-style food in a Korean setting (not Japanese, not Western). No people, no hands, no text, no logos, no watermark, no price tags. Warm but natural color, true-to-life portions for one person. No readable signage text.
