@@ -46,8 +46,8 @@ export default function Home() {
 
       <section className="gut sec sec-alt">
         <div className="wrap grid gap-2.5 text-center">
-          <p className="font-serif text-[1.3rem] font-bold">퇴근하고 요리할 힘, 남아 있나요?</p>
-          <p className="font-serif text-[1.3rem] font-bold text-brand">부모님 식사, 매일 챙기기 어렵죠?</p>
+          <p className="font-serif text-[1.3rem] font-black">퇴근하고 요리할 힘, 남아 있나요?</p>
+          <p className="font-serif text-[1.3rem] font-black text-brand">부모님 식사, 매일 챙기기 어렵죠?</p>
         </div>
       </section>
 

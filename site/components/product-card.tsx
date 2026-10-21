@@ -8,7 +8,7 @@ export function ProductCard({ p, big = false }: { p: Product; big?: boolean }) {
   const tag = p.soldOut ? { t: "품절", c: "bg-ink text-white" } : p.featured ? { t: "추천", c: "bg-white text-brand" } : null;
   return (
     <article className={`card grid min-w-0 grid-rows-[auto_1fr] overflow-hidden ${p.soldOut ? "[&_figure]:opacity-60 [&_figure]:grayscale" : ""}`}>
-      <Link href={`/menu/${p.slug}`} aria-label={`${p.name} 자세히 보기`}>
+      <Link href={`/menu/${p.slug}`} tabIndex={-1} aria-hidden="true">
         <PhotoSlot drawing="bowl" caption={p.name} ratio="1 / 1" rounded={false} sizes="(min-width: 1020px) 25vw, 50vw">
           {tag && <span className={`absolute left-2.5 top-2.5 rounded-full px-2.5 py-0.5 text-[.66rem] font-extrabold ${tag.c}`}>{tag.t}</span>}
         </PhotoSlot>

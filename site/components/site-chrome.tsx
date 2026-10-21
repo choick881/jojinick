@@ -23,7 +23,7 @@ export function SiteFooter() {
   return (
     <footer className="gut bg-ink pb-28 pt-8 text-[.78rem] text-[#CDBEAB] md:pb-10">
       <div className="wrap grid gap-1">
-        <b className="font-serif text-base text-paper">온담찬</b>
+        <b className="font-serif text-base font-black text-paper">온담찬</b>
         <span>대표 ○○○ · 사업자등록번호 준비 중 · 통신판매업 신고번호 준비 중</span>
         <span>경기도 양주시 (주소 준비 중) · 무인 판매 06:00~23:00 · 픽업 17:30~20:30</span>
         <span className="flex flex-wrap gap-x-3">

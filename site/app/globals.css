@@ -27,7 +27,7 @@
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
   --color-line: var(--line);
-  --font-sans: var(--font-noto-sans), "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-sans: "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", "Noto Sans KR", "Noto Sans CJK KR", system-ui, sans-serif;
   --font-serif: var(--font-noto-serif), "Nanum Myeongjo", serif;
   --font-hand: var(--font-pen), cursive;
 }

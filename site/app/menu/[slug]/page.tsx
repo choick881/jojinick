@@ -7,6 +7,7 @@ import { BuyBox } from "@/components/buy-box";
 import { PhotoSlot } from "@/components/photo-slot";
 import { categoryName, getProduct, getProducts, getStoreStatus, HEATING, type Product } from "@/lib/catalog";
 import { won } from "@/lib/price";
+import { absoluteUrl, jsonLd } from "@/lib/site";
 
 export function generateStaticParams() {
   return getProducts().map((p) => ({ slug: p.slug }));
@@ -15,7 +16,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/menu/[slug]">): Promise<Metadata> {
   const p = getProduct((await params).slug);
   if (!p) return {};
-  return { title: p.name, description: `${p.name} ${won(p.price)} · ${p.size}. 오늘 아침 만들어 미리 결제하고 퇴근길에 찾아가세요.` };
+  const description = `${p.name} ${won(p.price)} · ${p.size}. 오늘 아침 만들어 미리 결제하고 퇴근길에 찾아가세요.`;
+  return { title: p.name, description, alternates: { canonical: `/menu/${p.slug}` }, openGraph: { title: `${p.name} · 온담찬`, description } };
 }
 
 const FAQ = [
@@ -45,8 +47,25 @@ export default async function ProductPage({ params }: PageProps<"/menu/[slug]">)
   const firstItem = p.components?.[0];
   const heat = heatingSteps(p);
 
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: p.name,
+    description: p.size,
+    category: categoryName(p.category),
+    brand: { "@type": "Brand", name: "온담찬" },
+    offers: {
+      "@type": "Offer",
+      price: p.price,
+      priceCurrency: "KRW",
+      availability: p.soldOut ? "https://schema.org/OutOfStock" : "https://schema.org/InStock",
+      url: absoluteUrl(`/menu/${p.slug}`),
+    },
+  };
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(productLd) }} />
       {/* 1. 구매 영역 */}
       <section className="gut pb-12 pt-6">
         <div className="wrap grid gap-6 md:grid-cols-[1.1fr_1fr] md:items-start md:gap-10">
@@ -134,10 +153,10 @@ export default async function ProductPage({ params }: PageProps<"/menu/[slug]">)
               <span className="text-[13px] font-bold text-brand">온담찬 · 양주</span>
             </div>
             <h3 className="text-[24px] font-extrabold">{firstItem?.name ?? p.name}</h3>
+            <div className="flex items-baseline justify-between rounded-[10px] border-2 border-accent bg-[#FFF4EC] px-3 py-2.5">
+              <span className="text-[14px] font-bold text-accent-deep">제조</span><b className="num text-[26px] font-extrabold">10.21 {status.madeAt}</b>
+            </div>
             <dl className="grid grid-cols-[auto_1fr] gap-x-3.5 gap-y-1.5 text-[15px]">
-              <div className="col-span-2 flex items-baseline justify-between rounded-[10px] border-2 border-accent bg-[#FFF4EC] px-3 py-2.5">
-                <span className="text-[14px] font-bold text-accent-deep">제조</span><b className="num text-[26px] font-extrabold">10.21 {status.madeAt}</b>
-              </div>
               <dt className="text-muted">내용량</dt><dd className="num font-bold">{firstItem?.amount ?? p.size}</dd>
               <dt className="text-muted">소비기한</dt><dd className="num font-bold">10.22 까지</dd>
               <dt className="text-muted">보관</dt><dd className="font-bold">냉장 0~10℃</dd>

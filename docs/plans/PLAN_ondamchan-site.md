@@ -71,8 +71,8 @@
 **게이트**: 비로그인 접근 차단, 품절 토글이 메뉴에 반영
 
 ## Phase 6. 검색 노출 · 점검 · 배포
-- [ ] `sitemap.ts`, `robots.ts`, JSON-LD(LocalBusiness), 상품 메타
-- [ ] Lighthouse 목표: 성능 90 / 접근성 95 / SEO 100
+- [x] `sitemap.ts`, `robots.ts`(미리보기 배포는 검색 차단), JSON-LD(FoodEstablishment·Product), 상품 메타·canonical
+- [ ] Lighthouse 목표: 성능 90 / 접근성 95 / SEO 100 — 로컬 측정(모바일): 접근성·SEO·권장사항 100, 성능 메뉴 93·어르신 99·주문 91·상세 78·홈 74 (남은 원인: 명조·손글씨 웹 글꼴). Vercel에서 재측정
 - [ ] 시크릿 스캔(`.env` 추적 여부)
 - [ ] Vercel 프로젝트 연결(Root `site/`), 미리보기 배포 → 운영은 사용자 확인 후
 **게이트**: 미리보기 URL에서 전체 흐름 확인
@@ -93,3 +93,5 @@
 - 2026-10-21 Phase 1·2 완료: Next.js 16.4.2(Cache Components 기본). 브라우저 상태(장바구니·큰 글씨·시각)는 React 19 린트 규칙에 맞춰 `useSyncExternalStore` 저장소(`lib/browser-store.ts`)로 구현. 픽업 시간은 KST 고정 계산, 슬롯 시작 60분 전 마감.
   - 게이트: Vitest 14개 통과, tsc·eslint 0건, `next build` 정적 30페이지, 375/768/1440 × 9개 경로 가로 스크롤·콘솔 오류 없음(404 페이지의 404 응답 제외), 담기→주문 화면 흐름 확인
   - 배운 점: 좁은 표 칸에서 `overflow-wrap: anywhere`가 "20:30"을 쪼갬 → `break-word` + `nowrap`
+- 2026-10-21 6단계 일부: 사이트맵·robots·구조화 데이터 추가. 성능 개선 — 본문 웹 글꼴(Noto Sans KR 4굵기) 제거 → 기기 한글 글꼴, 명조는 900만. 홈 FCP 7.4s→3.8s, 전송량 1.2MB→0.6MB. 픽업 선택 칸을 같은 모양의 자리로 먼저 그려 상세 CLS 0.18→0.
+- Vercel 미리보기: 커넥터에 choick1 팀 권한이 없어(403) 프로젝트 생성 불가 → 사용자가 vercel.com에서 Import(Root Directory=site)하거나 커넥터 재연결 필요
