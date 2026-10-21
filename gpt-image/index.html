@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GPT 이미지 생성기</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1d2330; --muted: #5f6b7a;
+    --line: #dde2ea; --accent: #2f6fde; --accent-text: #ffffff; --error: #c62828;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14171c; --card: #1d2128; --text: #e8ebf0; --muted: #9aa5b4;
+      --line: #313844; --accent: #5b8ff0; --accent-text: #0e1116; --error: #ff6b6b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif; }
+  main { max-width: 960px; margin: 0 auto; padding: 24px 16px 64px; }
+  h1 { font-size: 1.6rem; margin: 0 0 4px; }
+  .sub { color: var(--muted); margin: 0 0 24px; }
+  section { background: var(--card); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; margin-bottom: 16px; }
+  h2 { font-size: 1.1rem; margin: 0 0 12px; }
+  label { display: block; font-weight: 600; margin: 12px 0 6px; }
+  input, select, textarea, button { font: inherit; color: inherit; }
+  input[type=text], input[type=password], input[type=number], select, textarea {
+    width: 100%; padding: 10px 12px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg); }
+  textarea { min-height: 140px; resize: vertical; }
+  input[type=file] { width: 100%; max-width: 100%; }
+  .row > div { min-width: 0; }
+  .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+  .row label { margin-top: 0; }
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { padding: 8px 14px; border: 1px solid var(--line); border-radius: 999px;
+    background: var(--bg); cursor: pointer; }
+  .chip:hover { border-color: var(--accent); }
+  .check { display: flex; align-items: center; gap: 8px; font-weight: normal; margin-top: 8px; }
+  .hint { color: var(--muted); font-size: 0.9rem; margin: 6px 0 0; }
+  .primary { margin-top: 16px; width: 100%; padding: 14px; border: 0; border-radius: 10px;
+    background: var(--accent); color: var(--accent-text); font-weight: 700; font-size: 1.05rem; cursor: pointer; }
+  .primary:disabled { opacity: 0.6; cursor: wait; }
+  #status { margin-top: 12px; min-height: 1.6em; }
+  #status.error { color: var(--error); }
+  #results { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  figure { margin: 0; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--bg); }
+  figure img { display: block; width: 100%; height: auto;
+    background: repeating-conic-gradient(#8882 0 25%, transparent 0 50%) 0 0 / 16px 16px; }
+  figcaption { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; gap: 8px; }
+  figcaption a { color: var(--accent); font-weight: 600; text-decoration: none; }
+  figcaption span { color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>GPT 이미지 생성기</h1>
+  <p class="sub">OpenAI 이미지 API(gpt-image)로 SNS 카드뉴스·포스터·썸네일 이미지를 만듭니다.</p>
+
+  <section>
+    <h2>1. API 키</h2>
+    <label for="apiKey">OpenAI API Key</label>
+    <input id="apiKey" type="password" placeholder="sk-..." autocomplete="off">
+    <label class="check"><input id="rememberKey" type="checkbox"> 이 브라우저에 키 기억하기</label>
+    <p class="hint">키는 OpenAI 서버로만 전송됩니다. 공용 PC에서는 '기억하기'를 끄세요.</p>
+  </section>
+
+  <section>
+    <h2>2. 프롬프트</h2>
+    <div class="presets" id="presets"></div>
+    <label for="prompt">만들고 싶은 이미지 설명</label>
+    <textarea id="prompt" placeholder="예) 공원에서 스트레칭하는 활기찬 60대 부부, 밝은 아침 햇살, 따뜻한 수채화 스타일"></textarea>
+    <p class="hint">이미지 안에 글자를 넣으려면 큰따옴표로 감싸세요. 예) 상단에 "건강 100세 체조교실" 문구</p>
+
+    <label for="refImages">참고 이미지 (선택 · 편집 모드)</label>
+    <input id="refImages" type="file" accept="image/png,image/jpeg,image/webp" multiple>
+    <p class="hint">사진을 올리면 그 이미지를 바탕으로 수정·합성합니다 (예: 로고 넣기, 배경 바꾸기).</p>
+  </section>
+
+  <section>
+    <h2>3. 옵션</h2>
+    <div class="row">
+      <div>
+        <label for="model">모델</label>
+        <input id="model" type="text" list="modelList" value="gpt-image-1">
+        <datalist id="modelList">
+          <option value="gpt-image-1">
+          <option value="gpt-image-1-mini">
+          <option value="gpt-image-1.5">
+        </datalist>
+      </div>
+      <div>
+        <label for="size">크기</label>
+        <select id="size">
+          <option value="1024x1024">정사각형 1024×1024 (인스타 피드)</option>
+          <option value="1024x1536">세로 1024×1536 (포스터·스토리)</option>
+          <option value="1536x1024">가로 1536×1024 (유튜브 썸네일)</option>
+          <option value="auto">자동</option>
+        </select>
+      </div>
+      <div>
+        <label for="quality">품질</label>
+        <select id="quality">
+          <option value="low">낮음 (빠름·저렴)</option>
+          <option value="medium" selected>보통</option>
+          <option value="high">높음 (정교함)</option>
+          <option value="auto">자동</option>
+        </select>
+      </div>
+      <div>
+        <label for="n">장수</label>
+        <input id="n" type="number" min="1" max="10" value="1">
+      </div>
+      <div>
+        <label for="background">배경</label>
+        <select id="background">
+          <option value="auto">자동</option>
+          <option value="opaque">불투명</option>
+          <option value="transparent">투명 (로고·스티커용)</option>
+        </select>
+      </div>
+      <div>
+        <label for="format">파일 형식</label>
+        <select id="format">
+          <option value="png">PNG</option>
+          <option value="jpeg">JPEG</option>
+          <option value="webp">WEBP</option>
+        </select>
+      </div>
+    </div>
+    <button id="generate" class="primary">이미지 생성</button>
+    <div id="status" role="status"></div>
+  </section>
+
+  <section>
+    <h2>결과</h2>
+    <div id="results"><p class="hint">아직 생성된 이미지가 없습니다.</p></div>
+  </section>
+</main>
+
+<script>
+const PRESETS = [
+  { label: "SNS 카드뉴스 표지", size: "1024x1024",
+    text: '인스타그램 카드뉴스 표지 디자인. 밝은 공원에서 가볍게 스트레칭하는 60~70대 한국인 시니어들, 환한 미소. 따뜻한 파스텔 톤, 깔끔한 플랫 일러스트 스타일. 상단 중앙에 큰 글씨로 "하루 10분 시니어 건강체조" 문구.' },
+  { label: "노인스포츠 교실 포스터", size: "1024x1536",
+    text: '지역 복지관의 노인스포츠 교실 홍보 포스터. 체육관에서 밴드 운동과 공 운동을 하는 활기찬 어르신들. 신뢰감 있는 청록색과 주황색 포인트, 모던한 그래픽 디자인. 상단에 "건강 100세 실버스포츠 교실", 하단에 "매주 화·목 오전 10시" 문구.' },
+  { label: "유튜브 썸네일", size: "1536x1024",
+    text: '유튜브 썸네일 배경 이미지. 화면 오른쪽에 엄지를 든 친근한 60대 한국인 남성 강사, 왼쪽은 텍스트를 넣을 수 있는 깔끔한 여백. 선명한 대비, 밝은 노란색과 파란색 배경, 고화질 사진 스타일.' },
+  { label: "요양시설 프로그램 안내", size: "1024x1024",
+    text: '요양시설 어르신 대상 프로그램 안내용 일러스트. 원예, 노래교실, 미술 활동을 즐기는 어르신들과 다정한 요양보호사. 부드럽고 따뜻한 동화풍 일러스트, 큰 요소와 단순한 구도로 고령자도 알아보기 쉽게.' },
+  { label: "자선·기부 캠페인", size: "1024x1536",
+    text: '어르신 건강 지원 자선 캠페인 포스터. 손을 맞잡은 청년과 어르신의 손 클로즈업, 부드러운 역광, 감성적인 사진 스타일. 하단에 "함께 걷는 건강한 노후" 문구.' },
+  { label: "브랜드 로고 시안", size: "1024x1024", background: "transparent",
+    text: '실버 헬스케어 스타트업 로고 시안. 걷는 사람 실루엣과 하트, 새싹을 결합한 심플한 심볼. 청록색과 주황색, 플랫 벡터 스타일, 투명 배경, 텍스트 없음.' },
+];
+
+const $ = (id) => document.getElementById(id);
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+  del(k) { try { localStorage.removeItem(k); } catch {} },
+};
+
+const savedKey = store.get("openai_api_key");
+if (savedKey) { $("apiKey").value = savedKey; $("rememberKey").checked = true; }
+
+for (const p of PRESETS) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "chip"; b.textContent = p.label;
+  b.onclick = () => {
+    $("prompt").value = p.text;
+    $("size").value = p.size;
+    $("background").value = p.background || "auto";
+  };
+  $("presets").appendChild(b);
+}
+
+function setStatus(msg, isError = false) {
+  $("status").textContent = msg;
+  $("status").className = isError ? "error" : "";
+}
+
+async function callApi(apiKey, opts, files) {
+  const common = {
+    model: opts.model, prompt: opts.prompt, n: opts.n, size: opts.size,
+    quality: opts.quality, background: opts.background, output_format: opts.format,
+  };
+  let res;
+  if (files.length) {
+    // 참고 이미지가 있으면 편집(edits) 엔드포인트 사용
+    const form = new FormData();
+    for (const [k, v] of Object.entries(common)) form.append(k, String(v));
+    for (const f of files) form.append("image[]", f, f.name);
+    res = await fetch("https://api.openai.com/v1/images/edits", {
+      method: "POST", headers: { Authorization: `Bearer ${apiKey}` }, body: form,
+    });
+  } else {
+    res = await fetch("https://api.openai.com/v1/images/generations", {
+      method: "POST",
+      headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+      body: JSON.stringify(common),
+    });
+  }
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data?.error?.message || `HTTP ${res.status}`);
+  return data;
+}
+
+function showResults(data, format) {
+  const box = $("results");
+  if (box.querySelector(".hint")) box.innerHTML = "";
+  const stamp = new Date().toISOString().replace(/[-:T]/g, "").slice(0, 14);
+  data.data.forEach((item, i) => {
+    const src = item.b64_json ? `data:image/${format};base64,${item.b64_json}` : item.url;
+    const fig = document.createElement("figure");
+    const img = document.createElement("img");
+    img.src = src; img.alt = "생성된 이미지";
+    const cap = document.createElement("figcaption");
+    const a = document.createElement("a");
+    a.href = src; a.download = `gpt-image-${stamp}-${i + 1}.${format}`; a.textContent = "다운로드";
+    const info = document.createElement("span");
+    info.textContent = new Date().toLocaleTimeString("ko-KR");
+    cap.append(a, info); fig.append(img, cap);
+    box.prepend(fig);
+  });
+}
+
+$("generate").onclick = async () => {
+  const apiKey = $("apiKey").value.trim();
+  const prompt = $("prompt").value.trim();
+  if (!apiKey) return setStatus("OpenAI API 키를 입력하세요.", true);
+  if (!prompt) return setStatus("프롬프트를 입력하세요.", true);
+
+  if ($("rememberKey").checked) store.set("openai_api_key", apiKey);
+  else store.del("openai_api_key");
+
+  const opts = {
+    model: $("model").value.trim() || "gpt-image-1",
+    prompt,
+    n: Math.min(10, Math.max(1, parseInt($("n").value, 10) || 1)),
+    size: $("size").value,
+    quality: $("quality").value,
+    background: $("background").value,
+    format: $("format").value,
+  };
+  if (opts.background === "transparent" && opts.format === "jpeg") {
+    return setStatus("투명 배경은 PNG 또는 WEBP에서만 가능합니다.", true);
+  }
+
+  const btn = $("generate");
+  btn.disabled = true;
+  setStatus("생성 중입니다… 품질·장수에 따라 30초~2분 정도 걸릴 수 있어요.");
+  const t0 = performance.now();
+  try {
+    const data = await callApi(apiKey, opts, [...$("refImages").files]);
+    showResults(data, opts.format);
+    const sec = ((performance.now() - t0) / 1000).toFixed(1);
+    const tokens = data.usage?.total_tokens ? ` · 사용 토큰 ${data.usage.total_tokens.toLocaleString()}` : "";
+    setStatus(`완료! ${data.data.length}장 생성 (${sec}초${tokens})`);
+  } catch (e) {
+    setStatus(`오류: ${e.message}`, true);
+  } finally {
+    btn.disabled = false;
+  }
+};
+</script>
+</body>
+</html>
