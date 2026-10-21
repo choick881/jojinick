@@ -200,7 +200,8 @@ h2 { font-size: 1.55rem; line-height: 1.35; text-wrap: balance; }
 [data-tone="a"] .promise { border-radius: 20px; text-align: center; }
 [data-tone="a"] .promise .big { font-family: var(--serif); font-weight: 900; }
 [data-tone="a"] .label { transform: rotate(-1.5deg); }
-[data-tone="a"] .info-b, [data-tone="a"] .info-c { display: none; }
+[data-tone="a"] .info-c { display: none; }
+[data-tone="a"] .info-b { display: grid; background: var(--white); border-radius: 14px; }  /* 확정: A + B 요약표 */
 
 /* ═════════ B · 깔끔한 정보형 ═════════ */
 [data-tone="b"] { --paper: #FFFFFF; --line: #E6DED2; }
@@ -252,11 +253,11 @@ h2 { font-size: 1.55rem; line-height: 1.35; text-wrap: balance; }
   <div class="inner">
     <strong>상세페이지 시안</strong>
     <div class="tabs">
-      <button type="button" id="tone-a" data-set="a" aria-pressed="true">A 따뜻한 집밥</button>
+      <button type="button" id="tone-a" data-set="a" aria-pressed="true">A 따뜻한 집밥 + 요약표 (확정)</button>
       <button type="button" id="tone-b" data-set="b" aria-pressed="false">B 깔끔한 정보형</button>
       <button type="button" id="tone-c" data-set="c" aria-pressed="false">C 차분한 에디토리얼</button>
     </div>
-    <span class="note">세 안은 내용이 같고 분위기만 다릅니다. 가격·정책·수치는 예시이며, 사진은 생성 전이라 자리만 표시했습니다.</span>
+    <span class="note">확정: A안에 B안의 요약표를 더했습니다. 세 안은 내용이 같고 분위기만 다릅니다. 가격·정책·수치는 예시이며, 사진은 생성 전이라 자리만 표시했습니다.</span>
   </div>
 </div>
 
