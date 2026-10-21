@@ -22,7 +22,10 @@ export async function POST(request: Request) {
     .select("id, slug, name, price, sold_out")
     .eq("is_active", true)
     .in("slug", items.map((i) => i.slug));
-  if (productError) return fail("SERVER", 500);
+  if (productError) {
+    console.error("[orders] 상품 조회 실패:", productError.code, productError.message); // 키가 틀리면 여기서 401
+    return fail("SERVER", 500);
+  }
 
   const priced = priceCart(items, (products ?? []).map((p) => ({ slug: p.slug, name: p.name, price: p.price, soldOut: p.sold_out })));
   if (!priced.ok) return fail(priced.error);
@@ -59,13 +62,17 @@ export async function POST(request: Request) {
     })
     .select("id")
     .single();
-  if (orderError || !order) return fail("SERVER", 500);
+  if (orderError || !order) {
+    console.error("[orders] 주문 저장 실패:", orderError?.code, orderError?.message);
+    return fail("SERVER", 500);
+  }
 
   const idBySlug = new Map((products ?? []).map((p) => [p.slug, p.id]));
   const { error: itemsError } = await db.from("order_items").insert(
     priced.lines.map((l) => ({ order_id: order.id, product_id: idBySlug.get(l.slug)!, product_name: l.name, unit_price: l.unitPrice, quantity: l.qty })),
   );
   if (itemsError) {
+    console.error("[orders] 주문 상품 저장 실패:", itemsError.code, itemsError.message);
     await db.from("orders").delete().eq("id", order.id);
     return fail("SERVER", 500);
   }
