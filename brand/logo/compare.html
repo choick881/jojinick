@@ -1,0 +1,314 @@
+<title>온담찬 로고 3안</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;900&display=swap">
+<style>
+/* Layout: 세로로 쌓인 시안 3장 — 각 장은 큰 시안 1개 + 사용 환경 시험대(바탕·크기·단색·용기 라벨) 격자 */
+:root {
+  --bg: #FBF6EC;        /* 크림 */
+  --surface: #FFFFFF;
+  --sand: #EFE4D0;
+  --fg: #2B211A;        /* 먹 */
+  --muted: #6B5A4C;
+  --line: #E2D5BF;
+  --brand: #7A4E2D;     /* 된장 갈색 */
+  --accent: #C8462B;    /* 고추 주홍 */
+  --chip: #F3E9D8;
+  --font-display: "Noto Serif KR", "Nanum Myeongjo", serif;
+  --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+
+  /* 로고 시험대 바탕 — 인쇄물 색이라 테마와 무관하게 고정 */
+  --sw-white: #FFFFFF;
+  --sw-cream: #FBF6EC;
+  --sw-brown: #7A4E2D;
+  --sw-ink: #2B211A;
+  --sw-lid: #E9ECEC;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1C1713; --surface: #26201B; --sand: #2E2620; --fg: #F2E9DB; --muted: #C2B19E;
+    --line: #3E342B; --brand: #D9A77E; --accent: #EE7A5A; --chip: #322A23; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1C1713; --surface: #26201B; --sand: #2E2620; --fg: #F2E9DB; --muted: #C2B19E;
+  --line: #3E342B; --brand: #D9A77E; --accent: #EE7A5A; --chip: #322A23; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 17px; line-height: 1.7;
+  word-break: keep-all;
+}
+.wrap {
+  max-width: 1080px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 72px;
+  display: grid; gap: 56px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.3; }
+h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 900; color: var(--brand); }
+h2 { font-size: clamp(24px, 3.4vw, 30px); font-weight: 900; }
+h3 { font-size: 17px; font-weight: 600; font-family: var(--font-body); }
+p { margin: 0; }
+.eyebrow { font-size: 13px; letter-spacing: .08em; color: var(--muted); font-weight: 500; }
+
+/* 머리말 */
+.intro { display: grid; gap: 14px; max-width: 46rem; }
+.intro .lead { font-size: 18px; color: var(--fg); }
+.notice {
+  display: grid; gap: 6px; padding: 14px 16px; border-radius: 10px;
+  background: var(--chip); color: var(--fg); font-size: 15px;
+}
+.notice b { color: var(--brand); }
+.criteria { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
+.criteria li { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-size: 15px; }
+
+/* 시안 한 장 */
+.option { display: grid; gap: 20px; }
+.option-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.option-head .tag {
+  font-family: var(--font-display); font-weight: 900; font-size: 15px;
+  color: var(--surface); background: var(--brand); border-radius: 6px; padding: 0 9px;
+}
+.option-head p { color: var(--muted); font-size: 16px; }
+
+.hero {
+  --lm: #7A4E2D; --la: #C8462B; --lk: #FBF6EC;
+  background: var(--sw-cream); border-radius: 14px; border: 1px solid var(--line);
+  min-height: 300px; display: grid; place-items: center; padding: 36px 16px;
+}
+
+.bench { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.cell { display: grid; gap: 8px; min-width: 0; }
+.cell .pad {
+  border-radius: 10px; min-height: 150px; display: grid; place-items: center; padding: 18px 12px;
+  border: 1px solid var(--line);
+}
+.cell figcaption { font-size: 14px; color: var(--muted); }
+.cell figure, figure { margin: 0; }
+
+/* 바탕별 로고 색 (--lm 본색, --la 강조색, --lk 뚫린 부분) */
+.on-white { background: var(--sw-white); --lm: #7A4E2D; --la: #C8462B; --lk: #FFFFFF; }
+.on-cream { background: var(--sw-cream); --lm: #7A4E2D; --la: #C8462B; --lk: #FBF6EC; }
+.on-brown { background: var(--sw-brown); --lm: #FBF6EC; --la: #FBF6EC; --lk: #7A4E2D; }
+.mono-ink { background: var(--sw-white); --lm: #2B211A; --la: #2B211A; --lk: #FFFFFF; }
+.wm { color: var(--lm); }
+
+/* 작은 크기 */
+.sizes { display: flex; align-items: end; justify-content: center; gap: 22px; }
+.sizes span { display: grid; justify-items: center; gap: 6px; font-size: 12px; color: #6B5A4C; font-variant-numeric: tabular-nums; }
+
+/* 용기 라벨 모의: 반찬 용기 뚜껑(위에서 본 모습) + 원형 스티커 */
+.lid {
+  width: 168px; height: 168px; border-radius: 22px; background: var(--sw-lid);
+  box-shadow: inset 0 0 0 6px #DCE0E0, inset 0 0 0 7px #CDD2D2;
+  display: grid; place-items: center;
+}
+.sticker {
+  --lm: #7A4E2D; --la: #C8462B; --lk: #FFFFFF;
+  width: 118px; height: 118px; border-radius: 50%; background: #FFFFFF;
+  display: grid; justify-items: center; align-content: center; gap: 2px; text-align: center;
+  color: #2B211A; box-shadow: 0 1px 2px rgba(0,0,0,.12);
+}
+.sticker .item { font-size: 11px; font-weight: 700; line-height: 1.3; }
+.sticker .made { font-size: 9.5px; line-height: 1.35; font-variant-numeric: tabular-nums; color: #6B5A4C; }
+.sticker .made b { color: #2B211A; font-weight: 700; }
+
+/* 로고 조합 */
+.lock-h { display: flex; align-items: center; gap: .32em; }
+.lock-v { display: grid; justify-items: center; gap: .1em; }
+.wordmark { font-family: var(--font-display); font-weight: 900; letter-spacing: -.01em; line-height: 1; color: var(--lm); }
+svg.logo { display: block; overflow: visible; }
+
+/* 비교 표 */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 15.5px; }
+th, td { text-align: left; vertical-align: top; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+tr:last-child td { border-bottom: 0; }
+th { font-weight: 700; color: var(--muted); font-size: 14px; background: var(--chip); }
+td:first-child { font-family: var(--font-display); font-weight: 900; white-space: nowrap; color: var(--brand); }
+.pick { color: var(--accent); font-weight: 700; }
+
+.next { display: grid; gap: 10px; max-width: 46rem; }
+.next ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+.keywords span { font-size: 14px; padding: 4px 12px; border-radius: 6px; background: var(--chip); color: var(--fg); }
+hr { border: 0; border-top: 1px solid var(--line); margin: 0; }
+</style>
+
+<!-- 심볼 원본: 이 정의를 그대로 SVG 파일로 저장했다 (brand/logo/drafts/*.svg) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- A: 김 오르는 밥그릇 -->
+    <symbol id="sym-a" viewBox="0 0 64 64">
+      <path d="M8 33H56C56 45.5 45.3 54 32 54S8 45.5 8 33Z" style="fill:var(--lm)"/>
+      <rect x="23" y="55.5" width="18" height="4.5" rx="2.25" style="fill:var(--lm)"/>
+      <path d="M13.5 39.5H50.5" style="fill:none;stroke:var(--lk);stroke-width:2.2;stroke-linecap:round"/>
+      <path d="M21 27c-3.6-3.6 3.6-6.8 0-11.5M43 27c-3.6-3.6 3.6-6.8 0-11.5" style="fill:none;stroke:var(--lm);stroke-width:3.8;stroke-linecap:round"/>
+      <path d="M32 26c-4.2-4.2 4.2-7.8 0-13.5" style="fill:none;stroke:var(--la);stroke-width:3.8;stroke-linecap:round"/>
+    </symbol>
+    <!-- B: 두 손이 건네는 그릇 -->
+    <symbol id="sym-b" viewBox="0 0 64 64">
+      <path d="M15 29H49C49 38.4 41.4 45 32 45S15 38.4 15 29Z" style="fill:var(--lm)"/>
+      <path d="M4 33.5C4.6 47.8 16 58 29.6 58.6V53.6C19.2 53 11.2 46 9.6 34.3C9.1 31.6 4 31 4 33.5Z" style="fill:var(--lm)"/>
+      <path d="M60 33.5C59.4 47.8 48 58 34.4 58.6V53.6C44.8 53 52.8 46 54.4 34.3C54.9 31.6 60 31 60 33.5Z" style="fill:var(--lm)"/>
+      <path d="M32 22.5c-4.2-3.8 4.2-7.2 0-12.5" style="fill:none;stroke:var(--la);stroke-width:3.8;stroke-linecap:round"/>
+    </symbol>
+    <!-- C 심볼: 손 + 그릇 + 김 세 줄 (엠블럼 안쪽, 작은 크기용) -->
+    <symbol id="sym-c" viewBox="0 0 64 64">
+      <path d="M16 33H48C48 41.8 40.8 48 32 48S16 41.8 16 33Z" style="fill:var(--lm)"/>
+      <path d="M6 37C6.6 49.6 16.6 58.4 29.6 59V54.4C20 53.8 12.6 47.8 11.2 37.6C10.7 35.2 6 34.8 6 37Z" style="fill:var(--lm)"/>
+      <path d="M58 37C57.4 49.6 47.4 58.4 34.4 59V54.4C44 53.8 51.4 47.8 52.8 37.6C53.3 35.2 58 34.8 58 37Z" style="fill:var(--lm)"/>
+      <path d="M23 26.5c-3.2-3.2 3.2-6 0-10M41 26.5c-3.2-3.2 3.2-6 0-10" style="fill:none;stroke:var(--lm);stroke-width:3.6;stroke-linecap:round"/>
+      <path d="M32 25.5c-3.8-3.8 3.8-7 0-12" style="fill:none;stroke:var(--la);stroke-width:3.6;stroke-linecap:round"/>
+    </symbol>
+    <!-- C: 원형 스티커 엠블럼 -->
+    <symbol id="emb-c" viewBox="0 0 120 120">
+      <circle cx="60" cy="60" r="56" style="fill:var(--lk);stroke:var(--lm);stroke-width:5"/>
+      <circle cx="60" cy="60" r="48.5" style="fill:none;stroke:var(--lm);stroke-width:1.2"/>
+      <use href="#sym-c" x="37" y="17" width="46" height="46"/>
+      <text x="60" y="84" text-anchor="middle" style="fill:var(--lm);font-family:'Noto Serif KR',serif;font-weight:900;font-size:19px;letter-spacing:.5px">온담찬</text>
+      <text x="60" y="96" text-anchor="middle" style="fill:var(--lm);font-family:'Noto Sans KR',sans-serif;font-weight:700;font-size:5.8px;letter-spacing:1.6px">ONDAMCHAN</text>
+      <circle cx="30" cy="94" r="1.5" style="fill:var(--la)"/>
+      <circle cx="90" cy="94" r="1.5" style="fill:var(--la)"/>
+    </symbol>
+    <!-- C 작은 크기용: 원 + 심볼만 -->
+    <symbol id="emb-c-s" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="29.5" style="fill:var(--lk);stroke:var(--lm);stroke-width:4"/>
+      <use href="#sym-c" x="12" y="10" width="40" height="40"/>
+    </symbol>
+  </defs>
+</svg>
+
+<main class="wrap">
+  <header class="intro">
+    <span class="eyebrow">양주 무인 반찬가게 · 브랜드 1단계</span>
+    <h1>온담찬 로고 3안</h1>
+    <p class="lead">기획서(R7)의 두 모티브, <b>김 오르는 밥그릇</b>과 <b>두 손으로 건네는 그릇</b>을 세 방향으로 그렸습니다. 주 사용처가 반찬 용기 스티커라서, 작게 줄이고 한 색으로 찍었을 때를 함께 보여 드립니다.</p>
+    <div class="notice">
+      <span><b>이 시안은 Claude가 직접 그린 SVG입니다.</b> 확정 후 바로 라벨·간판·홈페이지에 쓸 수 있는 형식입니다.</span>
+      <span>GPT 이미지 후보(안별 2장, 총 6장)는 OpenAI 키를 등록하면 같은 방향으로 추가해 비교해 드립니다. 글자는 Noto Serif KR 900 임시 서체이고, 확정 때 획을 다듬어 윤곽선으로 바꿉니다.</span>
+    </div>
+    <ul class="criteria" aria-label="고르는 기준">
+      <li>작게 줄여도 알아보나요?</li>
+      <li>한 색으로 찍어도 되나요?</li>
+      <li>반찬가게가 바로 떠오르나요?</li>
+      <li>프랜차이즈·유치함·올드함은 없나요?</li>
+    </ul>
+  </header>
+
+  <!-- A안 -->
+  <section class="option" aria-labelledby="optA">
+    <div class="option-head">
+      <span class="tag">A안</span>
+      <h2 id="optA">김 오르는 밥그릇</h2>
+      <p>심볼 + 가로 글자. 갓 지은 밥 한 그릇을 가장 단순하게. 가운데 김 한 줄만 주홍.</p>
+    </div>
+    <div class="hero">
+      <div class="lock-h" style="font-size:clamp(44px, 11vw, 84px)">
+        <svg class="logo" width="1.25em" height="1.25em" aria-hidden="true"><use href="#sym-a"/></svg>
+        <span class="wordmark">온담찬</span>
+      </div>
+    </div>
+    <div class="bench" data-variant="A"></div>
+  </section>
+
+  <hr>
+
+  <!-- B안 -->
+  <section class="option" aria-labelledby="optB">
+    <div class="option-head">
+      <span class="tag">B안</span>
+      <h2 id="optB">두 손으로 건네는 그릇</h2>
+      <p>심볼 위 + 글자 아래. "부모님께 전하는 한 끼"를 정면으로 담은 안. 손이 그릇을 받쳐 듭니다.</p>
+    </div>
+    <div class="hero">
+      <div class="lock-v" style="font-size:clamp(44px, 12vw, 72px)">
+        <svg class="logo" width="2em" height="2em" aria-hidden="true"><use href="#sym-b"/></svg>
+        <span class="wordmark">온담찬</span>
+      </div>
+    </div>
+    <div class="bench" data-variant="B"></div>
+  </section>
+
+  <hr>
+
+  <!-- C안 -->
+  <section class="option" aria-labelledby="optC">
+    <div class="option-head">
+      <span class="tag">C안</span>
+      <h2 id="optC">원형 스티커 엠블럼</h2>
+      <p>두 모티브를 한 원 안에. 김 오르는 그릇을 두 손이 받칩니다. 용기 뚜껑 스티커에 가장 잘 맞는 형태.</p>
+    </div>
+    <div class="hero">
+      <svg class="logo" viewBox="0 0 120 120" style="width:min(230px, 68vw);height:auto" aria-hidden="true"><use href="#emb-c"/></svg>
+    </div>
+    <div class="bench" data-variant="C"></div>
+  </section>
+
+  <hr>
+
+  <section class="option" aria-labelledby="cmp">
+    <h2 id="cmp">한눈에 비교</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>시안</th><th>좋은 점</th><th>아쉬운 점</th><th>잘 맞는 곳</th></tr></thead>
+        <tbody>
+          <tr><td>A안</td><td>가장 단순해 16px에서도 밥그릇으로 보임. 간판·홈페이지 머리글에 깔끔</td><td>'전하는 마음'(부모님 손님)은 드러나지 않음</td><td>가로 간판, 웹 헤더, 영수증</td></tr>
+          <tr><td>B안</td><td>두 번째 손님(부모님께 전하는 한 끼) 이야기가 바로 읽힘</td><td>32px 아래에서는 손이 그릇 받침처럼 보일 수 있음</td><td>사업소개, 어르신 밥상, SNS 프로필</td></tr>
+          <tr><td>C안</td><td>두 모티브를 다 담고, 원형이라 뚜껑 스티커·도장에 바로 씀</td><td>요소가 많아 작게 쓸 때는 글자 없는 원형 심볼로 바꿔 써야 함</td><td><span class="pick">용기 라벨·스티커(주 사용처)</span>, 쇼핑백</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="next" aria-labelledby="nx">
+    <h2 id="nx">고르신 뒤에 하는 일</h2>
+    <ol>
+      <li>하나를 고르시거나 섞어 주세요. 예: "C안 기본 + 웹 헤더는 A안 가로형"</li>
+      <li>선택안을 다듬어 확정 파일 6종을 만듭니다: 기본, 가로형, 단색, 심볼, 파비콘, 공유 이미지(1200×630)</li>
+      <li>이어서 1인 저녁세트 상세페이지 3안으로 넘어갑니다</li>
+    </ol>
+    <div class="keywords" aria-label="핵심 키워드">
+      <span>온담찬</span><span>김 오르는 밥그릇</span><span>두 손 건네는 그릇</span><span>원형 스티커</span><span>된장 갈색 + 고추 주홍</span><span>32px·단색 판독</span><span>용기 라벨</span><span>SVG 확정</span>
+    </div>
+  </section>
+</main>
+
+<script>
+(() => {
+  // 각 시안의 시험대: 흰/크림/갈색 바탕, 단색 먹, 작은 크기, 용기 라벨
+  const lockup = {
+    A: (size) => `<div class="lock-h" style="font-size:${size}px"><svg class="logo" width="1.25em" height="1.25em" aria-hidden="true"><use href="#sym-a"/></svg><span class="wordmark">온담찬</span></div>`,
+    B: (size) => `<div class="lock-v" style="font-size:${size}px"><svg class="logo" width="2em" height="2em" aria-hidden="true"><use href="#sym-b"/></svg><span class="wordmark">온담찬</span></div>`,
+    C: (size) => `<svg class="logo" width="${size * 3.3}" height="${size * 3.3}" aria-hidden="true"><use href="#emb-c"/></svg>`
+  };
+  const small = { A: "#sym-a", B: "#sym-b", C: "#emb-c-s" };
+  const sticker = {
+    A: `<div class="lock-h" style="font-size:17px"><svg class="logo" width="1.25em" height="1.25em" aria-hidden="true"><use href="#sym-a"/></svg><span class="wordmark">온담찬</span></div>`,
+    B: `<div class="lock-v" style="font-size:13px"><svg class="logo" width="2em" height="2em" aria-hidden="true"><use href="#sym-b"/></svg><span class="wordmark">온담찬</span></div>`,
+    C: `<svg class="logo" width="44" height="44" aria-hidden="true"><use href="#emb-c-s"/></svg><span class="wordmark" style="font-size:13px">온담찬</span>`
+  };
+  const sizes = { A: 30, B: 26, C: 38 };
+
+  document.querySelectorAll(".bench").forEach((bench) => {
+    const v = bench.dataset.variant;
+    const s = sizes[v];
+    const cells = [
+      ["on-white", lockup[v](s), "흰 바탕"],
+      ["on-cream", lockup[v](s), "크림 바탕(기본)"],
+      ["on-brown", lockup[v](s), "갈색 바탕 · 반전"],
+      ["mono-ink", lockup[v](s), "한 색(먹) 인쇄"],
+      ["on-cream", `<div class="sizes">${[64, 32, 16].map((px) => `<span><svg class="logo" width="${px}" height="${px}" aria-hidden="true"><use href="${small[v]}"/></svg>${px}px</span>`).join("")}</div>`, "작게 줄였을 때(심볼만)"],
+      ["on-cream", `<div class="lid"><div class="sticker">${sticker[v]}<span class="item">시금치나물 120g</span><span class="made">제조 <b>10.21 07:10</b><br>냉장 0~10℃</span></div></div>`, "용기 뚜껑 스티커 모의(지름 약 4cm)"]
+    ];
+    bench.innerHTML = cells.map(([cls, inner, cap]) =>
+      `<figure class="cell"><div class="pad ${cls}">${inner}</div><figcaption>${cap}</figcaption></figure>`
+    ).join("");
+  });
+})();
+</script>
