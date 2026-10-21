@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="안부반찬 심볼">
+  <path d="M26 12H94A16 16 0 0 1 110 28V76A16 16 0 0 1 94 92H54L32 110L35 92H26A16 16 0 0 1 10 76V28A16 16 0 0 1 26 12Z" fill="#B4572B"/>
+  <path d="M30 56H90C90 73 77 84 60 84C43 84 30 73 30 56Z" fill="#FBF5EA"/>
+  <rect x="49" y="82" width="22" height="6" rx="3" fill="#FBF5EA"/>
+  <g fill="none" stroke="#FBF5EA" stroke-width="5" stroke-linecap="round">
+    <path d="M47 46C42 40 52 35 47 27"/>
+    <path d="M60 46C55 40 65 35 60 27"/>
+    <path d="M73 46C68 40 78 35 73 27"/>
+  </g>
+</svg>
