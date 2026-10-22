@@ -1,0 +1,189 @@
+<title>온담찬 로고 가이드</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@700;900&display=swap">
+<style>
+/* Layout: 한 줄 세로 문서 — 로고 두 종 → 바탕별 → 작은 크기 → 색 → 규칙 → 파일 목록 */
+:root {
+  --bg: #FBF6EC; --surface: #FFFFFF; --fg: #2B211A; --muted: #6B5A4C;
+  --line: #E2D5BF; --brand: #7A4E2D; --accent: #C8462B; --chip: #F3E9D8;
+  --font-display: "Noto Serif KR", "Nanum Myeongjo", serif;
+  --font-body: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  /* 시험대 바탕: 인쇄물 색이라 테마와 무관하게 고정 */
+  --sw-cream: #FBF6EC; --sw-brown: #7A4E2D; --sw-white: #FFFFFF;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1C1713; --surface: #26201B; --fg: #F2E9DB; --muted: #C2B19E;
+    --line: #3E342B; --brand: #D9A77E; --accent: #EE7A5A; --chip: #322A23; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1C1713; --surface: #26201B; --fg: #F2E9DB; --muted: #C2B19E;
+  --line: #3E342B; --brand: #D9A77E; --accent: #EE7A5A; --chip: #322A23; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 17px; line-height: 1.7; word-break: keep-all; }
+.wrap {
+  max-width: 1040px; margin: 0 auto; display: grid; gap: 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 72px;
+}
+h1, h2 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.3; }
+h1 { font-size: clamp(30px, 5vw, 42px); font-weight: 900; color: var(--brand); }
+h2 { font-size: clamp(22px, 3vw, 27px); font-weight: 900; }
+p { margin: 0; }
+section { display: grid; gap: 18px; }
+.eyebrow { font-size: 13px; letter-spacing: .08em; color: var(--muted); font-weight: 500; }
+.lead { max-width: 44rem; }
+.muted { color: var(--muted); font-size: 15px; }
+
+.pair { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 16px; }
+.card { display: grid; gap: 12px; min-width: 0; }
+.stage { border-radius: 14px; border: 1px solid var(--line); display: grid; place-items: center; padding: 32px 20px; min-height: 280px; }
+.stage.cream { background: var(--sw-cream); }
+.stage.brown { background: var(--sw-brown); border-color: var(--sw-brown); }
+.stage.white { background: var(--sw-white); }
+.stage svg { display: block; max-width: 100%; height: auto; }
+.emb svg { width: min(220px, 60vw); height: auto; }
+.hor svg { width: min(340px, 78vw); height: auto; }
+.card h3 { margin: 0; font-size: 17px; font-weight: 700; }
+.card .use { color: var(--muted); font-size: 15px; }
+
+.grid3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 290px), 1fr)); gap: 12px; }
+.grid3 .stage { min-height: 170px; padding: 20px 14px; }
+.grid3 .emb svg { width: 120px; }
+.grid3 .hor svg { width: min(200px, 70vw); }
+.grid3 figcaption { font-size: 14px; color: var(--muted); }
+figure { margin: 0; display: grid; gap: 8px; }
+
+.sizes { display: flex; flex-wrap: wrap; align-items: end; gap: 28px; background: var(--sw-white); border: 1px solid var(--line); border-radius: 14px; padding: 24px 20px; }
+.sizes span { display: grid; justify-items: center; gap: 6px; font-size: 13px; color: #6B5A4C; font-variant-numeric: tabular-nums; }
+.sizes svg { display: block; }
+
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 12px; }
+.sw { border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--surface); }
+.sw .chip { height: 84px; }
+.sw .meta { padding: 12px 14px; display: grid; gap: 2px; }
+.sw b { font-size: 16px; }
+.sw code { font-family: var(--font-mono); font-size: 14px; color: var(--fg); }
+.sw span { font-size: 14px; color: var(--muted); }
+
+.rules { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.rule { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.rule h3 { margin: 0; font-size: 16px; font-weight: 700; color: var(--brand); }
+.rule ul { margin: 0; padding-left: 1.1em; display: grid; gap: 2px; font-size: 15.5px; }
+
+.og img { display: block; width: 100%; max-width: 720px; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 600px; font-size: 15px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+th { background: var(--chip); color: var(--muted); font-size: 13.5px; font-weight: 700; }
+td code { font-family: var(--font-mono); font-size: 13.5px; white-space: nowrap; }
+.keywords { display: flex; flex-wrap: wrap; gap: 8px; }
+.keywords span { font-size: 14px; padding: 4px 12px; border-radius: 6px; background: var(--chip); }
+</style>
+
+<main class="wrap">
+  <header style="display:grid;gap:12px">
+    <span class="eyebrow">양주 무인 반찬가게 · 확정 2026.10.21</span>
+    <h1>온담찬 로고 가이드</h1>
+    <p class="lead">기본 로고는 <b>원형 엠블럼</b>, 가로로 길게 써야 하는 곳에는 <b>가로형</b>을 씁니다. 글자는 모두 윤곽선으로 바꿔 두었으니 서체가 없는 컴퓨터나 인쇄소에서도 모양이 똑같이 나옵니다.</p>
+  </header>
+
+  <section aria-labelledby="s1">
+    <h2 id="s1">로고 두 종</h2>
+    <div class="pair">
+      <div class="card">
+        <div class="stage cream emb">{{logo.svg}}</div>
+        <h3>기본 · 원형 엠블럼</h3>
+        <p class="use">반찬 용기 스티커, 쇼핑백, 매장 출입문, SNS 프로필</p>
+      </div>
+      <div class="card">
+        <div class="stage cream hor">{{logo-horizontal.svg}}</div>
+        <h3>가로형 · 김 오르는 밥그릇</h3>
+        <p class="use">간판, 홈페이지 머리글, 영수증, 전단 아래쪽</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s2">
+    <h2 id="s2">바탕에 따라 고르기</h2>
+    <p class="muted">밝은 바탕에는 컬러, 갈색이나 어두운 사진 위에는 반전, 한 가지 잉크로만 찍을 때는 단색을 씁니다.</p>
+    <div class="grid3">
+      <figure><div class="stage cream emb">{{logo.svg}}</div><figcaption>컬러 · <code>logo.svg</code></figcaption></figure>
+      <figure><div class="stage brown emb">{{logo-reverse.svg}}</div><figcaption>반전 · <code>logo-reverse.svg</code></figcaption></figure>
+      <figure><div class="stage white emb">{{logo-mono.svg}}</div><figcaption>단색 · <code>logo-mono.svg</code></figcaption></figure>
+      <figure><div class="stage cream hor">{{logo-horizontal.svg}}</div><figcaption>컬러 · <code>logo-horizontal.svg</code></figcaption></figure>
+      <figure><div class="stage brown hor">{{logo-horizontal-reverse.svg}}</div><figcaption>반전 · <code>logo-horizontal-reverse.svg</code></figcaption></figure>
+      <figure><div class="stage white hor">{{logo-horizontal-mono.svg}}</div><figcaption>단색 · <code>logo-horizontal-mono.svg</code></figcaption></figure>
+    </div>
+  </section>
+
+  <section aria-labelledby="s3">
+    <h2 id="s3">작게 쓸 때</h2>
+    <p class="muted">엠블럼 지름이 화면 96px, 인쇄 20mm보다 작아지면 글자가 뭉개집니다. 그보다 작을 때는 글자 없는 심볼을 씁니다. 브라우저 탭에는 갈색 원 아이콘이 들어갑니다.</p>
+    <div class="sizes">
+      <span><svg width="96" height="96" viewBox="0 0 120 120">{{logo.svg:inner}}</svg>엠블럼 96px</span>
+      <span><svg width="64" height="64" viewBox="0 0 64 64">{{symbol.svg:inner}}</svg>심볼 64px</span>
+      <span><svg width="32" height="32" viewBox="0 0 64 64">{{symbol.svg:inner}}</svg>심볼 32px</span>
+      <span><svg width="32" height="32" viewBox="0 0 64 64">{{favicon.svg:inner}}</svg>탭 아이콘 32px</span>
+      <span><svg width="16" height="16" viewBox="0 0 64 64">{{favicon.svg:inner}}</svg>16px</span>
+    </div>
+  </section>
+
+  <section aria-labelledby="s4">
+    <h2 id="s4">색</h2>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#7A4E2D"></div><div class="meta"><b>된장 갈색</b><code>#7A4E2D</code><span>로고 본색, 제목, 테두리</span></div></div>
+      <div class="sw"><div class="chip" style="background:#C8462B"></div><div class="meta"><b>고추 주홍</b><code>#C8462B</code><span>김 한 줄과 점 두 개에만</span></div></div>
+      <div class="sw"><div class="chip" style="background:#FBF6EC;border-bottom:1px solid #E2D5BF"></div><div class="meta"><b>크림</b><code>#FBF6EC</code><span>스티커 바탕, 반전 로고 색</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2B211A"></div><div class="meta"><b>먹</b><code>#2B211A</code><span>단색 인쇄, 본문 글씨</span></div></div>
+    </div>
+    <p class="muted">인쇄소에는 HEX 값을 전달하고, 처음 한 번은 교정쇄(시험 인쇄)로 갈색이 너무 붉거나 어둡지 않은지 확인하세요.</p>
+  </section>
+
+  <section aria-labelledby="s5">
+    <h2 id="s5">지켜 주세요</h2>
+    <div class="rules">
+      <div class="rule"><h3>여백</h3><ul><li>엠블럼 둘레에 지름의 1/10 이상 비워 두기</li><li>가로형은 그릇 높이의 절반 이상 비워 두기</li></ul></div>
+      <div class="rule"><h3>최소 크기</h3><ul><li>엠블럼: 화면 96px, 인쇄 지름 20mm</li><li>가로형: 화면 높이 32px, 인쇄 높이 8mm</li><li>그보다 작으면 심볼만</li></ul></div>
+      <div class="rule"><h3>하지 않기</h3><ul><li>가로·세로 비율 바꿔 늘이기</li><li>색 바꾸기, 그림자·테두리 효과 넣기</li><li>복잡한 사진 위에 바로 올리기(반전 로고 + 어두운 영역에만)</li></ul></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s6" class="og">
+    <h2 id="s6">링크 공유 이미지</h2>
+    <p class="muted">카카오톡·페이스북에 홈페이지 주소를 보낼 때 뜨는 미리보기입니다. 1200×630.</p>
+    <img src="og-image.png" alt="온담찬 원형 로고와 '매일의 식사에 온기를 담다' 문구가 들어간 공유 이미지" width="1200" height="630">
+  </section>
+
+  <section aria-labelledby="s7">
+    <h2 id="s7">파일 목록</h2>
+    <p class="muted">저장소 <code>brand/logo/</code> 폴더. SVG는 크기를 마음대로 키워도 깨지지 않는 원본, PNG는 원본을 열 수 없는 곳(캔바, 카카오 채널 등)에 올리는 용도입니다.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>파일</th><th>내용</th><th>어디에</th></tr></thead>
+        <tbody>
+          <tr><td><code>logo.svg</code> · <code>png/logo-1024.png</code></td><td>기본 엠블럼 컬러</td><td>스티커, 쇼핑백, SNS 프로필</td></tr>
+          <tr><td><code>logo-reverse.svg</code> · <code>logo-mono.svg</code></td><td>엠블럼 반전 · 단색</td><td>갈색 바탕, 한 색 인쇄, 도장</td></tr>
+          <tr><td><code>logo-horizontal.svg</code> · <code>png/logo-horizontal-1200.png</code></td><td>가로형 컬러</td><td>간판, 홈페이지 머리글</td></tr>
+          <tr><td><code>logo-horizontal-reverse.svg</code> · <code>-mono.svg</code></td><td>가로형 반전 · 단색</td><td>갈색 간판, 영수증</td></tr>
+          <tr><td><code>symbol.svg</code> · <code>png/symbol-512.png</code></td><td>글자 없는 원형 심볼</td><td>작은 라벨, 앱 아이콘</td></tr>
+          <tr><td><code>favicon.svg</code> · <code>favicon-32.png</code> · <code>apple-touch-icon.png</code></td><td>탭·홈 화면 아이콘</td><td>홈페이지</td></tr>
+          <tr><td><code>og-image.png</code></td><td>공유 미리보기 1200×630</td><td>홈페이지</td></tr>
+          <tr><td><code>src/build.py</code> · <code>src/render-png.cjs</code></td><td>위 파일을 다시 만드는 스크립트</td><td>수정할 때</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="keywords" aria-label="핵심 키워드">
+    <span>원형 엠블럼(기본)</span><span>가로형(김 오르는 밥그릇)</span><span>컬러·반전·단색</span><span>최소 96px / 20mm</span><span>주홍은 김 한 줄만</span><span>글자 윤곽선 처리</span>
+  </div>
+</main>

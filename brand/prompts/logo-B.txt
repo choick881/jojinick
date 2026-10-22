@@ -1,0 +1,7 @@
+Logo design for a Korean neighborhood side-dish shop named "온담찬".
+Type: symbol + wordmark, symbol above the wordmark.
+Symbol idea: two hands gently offering a rice bowl, like giving a meal to a parent, simplified into flat shapes.
+Style: warm, honest, neighborly, modern Korean home cooking. Not franchise-like, not childish, not luxurious, not old-fashioned.
+Colors: deep doenjang brown #7A4E2D with one small chili-orange accent #C8462B, on plain cream #FBF6EC.
+Render the Korean text "온담찬" exactly, no other text, no slogan.
+Must stay readable at 32px and printable in one color on a small container sticker. Flat vector look, no gradients, no 3D, no mockup.
