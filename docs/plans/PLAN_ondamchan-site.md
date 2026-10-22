@@ -65,10 +65,11 @@
 **게이트**: 테스트 키로 결제 → `orders.status = paid`, 위조 금액 거절
 **되돌리기**: 결제 라우트 비활성 스위치
 
-## Phase 5. 관리자 · 알림
-- [ ] `/admin` Supabase Auth 이메일 로그인 (관리자 이메일 허용 목록)
-- [ ] 오늘 제조 시각 입력, 품절 토글, 오늘 주문 목록(픽업 시간순)
-- [ ] 주문 이메일 알림: 메일 서비스 키가 있을 때만, 없으면 관리자 화면 알림만
+## Phase 5. 관리자 · 알림 — 코드 완료, 미리보기 로그인 확인 대기
+- [x] `/admin` Supabase Auth 이메일+비밀번호 로그인 (관리자 이메일 허용 목록 `admin_users`, 자기 줄만 읽는 정책 추가)
+- [x] 오늘 제조 시각 입력, 품절 토글(메뉴 캐시 즉시 갱신), 오늘·내일 주문 목록(픽업 시간순, 찾아감 표시)
+- [x] 주문 알림: 메일 서비스 키가 없어 관리자 화면 1분 자동 새로고침 + "오늘 찾아갈 주문 n건"
+- [ ] 사용자: Supabase에서 관리자 계정 만들기(Authentication → Users → Add user, Auto Confirm)
 **게이트**: 비로그인 접근 차단, 품절 토글이 메뉴에 반영
 
 ## Phase 6. 검색 노출 · 점검 · 배포
@@ -104,3 +105,6 @@
   - 사이트: `lib/catalog.ts`가 Supabase REST(publishable 키)로 읽고 실패 시 메뉴 파일 사용, `use cache` + `cacheTag("catalog")`. 이 작업 환경은 supabase.co 접속이 막혀 Vercel 미리보기에서 확인(현황판의 "예시" 표시가 사라지면 DB 연결 성공).
 - 2026-10-21 Phase 4 코드: 주문 저장·결제 승인은 서버 전용 시크릿 키(`SUPABASE_SECRET_KEY`, Vercel 환경변수에만)로 DB에 쓴다. 키가 없으면 `/api/orders`가 503 NOT_CONFIGURED → 화면에 "결제 준비가 아직 끝나지 않았어요". 결제 대기 주문은 30분 동안 픽업 시간 정원을 잡는다. 승인 라우트는 DB 금액과 다르면 토스를 부르지 않고 400.
   - 게이트(로컬): Vitest 36개, tsc·eslint 0건, `next build` 통과. 결제위젯 틀이 주문 화면에 그려짐을 확인(이 작업 환경은 토스 일부 주소가 막혀 끝까지 열리지 않음 → 미리보기에서 확인)
+- 2026-10-22 Phase 5 코드: 관리자 쓰기는 비밀 키가 아니라 로그인 세션 + RLS(`private.is_admin()`)로 한다. `proxy.ts`(Next 16의 middleware)는 `/admin`에서만 세션을 갱신. 품절·제조 시각은 Server Action에서 `updateTag("catalog")`로 공개 화면에 바로 반영.
+  - 게이트(로컬): Vitest 44개, tsc·eslint 0건, `next build` 통과, `/admin` 로그인 화면 390/1280 가로 스크롤 없음. 로그인 후 화면은 이 환경에서 Supabase 접속이 막혀 미리보기에서 확인
+- 2026-10-22 서버 키: Vercel에 새 키가 들어갔지만 Supabase가 `bad_checksum`으로 거절 중. 앞뒤 공백 제거 코드를 넣었으나 계속 거절 → 다른 프로젝트의 키이거나 글자가 다른 것으로 보고 사용자 확인 대기
