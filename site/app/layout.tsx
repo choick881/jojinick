@@ -3,7 +3,8 @@ import { Nanum_Pen_Script, Noto_Serif_KR } from "next/font/google";
 import { CartProvider } from "@/components/cart";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { ToastProvider } from "@/components/toast";
-import { IS_INDEXABLE, SITE_URL, absoluteUrl, jsonLd } from "@/lib/site";
+import { OpeningBanner } from "@/components/opening-notice";
+import { IS_INDEXABLE, ORDERING_OPEN, SITE_URL, absoluteUrl, jsonLd } from "@/lib/site";
 import "./globals.css";
 
 // 한글 웹 글꼴은 무거워서 제목(명조 900)과 손글씨만 내려받는다.
@@ -50,6 +51,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <CartProvider>
           <ToastProvider>
             <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-50 focus:rounded focus:bg-white focus:px-3 focus:py-2">본문 바로가기</a>
+            {!ORDERING_OPEN && <OpeningBanner />}
             <SiteHeader />
             <main id="main" className="flex-1">{children}</main>
             <SiteFooter />

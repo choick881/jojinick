@@ -75,4 +75,5 @@ export const ORDER_ERROR_MESSAGE: Record<string, string> = {
   SLOT_FULL: "고르신 픽업 시간은 주문이 꽉 찼어요. 다른 시간을 골라 주세요.",
   SERVER: "주문을 저장하지 못했어요. 잠시 뒤 다시 시도해 주세요.",
   NOT_CONFIGURED: "결제 준비가 아직 끝나지 않았어요. 가게에 문의해 주세요.",
+  NOT_OPEN: "지금은 오픈 준비 중이라 주문을 받지 않아요. 곧 문을 열게요!",
 };

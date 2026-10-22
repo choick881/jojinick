@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { CheckoutForm } from "@/components/checkout-form";
+import { OpeningNotice } from "@/components/opening-notice";
 import { getCatalog } from "@/lib/catalog";
+import { ORDERING_OPEN } from "@/lib/site";
 
 export const metadata: Metadata = { title: "주문하기", robots: { index: false } };
 
 export default async function CheckoutPage() {
+  if (!ORDERING_OPEN) return <section className="gut sec"><OpeningNotice /></section>;
   const products = (await getCatalog()).products.map(({ slug, name, price, soldOut }) => ({ slug, name, price, soldOut }));
   return (
     <section className="gut pt-9">
