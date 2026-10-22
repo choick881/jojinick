@@ -56,13 +56,13 @@
 **게이트**: anon 키로 `orders` select 0건, Supabase advisors 경고 없음
 **되돌리기**: 마이그레이션 down SQL
 
-## Phase 4. 주문 · 토스 테스트 결제 — 코드 완료, 미리보기 결제 확인 대기
+## Phase 4. 주문 · 토스 테스트 결제 — ✅ 2026-10-22
 - [x] RED: 주문 검증 테스트(빈 장바구니, 품절, 지난 슬롯, 금액 위조 → 400)
 - [x] `/checkout`(픽업 날짜·시간, 주문자, 받는 분, 배송 옵션은 스위치로 숨김), `/api/orders`(서버가 DB 가격으로 합계)
 - [x] 토스 결제위젯, `/api/payments/confirm`(금액 대조), `/checkout/success|fail`
 - [x] `/policy/terms`, `/policy/refund`
 - [x] ~~사용자: Vercel 환경변수 `SUPABASE_SECRET_KEY` 등록~~ → Supabase 함수 `orders`로 옮겨 불필요
-- [ ] 사용자: 미리보기에서 테스트 카드 결제
+- [x] 사용자: 미리보기에서 테스트 카드 결제 → `orders.status = paid` 확인
 **게이트**: 테스트 키로 결제 → `orders.status = paid`, 위조 금액 거절
 **되돌리기**: 결제 라우트 비활성 스위치
 
@@ -114,3 +114,5 @@
   - 해결(자동화): 주문 저장·결제 승인·점검·관리자 등록을 Supabase Edge Function `orders`로 옮김. 함수가 Supabase 안의 서비스 키를 쓰므로 Vercel에는 비밀 키가 필요 없다. 처리 로직은 `lib/order-service.ts` 하나(테스트 공유), `npm run build:edge`로 묶어 배포.
   - 게이트: DB 안에서 pg_net으로 함수 호출 — 점검 ok, 주문 저장(서버 가격 7,000원), 금액 위조 400(토스 미호출), 가짜 결제는 토스가 거절 → `failed` 기록, 미허용 이메일 등록 403. Vitest 49개, tsc·eslint 0건, 빌드 통과.
   - 남은 정리: 점검 주문 1건(`failed`, 화면에 안 보임)과 pg_net 확장 삭제는 파괴적 작업 확인 대기로 보류
+- 2026-10-22 Phase 4 게이트 통과: 사용자가 미리보기에서 테스트 결제 → 주문 `OD-20261022-7097f0b9de75`(1인 저녁세트 13,900원, 10/23 18:30 픽업) `status=paid`, 토스 결제키·결제 시각 기록, 주문 상품 합계 = 주문 금액. 위조 금액 거절은 함수 점검으로 확인.
+  - 배운 점: 미리보기 주소는 Vercel 팀 구성원 계정으로만 열린다(다른 크롬 프로필에서는 접근 요청 화면)
