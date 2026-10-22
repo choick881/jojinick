@@ -3,6 +3,7 @@
 import { refresh, updateTag } from "next/cache";
 import { isClock } from "@/lib/admin";
 import { CATALOG_TAG } from "@/lib/catalog";
+import { invokeOrders } from "@/lib/supabase/functions";
 import { createSessionClient, getAdmin } from "@/lib/supabase/server";
 
 export type FormState = { error?: string; ok?: string } | undefined;
@@ -14,6 +15,27 @@ export async function signIn(_: FormState, form: FormData): Promise<FormState> {
   const db = await createSessionClient();
   const { error } = await db.auth.signInWithPassword({ email, password });
   if (error) return { error: "이메일 또는 비밀번호가 맞지 않아요." };
+  refresh();
+  return undefined;
+}
+
+const REGISTER_ERROR: Record<string, string> = {
+  BAD_EMAIL: "이메일을 확인해 주세요.",
+  WEAK_PASSWORD: "비밀번호는 8자 이상으로 정해 주세요.",
+  NOT_INVITED: "등록이 허락된 이메일이 아니거나 등록 기한이 지났어요.",
+  ALREADY_REGISTERED: "이미 등록된 이메일이에요. 로그인해 주세요.",
+};
+
+/** 관리자 처음 등록: 허용 목록·기한 확인과 계정 만들기는 Supabase 함수가 하고, 성공하면 바로 로그인한다 */
+export async function registerAdmin(_: FormState, form: FormData): Promise<FormState> {
+  const email = String(form.get("email") ?? "").trim().toLowerCase();
+  const password = String(form.get("password") ?? "");
+  if (password !== String(form.get("password2") ?? "")) return { error: "두 비밀번호가 서로 달라요." };
+  const res = await invokeOrders("register-admin", { email, password });
+  if (res.status !== 200) return { error: REGISTER_ERROR[String(res.body.error)] ?? "등록하지 못했어요. 잠시 뒤 다시 시도해 주세요." };
+  const db = await createSessionClient();
+  const { error } = await db.auth.signInWithPassword({ email, password });
+  if (error) return { ok: "등록했어요. 로그인해 주세요." };
   refresh();
   return undefined;
 }

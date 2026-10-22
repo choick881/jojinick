@@ -13,7 +13,8 @@
     "test": "vitest run",
     "sync:brand": "node scripts/sync-brand.mjs",
     "typecheck": "next typegen && tsc --noEmit",
-    "prebuild": "node scripts/sync-brand.mjs"
+    "prebuild": "node scripts/sync-brand.mjs",
+    "build:edge": "node scripts/build-edge.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.7",

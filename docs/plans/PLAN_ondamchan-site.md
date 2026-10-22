@@ -61,7 +61,8 @@
 - [x] `/checkout`(픽업 날짜·시간, 주문자, 받는 분, 배송 옵션은 스위치로 숨김), `/api/orders`(서버가 DB 가격으로 합계)
 - [x] 토스 결제위젯, `/api/payments/confirm`(금액 대조), `/checkout/success|fail`
 - [x] `/policy/terms`, `/policy/refund`
-- [ ] 사용자: Vercel 환경변수 `SUPABASE_SECRET_KEY` 등록 → 미리보기에서 테스트 카드 결제
+- [x] ~~사용자: Vercel 환경변수 `SUPABASE_SECRET_KEY` 등록~~ → Supabase 함수 `orders`로 옮겨 불필요
+- [ ] 사용자: 미리보기에서 테스트 카드 결제
 **게이트**: 테스트 키로 결제 → `orders.status = paid`, 위조 금액 거절
 **되돌리기**: 결제 라우트 비활성 스위치
 
@@ -69,7 +70,8 @@
 - [x] `/admin` Supabase Auth 이메일+비밀번호 로그인 (관리자 이메일 허용 목록 `admin_users`, 자기 줄만 읽는 정책 추가)
 - [x] 오늘 제조 시각 입력, 품절 토글(메뉴 캐시 즉시 갱신), 오늘·내일 주문 목록(픽업 시간순, 찾아감 표시)
 - [x] 주문 알림: 메일 서비스 키가 없어 관리자 화면 1분 자동 새로고침 + "오늘 찾아갈 주문 n건"
-- [ ] 사용자: Supabase에서 관리자 계정 만들기(Authentication → Users → Add user, Auto Confirm)
+- [x] 관리자 처음 등록 화면(허용 이메일 + 기한 안 1회, 함수가 확인된 계정 생성)
+- [ ] 사용자: `/admin` → 처음 등록 → 로그인 확인
 **게이트**: 비로그인 접근 차단, 품절 토글이 메뉴에 반영
 
 ## Phase 6. 검색 노출 · 점검 · 배포
@@ -108,3 +110,7 @@
 - 2026-10-22 Phase 5 코드: 관리자 쓰기는 비밀 키가 아니라 로그인 세션 + RLS(`private.is_admin()`)로 한다. `proxy.ts`(Next 16의 middleware)는 `/admin`에서만 세션을 갱신. 품절·제조 시각은 Server Action에서 `updateTag("catalog")`로 공개 화면에 바로 반영.
   - 게이트(로컬): Vitest 44개, tsc·eslint 0건, `next build` 통과, `/admin` 로그인 화면 390/1280 가로 스크롤 없음. 로그인 후 화면은 이 환경에서 Supabase 접속이 막혀 미리보기에서 확인
 - 2026-10-22 서버 키: Vercel에 새 키가 들어갔지만 Supabase가 `bad_checksum`으로 거절 중. 앞뒤 공백 제거 코드를 넣었으나 계속 거절 → 다른 프로젝트의 키이거나 글자가 다른 것으로 보고 사용자 확인 대기
+- 2026-10-22 원인 확정: 사용자가 보던 Supabase는 다른 조직(choick881)의 동명 프로젝트 `orryucwwzq…`였다. 사이트 DB는 조직 chojinapd의 `dvbluucydlzkfpzcjmea` → 그쪽 키라 `bad_checksum`.
+  - 해결(자동화): 주문 저장·결제 승인·점검·관리자 등록을 Supabase Edge Function `orders`로 옮김. 함수가 Supabase 안의 서비스 키를 쓰므로 Vercel에는 비밀 키가 필요 없다. 처리 로직은 `lib/order-service.ts` 하나(테스트 공유), `npm run build:edge`로 묶어 배포.
+  - 게이트: DB 안에서 pg_net으로 함수 호출 — 점검 ok, 주문 저장(서버 가격 7,000원), 금액 위조 400(토스 미호출), 가짜 결제는 토스가 거절 → `failed` 기록, 미허용 이메일 등록 403. Vitest 49개, tsc·eslint 0건, 빌드 통과.
+  - 남은 정리: 점검 주문 1건(`failed`, 화면에 안 보임)과 pg_net 확장 삭제는 파괴적 작업 확인 대기로 보류

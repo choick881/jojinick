@@ -1,12 +1,8 @@
-// 점검용: 서버 키로 주문 DB에 접속되는지 확인한다. 키 값이나 데이터는 돌려주지 않는다.
-import { connection, NextResponse } from "next/server";
-import { createAdminClient } from "@/lib/supabase/admin";
+// 점검용: 주문 DB에 접속되는지만 알려 준다(키 값·데이터는 돌려주지 않음).
+import { connection } from "next/server";
+import { callOrders } from "@/lib/supabase/functions";
 
 export async function GET() {
   await connection();
-  const db = createAdminClient();
-  if (!db) return NextResponse.json({ db: "키 없음 (SUPABASE_SECRET_KEY 미등록)" }, { status: 503 });
-  const { error } = await db.from("orders").select("id", { head: true, count: "exact" }).limit(1);
-  if (error) return NextResponse.json({ db: "접속 실패", code: error.code ?? null }, { status: 500 });
-  return NextResponse.json({ db: "ok" });
+  return callOrders("health");
 }

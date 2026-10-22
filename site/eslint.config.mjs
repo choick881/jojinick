@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Supabase 함수(Deno)와 묶음 결과
+    "supabase/functions/**",
   ]),
 ]);
 

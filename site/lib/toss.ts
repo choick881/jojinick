@@ -1,6 +1,6 @@
-// 토스페이먼츠 결제 승인 호출 (서버 전용 — 브라우저 코드에서 가져오지 않는다).
+// 토스페이먼츠 결제 승인 호출 (서버 전용 — 브라우저 코드에서 가져오지 않는다). Supabase 함수에서는 함수 비밀값 TOSS_SECRET_KEY를 넘겨 쓴다.
 // 기본값은 토스 공식 문서의 공개 테스트 시크릿 키(결제위젯 gsk)다. 실제 돈이 오가지 않는다.
-// 운영 전환 때 Vercel 환경변수 TOSS_SECRET_KEY를 live 키로 바꾼다.
+// 운영 전환 때 Supabase 함수 비밀값 TOSS_SECRET_KEY를 live 키로 넣는다(클라이언트 키 NEXT_PUBLIC_TOSS_CLIENT_KEY와 짝).
 const TOSS_SECRET_KEY = process.env.TOSS_SECRET_KEY?.trim() || "test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6";
 
 export type ConfirmInput = { paymentKey: string; orderId: string; amount: number };
@@ -11,7 +11,7 @@ export async function confirmPayment(input: ConfirmInput, fetchImpl: typeof fetc
   const res = await fetchImpl("https://api.tosspayments.com/v1/payments/confirm", {
     method: "POST",
     headers: {
-      Authorization: `Basic ${Buffer.from(`${secretKey}:`).toString("base64")}`,
+      Authorization: `Basic ${btoa(`${secretKey}:`)}`, // btoa: Node·Deno(Supabase 함수) 모두 동작
       "Content-Type": "application/json",
       "Idempotency-Key": `confirm-${input.orderId}`,
     },
