@@ -1,0 +1,746 @@
+<title>온담찬 홈페이지 3안</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@400;500;700;800&family=Noto+Serif+KR:wght@500;700;900&display=swap">
+<style>
+/* Layout: 확정 톤(상세 A안 + B 요약표) 위에 홈 레이아웃 3안.
+   1안 두 손님 나란히 / 2안 오늘의 반찬 먼저 / 3안 하루 이야기. 메뉴·어르신 밥상·가게 이야기·결제는 세 안 공통.
+   라이트 모드 고정(R4). 모바일 375px 먼저, 넓은 화면은 1100px. */
+:root {
+  color-scheme: light;
+  --paper: #FBF6EC; --sand: #EFE4D0; --white: #FFFFFF; --ink: #2B211A; --brand: #7A4E2D;
+  --muted: #6B5A4C; --accent: #C8462B; --accent-deep: #A93A22; --line: #E2D5BF; --soft: #F6EFE2;
+  --serif: "Noto Serif KR", "Nanum Myeongjo", serif;
+  --sans: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --hand: "Nanum Pen Script", "Noto Sans KR", cursive;
+  --fs: 18px; --r: 20px;
+}
+:root.big { --fs: 22px; }
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { font-size: var(--fs); }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 1rem; line-height: 1.7; word-break: keep-all; }
+h1, h2, h3, p, ul, ol, figure, dl, dd { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+.gut { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.inner { max-width: 1100px; margin: 0 auto; }
+.narrow { max-width: 860px; margin: 0 auto; }
+h1, h2 { font-family: var(--serif); font-weight: 900; color: var(--brand); line-height: 1.3; text-wrap: balance; }
+h2 { font-size: 1.55rem; }
+.hand { font-family: var(--hand); font-size: 1.5rem; line-height: 1.2; color: var(--accent-deep); display: inline-block; transform: rotate(-3deg); }
+.eyebrow { font-size: .74rem; font-weight: 700; letter-spacing: .08em; color: var(--brand); }
+.lead { color: var(--muted); max-width: 36em; }
+.sec { padding-block: 64px; }
+.sec.alt { background: var(--sand); }
+.sec-head { display: grid; gap: 8px; margin-bottom: 26px; }
+.row-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px; margin-bottom: 22px; }
+.more { font-size: .85rem; font-weight: 700; color: var(--brand); text-decoration: underline; text-underline-offset: 4px; background: none; border: 0; padding: 0; }
+.todo { display: inline-block; font-size: .7rem; font-weight: 700; color: var(--accent-deep); background: #FCEBE4; border-radius: 4px; padding: 0 6px; margin-left: 4px; vertical-align: middle; }
+
+/* 버튼 */
+.cta { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 22px; border: 0; border-radius: 12px; background: var(--accent-deep); color: var(--white); font-weight: 800; text-decoration: none; }
+.cta:hover { background: #8F2F1B; }
+.cta.ghost { background: var(--white); color: var(--brand); border: 1.5px solid var(--brand); }
+.cta.ghost:hover { background: var(--soft); }
+.cta.wide { width: 100%; }
+
+/* ── 시안 고르기 막대 (사이트 바깥) ── */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--ink); }
+.picker { position: relative; z-index: 35; background: var(--ink); color: var(--paper); padding-block: 9px; font-size: 15px; }
+.picker .inner { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.picker strong { font-size: 14.5px; }
+.picker .tabs { display: flex; flex-wrap: wrap; gap: 6px; }
+.picker button { border: 1px solid #6B5A4C; background: transparent; color: var(--paper); border-radius: 999px; padding: 4px 13px; font-size: 14px; }
+.picker button[aria-pressed="true"] { background: var(--paper); color: var(--ink); border-color: var(--paper); font-weight: 700; }
+.picker .note { flex-basis: 100%; font-size: 12.5px; color: #C2B19E; }
+
+/* ── 사이트 머리글 ── */
+.site-head { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: rgba(251, 246, 236, .96); border-bottom: 1px solid var(--line); backdrop-filter: blur(6px); }
+.site-head .inner { display: flex; align-items: center; gap: 14px; padding-block: 10px; }
+.logo-btn { background: none; border: 0; padding: 0; display: block; }
+.logo-btn svg { display: block; height: 32px; width: auto; }
+.site-nav { display: flex; gap: 4px; margin-left: auto; }
+.site-nav button { background: none; border: 0; padding: 8px 10px; border-radius: 8px; font-size: 15px; color: var(--muted); }
+.site-nav button[aria-current="page"] { color: var(--ink); font-weight: 700; background: var(--sand); }
+.head-tools { display: flex; gap: 6px; align-items: center; }
+.bigtext, .cart { border: 1px solid var(--line); background: var(--white); border-radius: 8px; padding: 5px 10px; font-size: 14px; white-space: nowrap; }
+.cart b { color: var(--accent-deep); }
+@media (max-width: 820px) {
+  .site-head .inner { flex-wrap: wrap; }
+  .head-tools { margin-left: auto; }
+  .site-nav { order: 3; flex-basis: 100%; margin-left: 0; overflow-x: auto; }
+  .site-nav button { font-size: 14px; padding: 6px 9px; white-space: nowrap; }
+}
+
+/* ── 사진 자리 ── */
+.ph { position: relative; background: var(--sand); color: var(--brand); display: grid; place-items: center; overflow: hidden; border-radius: var(--r); }
+.ph svg { width: 38%; max-width: 200px; height: auto; opacity: .5; }
+.ph .cap { position: absolute; left: 12px; right: 12px; bottom: 10px; font-size: 12px; line-height: 1.4; color: var(--muted); }
+.ph .cap b { color: var(--brand); }
+.alt .ph { background: #E6D8C0; }
+.r32 { aspect-ratio: 3 / 2; } .r43 { aspect-ratio: 4 / 3; } .r11 { aspect-ratio: 1 / 1; } .r169 { aspect-ratio: 16 / 9; }
+.staged { font-size: 12px; color: var(--muted); }
+
+/* ── 요약표 (확정 요소: B안) ── */
+.summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--white); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.summary div { padding: 12px 8px; text-align: center; display: grid; }
+.summary div + div { border-left: 1px solid var(--line); }
+.summary small { font-size: .7rem; color: var(--muted); }
+.summary b { font-size: 1rem; }
+
+/* ── 상품 카드 ── */
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (min-width: 760px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (min-width: 1020px) { .grid.g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.card { background: var(--white); border-radius: var(--r); overflow: hidden; display: grid; grid-template-rows: auto 1fr; min-width: 0; }
+.card .ph { border-radius: 0; }
+.card .body { padding: 12px 14px 14px; display: grid; gap: 4px; align-content: start; }
+.card .name { font-weight: 700; font-size: .95rem; line-height: 1.4; }
+.card .size { font-size: .78rem; color: var(--muted); line-height: 1.4; }
+.card .bottom { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-top: 6px; }
+.card .price { font-weight: 800; font-size: 1rem; }
+.card .add { border: 1.5px solid var(--brand); color: var(--brand); background: var(--white); border-radius: 10px; min-width: 52px; min-height: 40px; font-size: .82rem; font-weight: 700; }
+.card .add:disabled { border-color: var(--line); color: #B3A796; cursor: not-allowed; }
+.card.out .ph { filter: grayscale(.8); opacity: .7; }
+.tag { position: absolute; top: 10px; left: 10px; font-size: .7rem; font-weight: 800; padding: 2px 9px; border-radius: 999px; background: var(--white); color: var(--brand); }
+.tag.hot { background: var(--accent); color: var(--white); }
+.tag.out { background: var(--ink); color: var(--white); }
+.soft { display: inline-block; font-size: .7rem; font-weight: 700; color: var(--brand); background: var(--soft); border-radius: 4px; padding: 0 6px; }
+
+/* ── 공통 블록 ── */
+.steps { display: grid; gap: 12px; counter-reset: s; }
+@media (min-width: 760px) { .steps { grid-template-columns: repeat(3, 1fr); } }
+.step { counter-increment: s; background: var(--white); border-radius: var(--r); padding: 20px; display: grid; gap: 6px; align-content: start; }
+.step::before { content: counter(s); width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--brand); color: var(--white); font-weight: 800; font-size: .85rem; }
+.step b { font-size: 1rem; }
+.step span { color: var(--muted); font-size: .88rem; }
+.promises { display: grid; gap: 12px; }
+@media (min-width: 760px) { .promises { grid-template-columns: repeat(3, 1fr); } }
+.promise { background: var(--white); border-radius: var(--r); padding: 22px 18px; text-align: center; display: grid; gap: 4px; }
+.promise .big { font-family: var(--serif); font-weight: 900; font-size: 1.9rem; color: var(--brand); line-height: 1.15; }
+.promise span { color: var(--muted); font-size: .88rem; }
+.store { display: grid; gap: 20px; }
+@media (min-width: 820px) { .store { grid-template-columns: 1.2fr 1fr; align-items: center; } }
+.map { border-radius: var(--r); background: repeating-linear-gradient(45deg, #EDE2CE 0 12px, #E8DBC4 12px 24px); aspect-ratio: 16 / 10; display: grid; place-items: center; color: var(--muted); font-size: .85rem; text-align: center; padding: 12px; }
+.map b { display: block; color: var(--brand); font-size: 1rem; }
+.store dl { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; }
+.store dt { color: var(--muted); font-size: .88rem; }
+.store dd { font-weight: 700; }
+.silver-band { background: var(--white); border-radius: var(--r); padding: 24px; display: grid; gap: 16px; }
+@media (min-width: 820px) { .silver-band { grid-template-columns: 1fr 1fr; align-items: center; padding: 32px; } }
+.levels { display: flex; flex-wrap: wrap; gap: 8px; }
+.levels span { border: 1.5px solid var(--brand); border-radius: 999px; padding: 4px 14px; font-weight: 700; color: var(--brand); font-size: .9rem; }
+
+/* ═════ 홈 1안 · 두 손님 나란히 ═════ */
+.h1-hero { padding-block: 36px 40px; display: grid; gap: 22px; }
+.h1-hero .title { display: grid; gap: 8px; text-align: center; justify-items: center; }
+.h1-hero h1 { font-size: clamp(1.9rem, 6vw, 2.8rem); }
+.h1-hero .title p { color: var(--muted); }
+.duo { display: grid; gap: 16px; }
+@media (min-width: 760px) { .duo { grid-template-columns: 1fr 1fr; } }
+.guest { background: var(--white); border-radius: 24px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.guest .ph { border-radius: 0; }
+.guest .body { padding: 20px; display: grid; gap: 10px; align-content: start; }
+.guest .who { font-size: .78rem; font-weight: 800; color: var(--accent-deep); letter-spacing: .04em; }
+.guest h2 { font-size: 1.4rem; }
+.guest p { color: var(--muted); font-size: .92rem; }
+.guest .line { display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid var(--line); padding-top: 10px; }
+.guest .line b { font-size: 1.15rem; }
+.empathy { display: grid; gap: 10px; text-align: center; padding-block: 56px; }
+.empathy p { font-family: var(--serif); font-weight: 700; font-size: 1.3rem; color: var(--ink); }
+.empathy p + p { color: var(--brand); }
+
+/* ═════ 홈 2안 · 오늘의 반찬 먼저 ═════ */
+.h2-hero { padding-block: 28px 18px; display: grid; gap: 18px; }
+@media (min-width: 900px) { .h2-hero { grid-template-columns: 1fr 1fr; align-items: end; } }
+.h2-hero h1 { font-size: clamp(1.7rem, 5vw, 2.4rem); }
+.board { background: var(--ink); color: var(--paper); border-radius: var(--r); padding: 18px 20px; display: grid; gap: 10px; }
+.board .top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+.board .top span { font-size: .78rem; color: #CDBEAB; }
+.board .made { font-size: 1.5rem; font-weight: 800; }
+.board .made em { font-style: normal; color: #F2A58A; }
+.board .bar { height: 8px; border-radius: 99px; background: #4A3C31; overflow: hidden; }
+.board .bar i { display: block; height: 100%; width: 82%; background: #F2A58A; }
+.board small { color: #CDBEAB; font-size: .78rem; }
+.switch { display: grid; grid-template-columns: 1fr 1fr; background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 5px; gap: 5px; }
+.switch button { border: 0; background: none; border-radius: 12px; padding: 12px 8px; display: grid; gap: 0; text-align: center; }
+.switch button small { font-size: .74rem; color: var(--muted); }
+.switch button b { font-size: 1rem; }
+.switch button[aria-pressed="true"] { background: var(--brand); color: var(--white); }
+.switch button[aria-pressed="true"] small { color: #EBDDC8; }
+.cats { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; margin-bottom: 16px; }
+.cats button { border: 1.5px solid var(--line); background: var(--white); border-radius: 999px; padding: 6px 14px; font-size: .85rem; white-space: nowrap; }
+.cats button[aria-pressed="true"] { border-color: var(--brand); background: var(--brand); color: var(--white); font-weight: 700; }
+.mini-steps { display: grid; gap: 8px; }
+@media (min-width: 760px) { .mini-steps { grid-template-columns: repeat(3, 1fr); } }
+.mini-steps li { display: flex; gap: 10px; align-items: center; background: var(--white); border-radius: 14px; padding: 12px 14px; font-size: .9rem; }
+.mini-steps li b { flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--brand); color: var(--white); display: grid; place-items: center; font-size: .8rem; }
+
+/* ═════ 홈 3안 · 하루 이야기 ═════ */
+.h3-hero { padding-block: 44px 28px; display: grid; gap: 18px; }
+.h3-hero h1 { font-size: clamp(2rem, 7vw, 3.2rem); }
+.h3-hero .duo-mini { display: grid; gap: 10px; }
+@media (min-width: 760px) { .h3-hero .duo-mini { grid-template-columns: 1fr 1fr; max-width: 720px; } }
+.duo-mini button { text-align: left; background: var(--white); border: 1.5px solid var(--line); border-radius: 16px; padding: 14px 16px; display: grid; gap: 2px; }
+.duo-mini button:hover { border-color: var(--brand); }
+.duo-mini small { color: var(--accent-deep); font-weight: 800; font-size: .74rem; }
+.duo-mini b { font-size: 1.02rem; }
+.duo-mini span { color: var(--muted); font-size: .82rem; }
+.timeline { position: relative; display: grid; gap: 22px; padding-left: 26px; }
+.timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: var(--line); }
+.tl { position: relative; display: grid; gap: 10px; }
+@media (min-width: 820px) { .tl { grid-template-columns: 120px 1fr 260px; align-items: center; gap: 20px; } }
+.tl::before { content: ""; position: absolute; left: -26px; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); border: 3px solid var(--brand); }
+.tl.key::before { background: var(--accent); border-color: var(--accent); }
+.tl .time { font-size: 1.6rem; font-weight: 800; color: var(--brand); line-height: 1; }
+.tl.key .time { color: var(--accent-deep); }
+.tl .what { display: grid; gap: 2px; }
+.tl .what b { font-size: 1.05rem; }
+.tl .what span { color: var(--muted); font-size: .9rem; }
+.tl .ph { border-radius: 14px; }
+.hscroll { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 44%); gap: 14px; overflow-x: auto; padding-bottom: 8px; scroll-snap-type: x mandatory; }
+@media (min-width: 900px) { .hscroll { grid-auto-columns: minmax(220px, 1fr); } }
+.hscroll > * { scroll-snap-align: start; }
+.stories { display: grid; gap: 16px; }
+@media (min-width: 820px) { .stories { grid-template-columns: 1fr 1fr; } }
+.story { background: var(--white); border-radius: 24px; padding: 24px; display: grid; gap: 12px; }
+.story q { font-family: var(--serif); font-weight: 700; font-size: 1.2rem; color: var(--ink); quotes: "“" "”"; }
+.story p { color: var(--muted); font-size: .92rem; }
+
+/* ═════ 공통 하위 화면 ═════ */
+.page-head { padding-block: 36px 8px; display: grid; gap: 8px; }
+.page-head h1 { font-size: clamp(1.7rem, 5vw, 2.3rem); }
+/* 어르신 밥상: 큰 글씨 기본 */
+.silver-page { font-size: 1.15rem; }
+.silver-page .card .name { font-size: 1.15rem; }
+.silver-page .card .size, .silver-page .card .price { font-size: 1rem; }
+.lvl { display: grid; gap: 12px; }
+@media (min-width: 760px) { .lvl { grid-template-columns: repeat(3, 1fr); } }
+.lvl li { background: var(--white); border-radius: var(--r); padding: 20px; display: grid; gap: 4px; }
+.lvl li b { font-size: 1.2rem; color: var(--brand); }
+.lvl li span { color: var(--muted); font-size: 1rem; }
+.phone { display: grid; gap: 4px; background: var(--white); border: 2px solid var(--brand); border-radius: var(--r); padding: 20px; text-align: center; }
+.phone b { font-size: 1.6rem; color: var(--brand); user-select: all; }
+.principles { display: grid; gap: 12px; }
+@media (min-width: 760px) { .principles { grid-template-columns: repeat(2, 1fr); } }
+.principles li { background: var(--white); border-radius: var(--r); padding: 18px 20px; display: grid; gap: 4px; }
+.principles b { color: var(--brand); }
+.principles span { color: var(--muted); font-size: .9rem; }
+.maker { display: grid; gap: 16px; background: var(--white); border-radius: 24px; padding: 24px; }
+@media (min-width: 760px) { .maker { grid-template-columns: 200px 1fr; align-items: center; } }
+.maker .ph { aspect-ratio: 1; border-radius: 50%; }
+/* 결제 */
+.checkout { display: grid; gap: 20px; padding-block: 8px 72px; }
+@media (min-width: 900px) { .checkout { grid-template-columns: 1fr 360px; align-items: start; } }
+.panel { background: var(--white); border-radius: var(--r); padding: 20px; display: grid; gap: 14px; }
+.panel h2 { font-size: 1.15rem; font-family: var(--sans); font-weight: 800; color: var(--ink); }
+.field { display: grid; gap: 6px; }
+.field label, .field > span { font-size: .85rem; font-weight: 700; }
+.field input[type="text"], .field input[type="tel"] { min-height: 50px; border: 1.5px solid var(--line); border-radius: 10px; padding: 0 14px; background: var(--white); }
+.field input:focus { border-color: var(--brand); outline: none; box-shadow: 0 0 0 3px rgba(122, 78, 45, .15); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1.5px solid var(--line); background: var(--white); border-radius: 10px; padding: 8px 12px; font-size: .85rem; min-height: 44px; }
+.chip[aria-pressed="true"] { border-color: var(--brand); background: var(--brand); color: var(--white); font-weight: 700; }
+.chip:disabled { color: #B3A796; background: #F4EFE6; text-decoration: line-through; cursor: not-allowed; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: .92rem; }
+.check input { width: 22px; height: 22px; margin-top: 3px; accent-color: var(--brand); flex: none; }
+.widget { border: 2px dashed var(--line); border-radius: 14px; padding: 22px; text-align: center; color: var(--muted); font-size: .88rem; display: grid; gap: 4px; }
+.widget b { color: var(--brand); font-size: 1rem; }
+.order-line { display: flex; justify-content: space-between; gap: 10px; font-size: .92rem; }
+.order-line.total { border-top: 1px solid var(--line); padding-top: 12px; font-weight: 800; font-size: 1.1rem; }
+.off { font-size: .82rem; color: var(--muted); background: var(--soft); border-radius: 10px; padding: 10px 12px; }
+.toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 10px 18px; border-radius: 999px; font-size: .88rem; z-index: 50; box-shadow: 0 6px 20px rgba(0,0,0,.2); }
+
+/* 푸터 */
+.site-foot { background: var(--ink); color: #CDBEAB; padding-block: 32px 40px; font-size: .78rem; }
+.site-foot .inner { display: grid; gap: 4px; }
+.site-foot b { color: var(--paper); font-family: var(--serif); font-size: 1rem; }
+</style>
+
+<div class="picker gut" id="picker" role="region" aria-label="시안 고르기">
+  <div class="inner">
+    <strong>홈 시안</strong>
+    <div class="tabs">
+      <button type="button" id="pick-home1" data-home="home1" aria-pressed="true">1안 두 손님 나란히</button>
+      <button type="button" id="pick-home2" data-home="home2" aria-pressed="false">2안 오늘의 반찬 먼저</button>
+      <button type="button" id="pick-home3" data-home="home3" aria-pressed="false">3안 하루 이야기</button>
+    </div>
+    <span class="note">메뉴·어르신 밥상·가게 이야기·결제 화면은 세 안 공통입니다. 가격·정책은 예시이고, 사진은 생성 전이라 자리만 표시했습니다.</span>
+  </div>
+</div>
+
+<header class="site-head gut">
+  <div class="inner">
+    <button type="button" class="logo-btn" data-go="home" aria-label="온담찬 홈">{{logo-horizontal.svg}}</button>
+    <nav class="site-nav" aria-label="사이트 메뉴">
+      <button type="button" data-go="menu">메뉴</button>
+      <button type="button" data-go="silver">어르신 밥상</button>
+      <button type="button" data-go="about">가게 이야기</button>
+      <button type="button" data-go="checkout">주문하기</button>
+    </nav>
+    <div class="head-tools">
+      <button type="button" class="bigtext" id="bigtext" aria-pressed="false">큰 글씨</button>
+      <button type="button" class="cart" data-go="checkout">담은 상품 <b class="num" id="cartN">0</b></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ═══════════ 홈 1안 ═══════════ -->
+  <div class="view" data-view="home1">
+    <section class="gut">
+      <div class="inner h1-hero">
+        <div class="title">
+          <span class="hand">따뜻한 한 끼를 생각합니다</span>
+          <h1>매일의 식사에 온기를 담다</h1>
+          <p>나를 위한 한 끼도, 부모님께 전하는 한 끼도.<br>익숙한 집밥으로 마음을 전합니다.</p>
+        </div>
+        <div class="duo">
+          <article class="guest">
+            <figure class="ph r43" data-shot="hero-me">{{PH:table}}<figcaption class="cap"><b>사진 준비 중</b> · 퇴근 후 혼자 먹는 따뜻한 저녁상</figcaption></figure>
+            <div class="body">
+              <span class="who">나를 위한 한 끼</span>
+              <h2>퇴근길, 저녁이<br>준비되어 있어요</h2>
+              <p>아침에 만든 국과 반찬을 1인분씩. 미리 결제하고 찾아가 데우기만 하세요.</p>
+              <div class="line"><span>1인 저녁세트</span><b class="num">13,900원</b></div>
+              <button type="button" class="cta wide" data-go="checkout">미리 결제하기</button>
+            </div>
+          </article>
+          <article class="guest">
+            <figure class="ph r43" data-shot="hero-parent">{{PH:tray}}<figcaption class="cap"><b>사진 준비 중</b> · 부드러운 반찬을 담은 어르신 밥상</figcaption></figure>
+            <div class="body">
+              <span class="who">부모님께 전하는 한 끼</span>
+              <h2>부모님 저녁,<br>대신 챙겨 드려요</h2>
+              <p>부드럽게 만든 어르신 밥상. 자녀가 결제하면 부모님이 이름으로 찾아가세요.</p>
+              <div class="line"><span>어르신 1인 저녁세트</span><b class="num">11,900원</b></div>
+              <button type="button" class="cta ghost wide" data-go="silver">부모님 반찬 보내기</button>
+            </div>
+          </article>
+        </div>
+        <div class="summary" aria-label="오늘 요약">
+          <div><small>오늘 만든 시각</small><b class="num">07:10</b></div>
+          <div><small>픽업</small><b class="num">17:30~20:30</b></div>
+          <div><small>매장</small><b class="num">06:00~23:00</b></div>
+        </div>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner empathy">
+        <p>퇴근하고 요리할 힘, 남아 있나요?</p>
+        <p>부모님 식사, 매일 챙기기 어렵죠?</p>
+      </div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">
+        <div class="row-head"><div class="sec-head" style="margin:0"><span class="eyebrow">오늘의 반찬</span><h2>오늘 아침에 만들었어요</h2></div><button type="button" class="more" data-go="menu">전체 메뉴 보기</button></div>
+        <div class="grid g4" data-products="featured"></div>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">이용 방법</span><h2>세 단계면 저녁 준비 끝</h2></div>
+        <ol class="steps">
+          <li class="step"><b>미리 결제하고 시간 고르기</b><span>홈페이지에서 메뉴를 담고 픽업 시간을 30분 단위로 골라요.</span></li>
+          <li class="step"><b>매장 픽업 냉장고에서 꺼내기</b><span>문자로 온 주문번호가 붙은 봉투를 꺼내 가세요.</span></li>
+          <li class="step"><b>집에서 데우기만</b><span>국은 냄비에 3~4분, 반찬은 그대로 드세요.</span></li>
+        </ol>
+      </div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">온담찬의 약속</span><h2>숫자로 말씀드릴게요</h2></div>
+        <ul class="promises">
+          <li class="promise"><span class="big num">07:00</span><b>매일 아침 만듭니다</b><span>그날 판매할 반찬은 그날 아침에.</span></li>
+          <li class="promise"><span class="big">1~2인분</span><b>딱 한 끼 양으로</b><span>남기거나 버리지 않게 나눠 담아요.</span></li>
+          <li class="promise"><span class="big">모든 용기</span><b>제조 시각 라벨</b><span>언제 만들었는지 바로 확인하세요.</span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">{{> silver-band}}</div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">{{> store}}</div>
+    </section>
+  </div>
+
+  <!-- ═══════════ 홈 2안 ═══════════ -->
+  <div class="view" data-view="home2" hidden>
+    <section class="gut">
+      <div class="inner h2-hero">
+        <div style="display:grid;gap:10px">
+          <span class="eyebrow">매일의 식사에 온기를 담다</span>
+          <h1>오늘 저녁,<br>무엇을 드릴까요?</h1>
+        </div>
+        <div class="board" aria-label="오늘 매장 현황(예시)">
+          <div class="top"><span>오늘 아침 제조 완료</span><span class="num">10월 21일 (예시)</span></div>
+          <div class="made num">07:10 · <em>17종 중 14종</em> 판매 중</div>
+          <div class="bar" aria-hidden="true"><i></i></div>
+          <small>픽업 17:30~20:30 · 30분 단위로 미리 골라 주세요</small>
+        </div>
+      </div>
+    </section>
+    <section class="gut" style="padding-block:6px 56px">
+      <div class="inner">
+        <div class="switch" role="group" aria-label="누구를 위한 한 끼인가요">
+          <button type="button" id="who-me" data-who="me" aria-pressed="true"><small>나를 위한 한 끼</small><b>저녁세트 · 반찬</b></button>
+          <button type="button" id="who-parent" data-who="parent" aria-pressed="false"><small>부모님께 전하는 한 끼</small><b>어르신 밥상</b></button>
+        </div>
+        <div class="summary" style="margin-block:14px 18px" aria-label="오늘 요약">
+          <div><small>오늘 만든 시각</small><b class="num">07:10</b></div>
+          <div><small>픽업</small><b class="num">17:30~20:30</b></div>
+          <div><small>보관</small><b>냉장</b></div>
+        </div>
+        <div class="cats" id="h2cats" role="group" aria-label="분류"></div>
+        <div class="grid g4" id="h2grid"></div>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">이용 방법</span><h2>결제는 미리, 픽업은 퇴근길에</h2></div>
+        <ol class="mini-steps">
+          <li><b>1</b>메뉴 담고 픽업 시간 고르기</li>
+          <li><b>2</b>매장 픽업 냉장고에서 주문번호 확인</li>
+          <li><b>3</b>집에서 데우기만</li>
+        </ol>
+      </div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">
+        <ul class="promises">
+          <li class="promise"><span class="big num">07:00</span><b>매일 아침 제조</b></li>
+          <li class="promise"><span class="big">1~2인분</span><b>소포장</b></li>
+          <li class="promise"><span class="big">모든 용기</span><b>제조 시각 라벨</b></li>
+        </ul>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">{{> store}}</div>
+    </section>
+  </div>
+
+  <!-- ═══════════ 홈 3안 ═══════════ -->
+  <div class="view" data-view="home3" hidden>
+    <section class="gut">
+      <div class="inner h3-hero">
+        <span class="hand">온담찬의 하루</span>
+        <h1>매일의 식사에<br>온기를 담다</h1>
+        <p class="lead">아침 7시에 만들고, 저녁 5시 반부터 건넵니다. 동네 무인 반찬가게의 하루를 보여 드릴게요.</p>
+        <div class="duo-mini">
+          <button type="button" data-go="checkout"><small>나를 위한 한 끼</small><b>1인 저녁세트 미리 결제</b><span class="num">13,900원 · 17:30부터 픽업</span></button>
+          <button type="button" data-go="silver"><small>부모님께 전하는 한 끼</small><b>어르신 밥상 보내기</b><span class="num">11,900원부터 · 부모님이 이름으로 픽업</span></button>
+        </div>
+      </div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">
+        <ol class="timeline">
+          <li class="tl"><span class="time num">06:00</span><div class="what"><b>가게 문이 열려요</b><span>무인 매장이라 밤 11시까지 언제든 들르실 수 있어요.</span></div><figure class="ph r169">{{PH:shop}}<figcaption class="cap"><b>사진 준비 중</b> · 아침 매장</figcaption></figure></li>
+          <li class="tl key"><span class="time num">07:00</span><div class="what"><b>오늘 반찬을 만들어요</b><span>국 3가지, 반찬 12가지. 그날 팔 만큼만 아침에 만들어요.</span></div><figure class="ph r169">{{PH:pot}}<figcaption class="cap"><b>사진 준비 중</b> · 조리 장면(인물 없이)</figcaption></figure></li>
+          <li class="tl"><span class="time num">10:00</span><div class="what"><b>라벨을 붙여 진열해요</b><span>모든 용기에 제조 시각을 분 단위로 적어요.</span></div><figure class="ph r169">{{PH:boxes}}<figcaption class="cap"><b>사진 준비 중</b> · 라벨 붙은 용기</figcaption></figure></li>
+          <li class="tl key"><span class="time num">17:30</span><div class="what"><b>미리 주문하신 저녁을 건네요</b><span>픽업 냉장고에 주문번호 봉투를 넣어 둡니다. 20:30까지.</span></div><figure class="ph r169">{{PH:locker}}<figcaption class="cap"><b>사진 준비 중</b> · 픽업 냉장고</figcaption></figure></li>
+          <li class="tl"><span class="time num">19:00</span><div class="what"><b>집에서 데우기만</b><span>오늘 아침 만든 국으로 차린 저녁 한 상.</span></div><figure class="ph r169">{{PH:table}}<figcaption class="cap"><b>사진 준비 중</b> · 저녁 식탁</figcaption></figure></li>
+        </ol>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">
+        <div class="row-head"><div class="sec-head" style="margin:0"><span class="eyebrow">오늘의 반찬</span><h2>오늘 아침 만든 것들</h2></div><button type="button" class="more" data-go="menu">전체 메뉴</button></div>
+        <div class="hscroll" data-products="featured"></div>
+      </div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">두 손님 이야기</span><h2>누구를 위한 한 끼인가요</h2></div>
+        <div class="stories">
+          <article class="story"><q>퇴근하고 요리할 힘이 없어도, 저녁은 제대로 먹고 싶어요.</q><p>1~2인 가구와 맞벌이 부부를 위해 1인분씩 담았어요. 점심시간에 결제하고 퇴근길에 찾아가세요.</p><button type="button" class="cta" data-go="menu">메뉴 보기</button></article>
+          <article class="story"><q>부모님이 오늘은 뭘 드셨는지, 늘 마음에 걸려요.</q><p>자녀가 결제하고 부모님이 이름으로 찾아가세요. 부드럽게 만든 어르신 밥상이 있어요.</p><button type="button" class="cta ghost" data-go="silver">어르신 밥상 보기</button></article>
+        </div>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">{{> store}}</div>
+    </section>
+  </div>
+
+  <!-- ═══════════ 메뉴 (공통) ═══════════ -->
+  <div class="view" data-view="menu" hidden>
+    <section class="gut">
+      <div class="inner page-head"><span class="eyebrow">메뉴</span><h1>오늘의 메뉴</h1><p class="lead">매일 아침 만들어 그날 판매합니다. 품절된 메뉴는 내일 다시 만나요.</p></div>
+    </section>
+    <section class="gut" style="padding-block:20px 72px">
+      <div class="inner">
+        <div class="summary" style="margin-bottom:18px"><div><small>오늘 만든 시각</small><b class="num">07:10</b></div><div><small>픽업</small><b class="num">17:30~20:30</b></div><div><small>보관</small><b>냉장</b></div></div>
+        <div class="cats" id="mcats" role="group" aria-label="분류"></div>
+        <div class="grid g4" id="mgrid"></div>
+        <p class="staged" style="margin-top:14px">상품 이미지는 연출된 예시로, 실제 상품과 구성·담음새가 다를 수 있습니다. 품절·소진 임박 표시는 예시입니다.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════ 어르신 밥상 (공통) ═══════════ -->
+  <div class="view silver-page" data-view="silver" hidden>
+    <section class="gut">
+      <div class="inner page-head"><span class="eyebrow">어르신 밥상</span><h1>부모님께 전하는 한 끼</h1><p class="lead">잘게 썰고 푹 익혀 부드럽게 만들었어요. 이 화면은 처음부터 큰 글씨로 보여 드려요.</p></div>
+    </section>
+    <section class="gut sec" style="padding-top:28px">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">부드러움 3단계</span><h2>드시기 편한 정도를 고르세요</h2><p class="lead">가게에서 정한 기준이에요. 공인 인증 등급이 아닙니다.</p></div>
+        <ul class="lvl">
+          <li><b>씹기 쉬움</b><span>잘게 썰어 이가 약해도 편하게.</span></li>
+          <li><b>잇몸으로</b><span>잇몸으로 눌러 으깨질 만큼 푹 익혀요.</span></li>
+          <li><b>혀로</b><span>혀로 눌러도 풀어질 만큼 부드럽게.</span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">상품</span><h2>어르신 밥상 2가지</h2></div>
+        <div class="grid" data-products="silver"></div>
+      </div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">자녀가 대신 주문하기</span><h2>멀리 계셔도 챙겨 드릴 수 있어요</h2></div>
+        <ol class="steps">
+          <li class="step"><b>자녀가 결제해요</b><span>주문할 때 '받는 분'에 부모님 성함과 연락처를 적어요.</span></li>
+          <li class="step"><b>부모님께 문자가 가요</b><span>픽업 시간과 주문번호를 부모님 휴대폰으로 보내 드려요.</span></li>
+          <li class="step"><b>부모님이 찾아가세요</b><span>매장 픽업 냉장고에서 성함이 적힌 봉투를 꺼내요.</span></li>
+        </ol>
+        <div class="phone" style="margin-top:20px"><span>인터넷이 어려우시면 전화로 주문하세요</span><b class="num">031-000-0000</b><span class="staged">번호 준비 중 · 평일 10:00~16:00 (예시)</span></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════ 가게 이야기 (공통) ═══════════ -->
+  <div class="view" data-view="about" hidden>
+    <section class="gut">
+      <div class="inner page-head"><span class="eyebrow">가게 이야기</span><h1>동네 부엌처럼 운영합니다</h1><p class="lead">양주에서 매일 아침 반찬을 만드는 작은 무인 가게입니다. 판매만 무인이고, 음식은 사람이 직접 만듭니다.</p></div>
+    </section>
+    <section class="gut sec" style="padding-top:28px">
+      <div class="inner">
+        <figure class="ph r169" style="margin-bottom:28px">{{PH:shop}}<figcaption class="cap"><b>사진 준비 중</b> · 따뜻한 가게 내부(나무 선반, 쇼케이스)</figcaption></figure>
+        <div class="sec-head"><span class="eyebrow">운영 원칙</span><h2>네 가지를 지킵니다</h2></div>
+        <ul class="principles">
+          <li><b>판매 시간만 무인</b><span>만들고 진열하고 정리하는 일은 사람이 합니다.</span></li>
+          <li><b>당일 제조</b><span>그날 팔 반찬은 그날 아침에 만듭니다.</span></li>
+          <li><b>1~2인분 소포장</b><span>남기지 않을 만큼만 담습니다.</span></li>
+          <li><b>버리는 음식 줄이기</b><span>미리 주문을 받아 만드는 양을 맞춥니다.</span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="gut sec alt">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">위생과 신선도</span><h2>보이는 곳에서 관리합니다</h2></div>
+        <ul class="principles">
+          <li><b>쇼케이스 온도 기록</b><span>냉장 0~10℃를 유지하고 매일 기록합니다.</span></li>
+          <li><b>제조시간 라벨</b><span>모든 용기에 만든 시각을 분 단위로 적습니다.</span></li>
+        </ul>
+      </div>
+    </section>
+    <section class="gut sec">
+      <div class="inner">
+        <div class="sec-head"><span class="eyebrow">만드는 사람</span><h2>곧 소개해 드릴게요</h2></div>
+        <div class="maker">
+          <figure class="ph">{{PH:person}}</figure>
+          <div style="display:grid;gap:6px"><b style="font-size:1.1rem">만드는 사람 · 이름</b><p class="lead">요리사 프로필과 이야기가 이 자리에 들어갑니다. 사진, 경력, 좋아하는 반찬 한 가지를 받아 채울게요.</p></div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══════════ 결제 화면 모형 (공통) ═══════════ -->
+  <div class="view" data-view="checkout" hidden>
+    <section class="gut">
+      <div class="inner page-head"><span class="eyebrow">주문하기</span><h1>미리 결제하고 픽업 시간 고르기</h1></div>
+    </section>
+    <section class="gut">
+      <form class="inner checkout" id="orderForm" novalidate>
+        <div style="display:grid;gap:16px;min-width:0">
+          <div class="panel">
+            <h2>픽업 날짜와 시간</h2>
+            <div class="field"><span>날짜</span><div class="chips" id="cdates"></div></div>
+            <div class="field"><span>시간 (30분 단위)</span><div class="chips" id="cslots"></div></div>
+          </div>
+          <div class="panel">
+            <h2>주문하시는 분</h2>
+            <div class="field"><label for="oname">이름</label><input type="text" id="oname" autocomplete="name" placeholder="홍길동"></div>
+            <div class="field"><label for="otel">휴대폰 번호</label><input type="tel" id="otel" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000"></div>
+            <label class="check"><input type="checkbox" id="forParent"><span><b>받는 분이 다른가요?</b> 부모님이 대신 찾아가시면 체크해 주세요.</span></label>
+            <div id="parentFields" hidden style="display:grid;gap:12px">
+              <div class="field"><label for="pname">받는 분 성함</label><input type="text" id="pname" placeholder="부모님 성함"></div>
+              <div class="field"><label for="ptel">받는 분 휴대폰</label><input type="tel" id="ptel" inputmode="tel" placeholder="010-0000-0000"></div>
+            </div>
+            <p class="off">근거리 배달·택배는 준비 중입니다. 지금은 매장 픽업만 가능해요.</p>
+          </div>
+          <div class="panel">
+            <h2>결제 수단</h2>
+            <div class="widget"><b>토스페이먼츠 결제위젯 자리</b><span>카드 · 간편결제 · 계좌이체. 실제 사이트에서 테스트 키로 연결합니다.</span></div>
+            <label class="check"><input type="checkbox" id="agree"><span>주문 내용과 <u>환불 정책</u>을 확인했어요. 픽업 3시간 전까지 취소할 수 있어요. (정책 예시)</span></label>
+          </div>
+        </div>
+        <aside class="panel" aria-label="주문 요약" style="position:sticky;top:90px">
+          <h2>주문 요약</h2>
+          <div id="olines" style="display:grid;gap:8px"></div>
+          <div class="order-line total"><span>결제 금액</span><span class="num" id="osum">0원</span></div>
+          <button type="submit" class="cta wide" id="paybtn">결제하기</button>
+          <p class="staged">시안입니다. 실제 결제는 일어나지 않습니다.</p>
+        </aside>
+      </form>
+    </section>
+  </div>
+</main>
+
+<footer class="site-foot gut">
+  <div class="inner">
+    <b>온담찬</b>
+    <span>대표 ○○○ · 사업자등록번호 준비 중 · 통신판매업 신고번호 준비 중</span>
+    <span>경기도 양주시 (주소 준비 중) · 무인 판매 06:00~23:00 · 픽업 17:30~20:30</span>
+    <span>이용약관 · 환불 정책 · 개인정보 처리방침</span>
+  </div>
+</footer>
+
+
+<script>
+(() => {
+  const MENU = {{menu.json}};
+  const CAT = Object.fromEntries(MENU.categories.map((c) => [c.slug, c.name]));
+  const DEMO = { "spicy-pork": "out", "beef-jangjorim": "low" };   // 품절·소진 임박 예시
+  const won = (n) => n.toLocaleString("ko-KR") + "원";
+  const root = document.documentElement;
+
+  const PH = { bowl: `{{PH:bowl}}` };   // 상품 카드 사진 자리 그림
+  const cart = new Map();
+  const toast = (msg) => {
+    const t = document.createElement("div"); t.className = "toast"; t.textContent = msg;
+    document.body.appendChild(t); setTimeout(() => t.remove(), 1800);
+  };
+
+  function card(p) {
+    const state = DEMO[p.slug];
+    const tag = state === "out" ? '<span class="tag out">품절</span>' : state === "low" ? '<span class="tag hot">소진 임박</span>' : p.featured ? '<span class="tag">추천</span>' : "";
+    const soft = p.softness ? `<span class="soft">${p.softness}</span>` : "";
+    return `<article class="card${state === "out" ? " out" : ""}">
+      <figure class="ph r11">${PH.bowl}${tag}</figure>
+      <div class="body">
+        <span class="name">${p.name}</span>
+        <span class="size">${CAT[p.category]} · ${p.size}</span>${soft}
+        <div class="bottom"><span class="price num">${won(p.price)}</span>
+        <button type="button" class="add" data-add="${p.slug}" ${state === "out" ? "disabled" : ""} aria-label="${p.name} 담기">${state === "out" ? "품절" : "담기"}</button></div>
+      </div></article>`;
+  }
+  const bySlug = Object.fromEntries(MENU.products.map((p) => [p.slug, p]));
+  const featured = ["dinner-set-1", "banchan-3-set", "beef-jangjorim", "doenjang-jjigae", "spicy-pork", "silver-soft-3-set", "spinach-namul", "japchae"].map((s) => bySlug[s]);
+
+  document.querySelectorAll('[data-products="featured"]').forEach((el) => {
+    el.innerHTML = featured.slice(0, el.classList.contains("hscroll") ? 6 : 8).map(card).join("");
+  });
+  document.querySelectorAll('[data-products="silver"]').forEach((el) => {
+    el.innerHTML = MENU.products.filter((p) => p.category === "silver").map(card).join("");
+  });
+
+  // 분류 탭 + 그리드
+  function catGrid(catsEl, gridEl, filter) {
+    let cur = "all";
+    const draw = () => {
+      const list = MENU.products.filter(filter()).filter((p) => cur === "all" || p.category === cur);
+      gridEl.innerHTML = list.map(card).join("");
+    };
+    const build = () => {
+      const cats = [...new Set(MENU.products.filter(filter()).map((p) => p.category))];
+      if (cur !== "all" && !cats.includes(cur)) cur = "all";
+      catsEl.innerHTML = [["all", "전체"], ...cats.map((c) => [c, CAT[c]])].map(([k, n]) => `<button type="button" data-cat="${k}" aria-pressed="${k === cur}">${n}</button>`).join("");
+      draw();
+    };
+    catsEl.addEventListener("click", (e) => { const b = e.target.closest("[data-cat]"); if (!b) return; cur = b.dataset.cat; build(); });
+    build();
+    return build;
+  }
+  catGrid(document.getElementById("mcats"), document.getElementById("mgrid"), () => () => true);
+  let who = "me";
+  const rebuildH2 = catGrid(document.getElementById("h2cats"), document.getElementById("h2grid"), () => (p) => (who === "parent" ? p.category === "silver" || ["spinach-namul", "braised-potato", "egg-roll", "beef-radish-soup", "doenjang-jjigae"].includes(p.slug) : p.category !== "silver"));
+  document.querySelectorAll("[data-who]").forEach((b) => b.addEventListener("click", () => {
+    who = b.dataset.who;
+    document.querySelectorAll("[data-who]").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+    rebuildH2();
+  }));
+
+  // 담기
+  function renderCart() {
+    let n = 0, sum = 0;
+    const lines = [];
+    cart.forEach((q, slug) => { const p = bySlug[slug]; n += q; sum += p.price * q; lines.push(`<div class="order-line"><span>${p.name} × ${q}</span><span class="num">${won(p.price * q)}</span></div>`); });
+    document.getElementById("cartN").textContent = n;
+    document.getElementById("olines").innerHTML = lines.join("") || '<p class="staged">담은 상품이 없어요. 메뉴에서 담아 주세요.</p>';
+    document.getElementById("osum").textContent = won(sum);
+    document.getElementById("paybtn").textContent = sum ? `${won(sum)} 결제하기` : "결제하기";
+  }
+  document.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-add]");
+    if (!b) return;
+    cart.set(b.dataset.add, (cart.get(b.dataset.add) || 0) + 1);
+    renderCart(); toast(`${bySlug[b.dataset.add].name}을(를) 담았어요`);
+  });
+
+  // 결제 화면: 날짜·시간·받는 분
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  const cd = document.getElementById("cdates");
+  [0, 1].forEach((add, i) => {
+    const d = new Date(); d.setDate(d.getDate() + add);
+    cd.insertAdjacentHTML("beforeend", `<button type="button" class="chip num" aria-pressed="${i === 0}">${add ? "내일" : "오늘"} ${d.getMonth() + 1}/${d.getDate()} (${days[d.getDay()]})</button>`);
+  });
+  const cs = document.getElementById("cslots");
+  ["17:30", "18:00", "18:30", "19:00", "19:30", "20:00"].forEach((t) => cs.insertAdjacentHTML("beforeend", `<button type="button" class="chip num" aria-pressed="${t === "18:30"}" ${t === "18:00" ? 'disabled title="마감"' : ""}>${t}</button>`));
+  [cd, cs].forEach((g) => g.addEventListener("click", (e) => { const b = e.target.closest(".chip"); if (!b || b.disabled) return; g.querySelectorAll(".chip").forEach((c) => c.setAttribute("aria-pressed", String(c === b))); }));
+  document.getElementById("forParent").addEventListener("change", (e) => { document.getElementById("parentFields").hidden = !e.target.checked; });
+  document.getElementById("orderForm").addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!cart.size) return toast("먼저 메뉴를 담아 주세요");
+    if (!document.getElementById("agree").checked) return toast("환불 정책 확인에 체크해 주세요");
+    toast("시안입니다 · 실제 사이트에서 토스 결제창이 열립니다");
+  });
+
+  // 화면 전환: #home1 #home2 #home3 #menu #silver #about #checkout
+  // (화면 요소에 같은 id를 두지 않는다: 주소의 #이 그 요소로 스크롤시켜 머리글 밑에 가려진다)
+  let home = "home1";
+  const views = [...document.querySelectorAll("[data-view]")];
+  function show(id, scroll = true) {
+    if (id === "home") id = home;
+    if (!views.some((v) => v.dataset.view === id)) id = home;
+    if (id.startsWith("home")) {
+      home = id;
+      try { localStorage.setItem("ondam-home", id); } catch (e) {}
+    }
+    views.forEach((v) => { v.hidden = v.dataset.view !== id; });
+    document.querySelectorAll("[data-home]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.home === home)));
+    document.querySelectorAll(".site-nav [data-go]").forEach((b) => { if (b.dataset.go === id) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+    if (scroll) window.scrollTo({ top: 0 });
+  }
+  document.addEventListener("click", (e) => {
+    const g = e.target.closest("[data-go]"); if (g) { show(g.dataset.go); return; }
+    const h = e.target.closest("[data-home]"); if (h) show(h.dataset.home);
+  });
+  let start = (location.hash || "").slice(1);
+  if (!start) { try { start = localStorage.getItem("ondam-home") || "home1"; } catch (e) { start = "home1"; } }
+  try { const saved = localStorage.getItem("ondam-home"); if (saved) home = saved; } catch (e) {}
+  show(start, false);
+
+  // 큰 글씨
+  const big = document.getElementById("bigtext");
+  big.addEventListener("click", () => {
+    const on = !root.classList.contains("big");
+    root.classList.toggle("big", on);
+    big.setAttribute("aria-pressed", String(on));
+    big.textContent = on ? "기본 글씨" : "큰 글씨";
+  });
+
+  renderCart();
+})();
+</script>
