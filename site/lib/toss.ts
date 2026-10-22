@@ -1,7 +1,7 @@
 // 토스페이먼츠 결제 승인 호출 (서버 전용 — 브라우저 코드에서 가져오지 않는다).
 // 기본값은 토스 공식 문서의 공개 테스트 시크릿 키(결제위젯 gsk)다. 실제 돈이 오가지 않는다.
 // 운영 전환 때 Vercel 환경변수 TOSS_SECRET_KEY를 live 키로 바꾼다.
-const TOSS_SECRET_KEY = process.env.TOSS_SECRET_KEY ?? "test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6";
+const TOSS_SECRET_KEY = process.env.TOSS_SECRET_KEY?.trim() || "test_gsk_docs_OaPz8L5KdmQXkzRz3y47BMw6";
 
 export type ConfirmInput = { paymentKey: string; orderId: string; amount: number };
 export type ConfirmResult = { ok: true; approvedAt: string | null; method: string | null } | { ok: false; code: string; message: string };
