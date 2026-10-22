@@ -1,5 +1,5 @@
-[Purpose] Interior photo for the "about us" page of a small unmanned Korean side-dish shop.
-[Background] A clean 10-15 pyeong shop at evening, warm wood shelves, cream walls.
-[Subject] A glass refrigerated showcase neatly filled with small containers of Korean banchan, a self-checkout kiosk at the side, a small pickup shelf with numbered cubbies.
+[Purpose] Interior photo for the "about us" page of a small unmanned Korean side-dish shop in a Korean apartment neighborhood (Yangju, Gyeonggi-do).
+[Background] A clean, modern 10-15 pyeong Korean neighborhood shop at evening: light oak wood shelves, plain cream painted walls, a large clear glass storefront window and glass door looking onto a Korean apartment-complex street. Contemporary Korean small-business interior. No Japanese elements at all: no shoji screens, no wooden lattice doors, no noren curtains, no bonsai, no paper lanterns.
+[Subject] A glass refrigerated showcase neatly filled with small clear containers of Korean banchan (kimchi, namul, jorim, jeon), a white self-checkout kiosk at the side, and a refrigerated pickup cabinet with small numbered compartments.
 [Details] Eye level, 28mm lens, warm 3000K lighting inside, calm and tidy, inviting.
-[Constraints] Photorealistic. Korean home-style food in a Korean setting (not Japanese, not Western). No people, no hands, no text, no logos, no watermark, no price tags. Warm but natural color, true-to-life portions for one person. No readable signage text.
+[Constraints] Photorealistic. Korean home-style food in a Korean setting (not Japanese, not Western). No people, no hands, no text, no logos, no watermark, no price tags. Warm but natural color, true-to-life portions for one person. No readable signage text other than single digits on the compartments.
