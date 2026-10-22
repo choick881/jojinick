@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Product } from "@/lib/catalog";
 import { won } from "@/lib/price";
 import { AddToCart } from "./add-to-cart";
+import { productPhoto } from "@/lib/photos";
 import { PhotoSlot } from "./photo-slot";
 
 export function ProductCard({ p, big = false }: { p: Product; big?: boolean }) {
@@ -9,7 +10,7 @@ export function ProductCard({ p, big = false }: { p: Product; big?: boolean }) {
   return (
     <article className={`card grid min-w-0 grid-rows-[auto_1fr] overflow-hidden ${p.soldOut ? "[&_figure]:opacity-60 [&_figure]:grayscale" : ""}`}>
       <Link href={`/menu/${p.slug}`} tabIndex={-1} aria-hidden="true">
-        <PhotoSlot drawing="bowl" caption={p.name} ratio="1 / 1" rounded={false} sizes="(min-width: 1020px) 25vw, 50vw">
+        <PhotoSlot drawing="bowl" caption={p.name} src={productPhoto(p.slug)} ratio="1 / 1" rounded={false} sizes="(min-width: 1020px) 25vw, 50vw">
           {tag && <span className={`absolute left-2.5 top-2.5 rounded-full px-2.5 py-0.5 text-[.66rem] font-extrabold ${tag.c}`}>{tag.t}</span>}
         </PhotoSlot>
       </Link>

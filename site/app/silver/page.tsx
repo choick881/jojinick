@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SectionHead, Steps } from "@/components/blocks";
+import { STAGED_NOTE, SectionHead, Steps } from "@/components/blocks";
 import { ProductGrid } from "@/components/product-card";
 import { getCatalog } from "@/lib/catalog";
 
@@ -28,7 +28,7 @@ export default async function SilverPage() {
         </div>
       </section>
       <section className="gut sec sec-alt">
-        <div className="wrap"><SectionHead eyebrow="상품" title={`어르신 밥상 ${items.length}가지`} /><ProductGrid products={items} big /></div>
+        <div className="wrap"><SectionHead eyebrow="상품" title={`어르신 밥상 ${items.length}가지`} /><ProductGrid products={items} big /><p className="staged mt-3.5">{STAGED_NOTE}</p></div>
       </section>
       <section className="gut sec">
         <div className="wrap">

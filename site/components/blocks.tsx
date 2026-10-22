@@ -1,6 +1,7 @@
 // 여러 페이지에서 함께 쓰는 섹션 조각
 import Link from "next/link";
 import type { StoreStatus } from "@/lib/catalog";
+import { PHOTOS } from "@/lib/photos";
 import { PhotoSlot } from "./photo-slot";
 
 export function SectionHead({ eyebrow, title, lead }: { eyebrow: string; title: React.ReactNode; lead?: React.ReactNode }) {
@@ -102,7 +103,10 @@ export function SilverBand() {
         </div>
         <div><Link href="/silver" className="btn btn-ghost">어르신 밥상 보기</Link></div>
       </div>
-      <PhotoSlot drawing="tray" caption="어르신 1인 저녁세트" />
+      <div className="grid gap-1.5">
+        <PhotoSlot drawing="tray" caption="어르신 1인 저녁세트" src={PHOTOS.silverTray} />
+        <p className="staged">{STAGED_NOTE}</p>
+      </div>
     </div>
   );
 }

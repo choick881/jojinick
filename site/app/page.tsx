@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { HOW_TO, Promises, SectionHead, SilverBand, Steps, StoreBoard, StoreInfo } from "@/components/blocks";
+import { HOW_TO, Promises, STAGED_NOTE, SectionHead, SilverBand, Steps, StoreBoard, StoreInfo } from "@/components/blocks";
 import { PhotoSlot } from "@/components/photo-slot";
 import { ProductGrid } from "@/components/product-card";
 import { featured, findProduct, getCatalog } from "@/lib/catalog";
+import { PHOTOS } from "@/lib/photos";
 import { won } from "@/lib/price";
 
 // 홈 = 시안 1안(두 손님 나란히) + 2안 매장 현황판
@@ -12,8 +13,8 @@ export default async function Home() {
   const me = findProduct(catalog, "dinner-set-1")!;
   const parent = findProduct(catalog, "silver-dinner-set")!;
   const guests = [
-    { who: "나를 위한 한 끼", title: <>퇴근길, 저녁이<br />준비되어 있어요</>, body: "아침에 만든 국과 반찬을 1인분씩. 미리 결제하고 찾아가 데우기만 하세요.", p: me, href: `/menu/${me.slug}`, cta: "미리 결제하기", primary: true, drawing: "table" as const, cap: "퇴근 후 혼자 먹는 따뜻한 저녁상" },
-    { who: "부모님께 전하는 한 끼", title: <>부모님 저녁,<br />대신 챙겨 드려요</>, body: "부드럽게 만든 어르신 밥상. 자녀가 결제하면 부모님이 성함으로 찾아가세요.", p: parent, href: "/silver", cta: "부모님 반찬 보내기", primary: false, drawing: "tray" as const, cap: "부드러운 반찬을 담은 어르신 밥상" },
+    { who: "나를 위한 한 끼", title: <>퇴근길, 저녁이<br />준비되어 있어요</>, body: "아침에 만든 국과 반찬을 1인분씩. 미리 결제하고 찾아가 데우기만 하세요.", p: me, href: `/menu/${me.slug}`, cta: "미리 결제하기", primary: true, drawing: "table" as const, cap: "퇴근 후 혼자 먹는 따뜻한 저녁상", src: PHOTOS.dinnerTable },
+    { who: "부모님께 전하는 한 끼", title: <>부모님 저녁,<br />대신 챙겨 드려요</>, body: "부드럽게 만든 어르신 밥상. 자녀가 결제하면 부모님이 성함으로 찾아가세요.", p: parent, href: "/silver", cta: "부모님 반찬 보내기", primary: false, drawing: "tray" as const, cap: "부드러운 반찬을 담은 어르신 밥상", src: PHOTOS.silverTray },
   ];
 
   return (
@@ -28,7 +29,7 @@ export default async function Home() {
           <div className="grid gap-4 md:grid-cols-2">
             {guests.map((g) => (
               <article key={g.who} className="grid grid-rows-[auto_1fr] overflow-hidden rounded-3xl bg-white">
-                <PhotoSlot drawing={g.drawing} caption={g.cap} rounded={false} />
+                <PhotoSlot drawing={g.drawing} caption={g.cap} src={g.src} rounded={false} />
                 <div className="grid content-start gap-2.5 p-5">
                   <span className="text-[.78rem] font-extrabold tracking-wide text-accent-deep">{g.who}</span>
                   <h2 className="h2 text-[1.4rem]">{g.title}</h2>
@@ -59,6 +60,7 @@ export default async function Home() {
             <Link href="/menu" className="text-[.85rem] font-bold text-brand underline underline-offset-4">전체 메뉴 보기</Link>
           </div>
           <ProductGrid products={featured(catalog)} />
+          <p className="staged mt-3.5">{STAGED_NOTE}</p>
         </div>
       </section>
 

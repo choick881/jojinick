@@ -6,6 +6,7 @@ import { Faq, HOW_TO, Promises, STAGED_NOTE, SectionHead, Steps } from "@/compon
 import { BuyBox } from "@/components/buy-box";
 import { PhotoSlot } from "@/components/photo-slot";
 import { findProduct, getCatalog, HEATING, type Product } from "@/lib/catalog";
+import { PHOTOS, productPhoto, setContentsPhoto } from "@/lib/photos";
 import { won } from "@/lib/price";
 import { absoluteUrl, jsonLd } from "@/lib/site";
 
@@ -71,7 +72,7 @@ export default async function ProductPage({ params }: PageProps<"/menu/[slug]">)
       <section className="gut pb-12 pt-6">
         <div className="wrap grid gap-6 md:grid-cols-[1.1fr_1fr] md:items-start md:gap-10">
           <div className="min-w-0">
-            <PhotoSlot drawing={isSet ? "table" : "bowl"} caption={`${p.name} (45° 자연광)`} ratio="4 / 5" />
+            <PhotoSlot drawing={isSet ? "table" : "bowl"} caption={`${p.name} (45° 자연광)`} src={productPhoto(p.slug)} ratio="4 / 5" sizes="(min-width: 860px) 55vw, 100vw" />
             <p className="staged mt-1.5">{STAGED_NOTE}</p>
           </div>
           <div className="grid min-w-0 gap-4.5">
@@ -115,7 +116,7 @@ export default async function ProductPage({ params }: PageProps<"/menu/[slug]">)
         <section className="gut sec">
           <div className="narrow">
             <SectionHead eyebrow="오늘의 구성" title={<>한 끼에 필요한 만큼만,<br />{p.components!.length}가지를 담았어요</>} />
-            <PhotoSlot drawing="boxes" caption="용기 탑뷰 (크림 바탕)" ratio="3 / 2" />
+            <PhotoSlot drawing="boxes" caption="용기 탑뷰 (크림 바탕)" src={setContentsPhoto(p.slug)} ratio="3 / 2" />
             <ul className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
               {p.components!.map((c, i) => (
                 <li key={i} className="card grid gap-1 p-3.5">
@@ -200,6 +201,8 @@ export default async function ProductPage({ params }: PageProps<"/menu/[slug]">)
       <section className="gut sec sec-alt">
         <div className="narrow">
           <SectionHead eyebrow="픽업 안내" title={<>무인 매장에서<br />이렇게 찾아가세요</>} />
+          <PhotoSlot drawing="locker" caption="매장 픽업 냉장고" src={PHOTOS.pickup} alt="번호 칸마다 주문 봉투가 들어 있는 매장 픽업 냉장고" ratio="3 / 2" className="mb-1.5" />
+          <p className="staged mb-5">{STAGED_NOTE}</p>
           <Steps items={HOW_TO} />
           <p className="mt-3 text-[.85rem] text-muted">취소는 픽업 3시간 전까지 할 수 있어요. 그 뒤에는 이미 만든 음식이라 취소가 어려워요. (정책 예시) <Link href="/policy/refund" className="underline underline-offset-4">환불 정책</Link></p>
         </div>

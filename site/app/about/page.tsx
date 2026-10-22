@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { SectionHead } from "@/components/blocks";
+import { STAGED_NOTE, SectionHead } from "@/components/blocks";
 import { PhotoSlot } from "@/components/photo-slot";
+import { PHOTOS } from "@/lib/photos";
 
 export const metadata: Metadata = { title: "가게 이야기", description: "양주에서 매일 아침 반찬을 만드는 작은 무인 가게. 판매만 무인이고, 음식은 사람이 직접 만듭니다." };
 
@@ -29,7 +30,8 @@ export default function AboutPage() {
       </section>
       <section className="gut sec pt-7">
         <div className="wrap">
-          <PhotoSlot drawing="shop" caption="따뜻한 가게 내부 (나무 선반, 쇼케이스)" ratio="16 / 9" className="mb-7" />
+          <PhotoSlot drawing="shop" caption="따뜻한 가게 내부 (나무 선반, 쇼케이스)" src={PHOTOS.shop} ratio="16 / 9" className="mb-1.5" />
+          <p className="staged mb-7">{STAGED_NOTE}</p>
           <SectionHead eyebrow="운영 원칙" title="네 가지를 지킵니다" />
           <List items={PRINCIPLES} />
         </div>
