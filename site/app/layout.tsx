@@ -4,6 +4,7 @@ import { CartProvider } from "@/components/cart";
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 import { ToastProvider } from "@/components/toast";
 import { OpeningBanner } from "@/components/opening-notice";
+import { ChatWidget } from "@/components/chat-widget";
 import { IS_INDEXABLE, ORDERING_OPEN, SITE_URL, absoluteUrl, jsonLd } from "@/lib/site";
 import "./globals.css";
 
@@ -55,6 +56,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <SiteHeader />
             <main id="main" className="flex-1">{children}</main>
             <SiteFooter />
+            <ChatWidget />
           </ToastProvider>
         </CartProvider>
       </body>
