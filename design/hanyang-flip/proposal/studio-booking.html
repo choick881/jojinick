@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>스튜디오 예약 자동화 개선방안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="doc.css">
+<style>
+/* 이 문서 전용 */
+.pflow{display:flex;align-items:stretch;gap:1.2mm;margin:1mm 0 2mm}
+.pflow div{flex:1;border:.6pt solid var(--line);background:#fff;padding:1.6mm 1.4mm;text-align:center;font-size:7.8pt;line-height:1.35}
+.pflow div.me{background:#FFF4E5;border-color:#E9B872}
+.pflow div b{display:block;color:var(--navy);font-size:8.1pt}
+.pflow i{align-self:center;font-style:normal;color:var(--gold);font-weight:900}
+.goals{display:grid;grid-template-columns:repeat(3,1fr);gap:2.5mm}
+.goals div{border:.6pt solid var(--line);border-top:2pt solid var(--hy);padding:2mm 2.6mm;background:#fff}
+.goals b{display:block;color:var(--navy);font-size:9.6pt;margin-bottom:.4mm}
+.tobe{display:grid;grid-template-columns:repeat(7,1fr);gap:1.4mm;margin:1mm 0}
+.tobe div{background:var(--sky);border:.6pt solid var(--sky2);padding:2mm 1.6mm;font-size:7.7pt;line-height:1.4;position:relative}
+.tobe div b{display:block;color:var(--navy);font-size:8.4pt;margin-bottom:.6mm}
+.tobe div em{font-style:normal;display:inline-block;background:var(--navy);color:#fff;font-weight:700;font-size:7.4pt;width:4.6mm;height:4.6mm;text-align:center;line-height:4.6mm;margin-bottom:.8mm}
+.tobe div.ai{background:#FFF6E0;border-color:#E9CF8A} .tobe div.ai em{background:var(--gold)}
+.rule th{width:22mm}
+.rule .a{background:#EAF6EF} .rule .m{background:#FFF7E3} .rule .x{background:#FCEDEC}
+.arch{display:grid;grid-template-columns:1fr 1.15fr 1fr;gap:2.5mm;align-items:stretch}
+.arch .col{display:flex;flex-direction:column;gap:2mm}
+.arch .bx{border:.8pt solid var(--line);background:#fff;padding:2mm 2.4mm;font-size:8pt;line-height:1.4;flex:1}
+.arch .bx b{display:block;color:var(--navy);font-size:8.6pt;margin-bottom:.5mm}
+.arch .core{background:var(--navy);color:#fff;border-color:var(--navy)} .arch .core b{color:#E2C77F}
+.arch .g{background:#F3F7FC}
+.shots2{display:grid;grid-template-columns:1fr 1fr;gap:3mm}
+.shots2 figure{border:.6pt solid var(--line)}
+.shots2 img{display:block;width:100%;height:42mm;object-fit:cover;object-position:top}
+.shots2 figcaption{font-size:7.8pt;padding:1.1mm 2mm;border-top:.6pt solid var(--line)}
+.shots2 figcaption b{color:var(--navy)}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ 1쪽 ═══════════════ -->
+<section class="page">
+  <div class="hd">
+    <div class="l"><b>Edu-Tech AI Lab</b><span>에듀테크혁신팀 AI 학습조직<br>업무 개선방안</span></div>
+    <div class="r">
+      <div class="k">1차 업무효율화 + 2차 업무혁신 · HY FLIP 과제 M3 연계</div>
+      <h1>셀프 스튜디오 예약·승인 AI 자동화 개선방안</h1>
+      <p>구글 캘린더 직접 입력 → HY FLIP 예약 화면 + AI 사전 검토 + 자동 승인 + 캘린더 자동 연동</p>
+    </div>
+  </div>
+
+  <table class="info" style="margin-top:3mm">
+    <tr><th>대상 업무</th><td colspan="3"><b>교내 셀프 스튜디오(12실) 촬영 예약 · 승인 · 안내 · 일정 변경 관리</b> — 매 학기 콘텐츠 개발 기간마다 반복</td></tr>
+    <tr><th>이용자</th><td>플립러닝(Smart-F) 등 스마트 과목 교수자</td><th>담당</th><td>에듀테크혁신팀 미디어 일정관리 담당 (조진익 · 조용목)</td></tr>
+    <tr><th>집중 시기</th><td>1학기 7월~8월 중순 · 2학기 익년 1월~2월 중순</td><th>연계 과제</th><td>HY FLIP 홈페이지(M1) · 제작 신청 자동화(M3) · 대시보드(M5)</td></tr>
+  </table>
+
+  <h2><i>1</i>현황 — 현재 예약·촬영 흐름 (As-Is)</h2>
+  <div class="pflow">
+    <div><b>오리엔테이션</b>최초 신청자 대상</div><i>→</i>
+    <div><b>교안 준비</b>PPT 16:9 · 과목표지</div><i>→</i>
+    <div class="me"><b>교수 직접 입력</b>공유 구글 캘린더에 촬영일 입력</div><i>→</i>
+    <div class="me"><b>담당자 수시 확인</b>충돌·변경 메일·전화 조율</div><i>→</i>
+    <div><b>촬영</b>셀프 스튜디오</div><i>→</i>
+    <div><b>편집·검수</b>CMS 편집요청서</div><i>→</i>
+    <div><b>LMS 탑재</b>주차별 포팅</div>
+  </div>
+  <p class="note">※ 근거: 2025-2 스마트 교육 오리엔테이션 자료 「2-1 학기별 콘텐츠 개발 프로세스」「2-4 미디어 일정관리」 · 주황색 = 개선 대상 구간</p>
+
+  <h2><i>2</i>문제점과 원인</h2>
+  <table>
+    <thead><tr><th style="width:44mm">문제점</th><th>원인</th><th style="width:55mm">영향</th></tr></thead>
+    <tbody>
+      <tr><td><b>예약 취소·변경이 잦음</b><br><span class="note">OT 자료: "예약 취소율 多"</span></td><td>확정 절차·리마인드가 없고, 입력이 쉬운 만큼 취소도 쉬움</td><td>스튜디오 공실, 일정 재조정 업무 증가</td></tr>
+      <tr><td><b>"촬영 3일 전부터 변경 불가" 규칙을 사람이 관리</b></td><td>캘린더에 규칙 검사 기능이 없음</td><td>규칙 위반·예외 협의가 매번 반복</td></tr>
+      <tr><td><b>승인·검증 단계 없음</b></td><td>교수 직접 입력 방식 — 승인 과목·주차·교안 준비 여부 확인 불가</td><td>미승인 과목 촬영, 교안 미비로 재촬영</td></tr>
+      <tr><td><b>공유 캘린더 편집 권한</b></td><td>여러 교수가 같은 캘린더를 편집</td><td>타인 일정 수정·삭제·이중 예약 위험, 정보 노출</td></tr>
+      <tr><td><b>안내·리마인드 수작업</b></td><td>확인·준비물·변경 안내를 개별 메일·전화로 처리</td><td>담당자 시간 소요, 안내 누락</td></tr>
+      <tr><td><b>촬영 이후 단계와 단절</b></td><td>예약과 편집·CMS·LMS 를 따로 관리</td><td>진행 현황 파악·보고 자료 작성이 수작업</td></tr>
+      <tr><td><b>이용 통계 부재</b></td><td>캘린더 기록을 사람이 집계</td><td>가동률·취소율 근거 없이 운영</td></tr>
+    </tbody>
+  </table>
+
+  <h2><i>3</i>개선 목표</h2>
+  <div class="goals">
+    <div><b>확정 (Commit)</b>규칙을 통과한 예약만 캘린더에 오르고, 교수님은 즉시 확정 여부를 앎</div>
+    <div><b>자동 (Automate)</b>규칙 검토 · 캘린더 등록 · 안내 · 리마인드를 사람 손 없이 처리, 담당자는 예외만</div>
+    <div><b>연결 (Connect)</b>예약 → 촬영 → 편집 → LMS 를 한 흐름으로 이어 진행 현황을 실시간 파악</div>
+  </div>
+
+  <div class="foot"><span>Edu-Tech AI Lab | 에듀테크혁신팀 | 셀프 스튜디오 예약 자동화</span><span>1 / 3</span></div>
+</section>
+
+<!-- ═══════════════ 2쪽 ═══════════════ -->
+<section class="page">
+  <div class="hd2"><b>개선 후 업무 흐름 (To-Be) · 승인 규칙 · AI 활용</b><span>규칙 충족 시 자동 승인 + 예외만 담당자</span></div>
+
+  <h2><i>4</i>개선 후 자동화 흐름 (To-Be)</h2>
+  <div class="tobe">
+    <div><em>1</em><b>예약 신청</b>HY FLIP 예약 화면에서 빈 시간 실시간 확인, 과목·주차·유형·교안 입력</div>
+    <div class="ai"><em>2</em><b>AI 사전 검토</b>시간 충돌·승인 과목·3일 규칙·주차 중복 + 교안 규격 점검</div>
+    <div class="ai"><em>3</em><b>승인 분기</b>자동 승인 / 담당자 확인(사유·대안·안내문 초안) / 신청 불가</div>
+    <div><em>4</em><b>캘린더 자동 등록</b>스튜디오별 구글 캘린더에 생성, 교수 초대, 상태별 색상</div>
+    <div><em>5</em><b>자동 안내</b>확인 메일 · D-3 변경 마감 · D-1 준비물, 취소 시 대기자 알림</div>
+    <div><em>6</em><b>촬영 후 연계</b>편집요청서 링크 · 검수 요청 · LMS 탑재 체크리스트</div>
+    <div><em>7</em><b>대시보드</b>가동률 · 취소율 · 교수별 진행 주차 자동 집계</div>
+  </div>
+  <p class="note">※ 노란 칸 = AI 가 판단·작성하는 단계. 나머지는 규칙과 연동 자동화로 처리 (3쪽 시스템 구성 참조)</p>
+
+  <h2><i>5</i>승인 규칙 (담당자가 시트에서 학기별로 수정 가능)</h2>
+  <table class="rule">
+    <thead><tr><th>처리</th><th>조건</th><th style="width:52mm">결과</th></tr></thead>
+    <tbody>
+      <tr class="a"><th>자동 승인</th><td>특수수업(SMART-F 등) <b>승인 과목</b> · 빈 시간 · <b>촬영 3일 전 이전</b> 신청 · 하루 2건 이내 · 교안 업로드·규격 충족</td><td>즉시 확정 → 캘린더 등록 → 확인 메일</td></tr>
+      <tr class="m"><th>담당자 확인</th><td>승인 목록에 없는 과목 · 같은 주차 재촬영 · 하루 3건 이상 · 교안 미제출 · 4시간 이상 연속 예약</td><td>AI 가 <b>사유 · 대안 시간 · 안내문 초안</b>을 붙여 담당자에게 → 클릭 한 번으로 처리</td></tr>
+      <tr class="x"><th>신청 불가</th><td>촬영 3일 이내 신규·변경 · 학생전용 스튜디오 · 이미 예약된 시간</td><td>즉시 안내 + 가장 가까운 빈 시간 추천</td></tr>
+    </tbody>
+  </table>
+
+  <h2><i>6</i>AI 활용 포인트</h2>
+  <table>
+    <thead><tr><th style="width:34mm">기능</th><th>AI 의 역할</th><th style="width:48mm">기대 효과</th></tr></thead>
+    <tbody>
+      <tr><td><b>교안 사전 점검</b></td><td>PPT 화면비 16:9, 글자 크기(18~24pt), 과목표지(과목명·주제·소속·이름·메일) 확인 — OT 자료 「2-5 교안 작성」 기준</td><td>교안 미비로 인한 재촬영 감소</td></tr>
+      <tr><td><b>대체 시간 추천</b></td><td>빈 시간 · 스튜디오 가동률 · 교수 소속 단과대학 위치를 고려해 대안 제시</td><td>일정 협의 메일·전화 감소</td></tr>
+      <tr><td><b>안내문 초안 작성</b></td><td>승인·반려·변경 안내를 상황에 맞게 자동 작성, 담당자는 확인만</td><td>안내 작성 시간 절감, 표현 통일</td></tr>
+      <tr><td><b>FAQ 도우미</b></td><td>OT 자료를 근거로 변경 규칙·분절 촬영·장비·CMS 확인 방법 등에 답변</td><td>반복 문의 감소, 야간·주말 응대</td></tr>
+      <tr><td><b>취소 위험 알림</b> <span class="note">(선택)</span></td><td>교안 미제출·과거 취소 이력이 있는 예약을 D-3 이전에 미리 확인 요청</td><td>당일 취소·노쇼 감소</td></tr>
+    </tbody>
+  </table>
+
+  <div class="foot"><span>Edu-Tech AI Lab | 에듀테크혁신팀 | 셀프 스튜디오 예약 자동화</span><span>2 / 3</span></div>
+</section>
+
+<!-- ═══════════════ 3쪽 ═══════════════ -->
+<section class="page">
+  <div class="hd2"><b>시스템 구성 · 추진 일정 · 성과지표</b><span>기존 구글 캘린더를 그대로 살리는 방식</span></div>
+
+  <h2><i>7</i>시스템 구성 (구글 워크스페이스 + HY FLIP)</h2>
+  <div class="arch">
+    <div class="col">
+      <div class="bx g"><b>교수 — HY FLIP 예약 화면</b>빈 시간 확인 · 신청 · 교안 업로드 · 내 예약 조회/취소</div>
+      <div class="bx g"><b>담당자 — 관리 화면</b>예외 승인 · 대안 확정 · 가동률/취소율 대시보드</div>
+    </div>
+    <div class="col">
+      <div class="bx core"><b>예약·승인 엔진 (Apps Script 웹앱)</b>규칙 검사 → 자동 승인/예외 분기 → 캘린더 등록 → 메일 발송 → 기록</div>
+      <div class="bx"><b>AI (생성형 AI API)</b>교안 점검 · 대안 추천 · 안내문 초안 · FAQ 답변 — 개인정보는 보내지 않음</div>
+    </div>
+    <div class="col">
+      <div class="bx"><b>구글 시트</b>예약 DB · 승인 규칙 · 승인 과목 목록</div>
+      <div class="bx"><b>구글 캘린더</b>스튜디오별 12개 캘린더 (교수에게는 보기 전용 공유)</div>
+      <div class="bx"><b>Gmail</b>확인 · D-3 · D-1 · 대기자 알림 자동 발송</div>
+    </div>
+  </div>
+  <p class="note" style="margin-top:1mm">※ 지금 쓰는 구글 캘린더 계정을 그대로 사용 → 이전 비용·학습 부담 최소. 교수의 직접 편집 권한만 회수하고 예약은 화면으로 일원화</p>
+
+  <h2><i>8</i>추진 일정 (AI 학습조직 기간 → 다음 콘텐츠 개발 기간 적용)</h2>
+  <table class="gantt">
+    <thead><tr><th style="width:62mm">추진 내용</th><th>10월 3~4주</th><th>11월 1~2주</th><th>11월 3~4주</th><th>12월 1주</th><th>12월 2~3주</th><th>2027. 1~2월</th></tr></thead>
+    <tbody>
+      <tr><td>현행 분석 · 지난 학기 캘린더 기록으로 기준값 산출 · 규칙 확정</td><td class="on"></td><td></td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>예약 화면 · 시트 · 캘린더 연동 (M3)</td><td></td><td class="on"></td><td class="on2"></td><td></td><td></td><td></td></tr>
+      <tr><td>AI 사전 검토 · 자동 안내 · 담당자 화면</td><td></td><td></td><td class="on"></td><td class="on2"></td><td></td><td></td></tr>
+      <tr><td>시범 운영 (스튜디오 2~3실) · 정량 측정</td><td></td><td></td><td></td><td class="on"></td><td class="on2"></td><td></td></tr>
+      <tr><td>성과 공유 (STEP 3)</td><td></td><td></td><td></td><td></td><td class="pt"></td><td></td></tr>
+      <tr><td>2026-2학기 콘텐츠 개발 기간 12실 전면 적용</td><td></td><td></td><td></td><td></td><td></td><td class="on"></td></tr>
+    </tbody>
+  </table>
+
+  <h2><i>9</i>정량 성과지표</h2>
+  <table>
+    <thead><tr><th style="width:46mm">지표</th><th>기준값 (As-Is)</th><th style="width:44mm">목표 (잠정)</th></tr></thead>
+    <tbody>
+      <tr><td><b>예약 취소·변경률</b></td><td>지난 학기 구글 캘린더 기록으로 산출</td><td class="c"><b>절반 이하로</b></td></tr>
+      <tr><td><b>이중 예약 · 타인 일정 수정</b></td><td>지난 학기 발생 건수 확인</td><td class="c"><b>0건</b></td></tr>
+      <tr><td><b>예약 1건 처리 시간</b> <span class="note">(확인·조율·안내)</span></td><td>10월 담당자 작업 기록</td><td class="c"><b>80% 이상 단축</b></td></tr>
+      <tr><td><b>담당자 수동 처리 비율</b></td><td>현재 100% (전 건 수동)</td><td class="c"><b>20% 이하</b> (자동 승인 80%↑)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="cols" style="margin-top:3mm">
+    <div class="box"><b class="hl">개인정보 · 보안 · 운영 원칙</b>
+      <ul class="b" style="margin-top:.8mm"><li>교수 캘린더 편집 권한 회수(보기 전용), 교내 계정·권한 안에서만 운영</li><li>예약 정보 최소 수집, AI 에는 이름·연락처를 보내지 않음</li><li>장애 시 기존 방식(담당자 수동 등록)으로 즉시 복귀</li></ul></div>
+    <div class="box"><b class="hl">화면 프로토타입 (완성)</b>
+      <ul class="b" style="margin-top:.8mm"><li><b>교수용</b> booking/booking.html — 예약·AI 검토·확정</li><li><b>담당자용</b> booking/admin.html — 예외 승인·가동률·자동화 기록</li><li class="note">예시 데이터 · 실제 연동은 11월 개발</li></ul></div>
+  </div>
+  <div class="shots2" style="margin-top:3mm">
+    <figure><img src="img/booking.jpg" alt=""><figcaption><b>교수용 예약 화면</b> — 빈 시간 선택 → AI 사전 검토 → 자동 확정</figcaption></figure>
+    <figure><img src="img/admin.jpg" alt=""><figcaption><b>담당자 화면</b> — 예외만 확인 · AI 사유·대안·안내문 초안</figcaption></figure>
+  </div>
+
+  <div class="foot"><span>Edu-Tech AI Lab | 에듀테크혁신팀 | 셀프 스튜디오 예약 자동화</span><span>3 / 3</span></div>
+</section>
+
+</body>
+</html>

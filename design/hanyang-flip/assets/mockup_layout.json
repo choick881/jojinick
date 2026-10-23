@@ -1,0 +1,64 @@
+{
+  "note": "좌표는 배경 사진 대비 비율(0~1). cx·cy = 로고 중심, size = 로고 한 변 ÷ 사진 높이. Figma 썸네일로 위치 검증 완료(2026-10-08) — 원본에서도 같은 비율",
+  "mock-plaque": {
+    "background": "blank/blank-plaque.png",
+    "layers": [
+      {
+        "logo": "seal",
+        "cx": 0.509,
+        "cy": 0.443,
+        "size": 0.46,
+        "mark": "#0E4A84",
+        "accent": "#C8A24A",
+        "effect": "engrave"
+      }
+    ]
+  },
+  "mock-sign": {
+    "background": "blank/blank-sign.png",
+    "layers": [
+      {
+        "logo": "mark",
+        "cx": 0.5,
+        "cy": 0.32,
+        "size": 0.3,
+        "mark": "#FFFFFF",
+        "accent": "#C8A24A",
+        "effect": "glow"
+      }
+    ]
+  },
+  "mock-stationery": {
+    "background": "blank/blank-stationery.png",
+    "layers": [
+      {
+        "logo": "seal",
+        "cx": 0.215,
+        "cy": 0.2,
+        "size": 0.12,
+        "mark": "#0E4A84",
+        "accent": "#C8A24A",
+        "effect": "print"
+      },
+      {
+        "logo": "mark",
+        "cx": 0.655,
+        "cy": 0.465,
+        "size": 0.11,
+        "mark": "#0E4A84",
+        "accent": "#C8A24A",
+        "effect": "print"
+      },
+      {
+        "logo": "tile",
+        "cx": 0.655,
+        "cy": 0.68,
+        "size": 0.11,
+        "mark": "#0E4A84",
+        "accent": "#C8A24A",
+        "knock": "#FFFFFF",
+        "effect": "print"
+      }
+    ]
+  }
+}
