@@ -1,0 +1,115 @@
+{
+  "note": "Figma generate_image(gpt-image-2.5-sunburst) 원본 주소 — 생성 후 7일 내 내려받기 (www.figma.com 접속 허용 필요)",
+  "items": {
+    "studio-hero": {
+      "url": "https://www.figma.com/api/mcp/asset/71cd37ef-f2a0-44b1-9d5c-ccd0d4153755.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "flipped-class": {
+      "url": "https://www.figma.com/api/mcp/asset/613fc5aa-7a69-4a1b-bc54-ef4b09f94cb7.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "lightboard": {
+      "url": "https://www.figma.com/api/mcp/asset/13b0145b-ef88-4725-9092-5ee1c0d8e7f6.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "chroma": {
+      "url": "https://www.figma.com/api/mcp/asset/529b6669-32b8-48a1-99e3-df0fd52f7fb8.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "editing": {
+      "url": "https://www.figma.com/api/mcp/asset/5d2739d5-1b5f-4b9d-b30f-a0f52aa4e130.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "prompter": {
+      "url": "https://www.figma.com/api/mcp/asset/60042ad7-42fc-4eda-b655-c029d87e0606.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "camera": {
+      "url": "https://www.figma.com/api/mcp/asset/3f72e9d9-0b75-4182-958c-e34271905523.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "smartboard": {
+      "url": "https://www.figma.com/api/mcp/asset/0495496b-6271-4066-a7fd-cc9d6523ff41.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "campus-dusk": {
+      "url": "https://www.figma.com/api/mcp/asset/4ef32495-7e31-4758-bda1-a305ed54b3d5.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "thumb-1": {
+      "url": "https://www.figma.com/api/mcp/asset/32a6058e-fa94-4556-97c1-e8fb41fa6b5c.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "thumb-2": {
+      "url": "https://www.figma.com/api/mcp/asset/ffb38840-a0b6-48c9-b2ba-259b7b2f704e.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "thumb-3": {
+      "url": "https://www.figma.com/api/mcp/asset/072fb19a-929d-4968-81ee-4846a34fdd81.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "lightboard-alt": {
+      "url": "https://www.figma.com/api/mcp/asset/9e87d049-6f05-4896-aa17-5bcf08fbb284.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15",
+      "note": "서양인 교수 버전(예비)"
+    },
+    "thumb-4": {
+      "url": "https://www.figma.com/api/mcp/asset/efd57e66-326a-4c7e-b76f-b708125fb084.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "blank-plaque": {
+      "url": "https://www.figma.com/api/mcp/asset/270b6eac-59a7-4d7f-9c1f-bfd10a8a4faa.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "blank-sign": {
+      "url": "https://www.figma.com/api/mcp/asset/436ab961-4eb0-4f9e-bcc1-65da09c5b183.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "blank-stationery": {
+      "url": "https://www.figma.com/api/mcp/asset/d96aaefb-e71c-4aa4-8a3a-4823a560546f.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15"
+    },
+    "flipped-class-alt": {
+      "url": "https://www.figma.com/api/mcp/asset/ef77d50f-f5c9-43df-9235-31bfeb357f88.png",
+      "model": "gpt-image-2.5-sunburst",
+      "created": "2026-10-08",
+      "expires": "2026-10-15",
+      "note": "서양인 교수·학생 버전(예비)"
+    }
+  }
+}

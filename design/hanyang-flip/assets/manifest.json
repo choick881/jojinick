@@ -1,0 +1,133 @@
+[
+  {
+    "name": "mock-plaque",
+    "file": "mock-plaque.png",
+    "size": "1536x1024",
+    "ref": "logo/png/logo-D.png",
+    "use": "확정 인장(D) 황동 명판 목업",
+    "prompt": "Photorealistic product photograph for a brand presentation slide. Background: a modern university media studio corridor, warm grey plaster wall, soft daylight from the left. Subject: a round brushed brass plaque mounted on the wall with the attached circular seal logo engraved and filled with deep navy (#0E4A84) enamel, the small folded corner of the monogram in gold. Details: crisp engraving edges, subtle reflections, shallow depth of field, 50mm lens. Constraints: keep the seal and monogram shape exactly as the reference, no extra text, no university crest, no watermark.",
+    "generator": "figma:gpt-image-2.5-sunburst (빈 배경) + 확정 로고 합성 (scripts/composite_mockups.py)"
+  },
+  {
+    "name": "mock-sign",
+    "file": "mock-sign.png",
+    "size": "1536x1024",
+    "ref": "logo/png/logo-A.png",
+    "use": "A 모노그램 스튜디오 벽 사인",
+    "prompt": "Photorealistic interior photograph. Background: a professional lecture-video recording studio with a teleprompter, softbox lights and a glass lightboard, dark navy acoustic panels. Subject: a large backlit dimensional sign of the attached monogram logo in matte white with a gold accent, mounted on the navy wall. Details: soft halo glow behind the letters, cinematic but natural lighting, eye-level view, 35mm lens. Constraints: logo shape identical to reference, no people, no other logos, no text except \"HY FLIP\".",
+    "generator": "figma:gpt-image-2.5-sunburst (빈 배경) + 확정 로고 합성 (scripts/composite_mockups.py)"
+  },
+  {
+    "name": "mock-stationery",
+    "file": "mock-stationery.png",
+    "size": "1536x1024",
+    "ref": "logo/png/logo-D.png",
+    "use": "D 인장 명함·문구류",
+    "prompt": "Photorealistic flat-lay stationery mockup. Background: ivory textured paper surface (#F7F5F0), soft top-down daylight with gentle shadows. Subject: business cards, an A4 letterhead and a navy folder printed with the attached HY FLIP monogram; gold foil on the monogram accent only. Details: premium cotton paper texture, slight emboss, a fountain pen at the edge. Constraints: monogram identical to reference, no fake Korean text (use simple grey lines for body text), no watermark.",
+    "generator": "figma:gpt-image-2.5-sunburst (빈 배경) + 확정 로고 합성 (scripts/composite_mockups.py)"
+  },
+  {
+    "name": "studio-hero",
+    "file": "studio-hero.png",
+    "size": "1536x1024",
+    "use": "상세·홈 히어로",
+    "prompt": "Photorealistic photograph of a modern university lecture-video studio. A middle-aged Korean professor in a navy blazer speaks naturally toward a camera with a teleprompter, softbox key light, dark navy acoustic wall, a glass lightboard on the side. Natural skin tones, shallow depth of field, 35mm, calm and trustworthy mood, desaturated navy-grey palette. No logos, no text, no watermark.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "flipped-class",
+    "file": "flipped-class.png",
+    "size": "1536x1024",
+    "use": "플립러닝 비교 섹션",
+    "prompt": "Photorealistic photograph of a Korean university seminar room during an active discussion class. Korean students in their twenties in small groups around tables, a Korean professor in his 50s walking between them, laptops showing lecture video thumbnails, warm daylight from large windows. Candid moment, nobody looking at camera. East Asian features, natural skin tones. No logos, no readable text.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "lightboard",
+    "file": "lightboard.png",
+    "size": "1024x1024",
+    "use": "스튜디오 장비 - 라이트보드",
+    "prompt": "Photorealistic photograph of a Korean professor in his 50s writing glowing equations on a transparent lightboard in a dark studio, the writing glows soft white and gold, rim light on the professor, black background. No readable brand text.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "chroma",
+    "file": "chroma.png",
+    "size": "1024x1024",
+    "use": "스튜디오 장비 - 크로마키",
+    "prompt": "Photorealistic photograph of a green chroma-key studio with a 4K cinema camera on a tripod, LED panel lights and a monitor showing a composited virtual classroom. Clean, professional, no people.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "editing",
+    "file": "editing.png",
+    "size": "1024x1024",
+    "use": "스튜디오 장비 - 편집실",
+    "prompt": "Photorealistic photograph of a video editor's desk with two monitors showing a lecture timeline and AI-generated subtitles, navy ambient light, late afternoon. Screen text unreadable and blurred.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "prompter",
+    "file": "prompter.png",
+    "size": "1024x1024",
+    "use": "스튜디오 장비 - 프롬프터",
+    "prompt": "Photorealistic close-up photograph of a broadcast teleprompter mounted on a cinema camera in a dark navy lecture studio, the glass reflecting soft white script lines (unreadable), warm key light in the background. No logos, no readable text.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "camera",
+    "file": "camera.png",
+    "size": "1024x1024",
+    "use": "스튜디오 장비 - 4K 카메라",
+    "prompt": "Photorealistic product-style photograph of a 4K cinema camera on a tripod in a university recording studio, shallow depth of field, softbox lights blurred in the background, navy and grey tones. No logos, no readable text.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "smartboard",
+    "file": "smartboard.png",
+    "size": "1024x1024",
+    "use": "스튜디오 장비 - 전자칠판",
+    "prompt": "Photorealistic photograph of a large interactive smart board in a modern lecture studio showing a clean colorful diagram, a professor's hand with a stylus pointing at it, soft studio lighting. No logos, no readable text.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "campus-dusk",
+    "file": "campus-dusk.png",
+    "size": "1536x1024",
+    "use": "홈 배경",
+    "prompt": "Photorealistic wide photograph of a modern Korean university campus at blue hour, glass-and-stone academic building with warm lit windows, a few students walking, deep navy sky. No signage, no logos, no readable text.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "thumb-1",
+    "file": "thumb-1.png",
+    "size": "1536x1024",
+    "use": "제작 사례 썸네일",
+    "prompt": "Photorealistic still frame from a university lecture video: a professor (Korean woman in her 50s) explaining in front of a clean navy studio backdrop with a subtle on-screen diagram. Broadcast-quality lighting. No readable text, no logos.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "thumb-2",
+    "file": "thumb-2.png",
+    "size": "1536x1024",
+    "use": "제작 사례 썸네일",
+    "prompt": "Photorealistic still frame from a university lecture video: a professor (Korean man in his 40s) explaining in front of a clean navy studio backdrop with a subtle on-screen diagram. Broadcast-quality lighting. No readable text, no logos.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "thumb-3",
+    "file": "thumb-3.png",
+    "size": "1536x1024",
+    "use": "제작 사례 썸네일",
+    "prompt": "Photorealistic still frame from a university lecture video: a professor (Korean woman in her 30s) explaining in front of a clean navy studio backdrop with a subtle on-screen diagram. Broadcast-quality lighting. No readable text, no logos.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  },
+  {
+    "name": "thumb-4",
+    "file": "thumb-4.png",
+    "size": "1536x1024",
+    "use": "제작 사례 썸네일",
+    "prompt": "Photorealistic still frame from a university lecture video: a professor (Korean man in his 60s) explaining in front of a clean navy studio backdrop with a subtle on-screen diagram. Broadcast-quality lighting. No readable text, no logos.",
+    "generator": "figma:gpt-image-2.5-sunburst"
+  }
+]

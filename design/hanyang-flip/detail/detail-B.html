@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HY FLIP 상세 B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;800;900&family=Noto+Serif+KR:wght@500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--mark:#0E4A84;--accent:#C8A24A;--knock:#fff}
+.ph{position:relative;background:linear-gradient(135deg,#123d6b 0%,#0e4a84 45%,#2f6aa3 100%);background-size:cover;background-position:center;overflow:hidden}
+.ph::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 30%,rgba(255,255,255,.16),transparent 55%),
+  repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 14px,transparent 14px 28px)}
+.ph::after{content:attr(data-label);position:absolute;left:12px;bottom:10px;font:500 11px/1.4 'Noto Sans KR',sans-serif;color:rgba(255,255,255,.75);
+  letter-spacing:.04em;background:rgba(0,0,0,.18);padding:2px 8px;border-radius:2px}
+.ph.has-img::before,.ph.has-img::after{display:none}
+.emblem-ph{display:inline-flex;align-items:center;justify-content:center;text-align:center;border:1px dashed currentColor;opacity:.6;
+  font:700 8px/1.15 'Noto Sans KR',sans-serif;letter-spacing:.08em;width:56px;height:36px;border-radius:2px}
+
+:root{--navy:#0E4A84;--deep:#0A2E55;--ink:#121A2A;--muted:#5B6475;--gold:#C8A24A;--soft:#F3F5F8;--line:#E1E5EC;
+  --sans:'Noto Sans KR',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:#fff;color:var(--ink);font:400 16px/1.7 var(--sans);-webkit-font-smoothing:antialiased;word-break:keep-all}
+a{color:inherit;text-decoration:none}
+.w{max-width:1240px;margin:0 auto;padding:0 40px}
+.nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+.nav .w{display:flex;align-items:center;gap:32px;height:72px}
+.brand{display:flex;align-items:center;gap:10px} .brand b{font:900 22px/1 var(--sans);letter-spacing:.04em;color:var(--navy)}
+.nav nav{display:flex;gap:4px;margin-left:auto}
+.nav nav a{font-size:14.5px;font-weight:500;padding:8px 14px;border-radius:999px;color:#374055} .nav nav a:hover{background:var(--soft)}
+.nav .emblem-ph{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:700 15px/1 var(--sans);padding:17px 26px;border-radius:4px;transition:.2s}
+.btn.primary{background:var(--navy);color:#fff} .btn.primary:hover{background:var(--deep)}
+.btn.soft{background:var(--soft);color:var(--navy)} .btn.sm{padding:12px 18px;font-size:14px}
+.pill{display:inline-flex;align-items:center;gap:8px;font:700 13px/1 var(--sans);color:var(--navy);background:var(--soft);padding:9px 14px;border-radius:999px}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+.hero{padding:80px 0 40px}
+.hero-top{display:grid;grid-template-columns:1fr 340px;gap:48px;align-items:end}
+.hero h1{font:900 76px/1.12 var(--sans);letter-spacing:-.035em;margin-top:24px;color:var(--ink)}
+.hero h1 em{font-style:normal;color:var(--navy);background:linear-gradient(transparent 78%,rgba(200,162,74,.55) 78%)}
+.hero .sub{font-size:18px;color:#3d475b;margin-top:24px;max-width:600px}
+.hero .btns{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+.factlist{border-top:2px solid var(--ink)}
+.factlist div{display:flex;justify-content:space-between;gap:12px;padding:16px 0;border-bottom:1px solid var(--line);font-size:14px}
+.factlist dt{color:var(--muted)} .factlist dd{font-weight:700;text-align:right}
+.hero-img{margin-top:56px;position:relative}
+.hero-img .ph{aspect-ratio:21/8;border-radius:8px} .hero-img .ph::after{bottom:auto;top:12px;left:auto;right:12px}
+.chips{position:absolute;left:24px;bottom:24px;display:flex;gap:8px;flex-wrap:wrap;z-index:2}
+.chips span{background:rgba(255,255,255,.94);color:var(--ink);font:700 13px/1 var(--sans);padding:10px 14px;border-radius:999px;display:flex;gap:6px;align-items:center}
+.chips .ic{color:var(--navy)}
+section.s{padding:112px 0} section.soft{background:var(--soft)}
+.sh{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:48px;flex-wrap:wrap}
+.sh .k{font:800 13px/1 var(--sans);color:var(--navy);letter-spacing:.14em}
+.sh h2{font:900 44px/1.25 var(--sans);letter-spacing:-.03em;margin-top:14px}
+.sh p{max-width:440px;color:var(--muted)}
+.ba{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.ba .card{border-radius:8px;padding:36px;background:#fff;border:1px solid var(--line)}
+.ba .card.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.ba .tag{font:800 12px/1 var(--sans);letter-spacing:.16em;color:var(--muted)} .ba .on .tag{color:var(--gold)}
+.ba h3{font:900 28px/1.3 var(--sans);margin:12px 0 24px;letter-spacing:-.02em}
+.ba .row{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:16px 0;border-top:1px solid var(--line)}
+.ba .on .row{border-color:rgba(255,255,255,.18)}
+.ba .row b{font-size:13px;color:var(--muted)} .ba .on .row b{color:#a9c0dc}
+.ba .on .row span{font-weight:700}
+.who{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.who .card{border:1px solid var(--line);border-radius:8px;padding:32px;background:#fff}
+.who .ck{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center}
+.who h3{font:800 20px/1.45 var(--sans);margin:22px 0 8px;letter-spacing:-.01em} .who p{color:var(--muted);font-size:15px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:s}
+.step{position:relative;background:#fff;border:1px solid var(--line);border-radius:8px;padding:28px;display:flex;flex-direction:column}
+.step .n{font:900 72px/1 var(--sans);color:transparent;-webkit-text-stroke:1.5px var(--navy);letter-spacing:-.04em}
+.step h3{font:900 24px/1.3 var(--sans);margin:22px 0 8px} .step p{color:#3d475b;font-size:15px;flex:1}
+.step .dur{display:inline-block;margin-top:18px;font:700 12px/1 var(--sans);background:var(--soft);color:var(--navy);padding:8px 10px;border-radius:4px;align-self:flex-start}
+.step .prep{margin-top:18px;padding-top:16px;border-top:1px dashed var(--line);font-size:13px;color:var(--muted)}
+.step .prep b{color:var(--gold);margin-right:6px}
+.step:not(:last-child)::after{content:"";position:absolute;right:-16px;top:58px;width:12px;height:12px;border-top:2px solid var(--navy);border-right:2px solid var(--navy);transform:rotate(45deg);z-index:1;background:transparent}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:230px;gap:16px}
+.bento figure{position:relative;border-radius:8px;overflow:hidden}
+.bento figure .ph{position:absolute;inset:0}
+.bento figure:nth-child(1){grid-column:span 2;grid-row:span 2}
+.bento figure:nth-child(6),.bento figure:nth-child(7){grid-column:span 2}
+.bento figcaption{position:absolute;left:0;right:0;top:0;padding:18px 20px;color:#fff;background:linear-gradient(rgba(6,24,46,.65),transparent);z-index:1}
+.bento figcaption b{display:block;font:800 17px/1.4 var(--sans)} .bento figcaption span{font-size:13px;opacity:.85}
+.ai{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.ai .card{background:#fff;border-radius:8px;padding:28px;border:1px solid var(--line)}
+.ai .icw{width:56px;height:56px;border-radius:12px;background:var(--soft);color:var(--navy);display:grid;place-items:center}
+.ai h3{font:800 19px/1.4 var(--sans);margin:22px 0 8px} .ai p{font-size:15px;color:var(--muted)}
+.ai .bar{height:6px;border-radius:3px;background:var(--soft);margin-top:22px;overflow:hidden}
+.ai .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--navy),#3f7cc0)}
+.cases{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.case .ph{aspect-ratio:16/10;border-radius:8px}
+.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:1;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.94);color:var(--navy);display:grid;place-items:center}
+.case h3{font:800 17px/1.45 var(--sans);margin-top:14px} .case span{font-size:13px;color:var(--muted)}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.quotes blockquote{background:var(--soft);border-radius:8px;padding:32px;font:500 18px/1.7 var(--sans)}
+.quotes blockquote::before{content:"“";display:block;font:900 56px/0.6 Georgia,serif;color:var(--gold);margin:10px 0 8px}
+.quotes cite{display:block;font-size:13px;color:var(--muted);font-style:normal;margin-top:14px}
+.statband{background:var(--navy);color:#fff;border-radius:12px;padding:56px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.statband div+div{border-left:1px solid rgba(255,255,255,.18);padding-left:32px}
+.statband b{font:900 60px/1 var(--sans);letter-spacing:-.03em} .statband i{font:700 22px/1 var(--sans);font-style:normal;color:var(--gold);margin-left:4px}
+.statband span{display:block;font-size:14px;color:#b9cbe2;margin-top:12px}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+.faqgrid{display:grid;grid-template-columns:360px 1fr;gap:64px}
+.faqgrid h2{font:900 44px/1.25 var(--sans);letter-spacing:-.03em;margin-top:14px} .faqgrid p.l{color:var(--muted);margin-top:16px}
+details.faq{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;background:#fff}
+details.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 24px;font:800 17px/1.5 var(--sans)}
+details.faq summary::-webkit-details-marker{display:none}
+details.faq .pm{color:var(--navy);flex:none;transition:.2s} details.faq[open] .pm{transform:rotate(45deg)}
+details.faq p{padding:0 24px 22px;color:#3d475b}
+.cta-card{background:var(--deep);color:#fff;border-radius:16px;padding:72px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;position:relative;overflow:hidden}
+.cta-card .tilewm{position:absolute;right:-60px;bottom:-90px;opacity:.1;--mark:#fff;--accent:#fff;--knock:var(--deep)}
+.cta-card h2{font:900 44px/1.25 var(--sans);letter-spacing:-.03em} .cta-card p{color:#b9cbe2;margin-top:14px}
+.cta-card .btns{display:flex;flex-direction:column;gap:10px;position:relative}
+.cta-card .btn.gold{background:var(--gold);color:var(--deep)} .cta-card .btn.out{border:1px solid rgba(255,255,255,.4);color:#fff}
+.cta-card small{display:block;margin-top:28px;color:#8fa6c4;font-size:13px}
+footer{border-top:1px solid var(--line);padding:40px 0;font-size:13px;color:var(--muted)}
+footer .w{display:flex;align-items:center;gap:18px;flex-wrap:wrap} footer p{margin-left:auto;max-width:540px;text-align:right}
+@media (max-width:1000px){
+  .w{padding:0 20px} .nav nav,.nav .emblem-ph{display:none} .nav .w{height:64px} .nav .btn{margin-left:auto}
+  .hero{padding:48px 0 24px} .hero-top{grid-template-columns:1fr;gap:36px} .hero h1{font-size:42px}
+  .hero-img{margin-top:36px} .hero-img .ph{aspect-ratio:4/3} .chips{left:12px;bottom:12px;right:12px}
+  section.s{padding:72px 0} .sh h2,.faqgrid h2{font-size:32px}
+  .ba,.who,.quotes{grid-template-columns:1fr} .ba .card{padding:26px}
+  .steps{grid-template-columns:1fr 1fr;gap:12px} .step::after{display:none} .step .n{font-size:52px} .step{padding:20px}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:160px;gap:10px}
+  .ai{grid-template-columns:1fr 1fr;gap:10px} .ai .card{padding:20px}
+  .cases{grid-template-columns:1fr 1fr;gap:20px 12px}
+  .statband{grid-template-columns:1fr 1fr;padding:32px 24px;gap:28px 16px} .statband div+div{border-left:0;padding-left:0} .statband b{font-size:40px}
+  .faqgrid{grid-template-columns:1fr;gap:28px}
+  .cta-card{grid-template-columns:1fr;padding:40px 24px} .cta-card h2{font-size:30px}
+  footer p{margin-left:0;text-align:left}
+}
+@media (max-width:520px){ .steps,.ai{grid-template-columns:1fr} .hero h1{font-size:36px} }
+</style>
+</head>
+<body>
+<header class="nav"><div class="w">
+  <a class="brand" href="#"><svg class="logo-tile " viewBox="0 0 120 120" width="36" height="36" aria-hidden="true"><path fill="var(--mark)" d="M18 8H86L112 34V102A10 10 0 0 1 102 112H18A10 10 0 0 1 8 102V18A10 10 0 0 1 18 8Z"/><path fill="var(--accent)" d="M86 8V34H112Z"/><g transform="translate(57 63) scale(0.62) translate(-63 -60)"><path fill="var(--knock)" d="M22 20H38V52H62V20H94L104 30V36H78V52H98V66H78V100H62V66H38V100H22Z"/></g></svg><b>HY FLIP</b></a>
+  <nav><a href="#about">사업소개</a><a href="#process">제작절차</a><a href="#studio">스튜디오</a><a href="#ai">AI 활용</a><a href="#cases">제작사례</a><a href="#faq">FAQ</a></nav><span class="emblem-ph " title="실제 교표는 공식 파일로 교체">UNIVERSITY<br>EMBLEM</span>
+  <a class="btn primary sm" href="#apply">제작 신청</a>
+</div></header>
+
+<section class="hero"><div class="w">
+  <div class="hero-top">
+    <div>
+      <span class="pill"><i></i>2026 한양 플립러닝 콘텐츠 개발 사업</span>
+      <h1>강의실 밖에서<br><em>시작되는 수업</em></h1>
+      <p class="sub">교수님은 강의만 하세요. 기획 · 촬영 · 편집 · AI 자막까지 HY FLIP 이 함께합니다.</p>
+      <div class="btns"><a class="btn primary" href="#apply">제작 신청하기 <svg class="ic " viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn soft" href="#"><svg class="ic " viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg> 사업 안내서 받기</a></div>
+    </div>
+    <dl class="factlist"><div><dt>모집 기간</dt><dd>2026. 11. 01 – 11. 30</dd></div><div><dt>지원 대상</dt><dd>학부 전공·교양 담당 교수</dd></div><div><dt>지원 내용</dt><dd>기획·촬영·편집 전액 지원</dd></div></dl>
+  </div>
+  <div class="hero-img"><div class="ph " data-img="../assets/studio-hero.png" data-label="GPT 실사 · studio-hero (교수 촬영 장면)"></div>
+    <div class="chips"><span><svg class="ic " viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="13" height="10" rx="1.5"/><path d="M16 10.5l5-3v9l-5-3z"/></svg> 4K 전문 스튜디오</span><span><svg class="ic " viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg> AI 자막·더빙</span><span><svg class="ic " viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></svg> 교수설계 컨설팅</span></div>
+  </div>
+</div></section>
+
+<section class="s" id="about"><div class="w">
+  <div class="sh"><div><div class="k">ABOUT</div><h2>플립러닝이란?</h2></div><p>설명은 영상으로 먼저, 강의실에서는 토론과 실습을. 수업의 순서를 '뒤집어' 배움의 깊이를 바꾸는 방식입니다.</p></div>
+  <div class="ba">
+    <div class="card"><div class="tag">BEFORE</div><h3>기존 수업</h3><div class="row"><b>수업 전</b><span>예습 없음 · 교재 읽기</span></div><div class="row"><b>수업 중</b><span>교수 설명 듣기 (일방향)</span></div><div class="row"><b>수업 후</b><span>혼자 과제 해결</span></div></div>
+    <div class="card on"><div class="tag">AFTER · FLIPPED</div><h3>플립러닝</h3><div class="row"><b>수업 전</b><span>짧은 강의 영상으로 개념 학습</span></div><div class="row"><b>수업 중</b><span>토론 · 실습 · 문제 해결 (양방향)</span></div><div class="row"><b>수업 후</b><span>심화 학습 · 피드백 반영</span></div></div>
+  </div>
+</div></section>
+
+<section class="s soft"><div class="w">
+  <div class="sh"><div><div class="k">FOR YOU</div><h2>이런 교수님께 권합니다</h2></div></div>
+  <div class="who"><div class="card"><div class="ck"><svg class="ic " viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>영상 촬영이 처음이라 막막한 교수님</h3><p>카메라 앞에 서는 법부터 함께 준비합니다.</p></div><div class="card"><div class="ck"><svg class="ic " viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>토론·실습 중심으로 수업을 바꾸고 싶은 교수님</h3><p>교수설계 전문가가 수업 흐름을 같이 설계합니다.</p></div><div class="card"><div class="ck"><svg class="ic " viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><h3>기존 강의안을 영상 자산으로 남기고 싶은 교수님</h3><p>PPT 와 강의 노트만 있으면 시작할 수 있어요.</p></div></div>
+</div></section>
+
+<section class="s" id="process"><div class="w">
+  <div class="sh"><div><div class="k">PROCESS</div><h2>4단계, 평균 6주</h2></div><p>신청부터 LMS 탑재까지. 교수님은 준비물만 챙기시면 나머지는 HY FLIP 이 진행합니다.</p></div>
+  <div class="steps"><div class="step"><div class="n">01</div><h3>신청</h3><p>온라인 신청서 작성</p><span class="dur">소요 1일</span><div class="prep"><b>준비물</b>강의계획서</div></div><div class="step"><div class="n">02</div><h3>기획</h3><p>교수설계 컨설팅 · 차시 구성 · 대본 정리</p><span class="dur">소요 1–2주</span><div class="prep"><b>준비물</b>강의안 · PPT</div></div><div class="step"><div class="n">03</div><h3>촬영</h3><p>전문 스튜디오 촬영 · 프롬프터 지원</p><span class="dur">소요 회당 2시간</span><div class="prep"><b>준비물</b>촬영일 일정만</div></div><div class="step"><div class="n">04</div><h3>편집·검수</h3><p>AI 자막 · 그래픽 · 최종 검수 후 LMS 탑재</p><span class="dur">소요 2–3주</span><div class="prep"><b>준비물</b>검수 1회</div></div></div>
+</div></section>
+
+<section class="s soft" id="studio"><div class="w">
+  <div class="sh"><div><div class="k">STUDIO</div><h2>전문 스튜디오와 장비</h2></div><p>방송 수준의 촬영 환경을 교수님 일정에 맞춰 예약해 드립니다.</p></div>
+  <div class="bento"><figure><div class="ph " data-img="../assets/studio-hero.png" data-label="GPT 실사 · studio-hero"></div><figcaption><b>강의 촬영 스튜디오</b><span>방음 설계 · 프롬프터 · 3점 조명</span></figcaption></figure><figure><div class="ph " data-img="../assets/chroma.png" data-label="GPT 실사 · chroma"></div><figcaption><b>크로마키 스튜디오</b><span>가상 강의실 합성</span></figcaption></figure><figure><div class="ph " data-img="../assets/lightboard.png" data-label="GPT 실사 · lightboard"></div><figcaption><b>라이트보드</b><span>판서하며 정면 촬영</span></figcaption></figure><figure><div class="ph " data-img="../assets/prompter.png" data-label="GPT 실사 · prompter"></div><figcaption><b>프롬프터</b><span>대본을 보며 자연스럽게</span></figcaption></figure><figure><div class="ph " data-img="../assets/camera.png" data-label="GPT 실사 · camera"></div><figcaption><b>4K 시네마 카메라</b><span>선명한 화질 · 2캠 동시 촬영</span></figcaption></figure><figure><div class="ph " data-img="../assets/smartboard.png" data-label="GPT 실사 · smartboard"></div><figcaption><b>전자칠판</b><span>PPT 위에 바로 필기</span></figcaption></figure><figure><div class="ph " data-img="../assets/editing.png" data-label="GPT 실사 · editing"></div><figcaption><b>편집·후반작업실</b><span>전문 편집자 상주</span></figcaption></figure></div>
+</div></section>
+
+<section class="s" id="ai"><div class="w">
+  <div class="sh"><div><div class="k">AI</div><h2>AI 로 더 빠르고, 더 넓게</h2></div><p>반복 작업은 AI 가, 최종 품질은 사람이 책임집니다. (막대: 작업 시간 단축률 예시)</p></div>
+  <div class="ai"><div class="card"><div class="icw"><svg class="ic " viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10.5 10.2a2.2 2.2 0 1 0 0 3.6M17 10.2a2.2 2.2 0 1 0 0 3.6"/></svg></div><h3>AI 자막 (한/영)</h3><p>촬영 당일 초벌 자막 생성 → 사람이 최종 교정</p><div class="bar"><i style="width:92%"></i></div></div><div class="card"><div class="icw"><svg class="ic " viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></div><h3>AI 다국어 더빙</h3><p>교수님 목소리 톤으로 영어·중국어 버전 제작</p><div class="bar"><i style="width:78%"></i></div></div><div class="card"><div class="icw"><svg class="ic " viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3h7l4 4v14H7zM14 3v4h4M10 12h5M10 16h5"/></svg></div><h3>요약 · 퀴즈 자동 생성</h3><p>차시별 핵심 요약과 확인 퀴즈를 함께 제공</p><div class="bar"><i style="width:85%"></i></div></div><div class="card"><div class="icw"><svg class="ic " viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="5" cy="6" r="1.2"/><circle cx="5" cy="12" r="1.2"/><circle cx="5" cy="18" r="1.2"/></svg></div><h3>챕터 자동 분할</h3><p>주제가 바뀌는 지점마다 목차를 달아 복습이 쉬움</p><div class="bar"><i style="width:88%"></i></div></div></div>
+</div></section>
+
+<section class="s soft" id="cases"><div class="w">
+  <div class="sh"><div><div class="k">CASES</div><h2>먼저 시작한 교수님들</h2></div></div>
+  <div class="cases"><article class="case"><div class="ph " data-img="../assets/thumb-1.png" data-label="GPT 실사 · thumb-1"><span class="play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l10.5-6.5z"/></svg></span></div><h3>데이터로 읽는 경영학 원론</h3><span>경영대학 · 12차시</span></article><article class="case"><div class="ph " data-img="../assets/thumb-2.png" data-label="GPT 실사 · thumb-2"><span class="play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l10.5-6.5z"/></svg></span></div><h3>공학수학 I — 라이트보드 강의</h3><span>공과대학 · 15차시</span></article><article class="case"><div class="ph " data-img="../assets/thumb-3.png" data-label="GPT 실사 · thumb-3"><span class="play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l10.5-6.5z"/></svg></span></div><h3>글로벌 커뮤니케이션 영어</h3><span>국제학부 · 10차시</span></article><article class="case"><div class="ph " data-img="../assets/thumb-4.png" data-label="GPT 실사 · thumb-4"><span class="play"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M8 5.5v13l10.5-6.5z"/></svg></span></div><h3>AI 시대의 미디어 리터러시</h3><span>교양 · 8차시</span></article></div>
+  <div class="quotes"><blockquote>촬영이 처음이라 걱정했는데, 기획 단계에서 강의안을 함께 다듬어 주셔서 카메라 앞이 오히려 편했습니다.<cite>공과대학 김OO 교수 (예시)</cite></blockquote><blockquote>설명은 영상에 맡기고 수업 시간에 토론을 하니, 학생들 질문이 눈에 띄게 늘었어요.<cite>경영대학 이OO 교수 (예시)</cite></blockquote></div>
+</div></section>
+
+<section class="s"><div class="w">
+  <div class="sh"><div><div class="k">RESULTS</div><h2>숫자로 보는 HY FLIP</h2></div></div>
+  <div class="statband"><div><b>120</b><i>강좌</i><span>제작 강좌</span></div><div><b>45</b><i>명</i><span>참여 교수</span></div><div><b>4.7</b><i>/5</i><span>학습자 만족도</span></div><div><b>18,000</b><i>+</i><span>누적 수강</span></div></div>
+  <p class="note">※ 예시 수치입니다. 실제 사업 실적으로 교체됩니다.</p>
+</div></section>
+
+<section class="s soft" id="faq"><div class="w faqgrid">
+  <div><div class="sh" style="margin:0"><div><div class="k">FAQ</div><h2>자주 묻는 질문</h2></div></div>
+    <p class="l">더 궁금한 점은 사업단으로 문의해 주세요.<br>HY FLIP 사업단 · 02-0000-0000 · hyflip@example.ac.kr (예시)</p></div>
+  <div><details class="faq"><summary>촬영은 얼마나 걸리나요?<svg class="ic pm" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>15분 분량 영상 1편 기준 약 2시간입니다. 프롬프터가 있어 대본을 외우지 않으셔도 됩니다.</p></details><details class="faq"><summary>비용이 드나요?<svg class="ic pm" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>사업에 선정된 교수님은 기획·촬영·편집 비용을 전액 지원받습니다. (예시)</p></details><details class="faq"><summary>완성된 영상의 저작권은 누구에게 있나요?<svg class="ic pm" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>협약에 따라 교수님과 대학이 함께 보유하며, 교내 LMS 와 공개 강좌에 활용됩니다.</p></details><details class="faq"><summary>편집본을 고칠 수 있나요?<svg class="ic pm" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>검수 단계에서 2회까지 무상 수정이 가능합니다.</p></details></div>
+</div></section>
+
+<section class="s" id="apply"><div class="w">
+  <div class="cta-card"><svg class="logo-tile tilewm" viewBox="0 0 120 120" width="420" height="420" aria-hidden="true"><path fill="var(--mark)" d="M18 8H86L112 34V102A10 10 0 0 1 102 112H18A10 10 0 0 1 8 102V18A10 10 0 0 1 18 8Z"/><path fill="var(--accent)" d="M86 8V34H112Z"/><g transform="translate(57 63) scale(0.62) translate(-63 -60)"><path fill="var(--knock)" d="M22 20H38V52H62V20H94L104 30V36H78V52H98V66H78V100H62V66H38V100H22Z"/></g></svg>
+    <div style="position:relative"><span class="pill" style="background:rgba(255,255,255,.1);color:#fff"><i></i>APPLY</span>
+      <h2 style="margin-top:20px">다음 학기, 수업을 뒤집어 보세요</h2><p>신청서 작성은 5분이면 충분합니다. 담당 PD 가 일주일 안에 연락드립니다.</p><small>HY FLIP 사업단 · 02-0000-0000 · hyflip@example.ac.kr (예시)</small></div>
+    <div class="btns"><a class="btn gold" href="#">제작 신청하기 <svg class="ic " viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn out" href="#"><svg class="ic " viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg> 사업 안내서 받기</a></div>
+  </div>
+</div></section>
+
+<footer><div class="w">
+  <span class="brand"><svg class="logo-tile " viewBox="0 0 120 120" width="30" height="30" aria-hidden="true"><path fill="var(--mark)" d="M18 8H86L112 34V102A10 10 0 0 1 102 112H18A10 10 0 0 1 8 102V18A10 10 0 0 1 18 8Z"/><path fill="var(--accent)" d="M86 8V34H112Z"/><g transform="translate(57 63) scale(0.62) translate(-63 -60)"><path fill="var(--knock)" d="M22 20H38V52H62V20H94L104 30V36H78V52H98V66H78V100H62V66H38V100H22Z"/></g></svg><b style="font-size:18px">HY FLIP</b></span><span class="emblem-ph " title="실제 교표는 공식 파일로 교체">UNIVERSITY<br>EMBLEM</span>
+  <p>※ 본 페이지는 제안용 디자인 시안이며, 수치·후기·연락처는 예시입니다. 한양대학교 공식 교표·로고가 아닙니다.</p>
+</div></footer>
+<script>
+document.querySelectorAll('[data-img]').forEach(function (el) {
+  var i = new Image();
+  i.onload = function () { el.style.backgroundImage = 'url(' + i.src + ')'; el.classList.add('has-img'); };
+  i.src = el.dataset.img;
+});
+</script>
+</body></html>
