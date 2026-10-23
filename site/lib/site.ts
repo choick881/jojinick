@@ -23,3 +23,6 @@ export const absoluteUrl = (path: string) => new URL(path, SITE_URL).toString();
 
 /** JSON-LD를 <script>에 넣을 때 '<'를 이스케이프해 스크립트 주입을 막는다 */
 export const jsonLd = (data: object) => JSON.stringify(data).replace(/</g, "\\u003c");
+
+/** AI 상담 서버(별도 Vercel 프로젝트 ondamchan-chat). 화면 오른쪽 아래 상담 말풍선을 여기서 불러온다 */
+export const CHAT_URL = process.env.NEXT_PUBLIC_CHAT_URL ?? "https://ondamchan-chat.vercel.app";

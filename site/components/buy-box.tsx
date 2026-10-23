@@ -36,7 +36,7 @@ export function BuyBox({ slug, name, price, soldOut }: Props) {
         <button type="button" className="btn btn-ghost" disabled={soldOut} onClick={put}>담기</button>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-3 border-t border-line bg-white shadow-[0_-6px_20px_rgba(43,33,26,.08)] md:hidden"
+      <div data-chat-lift className="fixed inset-x-0 bottom-0 z-20 flex items-center gap-3 border-t border-line bg-white shadow-[0_-6px_20px_rgba(43,33,26,.08)] md:hidden"
         style={{ padding: "10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))" }}>
         <div className="grid leading-tight">
           <small className="text-[.72rem] text-muted">{name} × <span className="num">{qty}</span></small>

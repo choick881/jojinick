@@ -44,6 +44,8 @@ body {
 h1, h2, h3 { text-wrap: balance; }
 :focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 [hidden] { display: none !important; }
+/* 모바일 상품 화면의 아래 결제 막대 위로 AI 상담 말풍선을 올린다(상담 서버 embed.js가 --odc-offset을 읽음) */
+@media (max-width: 767px) { html:has([data-chat-lift]) { --odc-offset: 76px; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
 
 @layer components {
