@@ -3,23 +3,28 @@
   "categories": [
     {
       "slug": "dinner-set",
-      "name": "저녁세트"
+      "name": "저녁세트",
+      "name_en": "Dinner Sets"
     },
     {
       "slug": "basic",
-      "name": "기본찬"
+      "name": "기본찬",
+      "name_en": "Side Dishes"
     },
     {
       "slug": "main",
-      "name": "메인찬"
+      "name": "메인찬",
+      "name_en": "Main Dishes"
     },
     {
       "slug": "soup",
-      "name": "국·찌개"
+      "name": "국·찌개",
+      "name_en": "Soups & Stews"
     },
     {
       "slug": "silver",
-      "name": "어르신 밥상"
+      "name": "어르신 밥상",
+      "name_en": "Senior Meals"
     }
   ],
   "products": [
@@ -27,8 +32,10 @@
       "slug": "dinner-set-1",
       "category": "dinner-set",
       "name": "1인 저녁세트",
+      "name_en": "Dinner Set for One",
       "price": 13900,
       "size": "국 1 + 메인찬 1 + 기본찬 2 (1인분)",
+      "size_en": "1 soup + 1 main + 2 sides (1 serving)",
       "featured": true,
       "softness": null,
       "ingredients": "",
@@ -55,14 +62,41 @@
           "name": "멸치볶음",
           "amount": "80g"
         }
-      ]
+      ],
+      "components_en": [
+        {
+          "role": "Soup",
+          "name": "Soybean Paste Stew",
+          "amount": "350g"
+        },
+        {
+          "role": "Main",
+          "name": "Spicy Stir-fried Pork",
+          "amount": "150g"
+        },
+        {
+          "role": "Side",
+          "name": "Seasoned Spinach",
+          "amount": "80g"
+        },
+        {
+          "role": "Side",
+          "name": "Stir-fried Anchovies",
+          "amount": "80g"
+        }
+      ],
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "banchan-3-set",
       "category": "dinner-set",
       "name": "3종 반찬세트",
+      "name_en": "3 Side Dish Set",
       "price": 9900,
       "size": "기본찬 3종 (각 120g)",
+      "size_en": "3 side dishes (120g each)",
       "featured": true,
       "softness": null,
       "ingredients": "",
@@ -84,157 +118,244 @@
           "name": "감자조림",
           "amount": "120g"
         }
-      ]
+      ],
+      "components_en": [
+        {
+          "role": "Side",
+          "name": "Seasoned Spinach",
+          "amount": "120g"
+        },
+        {
+          "role": "Side",
+          "name": "Stir-fried Anchovies",
+          "amount": "120g"
+        },
+        {
+          "role": "Side",
+          "name": "Soy-braised Potatoes",
+          "amount": "120g"
+        }
+      ],
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "spinach-namul",
       "category": "basic",
       "name": "시금치나물",
+      "name_en": "Seasoned Spinach",
       "price": 3500,
       "size": "120g",
+      "size_en": "120g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "bean-sprout-namul",
       "category": "basic",
       "name": "콩나물무침",
+      "name_en": "Seasoned Bean Sprouts",
       "price": 3000,
       "size": "150g",
+      "size_en": "150g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "stir-fried-anchovy",
       "category": "basic",
       "name": "멸치볶음",
+      "name_en": "Stir-fried Anchovies",
       "price": 4500,
       "size": "100g",
+      "size_en": "100g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "cabbage-kimchi",
       "category": "basic",
       "name": "배추김치",
+      "name_en": "Napa Cabbage Kimchi",
       "price": 4000,
       "size": "300g",
+      "size_en": "300g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "braised-potato",
       "category": "basic",
       "name": "감자조림",
+      "name_en": "Soy-braised Potatoes",
       "price": 3500,
       "size": "150g",
+      "size_en": "150g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "egg-roll",
       "category": "basic",
       "name": "계란말이",
+      "name_en": "Rolled Omelette",
       "price": 4000,
       "size": "4조각",
+      "size_en": "4 pieces",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "beef-jangjorim",
       "category": "main",
       "name": "소고기 장조림",
+      "name_en": "Soy-braised Beef (Jangjorim)",
       "price": 5000,
       "size": "150g",
+      "size_en": "150g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "spicy-pork",
       "category": "main",
       "name": "제육볶음",
+      "name_en": "Spicy Stir-fried Pork (Jeyuk)",
       "price": 5000,
       "size": "200g",
+      "size_en": "200g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "braised-mackerel",
       "category": "main",
       "name": "고등어 무조림",
+      "name_en": "Braised Mackerel with Radish",
       "price": 5000,
       "size": "1토막 + 무",
+      "size_en": "1 piece + radish",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "japchae",
       "category": "main",
       "name": "잡채",
+      "name_en": "Japchae (Glass Noodles)",
       "price": 4500,
       "size": "200g",
+      "size_en": "200g",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "doenjang-jjigae",
       "category": "soup",
       "name": "된장찌개",
+      "name_en": "Soybean Paste Stew (Doenjang-jjigae)",
       "price": 6000,
       "size": "1~2인분 450g",
+      "size_en": "450g, serves 1–2",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "kimchi-jjigae",
       "category": "soup",
       "name": "김치찌개",
+      "name_en": "Kimchi Stew (Kimchi-jjigae)",
       "price": 6500,
       "size": "1~2인분 450g",
+      "size_en": "450g, serves 1–2",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "beef-radish-soup",
       "category": "soup",
       "name": "소고기 뭇국",
+      "name_en": "Beef & Radish Soup",
       "price": 7000,
       "size": "1~2인분 500g",
+      "size_en": "500g, serves 1–2",
       "softness": null,
       "ingredients": "",
       "origin": "",
-      "allergens": ""
+      "allergens": "",
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "silver-soft-3-set",
       "category": "silver",
       "name": "부드러운 반찬 3종 세트",
+      "name_en": "Soft 3 Side Dish Set",
       "price": 9900,
       "size": "두부조림·잘게 찢은 장조림·푹 익힌 나물 (각 100g)",
+      "size_en": "Braised tofu, finely shredded soy-braised beef, well-cooked greens (100g each)",
       "featured": true,
       "softness": "잇몸으로",
       "ingredients": "",
@@ -256,14 +377,36 @@
           "name": "푹 익힌 나물",
           "amount": "100g"
         }
-      ]
+      ],
+      "components_en": [
+        {
+          "role": "Soft side",
+          "name": "Braised Tofu",
+          "amount": "100g"
+        },
+        {
+          "role": "Soft side",
+          "name": "Finely Shredded Soy-braised Beef",
+          "amount": "100g"
+        },
+        {
+          "role": "Soft side",
+          "name": "Well-cooked Greens",
+          "amount": "100g"
+        }
+      ],
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     },
     {
       "slug": "silver-dinner-set",
       "category": "silver",
       "name": "어르신 1인 저녁세트",
+      "name_en": "Senior Dinner Set for One",
       "price": 11900,
       "size": "간을 약하게 한 국 + 부드러운 반찬 2종 (작은 분량)",
+      "size_en": "Lightly seasoned soup + 2 soft side dishes (small portions)",
       "featured": true,
       "softness": "씹기 쉬움",
       "ingredients": "",
@@ -285,7 +428,27 @@
           "name": "푹 익힌 나물",
           "amount": "80g"
         }
-      ]
+      ],
+      "components_en": [
+        {
+          "role": "Soup",
+          "name": "Lightly Seasoned Soup",
+          "amount": "300g"
+        },
+        {
+          "role": "Soft side",
+          "name": "Braised Tofu",
+          "amount": "80g"
+        },
+        {
+          "role": "Soft side",
+          "name": "Well-cooked Greens",
+          "amount": "80g"
+        }
+      ],
+      "ingredients_en": "",
+      "origin_en": "",
+      "allergens_en": ""
     }
   ],
   "softness_scale": {
