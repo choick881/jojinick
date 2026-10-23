@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import menu from "@/data/menu.json";
-import { fromDb, fromMenuJson } from "./catalog-map";
+import { fromDb, fromMenuJson, localizeCatalog, localizeProduct } from "./catalog-map";
 
 const categories = [{ slug: "soup", name: "국·찌개", sort: 3 }, { slug: "main", name: "메인찬", sort: 2 }];
 const products = [
@@ -35,5 +35,31 @@ describe("fromMenuJson", () => {
     expect(c.source).toBe("file");
     expect(c.status.isExample).toBe(true);
     expect(c.products[0].categoryName).toBe("저녁세트");
+  });
+});
+
+describe("영어 화면용 상품(localizeProduct)", () => {
+  const rows = {
+    categories: [{ slug: "soup", name: "국·찌개", sort: 1, name_en: "Soups & Stews" }],
+    products: [{ ...products[0], name_en: "Soybean Paste Stew", size_en: "450g, serves 1–2", ingredients_en: "", origin_en: "", allergens_en: "", components_en: null }],
+    status: [],
+  };
+  const c = fromDb(rows);
+  it("영어 값으로 바꾸고, 빈 칸은 한국어 값을 쓴다", () => {
+    const p = localizeProduct(c.products[0], "en");
+    expect(p).toMatchObject({ name: "Soybean Paste Stew", size: "450g, serves 1–2", categoryName: "Soups & Stews", price: 6000 });
+    expect(localizeProduct(c.products[0], "ko").name).toBe("된장찌개");
+  });
+  it("영어 칸이 없는 옛 DB 행은 한국어 그대로", () => {
+    const old = fromDb({ products, categories, status: [] }).products.find((x) => x.slug === "doenjang-jjigae")!;
+    expect(localizeProduct(old, "en").name).toBe("된장찌개");
+  });
+  it("분류 이름도 바꾼다", () => {
+    expect(localizeCatalog(c, "en").categories[0].name).toBe("Soups & Stews");
+  });
+  it("메뉴 파일 17개 모두 영어 이름이 있고, 세트 구성도 영어", () => {
+    const f = localizeCatalog(fromMenuJson(menu), "en");
+    expect(f.products.filter((p) => /[가-힣]/.test(p.name + p.size + p.categoryName))).toEqual([]);
+    expect(f.products.find((p) => p.slug === "dinner-set-1")!.components![0]).toEqual({ role: "Soup", name: "Soybean Paste Stew", amount: "350g" });
   });
 });

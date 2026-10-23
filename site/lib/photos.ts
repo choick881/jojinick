@@ -1,4 +1,4 @@
-// 사진 경로 모음 (public/photos). 모두 GPT 이미지(gpt-image-2)로 만든 연출 사진이라 쓰는 곳마다 STAGED_NOTE를 함께 둔다.
+// 사진 경로 모음 (public/photos). 모두 GPT 이미지(gpt-image-2)로 만든 연출 사진이라 쓰는 곳마다 <StagedNote>(연출 사진 안내)를 함께 둔다.
 // 사진이 없는 상품은 undefined를 돌려주고, PhotoSlot이 선 그림과 '사진 준비 중'을 보여 준다.
 
 export const PHOTOS = {

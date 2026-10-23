@@ -1,10 +1,11 @@
 // 메뉴 데이터의 단일 진입점. Supabase에서 읽고, 실패하면 저장소의 메뉴 파일(brand/menu.json 복사본)로 대신한다.
 import { cacheLife, cacheTag } from "next/cache";
 import menu from "@/data/menu.json";
-import { fromDb, fromMenuJson, type Catalog, type Product } from "./catalog-map";
+import { fromDb, fromMenuJson, localizeCatalog, type Catalog, type Product } from "./catalog-map";
 import { SUPABASE_PUBLISHABLE_KEY, SUPABASE_URL } from "./supabase-config";
 
 export type { Catalog, Category, Component, Product, Softness, StoreStatus } from "./catalog-map";
+export { localizeProduct } from "./catalog-map";
 
 /** 관리자 화면에서 품절·제조 시각을 바꾸면 revalidateTag(CATALOG_TAG)로 새로 읽는다 */
 export const CATALOG_TAG = "catalog";
@@ -24,8 +25,8 @@ export async function getCatalog(): Promise<Catalog> {
   cacheTag(CATALOG_TAG);
   try {
     const [products, categories, status] = await Promise.all([
-      rest<Parameters<typeof fromDb>[0]["products"]>("products?select=slug,category,name,price,size,featured,softness,ingredients,origin,allergens,components,sort,sold_out&is_active=eq.true"),
-      rest<Parameters<typeof fromDb>[0]["categories"]>("categories?select=slug,name,sort"),
+      rest<Parameters<typeof fromDb>[0]["products"]>("products?select=slug,category,name,price,size,featured,softness,ingredients,origin,allergens,components,sort,sold_out,name_en,size_en,ingredients_en,origin_en,allergens_en,components_en&is_active=eq.true"),
+      rest<Parameters<typeof fromDb>[0]["categories"]>("categories?select=slug,name,sort,name_en"),
       rest<{ made_at: string }[]>("store_status?select=made_at&id=eq.1"),
     ]);
     if (!products.length) throw new Error("상품이 비어 있음");
@@ -34,6 +35,11 @@ export async function getCatalog(): Promise<Catalog> {
     console.warn("[catalog] Supabase를 읽지 못해 메뉴 파일을 씁니다:", (e as Error).message);
     return fromMenuJson(menu);
   }
+}
+
+/** 화면 언어로 바꾼 메뉴 */
+export async function getLocalizedCatalog(lang: "ko" | "en"): Promise<Catalog> {
+  return localizeCatalog(await getCatalog(), lang);
 }
 
 export const findProduct = (c: Catalog, slug: string): Product | undefined => c.products.find((p) => p.slug === slug);
