@@ -3,6 +3,7 @@
 import { ANONYMOUS, loadTossPayments, type TossPaymentsWidgets } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useRef, useState } from "react";
 import { TOSS_CLIENT_KEY } from "@/lib/toss-client";
+import { useT } from "./lang";
 
 export type WidgetStatus = "loading" | "ready" | "error";
 
@@ -45,14 +46,15 @@ export function usePaymentWidgets(amount: number) {
 
 /** 위젯이 그려질 자리. 불러오는 동안·실패했을 때 안내 문구를 보여 준다. */
 export function PaymentWidgetSlot({ status, hasItems }: { status: WidgetStatus; hasItems: boolean }) {
+  const t = useT().checkout;
   return (
     <div className="grid gap-2">
       {!hasItems ? (
-        <p className="rounded-[14px] border-2 border-dashed border-line p-5 text-center text-[.88rem] text-muted">메뉴를 담으면 결제 수단이 열립니다.</p>
+        <p className="rounded-[14px] border-2 border-dashed border-line p-5 text-center text-[.88rem] text-muted">{t.widgetEmpty}</p>
       ) : status === "error" ? (
-        <p role="alert" className="rounded-[14px] border-2 border-dashed border-line p-5 text-center text-[.88rem] text-muted">결제 수단을 불러오지 못했어요. 화면을 새로고침해 주세요.</p>
+        <p role="alert" className="rounded-[14px] border-2 border-dashed border-line p-5 text-center text-[.88rem] text-muted">{t.widgetError}</p>
       ) : status === "loading" ? (
-        <p className="rounded-[14px] bg-[var(--soft)] p-5 text-center text-[.88rem] text-muted" aria-live="polite">결제 수단을 불러오는 중이에요…</p>
+        <p className="rounded-[14px] bg-[var(--soft)] p-5 text-center text-[.88rem] text-muted" aria-live="polite">{t.widgetLoading}</p>
       ) : null}
       {/* 위젯은 이 두 칸 안에 그려진다. 항상 화면에 두어야 금액이 바뀌어도 다시 그리지 않는다 */}
       <div id="payment-method" className={hasItems ? "" : "hidden"} />

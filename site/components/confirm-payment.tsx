@@ -3,23 +3,16 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { won } from "@/lib/price";
+import type { Dict } from "@/lib/i18n";
 import { useCart } from "./cart";
+import { useHref, useT } from "./lang";
 
 type Paid = { orderId: string; orderName: string; amount: number; pickupDate: string; pickupTime: string; recipientName: string | null };
 type State = { kind: "checking" } | { kind: "paid"; order: Paid } | { kind: "error"; message: string };
 
-const CONFIRM_ERROR: Record<string, string> = {
-  AMOUNT_MISMATCH: "결제 금액이 주문 금액과 달라 결제를 진행하지 않았어요.",
-  ORDER_NOT_FOUND: "주문을 찾지 못했어요.",
-  ORDER_NOT_PENDING: "이미 처리되었거나 취소된 주문이에요.",
-  NOT_CONFIGURED: "결제 준비가 아직 끝나지 않았어요. 가게에 문의해 주세요.",
-};
-
-function pickupLabel(date: string, time: string) {
-  const d = new Date(`${date}T00:00:00+09:00`);
-  const weekday = "일월화수목금토"[new Date(d.getTime() + 9 * 3600_000).getUTCDay()];
-  return `${Number(date.slice(5, 7))}월 ${Number(date.slice(8, 10))}일 (${weekday}) ${time.slice(0, 5)}`;
+function pickupLabel(t: Dict["pickup"], date: string, time: string) {
+  const weekday = t.weekdays[new Date(`${date}T00:00:00Z`).getUTCDay()];
+  return t.full(Number(date.slice(5, 7)), Number(date.slice(8, 10)), weekday, time.slice(0, 5));
 }
 
 function Shell({ hand, title, children }: { hand: string; title: string; children: React.ReactNode }) {
@@ -35,6 +28,9 @@ function Shell({ hand, title, children }: { hand: string; title: string; childre
 export function ConfirmPayment() {
   const params = useSearchParams();
   const cart = useCart();
+  const all = useT();
+  const t = all.confirm;
+  const href = useHref();
   const [state, setState] = useState<State>({ kind: "checking" });
   const sent = useRef(false);
 
@@ -47,7 +43,7 @@ export function ConfirmPayment() {
     if (sent.current) return;
     sent.current = true;
     if (!paymentKey || !orderId || !amount) {
-      queueMicrotask(() => setState({ kind: "error", message: "결제 정보가 없어요. 주문 화면에서 다시 시도해 주세요." }));
+      queueMicrotask(() => setState({ kind: "error", message: t.noInfo }));
       return;
     }
     fetch("/api/payments/confirm", {
@@ -61,46 +57,48 @@ export function ConfirmPayment() {
           clear();
           setState({ kind: "paid", order: data as Paid });
         } else {
-          setState({ kind: "error", message: CONFIRM_ERROR[data.error ?? ""] ?? data.message ?? "결제를 확인하지 못했어요." });
+          setState({ kind: "error", message: t.errors[data.error ?? ""] ?? data.message ?? t.failedGeneric });
         }
       })
-      .catch(() => setState({ kind: "error", message: "인터넷 연결을 확인한 뒤 이 화면을 새로고침해 주세요." }));
-  }, [paymentKey, orderId, amount, clear]);
+      .catch(() => setState({ kind: "error", message: t.network }));
+  }, [paymentKey, orderId, amount, clear, t]);
 
-  if (state.kind === "checking") return <p className="lead text-center" aria-live="polite">결제를 확인하고 있어요…</p>;
+  if (state.kind === "checking") return <p className="lead text-center" aria-live="polite">{t.checking}</p>;
   if (state.kind === "error")
     return (
-      <Shell hand="결제를 마치지 못했어요" title="결제가 완료되지 않았어요">
+      <Shell hand={t.failHand} title={t.failTitle}>
         <p className="lead" role="alert">{state.message}</p>
-        <Link href="/checkout" className="btn btn-primary">주문 화면으로 돌아가기</Link>
+        <Link href={href("/checkout")} className="btn btn-primary">{t.back}</Link>
       </Shell>
     );
 
   const o = state.order;
   return (
-    <Shell hand="주문해 주셔서 고맙습니다" title="결제가 끝났어요">
+    <Shell hand={t.thanks} title={t.done}>
       <dl className="card grid w-full gap-2.5 p-5 text-left text-[.95rem] [&_dt]:text-muted [&_dd]:font-bold">
-        <div className="flex justify-between gap-3"><dt>주문 번호</dt><dd className="num">{o.orderId}</dd></div>
-        <div className="flex justify-between gap-3"><dt>주문 상품</dt><dd>{o.orderName}</dd></div>
-        <div className="flex justify-between gap-3"><dt>결제 금액</dt><dd className="num">{won(o.amount)}</dd></div>
-        <div className="flex justify-between gap-3"><dt>픽업</dt><dd className="num">{pickupLabel(o.pickupDate, o.pickupTime)}</dd></div>
-        {o.recipientName && <div className="flex justify-between gap-3"><dt>받는 분</dt><dd>{o.recipientName}</dd></div>}
+        <div className="flex justify-between gap-3"><dt>{t.orderNo}</dt><dd className="num">{o.orderId}</dd></div>
+        <div className="flex justify-between gap-3"><dt>{t.items}</dt><dd>{o.orderName}</dd></div>
+        <div className="flex justify-between gap-3"><dt>{t.amount}</dt><dd className="num">{all.money(o.amount)}</dd></div>
+        <div className="flex justify-between gap-3"><dt>{t.pickup}</dt><dd className="num">{pickupLabel(all.pickup, o.pickupDate, o.pickupTime)}</dd></div>
+        {o.recipientName && <div className="flex justify-between gap-3"><dt>{t.recipient}</dt><dd>{o.recipientName}</dd></div>}
       </dl>
-      <p className="lead">픽업 시간에 매장 냉장고에서 찾아가 주세요. 주문 번호를 캡처해 두시면 편해요.</p>
-      <Link href="/" className="btn">처음 화면으로</Link>
+      <p className="lead">{t.afterNote}</p>
+      <Link href={href("/")} className="btn">{t.home}</Link>
     </Shell>
   );
 }
 
 export function PaymentFailed() {
   const params = useSearchParams();
+  const t = useT().confirm;
+  const href = useHref();
   const code = params.get("code");
   const message = params.get("message");
   return (
-    <Shell hand="결제를 마치지 못했어요" title={code === "PAY_PROCESS_CANCELED" ? "결제를 취소했어요" : "결제가 완료되지 않았어요"}>
+    <Shell hand={t.failHand} title={code === "PAY_PROCESS_CANCELED" ? t.canceledTitle : t.failTitle}>
       {message && code !== "PAY_PROCESS_CANCELED" && <p className="lead" role="alert">{message}</p>}
-      <p className="text-[.9rem] text-muted">담아 두신 상품은 그대로 있어요. 돈은 빠져나가지 않았습니다.</p>
-      <Link href="/checkout" className="btn btn-primary">주문 화면으로 돌아가기</Link>
+      <p className="text-[.9rem] text-muted">{t.keptNote}</p>
+      <Link href={href("/checkout")} className="btn btn-primary">{t.back}</Link>
     </Shell>
   );
 }

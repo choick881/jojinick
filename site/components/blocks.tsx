@@ -1,7 +1,10 @@
 // 여러 페이지에서 함께 쓰는 섹션 조각
 import Link from "next/link";
 import type { StoreStatus } from "@/lib/catalog";
+import { localePath } from "@/lib/i18n";
+import { getLang, getT } from "@/lib/i18n/server";
 import { PHOTOS } from "@/lib/photos";
+import { Lines } from "./lines";
 import { PhotoSlot } from "./photo-slot";
 
 export function SectionHead({ eyebrow, title, lead }: { eyebrow: string; title: React.ReactNode; lead?: React.ReactNode }) {
@@ -15,19 +18,20 @@ export function SectionHead({ eyebrow, title, lead }: { eyebrow: string; title: 
 }
 
 /** 홈 2안에서 가져온 매장 현황판 */
-export function StoreBoard({ status, total, onSale }: { status: StoreStatus; total: number; onSale: number }) {
+export async function StoreBoard({ status, total, onSale }: { status: StoreStatus; total: number; onSale: number }) {
+  const t = (await getT()).board;
   const pct = total ? Math.round((onSale / total) * 100) : 0;
   return (
-    <div className="grid gap-2.5 rounded-[var(--r)] bg-ink px-5 py-4 text-paper" aria-label="오늘 매장 현황">
+    <div className="grid gap-2.5 rounded-[var(--r)] bg-ink px-5 py-4 text-paper" aria-label={t.label}>
       <div className="flex flex-wrap items-baseline justify-between gap-2 text-[.76rem] text-[#CDBEAB]">
-        <span>오늘 아침 제조 완료</span>
-        {status.isExample && <span>예시 · 관리자 화면 연결 후 실시간</span>}
+        <span>{t.done}</span>
+        {status.isExample && <span>{t.example}</span>}
       </div>
       <div className="num text-[1.15rem] font-extrabold leading-tight sm:text-[1.35rem] md:text-[1.5rem]">
-        {status.madeAt} · <em className="not-italic text-[#F2A58A]">{total}종 중 {onSale}종</em> 판매 중
+        {status.madeAt} · <em className="not-italic text-[#F2A58A]">{t.onSale(total, onSale)}</em>{t.onSaleSuffix}
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-[#4A3C31]" aria-hidden="true"><i className="block h-full bg-[#F2A58A]" style={{ width: `${pct}%` }} /></div>
-      <small className="text-[.76rem] text-[#CDBEAB]">픽업 17:30~20:30 · 30분 단위로 미리 골라 주세요</small>
+      <small className="text-[.76rem] text-[#CDBEAB]">{t.pickup}</small>
     </div>
   );
 }
@@ -46,12 +50,8 @@ export function Steps({ items }: { items: { title: string; body: string }[] }) {
   );
 }
 
-export function Promises() {
-  const items = [
-    { big: "07:00", title: "매일 아침 만듭니다", body: "그날 판매할 반찬은 그날 아침에." },
-    { big: "1~2인분", title: "딱 한 끼 양으로", body: "남기거나 버리지 않게 나눠 담아요." },
-    { big: "모든 용기", title: "제조 시각 라벨", body: "언제 만들었는지 바로 확인하세요." },
-  ];
+export async function Promises() {
+  const items = (await getT()).promises;
   return (
     <ul className="grid gap-3 md:grid-cols-3">
       {items.map((p) => (
@@ -65,47 +65,46 @@ export function Promises() {
   );
 }
 
-export const HOW_TO = [
-  { title: "미리 결제하고 시간 고르기", body: "메뉴를 담고 픽업 시간을 30분 단위로 골라요." },
-  { title: "매장 픽업 냉장고에서 꺼내기", body: "문자로 온 주문번호가 붙은 봉투를 꺼내 가세요." },
-  { title: "집에서 데우기만", body: "국은 냄비에 3~4분, 반찬은 그대로 드세요." },
-];
-
-export function StoreInfo() {
+export async function StoreInfo() {
+  const all = await getT();
+  const t = all.store;
   return (
     <>
-      <SectionHead eyebrow="매장 안내" title="양주 ○○동, 퇴근길에 들르세요" />
+      <SectionHead eyebrow={t.eyebrow} title={t.title} />
       <div className="grid gap-5 md:grid-cols-[1.2fr_1fr] md:items-center">
         <div className="grid aspect-[16/10] place-items-center rounded-[var(--r)] p-3 text-center text-[.85rem] text-muted"
           style={{ background: "repeating-linear-gradient(45deg,#EDE2CE 0 12px,#E8DBC4 12px 24px)" }}>
-          <span><b className="block text-base text-brand">카카오맵 자리</b>주소가 정해지면 지도와 길찾기 버튼이 들어갑니다</span>
+          <span><b className="block text-base text-brand">{t.mapTitle}</b>{t.mapBody}</span>
         </div>
         <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-2">
-          <dt className="text-[.88rem] text-muted">주소</dt><dd className="font-bold">경기도 양주시 <span className="todo">준비 중</span></dd>
-          <dt className="text-[.88rem] text-muted">매장</dt><dd className="num font-bold">매일 06:00~23:00 (무인 판매)</dd>
-          <dt className="text-[.88rem] text-muted">픽업</dt><dd className="num font-bold">17:30~20:30 (30분 단위)</dd>
-          <dt className="text-[.88rem] text-muted">문의</dt><dd className="font-bold">전화번호 준비 중</dd>
+          <dt className="text-[.88rem] text-muted">{t.address}</dt><dd className="font-bold">{t.addressValue}<span className="todo">{t.pending}</span></dd>
+          <dt className="text-[.88rem] text-muted">{t.shop}</dt><dd className="num font-bold">{t.shopValue}</dd>
+          <dt className="text-[.88rem] text-muted">{all.common.pickup}</dt><dd className="num font-bold">{t.pickupValue}</dd>
+          <dt className="text-[.88rem] text-muted">{t.contact}</dt><dd className="font-bold">{t.contactValue}</dd>
         </dl>
       </div>
     </>
   );
 }
 
-export function SilverBand() {
+export async function SilverBand() {
+  const lang = await getLang();
+  const all = await getT();
+  const t = all.silverBand;
   return (
     <div className="card grid gap-4 p-6 md:grid-cols-2 md:items-center md:p-8">
       <div className="grid gap-2.5">
-        <span className="eyebrow">어르신 밥상</span>
-        <h2 className="h2">부드럽게, 큰 글씨로,<br />대신 주문까지</h2>
-        <p className="lead">잘게 썰고 푹 익힌 반찬을 작은 양으로 담았어요. 자녀가 결제하면 부모님이 성함으로 찾아가세요.</p>
+        <span className="eyebrow">{t.eyebrow}</span>
+        <h2 className="h2"><Lines text={t.title} /></h2>
+        <p className="lead">{t.lead}</p>
         <div className="flex flex-wrap gap-2">
-          {["씹기 쉬움", "잇몸으로", "혀로"].map((l) => <span key={l} className="rounded-full border-[1.5px] border-brand px-3.5 py-1 text-[.9rem] font-bold text-brand">{l}</span>)}
+          {Object.values(all.softness).map((l) => <span key={l} className="rounded-full border-[1.5px] border-brand px-3.5 py-1 text-[.9rem] font-bold text-brand">{l}</span>)}
         </div>
-        <div><Link href="/silver" className="btn btn-ghost">어르신 밥상 보기</Link></div>
+        <div><Link href={localePath(lang, "/silver")} className="btn btn-ghost">{t.cta}</Link></div>
       </div>
       <div className="grid gap-1.5">
-        <PhotoSlot drawing="tray" caption="어르신 1인 저녁세트" src={PHOTOS.silverTray} />
-        <p className="staged">{STAGED_NOTE}</p>
+        <PhotoSlot drawing="tray" caption={t.cap} src={PHOTOS.silverTray} />
+        <StagedNote />
       </div>
     </div>
   );
@@ -128,4 +127,7 @@ export function Faq({ items }: { items: { q: string; a: string }[] }) {
   );
 }
 
-export const STAGED_NOTE = "상품 이미지는 연출된 예시로, 실제 상품과 구성·담음새가 다를 수 있습니다.";
+/** 연출 사진 안내(사진 아래) */
+export async function StagedNote({ className = "" }: { className?: string }) {
+  return <p className={`staged ${className}`}>{(await getT()).common.staged}</p>;
+}
