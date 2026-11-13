@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S등급 필독서 10권 핵심 내용 요약</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>/* 시니어 비즈니스 TOP5 사업추진 보고서 — 인쇄(A4) 우선 스타일 */
+:root {
+  --paper: #FBF8F2;
+  --ink: #2A2621;
+  --muted: #6B6358;
+  --forest: #2F4A3A;
+  --forest-2: #4E6B57;
+  --sage: #E5EADF;
+  --clay: #B3603A;
+  --clay-soft: #F4E3D8;
+  --sand: #EFE7DA;
+  --line: #D9D0C2;
+  --gold: #A9822F;
+}
+
+@page { size: A4; margin: 20mm 17mm 20mm 17mm; }
+@page :first { margin: 0; }
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Pretendard", "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 10.6pt;
+  line-height: 1.72;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@media screen {
+  body { background: #E9E4DA; }
+  .doc { max-width: 210mm; margin: 24px auto; background: #fff; padding: 20mm 17mm; box-shadow: 0 2px 18px rgba(0,0,0,.12); }
+  .cover { margin: -20mm -17mm 20mm; }
+  .printbar { position: sticky; top: 0; z-index: 9; background: var(--forest); color: #fff; padding: 10px 16px; text-align: center; font-size: 14px; }
+  .printbar button { font: inherit; margin-left: 10px; padding: 4px 14px; border-radius: 6px; border: 0; background: #fff; color: var(--forest); cursor: pointer; }
+}
+@media print { .printbar { display: none; } .doc { padding: 0; } }
+
+/* ---------- 표지 ---------- */
+.cover {
+  height: 297mm; width: 210mm; position: relative; overflow: hidden;
+  background: var(--forest); color: #fff; page-break-after: always; break-after: page;
+  padding: 30mm 22mm 24mm;
+  display: flex; flex-direction: column;
+}
+.cover::after {
+  content: ""; position: absolute; right: -60mm; bottom: -60mm; width: 190mm; height: 190mm;
+  border-radius: 50%; background: radial-gradient(circle at 35% 35%, #B3603A 0%, #8E4A2B 60%, transparent 61%);
+  opacity: .9;
+}
+.cover::before {
+  content: ""; position: absolute; right: 40mm; bottom: 70mm; width: 46mm; height: 46mm;
+  border-radius: 50%; background: #E9D9B8; opacity: .9;
+}
+.cover .kicker { font-size: 11pt; letter-spacing: .18em; color: #E9D9B8; font-weight: 600; }
+.cover .no { font-size: 64pt; font-weight: 800; line-height: 1; margin: 18mm 0 6mm; color: #E9D9B8; }
+.cover h1.title { font-size: 30pt; line-height: 1.32; margin: 0 0 6mm; font-weight: 800; color: #fff; border: 0; padding: 0; }
+.cover .subtitle { font-size: 13.5pt; line-height: 1.6; color: #F2EDE4; max-width: 150mm; }
+.cover .meta { margin-top: auto; position: relative; z-index: 2; font-size: 10.5pt; color: #F2EDE4; line-height: 1.8; }
+.cover .meta b { color: #E9D9B8; font-weight: 700; }
+.cover .tagrow { margin-top: 10mm; display: flex; flex-wrap: wrap; gap: 6px; max-width: 150mm; position: relative; z-index: 2; }
+.cover .tagrow span { border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: 3px 12px; font-size: 9.5pt; }
+
+/* ---------- 제목 체계 ---------- */
+h1 {
+  font-size: 19pt; line-height: 1.35; color: var(--forest); margin: 0 0 6mm; padding: 0 0 3mm;
+  border-bottom: 2.5px solid var(--forest); page-break-before: always; break-before: page; font-weight: 800;
+}
+.chap { display: block; font-size: 8.6pt; letter-spacing: .2em; color: var(--clay); font-weight: 700; margin: -4mm 0 2mm; }
+.nobreak-first > h1:first-child, h1.nobreak { page-break-before: auto; break-before: auto; }
+h2 {
+  font-size: 13.8pt; color: var(--ink); margin: 9mm 0 3mm; padding-left: 9px; font-weight: 800;
+  border-left: 5px solid var(--clay); line-height: 1.4; page-break-after: avoid; break-after: avoid;
+}
+h3 { font-size: 11.6pt; color: var(--forest); margin: 6mm 0 2mm; font-weight: 700; page-break-after: avoid; break-after: avoid; }
+h4 { font-size: 10.8pt; margin: 4mm 0 1.5mm; color: var(--clay); page-break-after: avoid; }
+p { margin: 0 0 2.6mm; }
+ul, ol { margin: 0 0 3mm; padding-left: 5.5mm; }
+li { margin: .6mm 0; }
+li > ul, li > ol { margin: .6mm 0; }
+strong { color: #1F1B17; font-weight: 700; }
+em { font-style: normal; color: var(--clay); font-weight: 600; }
+a { color: var(--forest-2); text-decoration: none; word-break: break-all; }
+hr { border: 0; border-top: 1px dashed var(--line); margin: 6mm 0; }
+code { font-family: "Pretendard", monospace; background: var(--sand); padding: 0 4px; border-radius: 3px; font-size: .95em; }
+blockquote {
+  margin: 3mm 0 4mm; padding: 3mm 5mm; background: var(--sage); border-left: 4px solid var(--forest-2);
+  border-radius: 0 6px 6px 0; color: #24382C;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+/* ---------- 표 ---------- */
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 5mm; font-size: 9.4pt; line-height: 1.55; page-break-inside: auto; }
+thead { display: table-header-group; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+th { background: var(--forest); color: #fff; font-weight: 700; text-align: left; padding: 2mm 2.4mm; border: 1px solid var(--forest); vertical-align: middle; }
+td { padding: 1.8mm 2.4mm; border: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) td { background: #FAF7F1; }
+td strong { color: var(--forest); }
+.tight table { font-size: 8.8pt; }
+.tight td, .tight th { padding: 1.3mm 1.8mm; }
+
+/* ---------- 박스 ---------- */
+.box { border: 1px solid var(--line); border-radius: 8px; padding: 4mm 5mm; margin: 3mm 0 5mm; background: #fff; page-break-inside: avoid; break-inside: avoid; }
+.box > :last-child { margin-bottom: 0; }
+.box .bt { display: block; font-weight: 800; color: var(--forest); margin-bottom: 1.5mm; font-size: 11pt; }
+.box.key { background: var(--clay-soft); border-color: #E3C3AF; }
+.box.key .bt { color: var(--clay); }
+.box.green { background: var(--sage); border-color: #C9D3C0; }
+.box.warn { background: #FFF5E8; border-color: #EBC995; }
+.box.warn .bt { color: #8A5A12; }
+.box.ask { background: #F1F0FA; border-color: #CFCBEA; }
+.box.ask .bt { color: #463E8C; }
+.box.sum { background: var(--forest); color: #fff; border: 0; }
+.box.sum .bt, .box.sum strong { color: #E9D9B8; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 2mm 0 4mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 2mm 0 4mm; }
+.grid2 > .box, .grid3 > .box { margin: 0; }
+
+.kw { display: flex; flex-wrap: wrap; gap: 5px; margin: 2mm 0 4mm; }
+.kw span { background: var(--sand); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 1px 11px; font-size: 9.4pt; font-weight: 600; }
+.kw span.hot { background: var(--clay); border-color: var(--clay); color: #fff; }
+
+.stat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 2mm 0 5mm; }
+.stat div { border: 1px solid var(--line); border-radius: 8px; padding: 3mm; background: #fff; page-break-inside: avoid; }
+.stat b { display: block; font-size: 17pt; color: var(--forest); line-height: 1.2; font-weight: 800; }
+.stat small { display: block; color: var(--muted); font-size: 8.4pt; line-height: 1.45; margin-top: 1mm; }
+
+.src { font-size: 8.4pt; color: var(--muted); }
+.tag { display: inline-block; font-size: 8.4pt; padding: 0 7px; border-radius: 4px; font-weight: 700; margin-right: 3px; vertical-align: 1px; }
+.tag.must { background: var(--clay); color: #fff; }
+.tag.now { background: var(--forest); color: #fff; }
+.tag.later { background: var(--line); color: var(--ink); }
+.tag.est { background: #F2E6C8; color: #6E5310; }
+
+.toc { columns: 2; column-gap: 8mm; font-size: 10pt; }
+.toc ol { margin: 0; }
+.check li { list-style: none; position: relative; padding-left: 1mm; }
+.check li::before { content: "☐"; position: absolute; left: -5mm; color: var(--forest); }
+.check { padding-left: 6mm; }
+
+/* 간트 표 */
+.gantt table { font-size: 8.3pt; }
+.gantt td, .gantt th { padding: 1.1mm 1.2mm; text-align: center; }
+.gantt td:first-child, .gantt th:first-child { text-align: left; white-space: nowrap; }
+.gantt td.on { background: var(--forest) !important; color: #fff; font-weight: 700; }
+.gantt td.mid { background: #9CB3A2 !important; color: #fff; }
+.gantt td.ms { background: var(--clay) !important; color: #fff; font-weight: 800; }
+
+.avoid { page-break-inside: avoid; break-inside: avoid; }
+.pb { page-break-after: always; break-after: page; height: 0; }
+.center { text-align: center; }
+.small { font-size: 9pt; }
+.muted { color: var(--muted); }
+</style></head>
+<body>
+<div class="printbar">A4 인쇄용 보고서입니다 <button onclick="window.print()">인쇄 / PDF 저장</button></div>
+<div class="doc">
+<section class="cover">
+  <div class="kicker">APPENDIX · 런칭 전 10주 필독서 · 핵심 요약</div>
+  <div class="no">07</div>
+  <h1 class="title">S등급 필독서 10권<br>핵심 내용 요약</h1>
+  <div class="subtitle">추천 도서 30선 중 런칭 전 10주 안에 읽을 S등급 10권의 핵심 내용과, 각 책을 온벗 5개 사업에 어떻게 적용할지 정리했습니다. 책을 읽기 전에 방향을 잡고, 읽은 뒤에 다시 펼쳐 실행 점검표로 쓰도록 만들었습니다.</div>
+  <div class="tagrow"><span>한 줄 요지</span><span>핵심 내용</span><span>온벗 적용 포인트</span><span>주차별 실행 과제</span></div>
+  <div class="meta"><b>작성일</b> 2026년 11월 13일<br><b>대상 독자</b> 조피디 (대표) · 향후 공동창업자·시니어 리더<br><b>함께 볼 자료</b> 06권 부록 「추천 도서 30선」 · 00권 8장 「10주 상세 일정」</div>
+</section>
+<h1 class="nobreak" id="_1">이 요약을 읽는 법</h1>
+<p><span class="chap">GUIDE</span></p>
+<ul>
+<li>책마다 <strong>한 줄 요지 → 핵심 내용 → 온벗 적용</strong> 순서로 정리했습니다.</li>
+<li>요약은 책을 대신하지 않습니다. <strong>읽기 전 길잡이</strong>로 쓰고, 읽은 뒤에는 "온벗 적용" 칸을 실행 점검표로 쓰세요.</li>
+<li>2·3·4번은 본문을 자세히 확인하지 못해 <strong>출판사 소개와 언론 보도에서 확인된 내용만</strong> 담았습니다. 1·5~10번은 널리 알려진 핵심 내용을 바탕으로 정리했습니다.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>순위</th>
+<th>책</th>
+<th>읽을 주</th>
+<th>소양</th>
+<th>핵심 사업</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>노인을 위한 시장은 없다</td>
+<td>W1 (11/9~)</td>
+<td>시장을 보는 눈</td>
+<td>공통</td>
+</tr>
+<tr>
+<td>2</td>
+<td>초고령사회 일본이 사는 법</td>
+<td>W3 (11/23~)</td>
+<td>시장을 보는 눈</td>
+<td>공통</td>
+</tr>
+<tr>
+<td>3</td>
+<td>트렌드 코리아 2027</td>
+<td>W9 (1/4~)</td>
+<td>시장·마케팅</td>
+<td>공통</td>
+</tr>
+<tr>
+<td>4</td>
+<td>2022 대한민국이 열광할 시니어 트렌드</td>
+<td>W10 (1/11~)</td>
+<td>시장을 보는 눈</td>
+<td>공통</td>
+</tr>
+<tr>
+<td>5</td>
+<td>모임을 예술로 만드는 법</td>
+<td>W5 (12/7~)</td>
+<td>관계·공동체</td>
+<td>01 클럽 · 05 동행친구</td>
+</tr>
+<tr>
+<td>6</td>
+<td>고립의 시대</td>
+<td>W6 (12/14~)</td>
+<td>관계·공동체</td>
+<td>01 · 02 · 05</td>
+</tr>
+<tr>
+<td>7</td>
+<td>The Mom Test</td>
+<td>W2 (11/16~)</td>
+<td>창업 검증</td>
+<td>공통</td>
+</tr>
+<tr>
+<td>8</td>
+<td>린 스타트업</td>
+<td>W4 (11/30~)</td>
+<td>창업 검증</td>
+<td>공통</td>
+</tr>
+<tr>
+<td>9</td>
+<td>듀얼 브레인</td>
+<td>W8 (12/28~)</td>
+<td>AI</td>
+<td>공통</td>
+</tr>
+<tr>
+<td>10</td>
+<td>무기가 되는 스토리</td>
+<td>W7 (12/21~)</td>
+<td>스토리·마케팅</td>
+<td>공통 · 02 안부</td>
+</tr>
+</tbody>
+</table>
+<h1 id="1">1. 노인을 위한 시장은 없다</h1>
+<p><span class="chap">조지프 F. 코글린 · 부키 · 2019</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>시니어 상품이 실패하는 이유는 노인을 <strong>"필요(안전·불편 해소)"</strong>로만 보고 <strong>"욕구(즐거움·관계·자존감)"</strong>를 보지 않기 때문입니다.</p>
+</div>
+<h2 id="_2">핵심 내용</h2>
+<ul>
+<li><strong>'노년'이라는 고정관념은 사회가 만든 이야기</strong>입니다. 연금·은퇴 제도와 함께 "노인 = 쉬어야 할 사람, 돌봐야 할 사람"이라는 틀이 생겼고, 기업은 그 틀에 맞춘 "노인용" 제품을 만들다 외면받았습니다.</li>
+<li><strong>"노인 전용"이라는 딱지가 상품을 죽입니다.</strong> 노인을 위한 것이 티 나는 제품은 사지 않습니다. 젊은 사람도 갖고 싶은 좋은 디자인이 결국 시니어에게도 팔립니다.</li>
+<li><strong>시니어 여성이 이 시장의 선도 고객</strong>입니다. 더 오래 살고, 가족 돌봄과 구매 결정을 주도하기 때문입니다.</li>
+<li>시니어가 은퇴 후 원하는 것은 <strong>목적, 사람과의 연결, 계속 배우는 즐거움</strong>입니다.</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용</span></p>
+<ul>
+<li>이름·문구에서 "노인"을 빼고 <strong>"클럽·동아리·친구"</strong>로 갑니다.</li>
+<li>상품은 <strong>안전보다 즐거움을 앞에</strong> 둡니다. 안전은 기본으로 깔고, 광고 문구의 주인공은 즐거움입니다.</li>
+<li>첫 타깃은 <strong>60~70대 여성</strong>과, 돌봄을 결정하는 <strong>딸 세대</strong>입니다.</li>
+<li><strong>W1 과제:</strong> 5개 사업 상품을 "필요 / 욕구"로 다시 분류해 보기</li>
+</ul>
+</div>
+<h1 id="2">2. 초고령사회 일본이 사는 법</h1>
+<p><span class="chap">김웅철 · 매일경제신문사 · 2025</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>10년 먼저 초고령사회가 된 일본의 은퇴 선배들이 찾은 해법을 <strong>42개 법칙</strong>으로 정리한 현장 취재서입니다.</p>
+</div>
+<h2 id="_3">핵심 내용</h2>
+<ul>
+<li>42개 법칙은 <strong>5가지 주제</strong>로 묶입니다: ① 금전 감각 ② 재취업 ③ 제3의 인간관계 ④ 고독에 대처하는 힘 ⑤ 건강 관리</li>
+<li>저자는 매일경제 도쿄 특파원 출신입니다. 첨부하신 일본 사례(종활, 시니어 일자리, 취미 커뮤니티)를 <strong>한국 독자 눈높이로</strong> 풀어 줍니다.</li>
+<li>2018년 페이퍼로드판 『초고령사회 일본에서 길을 찾다』의 흐름을 잇는 최신판입니다. 오디오북판도 있습니다.</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용</span></p>
+<p>5개 주제가 온벗 5개 사업과 그대로 겹칩니다.</p>
+<table>
+<thead>
+<tr>
+<th>책의 주제</th>
+<th>온벗 사업</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>재취업</td>
+<td>04 베테랑뱅크</td>
+</tr>
+<tr>
+<td>제3의 인간관계</td>
+<td>01 클럽 · 05 동행친구</td>
+</tr>
+<tr>
+<td>고독에 대처하는 힘</td>
+<td>02 안부</td>
+</tr>
+<tr>
+<td>금전 감각 · 마무리 준비</td>
+<td>03 라이프노트</td>
+</tr>
+<tr>
+<td>건강 관리</td>
+<td>01 클럽 (건강걷기·실버체조)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>W3 과제:</strong> 읽으면서 "1월에 바로 쓸 일본 아이디어 3개"를 뽑기</p>
+</div>
+<h1 id="3-2027">3. 트렌드 코리아 2027</h1>
+<p><span class="chap">김난도 외 · 미래의창 · 2026.9</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>2027년 슬로건은 <strong>'알파쉽(ALPHA SHEEP)'</strong>, 즉 무리를 따르지 말고 먼저 뛰쳐나오라는 것입니다.</p>
+</div>
+<h2 id="_4">핵심 내용</h2>
+<ul>
+<li>AI 시대에 중요한 역량으로 <strong>안목, 엣지(자기만의 날카로움), 실행력</strong>을 꼽습니다.</li>
+<li>10대 소비 트렌드 키워드에 <strong>'권태사회'</strong>, <strong>'라이프 ROI'</strong>(삶에 들인 시간·돈의 보람을 따지는 소비)가 들어 있습니다.</li>
+<li>기업 전략으로 <strong>'리:텐션 전략'</strong>(기존 고객 이탈 막기)과 <strong>'폼팩터 시프트'</strong>(제품 형태 바꾸기)를 강조합니다.</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용</span></p>
+<ul>
+<li><strong>리:텐션</strong> → 클럽 재참여율 목표(12월 월 60%)와 직결됩니다. 신규 모집보다 결석 회원 안부·생일 축하·소식지에 먼저 힘을 씁니다.</li>
+<li><strong>라이프 ROI</strong> → 자녀가 돈을 내는 이유를 설명하는 언어가 됩니다. "부모님의 웃는 영상 = 매달 확인하는 보람"</li>
+<li><strong>알파쉽</strong> → 시니어 커뮤니티 여행을 효도관광이 아닌 새로운 범주로 먼저 정의하는 온벗의 자세</li>
+<li><strong>W9 과제:</strong> 보도자료와 지원사업 신청서에 2027 키워드를 시장 근거로 연결하기</li>
+</ul>
+</div>
+<h1 id="4-2022">4. 2022 대한민국이 열광할 시니어 트렌드</h1>
+<p><span class="chap">고려대 고령사회연구센터 · 비즈니스북스 · 2021</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>미국·유럽·일본·중국에서 찾은 <strong>시니어 비즈니스 아이템 100개</strong>를 모은 사례집입니다.</p>
+</div>
+<h2 id="_5">핵심 내용</h2>
+<ul>
+<li>정독할 책이라기보다 <strong>아이디어 창고처럼 찾아보는 책</strong>입니다.</li>
+<li>2021년 출간이라 일부 사례는 오래되었을 수 있습니다. <strong>바뀐 시장과 비교하며</strong> 읽으세요.</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용</span></p>
+<ul>
+<li>2분기에 추가할 상품 후보를 고를 때 펼쳐 봅니다: 클럽의 새 테마, 안부 옵션, 라이프노트 상품</li>
+<li>아이템마다 "온벗 회원 명부로 바로 팔 수 있는가?"를 기준으로 걸러 냅니다.</li>
+<li><strong>W10 과제:</strong> 2분기 추가 상품 후보 5개 메모</li>
+</ul>
+</div>
+<h1 id="5">5. 모임을 예술로 만드는 법</h1>
+<p><span class="chap">프리야 파커 · 원더박스 · 2019</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>좋은 모임은 저절로 생기지 않습니다. <strong>목적을 먼저 정하고 시작과 끝을 설계</strong>해야 합니다.</p>
+</div>
+<h2 id="_6">핵심 내용</h2>
+<ol>
+<li><strong>"왜 모이는가"를 구체적으로 정합니다.</strong> "친목"처럼 뻔한 목적이 아니라, 동의하지 않을 사람도 있을 만큼 분명한 목적이어야 합니다.</li>
+<li><strong>누구를 부르지 않을지도 정합니다.</strong> 목적에 맞지 않는 사람을 정중하게 빼는 것이 남은 사람에 대한 배려입니다.</li>
+<li><strong>호스트는 "편하게 하세요"로 끝내지 말고 따뜻한 권위를 씁니다.</strong> 소개를 시키고, 독점하는 사람을 막고, 참여자끼리 연결해 줍니다.</li>
+<li><strong>그 모임만의 임시 규칙</strong>을 만들면 사람들이 평소와 다르게 어울립니다.</li>
+<li><strong>모임은 시작 전 안내 문자부터 시작됩니다.</strong> 첫 5분이 분위기를 정하고, 마지막 5분이 기억을 정합니다. 공지 사항으로 끝내지 말고 의미 있게 닫습니다.</li>
+</ol>
+<div class="box green">
+<p><span class="bt">온벗 적용 — 걷기반 90분 진행표 예시</span></p>
+<table>
+<thead>
+<tr>
+<th>시간</th>
+<th>순서</th>
+<th>이 책의 원칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>전날 18시</td>
+<td>알림톡: 날씨·준비물·"내일 함께 걸을 분들" 소개</td>
+<td>모임은 시작 전에 시작된다</td>
+</tr>
+<tr>
+<td>0~5분</td>
+<td>이름 + 오늘 기분 한마디, 새 회원 소개</td>
+<td>첫 5분이 분위기를 정한다</td>
+</tr>
+<tr>
+<td>5~15분</td>
+<td>준비 체조 (노인스포츠지도사)</td>
+<td>따뜻한 권위</td>
+</tr>
+<tr>
+<td>15~75분</td>
+<td>걷기, 리더가 짝을 바꿔 주며 대화 연결</td>
+<td>참여자끼리 연결</td>
+</tr>
+<tr>
+<td>75~85분</td>
+<td>정리 체조 + 단체 사진</td>
+<td>—</td>
+</tr>
+<tr>
+<td>85~90분</td>
+<td>다음 주 약속 + 오늘 고마운 사람 한 명</td>
+<td>마지막 5분이 기억을 정한다</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>임시 규칙:</strong> 정치·종교·영업 금지, 처음 온 분 옆에는 리더가 걷기</li>
+<li><strong>W5 과제:</strong> 12/12 무료 체험 걷기와 1/16 런칭 행사의 오프닝·클로징 설계</li>
+</ul>
+</div>
+<h1 id="6">6. 고립의 시대</h1>
+<p><span class="chap">노리나 허츠 · 웅진지식하우스 · 2021</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>21세기는 <strong>'외로운 세기'</strong>이며, 외로움은 개인 문제가 아니라 건강·경제·정치를 흔드는 <strong>사회 문제</strong>입니다.</p>
+</div>
+<h2 id="_7">핵심 내용</h2>
+<ul>
+<li><strong>외로움을 넓게 정의합니다.</strong> 친구·가족이 없는 것뿐 아니라 이웃, 직장, 정부로부터 소외되고 무시당하는 느낌까지 포함합니다.</li>
+<li>외로움이 <strong>몸과 마음의 건강을 해친다</strong>는 연구들을 소개합니다.</li>
+<li><strong>원인:</strong> 경쟁 중심 사회, 스마트폰과 SNS, 도시화, 사람을 만나지 않는 비대면 경제</li>
+<li><strong>경고:</strong> 외로움을 달래 주는 상업 서비스가 생기고 있지만, 공동체를 돈으로만 사고파는 것에는 한계가 있습니다.</li>
+<li><strong>해법:</strong> 동네의 만남 공간, 함께하는 활동, 정부의 정책적 대응 (영국·일본은 외로움 담당 장관직을 신설)</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용</span></p>
+<ul>
+<li>양주시 <strong>'사회적 고립 예방' 제안서의 문제 정의</strong>를 이 책의 논리로 씁니다. 외로움은 개인 문제가 아니라 사회 문제이고, 지자체가 나설 이유가 있다는 논리입니다.</li>
+<li>"돈 내면 친구를 파는 곳"이 되지 않도록 <strong>나눔 회원권, 이웃지기</strong>처럼 회원이 서로 돌보는 구조를 강조합니다.</li>
+<li><strong>W6 과제:</strong> 양주시 제안서 "문제 정의" 1쪽 작성</li>
+</ul>
+</div>
+<h1 id="7-the-mom-test">7. The Mom Test</h1>
+<p><span class="chap">롭 피츠패트릭 · 원서 (한국어판 미확인)</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>사람들은 예의상 거짓말을 합니다. <strong>내 아이디어가 아니라 그 사람의 실제 삶을 물어야</strong> 진짜 답을 얻습니다.</p>
+</div>
+<h2 id="_8">핵심 내용</h2>
+<div class="grid2">
+<div class="box">
+<p><span class="bt">3가지 규칙</span></p>
+<ol>
+<li>내 아이디어가 아니라 <strong>상대의 생활과 문제</strong>에 대해 이야기합니다.</li>
+<li>"앞으로 하시겠어요?" 같은 의견 말고 <strong>"지난번에 실제로 어떻게 하셨어요?"</strong> 같은 과거 행동을 묻습니다.</li>
+<li><strong>말은 적게, 듣기는 많이</strong> 합니다.</li>
+</ol>
+</div>
+<div class="box warn">
+<p><span class="bt">믿으면 안 되는 답</span></p>
+<ul>
+<li>칭찬: "좋네요!", "꼭 필요하겠어요"</li>
+<li>일반론: "보통 그래요", "다들 그렇죠"</li>
+<li>미래 약속: "나중에 할게요", "생기면 쓸게요"</li>
+<li>아이디어: "이런 기능이 있으면 좋겠다"</li>
+</ul>
+</div>
+</div>
+<ul>
+<li><strong>진짜 신호는 약속입니다.</strong> 시간(다시 만나기), 체면(지인 소개), 돈(선결제)을 내놓는지를 봅니다.</li>
+<li>인터뷰 전에 <strong>꼭 알아야 할 질문 3개</strong>를 정하고, 격식 없는 대화처럼 진행합니다.</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용 — 질문 바꾸기</span></p>
+<table>
+<thead>
+<tr>
+<th>나쁜 질문 (예의상 답이 나옴)</th>
+<th>좋은 질문 (진짜 답이 나옴)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>안부 서비스를 이용하시겠어요?</td>
+<td>지난달 어머님과 연락이 안 됐을 때 어떻게 하셨어요?</td>
+</tr>
+<tr>
+<td>월 13만 원이면 괜찮으세요?</td>
+<td>부모님 일로 지난 석 달 동안 실제로 쓰신 돈이 있나요?</td>
+</tr>
+<tr>
+<td>걷기 동아리가 생기면 나오시겠어요?</td>
+<td>최근 한 달 동안 가족 말고 누구와 밖에 나가셨어요?</td>
+</tr>
+<tr>
+<td>영상자서전 좋지 않나요?</td>
+<td>부모님 젊은 시절 사진을 마지막으로 본 게 언제예요?</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>마지막 질문은 <strong>"12월 파일럿에 신청하시겠어요?"</strong>로 실제 약속을 받아 봅니다.</li>
+<li><strong>W2 과제:</strong> 인터뷰 질문지에서 "~하시겠어요?" 질문을 모두 지우기</li>
+</ul>
+</div>
+<h1 id="8">8. 린 스타트업</h1>
+<p><span class="chap">에릭 리스 · 인사이트 · 2012</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>완벽하게 준비하지 말고 <strong>만들고 → 측정하고 → 배우는</strong> 고리를 최대한 빨리 돌려야 합니다.</p>
+</div>
+<h2 id="_9">핵심 내용</h2>
+<ul>
+<li><strong>MVP(최소 기능 제품):</strong> 배우는 데 필요한 가장 작은 형태로 먼저 내놓습니다.</li>
+<li><strong>목숨 건 가설 2가지:</strong> 고객이 정말 가치를 느끼는가(가치 가설), 어떻게 퍼지는가(성장 가설)를 먼저 검증합니다.</li>
+<li><strong>허영 지표 대신 행동 지표:</strong> 누적 가입자 수보다 재참여율·유료 전환율을 봅니다.</li>
+<li><strong>방향 전환 또는 유지:</strong> 데이터에 따라 정기적으로 판단합니다.</li>
+<li><strong>성장 엔진 3가지:</strong> 고객이 계속 머무는 것, 입소문, 광고비를 들이는 것</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용 — 파일럿별 검증 가설</span></p>
+<table>
+<thead>
+<tr>
+<th>파일럿</th>
+<th>날짜</th>
+<th>검증할 가설</th>
+<th>통과 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>무료 체험 걷기 + 사진 클래스</td>
+<td>12/12</td>
+<td>체험한 시니어가 유료 동아리에 등록한다</td>
+<td>체험자의 30% 이상 사전 등록</td>
+</tr>
+<tr>
+<td>안부 파일럿 10가구</td>
+<td>12/7~20</td>
+<td>자녀가 리포트를 받고 돈을 낼 마음이 생긴다</td>
+<td>유료 전환 의향 50% 이상</td>
+</tr>
+<tr>
+<td>엔딩노트 원데이 클래스</td>
+<td>12/17</td>
+<td>"죽음 준비" 주제도 밝게 풀면 참여한다</td>
+<td>만족도 4.3 이상, 영상자서전 상담 3건</td>
+</tr>
+<tr>
+<td>하이라이트 영상 공유</td>
+<td>12월 내내</td>
+<td>영상이 자녀 단톡방에서 새 문의를 부른다</td>
+<td>영상발 문의 10건</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>3월 말 관문</strong>(유료 회원 50명, 재참여율 35%)이 방향 전환 또는 유지를 판단하는 시점입니다.</li>
+<li><strong>W4 과제:</strong> 파일럿마다 "검증할 가설 1개" 정하기</li>
+</ul>
+</div>
+<h1 id="9">9. 듀얼 브레인</h1>
+<p><span class="chap">이선 몰릭 · 상상스퀘어 · 원제 Co-Intelligence</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>AI는 위협도 만능도 아닌 <strong>함께 일하는 두 번째 뇌</strong>입니다. 가장 잘 쓰는 사람이 이깁니다.</p>
+</div>
+<h2 id="_10">핵심 내용</h2>
+<div class="box">
+<p><span class="bt">AI 활용 4원칙</span></p>
+<ol>
+<li><strong>모든 일에 AI를 일단 불러 봅니다.</strong> 써 봐야 어디까지 되는지 압니다.</li>
+<li><strong>사람이 최종 판단자로 남습니다.</strong></li>
+<li><strong>AI에게 역할을 줍니다.</strong> "너는 사회복지사 감독 아래 일하는 리포트 작성 도우미야"</li>
+<li><strong>지금 쓰는 AI가 앞으로 쓸 것 중 가장 못한 AI라고 생각합니다.</strong></li>
+</ol>
+</div>
+<ul>
+<li><strong>AI의 능력은 들쭉날쭉합니다.</strong> 어려운 일은 잘하는데 쉬운 일에서 틀리기도 하니, 직접 써 보며 경계를 익혀야 합니다.</li>
+<li>AI는 동료·과외 선생님·코치가 될 수 있습니다. 다만 <strong>그럴듯한 거짓말(환각)</strong>을 하므로 사실 확인이 필수입니다.</li>
+<li>AI 시대에는 <strong>판단력, 책임, 윤리, 공감</strong>이 더 가치 있어집니다.</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용 — AI와 사람의 역할 나누기</span></p>
+<table>
+<thead>
+<tr>
+<th>AI가 초안을 쓰는 일</th>
+<th>사람이 반드시 하는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>안부 주간 리포트</td>
+<td>리포트 검수 후 발송</td>
+</tr>
+<tr>
+<td>월간 소식지 원고</td>
+<td>어르신과의 첫 대화·첫 방문</td>
+</tr>
+<tr>
+<td>영상자서전 구성안·원고</td>
+<td>위기 상황 판단과 대응</td>
+</tr>
+<tr>
+<td>지원사업·기관 제안서</td>
+<td>법률·의료·세무 관련 판단</td>
+</tr>
+<tr>
+<td>숏폼 자막·편집 초안</td>
+<td>회원 얼굴이 나오는 영상의 공개 동의 확인</td>
+</tr>
+</tbody>
+</table>
+<p><strong>W8 과제:</strong> 안부 리포트·소식지 AI 작업 규칙 확정 (00권 13장 참고)</p>
+</div>
+<h1 id="10">10. 무기가 되는 스토리</h1>
+<p><span class="chap">도널드 밀러 · 윌북 · 2018</span></p>
+<div class="box sum">
+<p><span class="bt">한 줄 요지</span></p>
+<p>브랜드가 주인공이 되면 실패합니다. <strong>고객이 주인공, 브랜드는 길잡이</strong>여야 사람들이 귀를 기울입니다.</p>
+</div>
+<h2 id="7">핵심 내용 — 스토리 7단계</h2>
+<ol>
+<li><strong>주인공(고객)</strong>이</li>
+<li><strong>문제</strong>를 겪는데, 문제는 겉(외부), 마음(내부), 옳고 그름(철학) 세 층으로 나뉩니다.</li>
+<li><strong>길잡이</strong>를 만납니다. 길잡이는 공감과 실력을 함께 보여 줍니다.</li>
+<li>길잡이가 <strong>계획</strong>을 주고</li>
+<li><strong>행동을 촉구</strong>하면</li>
+<li><strong>실패</strong>를 피하고</li>
+<li><strong>성공</strong>에 이릅니다.</li>
+</ol>
+<ul>
+<li><strong>사람들은 혼란스러우면 떠납니다.</strong> 홈페이지 첫 화면에서 "무엇을 주는지, 내 삶이 어떻게 나아지는지, 어떻게 사는지"가 5초 안에 보여야 합니다.</li>
+<li>회사를 한 문장으로 소개하는 <strong>'한 줄 메시지'</strong>를 만듭니다.</li>
+</ul>
+<div class="box green">
+<p><span class="bt">온벗 적용 — 안부 서비스 스토리 예시</span></p>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주인공</td>
+<td>양주에 혼자 계신 아버지가 걱정되는 49세 아들</td>
+</tr>
+<tr>
+<td>문제 (겉)</td>
+<td>연락이 안 될 때가 있다</td>
+</tr>
+<tr>
+<td>문제 (마음)</td>
+<td>자주 못 가는 죄책감</td>
+</tr>
+<tr>
+<td>문제 (옳고 그름)</td>
+<td>부모님이 혼자 외롭게 계셔선 안 된다</td>
+</tr>
+<tr>
+<td>길잡이</td>
+<td>사회복지사·요양보호사이자 25년 PD인 조피디 (공감 + 실력)</td>
+</tr>
+<tr>
+<td>계획</td>
+<td>① 무료 상담 ② 첫 방문 ③ 매주 리포트</td>
+</tr>
+<tr>
+<td>행동 촉구</td>
+<td>"첫 달 50% — 지금 상담 신청"</td>
+</tr>
+<tr>
+<td>피하는 실패</td>
+<td>아무도 모르게 혼자 아프신 아버지</td>
+</tr>
+<tr>
+<td>성공</td>
+<td>매주 금요일, 웃는 아버지의 영상을 받는 아들</td>
+</tr>
+</tbody>
+</table>
+<p><strong>한 줄 메시지:</strong> "주말에 못 가는 마음, 온벗이 대신 들여다보고 매주 영상으로 전해 드립니다."</p>
+<p><strong>W7 과제:</strong> 랜딩페이지 첫 화면 문구 3안 (클럽·안부·라이프노트 각 1안)</p>
+</div>
+<h1 id="10_1">10권을 관통하는 핵심 키워드</h1>
+<p><span class="chap">SUMMARY</span></p>
+<table>
+<thead>
+<tr>
+<th>묶음</th>
+<th>키워드</th>
+<th>책</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>관점</td>
+<td>필요보다 욕구 · '노인 전용' 금지 · 일본 선배의 42개 법칙</td>
+<td>1 · 2</td>
+</tr>
+<tr>
+<td>시장</td>
+<td>리:텐션 · 라이프 ROI · 알파쉽 · 아이템 창고</td>
+<td>3 · 4</td>
+</tr>
+<tr>
+<td>관계</td>
+<td>목적 있는 모임 · 첫 5분과 마지막 5분 · 외로움은 사회 문제</td>
+<td>5 · 6</td>
+</tr>
+<tr>
+<td>검증</td>
+<td>과거 행동을 묻고 약속으로 확인 · 만들고 측정하고 배우기</td>
+<td>7 · 8</td>
+</tr>
+<tr>
+<td>도구</td>
+<td>AI는 동료, 판단은 사람 · 고객이 주인공, 브랜드는 길잡이</td>
+<td>9 · 10</td>
+</tr>
+</tbody>
+</table>
+<div class="kw"><span class="hot">필요보다 욕구</span><span class="hot">외로움은 사회 문제</span><span class="hot">목적 있는 모임</span><span class="hot">과거 행동을 물어라</span><span class="hot">작게 만들고 검증</span><span>리:텐션</span><span>라이프 ROI</span><span>알파쉽</span><span>AI는 동료, 판단은 사람</span><span>고객이 주인공, 브랜드는 길잡이</span><span>'노인 전용' 금지</span></div>
+
+<div class="box sum">
+<p><span class="bt">10권을 한 문장으로</span></p>
+<p><strong>시니어의 욕구를 보고(1·2), 2027년의 언어로 말하며(3·4), 목적 있는 모임으로 외로움을 풀고(5·6), 작게 검증하며(7·8), AI와 스토리로 알린다(9·10).</strong></p>
+</div>
+<div class="small">
+<p><strong>출처</strong></p>
+<ul>
+<li>노인을 위한 시장은 없다: <a href="https://www.mt.co.kr/culture/2019/03/15/2019031413074615495">머니투데이</a></li>
+<li>초고령사회 일본이 사는 법: <a href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000011274542">교보문고</a></li>
+<li>트렌드 코리아 2027: <a href="https://www.dailian.co.kr/news/view/1696181/">데일리안</a>, <a href="https://www.hankyung.com/article/202609304006g">한국경제</a></li>
+<li>2022 대한민국이 열광할 시니어 트렌드: <a href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000002943308">교보문고</a></li>
+<li>고립의 시대: <a href="https://m.seoul.co.kr/news/2021/11/19/20211119021006">서울신문</a></li>
+<li>듀얼 브레인: <a href="https://m.etnews.com/20261023000106">전자신문</a></li>
+<li>The Mom Test: <a href="https://eopla.net/magazines/34825">이오플랫폼</a></li>
+<li>1·5·7·8·9·10번의 핵심 내용은 작성자 지식을 바탕으로 정리했습니다. 세부 표현은 원문과 다를 수 있습니다.</li>
+</ul>
+</div>
+</div></body></html>
