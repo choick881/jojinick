@@ -1,4 +1,9 @@
-"""② 영상 정리 — 녹화 도구 가림 · 1920×1080 · 30fps · 음량 -16 LUFS (2단계 측정)."""
+"""② 영상 정리 — 녹화 도구 가림 · 1920×1080 · 30fps · 음량 -16 LUFS (2단계 측정) · 립싱크 보정(선택).
+
+립싱크 보정 (job.yaml 의 av_offset_ms — 없으면 보정하지 않음)
+  auto   입모양과 목소리를 맞대어 어긋남을 재고 자동으로 맞춘다 (lipsync.py · mediapipe 필요)
+  숫자   직접 보정 (ms).  + = 소리가 늦을 때 앞당김,  - = 소리가 이를 때(입이 늦을 때) 늦춤
+"""
 
 from __future__ import annotations
 
@@ -64,5 +69,36 @@ def run_stage(job: Job, log=print) -> dict:
     got = json.loads(m.group(0)) if m else {}
     lufs, tp = float(got.get("input_i", 0)), float(got.get("input_tp", 0))
     log(f"      결과 {lufs:.1f} LUFS · 최고음 {tp:.1f} dBTP")
-    return {"file": "clean.mp4", "lufs": lufs, "true_peak": tp, "masked": bool(box),
-            "_summary": f"{W}×{H} {FPS}fps · {lufs:.1f} LUFS" + (" · 위젯 가림" if box else "")}
+    sync = _lipsync(job, dst, float(ing.get("duration") or 0), log)
+    return {"file": "clean.mp4", "lufs": lufs, "true_peak": tp, "masked": bool(box), "av_sync": sync,
+            "_summary": f"{W}×{H} {FPS}fps · {lufs:.1f} LUFS" + (" · 위젯 가림" if box else "")
+            + (f" · 립싱크 {sync['applied_ms']:+d}ms" if sync.get("applied_ms") else "")}
+
+
+def _lipsync(job: Job, dst, dur: float, log) -> dict:
+    mode = job.get("av_offset_ms", 0)
+    if not mode:
+        return {"mode": 0}
+    from . import lipsync
+    fix, info = 0, {"mode": mode}
+    if mode == "auto":
+        m = lipsync.measure(dst, dur, W, H, log)
+        info.update({k: v for k, v in m.items() if k in ("ok", "lag_ms", "spread_ms", "fix_ms", "reason", "windows")})
+        if m.get("ok"):
+            fix = int(m["fix_ms"])
+            if not fix:
+                log(f"      립싱크: 입이 소리보다 {m['lag_ms']:+d}ms — 사람이 못 느끼는 범위라 그대로 둡니다")
+        else:
+            log(f"      ⚠ 립싱크 자동 측정 불가: {m.get('reason')} → 보정 없이 진행 (job.yaml 의 av_offset_ms 에 직접 숫자를 넣을 수 있음)")
+    else:
+        try:
+            fix = int(mode)
+        except (TypeError, ValueError) as e:
+            raise StageError(f"av_offset_ms 는 auto 또는 숫자(ms)여야 합니다: {mode}") from e
+    if fix:
+        tmp = job.work / "clean_sync.mp4"
+        lipsync.apply(dst, tmp, fix, dur)
+        tmp.replace(dst)
+        log(f"      립싱크 보정: 소리를 {abs(fix)}ms {'앞당김' if fix > 0 else '늦춤'} (영상은 그대로)")
+    info["applied_ms"] = fix
+    return info

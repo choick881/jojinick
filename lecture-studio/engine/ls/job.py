@@ -67,6 +67,7 @@ source_language: ko
 target_languages: [en]
 glossary: {{}}
 mask: auto
+av_offset_ms: auto            # 립싱크(입모양-목소리) 자동 보정 | 0 = 끄기 | 숫자 = 직접(ms, + 소리 앞당김 / - 소리 늦춤)
 quiz: {{ count: 3 }}
 slides: {{ sensitivity: normal }}            # low | normal | high — 슬라이드 전환 감지 민감도
 chapters: {{ min_sec: 45, max_count: 8 }}    # 챕터 최소 길이(초)·최대 개수

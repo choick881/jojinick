@@ -3,6 +3,7 @@
 
   python engine/setup_models.py            # medium (정확도 우선, 기본값)
   python engine/setup_models.py small      # small  (속도 우선 — 저사양 PC)
+  python engine/setup_models.py lipsync    # 립싱크 자동 보정용 얼굴 모델 (3.7MB, pip install mediapipe 도 필요)
 
 sherpa-onnx 공식 GitHub 릴리스의 압축 파일을 받으면서 필요한 int8 파일만 꺼낸다 (압축 파일은 저장하지 않음).
 모델은 이 컴퓨터에만 저장되고, 받아쓰기도 이 컴퓨터 안에서만 한다.
@@ -24,8 +25,18 @@ def _get(url: str, dst: Path) -> None:
         shutil.copyfileobj(r, f)
 
 
+FACE = "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task"
+
+
 def main(size: str = "medium") -> None:
     MODELS.mkdir(exist_ok=True)
+    if size == "lipsync":
+        dst = MODELS / "face_landmarker.task"
+        if not dst.exists():
+            print("얼굴 모델(MediaPipe Face Landmarker) 받는 중 …")
+            _get(FACE, dst)
+        print(f"완료 → {dst}   (pip install mediapipe 도 필요 · Linux 는 libegl1 도)")
+        return
     vad = MODELS / "silero_vad.onnx"
     if not vad.exists():
         print("말소리 구간 모델(silero_vad) 받는 중 …")

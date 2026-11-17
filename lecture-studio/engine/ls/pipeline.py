@@ -71,6 +71,8 @@ def _key(job: Job, idx: int, prev_key: str, stages: list | None = None) -> str:
             parts.append(file_sig(f))
     if name == "outputs":
         parts.append([file_sig(f) for f in sorted(job.work.glob("review_*.json"))])
+    if name == "clean" and job.data.get("av_offset_ms"):   # 립싱크 보정 설정이 바뀌면 다시
+        parts.append(job.data.get("av_offset_ms"))
     if name == "slides":  # 함께 받은 슬라이드 파일(PDF)
         parts.append([file_sig(f) for f in sorted(job.input.glob("*.pdf"))])
     for pat in REVIEW_DEPS.get(name, []):
