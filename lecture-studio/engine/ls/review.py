@@ -171,7 +171,8 @@ def save(job: Job, kind: str, body: dict) -> dict:
         rec["study"] = {k: body.get("study", {}).get(k) for k in ("learning_goals", "summary_ko", "summary_en", "keywords", "quiz")}
     elif kind == "chapters":
         rec["chapters"] = [{"start": float(c["start"]), "title_ko": c.get("title_ko", ""), "title_en": c.get("title_en", ""),
-                            "type": c.get("type", "개념")} for c in body.get("chapters") or []]
+                            "type": c.get("type", "개념"), "merged_titles": c.get("merged_titles") or []}
+                           for c in body.get("chapters") or []]
     elif kind == "cuts":
         rec["approved"] = [str(x) for x in body.get("approved") or []]
         rec["rejected"] = [str(x) for x in body.get("rejected") or []]

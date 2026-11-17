@@ -40,12 +40,39 @@ def _tokens(text: str) -> list[str]:
 def text_cuts(segs: list[dict], notes: list | None = None) -> list[dict]:
     """받아쓴 글만으로 찾는 컷 후보 (NG·혼잣말, 다시 말하기, 군말). notes 에는 '참고'를 덧붙인다."""
     out, notes = [], notes if notes is not None else []
+    # NG 낱말이 있는 구간 + 짧은 말(4초·20자 이하)이 ① NG 와 NG 사이에 끼었거나 ② NG 뒤 영상 마지막이면
+    # 한 덩어리 'NG 구간'으로 묶는다. NG 앞의 강의 문장은 묶지 않는다 (내용을 잘라낼 위험).
+    ng = {k: [w for w in NG_WORDS if w.lower() in s["text"].lower()] for k, s in enumerate(segs)}
+    ng = {k: v for k, v in ng.items() if v}
+    grown = True
+    while grown:
+        grown = False
+        for k, seg in enumerate(segs):
+            if k in ng or k == 0:
+                continue
+            short = seg["end"] - seg["start"] <= 4.0 or len(seg["text"].strip()) <= 20
+            after = k - 1 in ng and seg["start"] - segs[k - 1]["end"] < 2.0
+            before = k + 1 in ng and segs[k + 1]["start"] - seg["end"] < 2.0
+            if short and after and (before or k == len(segs) - 1):
+                ng[k] = []
+                grown = True
+    blocks, cur = [], []
+    for k in sorted(ng):
+        if cur and (k != cur[-1] + 1 or segs[k]["start"] - segs[cur[-1]]["end"] >= 3.0):
+            blocks.append(cur)
+            cur = []
+        cur.append(k)
+    if cur:
+        blocks.append(cur)
+    for b in blocks:
+        words = list(dict.fromkeys(w for k in b for w in ng[k]))
+        text = " / ".join(segs[k]["text"].strip() for k in b)
+        out.append(dict(kind="NG·혼잣말 의심", a=max(0.0, segs[b[0]]["start"] - 0.2), b=segs[b[-1]]["end"] + 0.3,
+                        reason=f"녹화 중 말로 보임 ({', '.join(words[:3])})" + (f" · 이어진 말 {len(b)}구간" if len(b) > 1 else ""),
+                        text=text if len(text) <= 120 else text[:117] + "…"))
     for k, seg in enumerate(segs):
         t = seg["text"].strip()
-        ng = [w for w in NG_WORDS if w.lower() in t.lower()]
-        if ng:
-            out.append(dict(kind="NG·혼잣말 의심", a=max(0.0, seg["start"] - 0.2), b=seg["end"] + 0.3,
-                            reason=f"녹화 중 말로 보임 ({', '.join(ng[:3])})", text=t))
+        if k in ng:
             continue
         if k + 1 < len(segs):
             nxt = segs[k + 1]["text"].strip()

@@ -99,21 +99,30 @@ def run_stage(job: Job, log=print) -> dict:
         items.insert(0, {"start": 0.0, "title_ko": "", "title_en": "", "source": "시작"})
 
     # 짧은 챕터 합치기 → 개수 제한
-    def merge_short(lst):
-        out = []
-        for c in lst:
-            if out and c["start"] - out[-1]["start"] < min_sec:
-                if not out[-1]["title_ko"] and c["title_ko"]:
-                    out[-1].update({k: c[k] for k in ("title_ko", "title_en")})
-                out[-1]["source"] += " + 짧아서 합침"
-                continue
-            out.append(dict(c))
-        return out
-    items = merge_short(items)
+    # 짧은 챕터 합치기 → 개수 제한. 가장 짧은 챕터를 더 짧은 이웃과 합치고, 둘 중 '더 긴 쪽' 제목을 남긴다
+    # (앞 챕터 제목만 남기면 뒤의 핵심 챕터가 사라지기 때문). 합쳐진 제목은 merged_titles 에 남겨 검수 화면에서 고를 수 있게.
+    def lens(lst):
+        return [(lst[k + 1]["start"] if k + 1 < len(lst) else dur) - lst[k]["start"] for k in range(len(lst))]
+
+    def merge_at(lst, k):
+        L, n = lens(lst), len(lst)
+        j = 1 if k == 0 else k - 1 if k == n - 1 else (k - 1 if L[k - 1] <= L[k + 1] else k + 1)
+        a, b = min(k, j), max(k, j)
+        big, small = (lst[a], lst[b]) if L[a] >= L[b] else (lst[b], lst[a])
+        if not big["title_ko"]:
+            big, small = small, big
+        m = {**lst[a], "title_ko": big["title_ko"], "title_en": big.get("title_en", ""),
+             "source": big["source"] + " + 짧은 챕터 합침",
+             "merged_titles": [t for t in lst[a].get("merged_titles", [lst[a]["title_ko"]]) +
+                               lst[b].get("merged_titles", [lst[b]["title_ko"]]) if t]}
+        lst[a:b + 1] = [m]
+
+    while len(items) > 1 and min(lens(items)) < min_sec:
+        L = lens(items)
+        merge_at(items, L.index(min(L)))
     while len(items) > max_count:
-        lens = [(items[k + 1]["start"] if k + 1 < len(items) else dur) - items[k]["start"] for k in range(len(items))]
-        k = min(range(1, len(items)), key=lambda j: lens[j])
-        items.pop(k)
+        L = lens(items)
+        merge_at(items, L.index(min(L)))
 
     motion = slides.get("motion") or []
     n = len(items)

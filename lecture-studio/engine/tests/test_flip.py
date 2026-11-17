@@ -57,11 +57,28 @@ def test_text_cuts_ng_retake_filler():
     ]
     cuts = s10_trim.text_cuts(segs)
     got = [(c["kind"], c["text"][:6]) for c in cuts]
-    assert ("NG·혼잣말 의심", "왜 PPT를") in got
-    assert ("NG·혼잣말 의심", "야 미치겠다") in got
+    ng = [c for c in cuts if c["kind"] == "NG·혼잣말 의심"]
+    assert len(ng) == 1 and ng[0]["text"].startswith("왜 PPT를") and "미치겠다" in ng[0]["text"]   # 이어진 잡담 = 한 덩어리
+    assert ng[0]["a"] == 14.3 and ng[0]["b"] == 20.3
     assert ("다시 말하기", "수요가 늘면") in got
     assert ("군말", "음 어") in got
     assert not any(c["text"].startswith("공급 곡선") or c["text"].startswith("결국") for c in cuts)
+
+
+def test_ng_block_absorbs_short_chatter_between_and_at_end():
+    segs = [  # 3분50초 샘플의 실제 받아쓰기 끝부분
+        {"start": 203.5, "end": 209.4, "text": "과거에 효과적이었던 교수 방법이 지금도 똑같이 효과적이라고 보기는 어렵습니다."},
+        {"start": 210.3, "end": 216.7, "text": "결국 좋은 교수법이란... 왜 ppg를 안 넘겨? 아니야 다음 거에다 넘기는 거야"},
+        {"start": 217.9, "end": 220.1, "text": "아 이거 다 돼있어 이거는 지금 아이"},
+        {"start": 220.6, "end": 229.0, "text": "아이씨 아 나 앞까지 해 미안해 아니야 내가 지금 이거 넘기는 거 다시! 야 미치겠다 형"},
+        {"start": 230.6, "end": 233.0, "text": "내가 다 있어"},
+    ]
+    ng = [c for c in s10_trim.text_cuts(segs) if c["kind"] == "NG·혼잣말 의심"]
+    assert len(ng) == 1 and abs(ng[0]["a"] - 210.1) < 1e-6 and abs(ng[0]["b"] - 233.3) < 1e-6, ng
+    # NG 앞의 강의 문장은 묶지 않는다
+    short_before = [{"start": 0, "end": 2, "text": "네 좋습니다"}, {"start": 2.5, "end": 5, "text": "잠깐만 다시 할게요"}]
+    ng2 = [c for c in s10_trim.text_cuts(short_before) if c["kind"] == "NG·혼잣말 의심"]
+    assert len(ng2) == 1 and ng2[0]["a"] == 2.3
 
 
 def test_question_regex_keeps_thinking_time():

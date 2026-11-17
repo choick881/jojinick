@@ -146,7 +146,8 @@ function collectStudy() {
   s.keywords = $("#kw").value.split("\n").filter(x => x.trim()).map(l => { const [ko, en] = l.split("="); return {ko:(ko||"").trim(), en:(en||"").trim()}; });
   document.querySelectorAll("[data-q]").forEach(el => {
     const q = s.quiz[+el.dataset.q], k = el.dataset.k;
-    q[k] = k === "choices_ko" ? el.value.split("\n").map(x => x.trim()).filter(Boolean) : k === "evidence_start" ? parseT(el.value) : el.value;
+    if (k === "evidence_start") { if (el.value.trim() !== mmss(q.evidence_start||0)) q.evidence_start = parseT(el.value); return; }
+    q[k] = k === "choices_ko" ? el.value.split("\n").map(x => x.trim()).filter(Boolean) : el.value;
   });
   return {study: s};
 }
@@ -164,6 +165,8 @@ function renderChapters() {
       <button class="act small" data-here="${i}">지금 위치로</button>
       <button class="act small" data-del="${i}">지우기</button></div></div>
     <div class="row"><label>제목</label><input type="text" data-c="${i}" data-k="title_ko" value="${esc(c.title_ko)}"></div>
+    ${(c.merged_titles||[]).length > 1 ? `<div class="row"><label>합쳐진 제목</label><div class="thumbs">${c.merged_titles.map(t =>
+      `<button class="act small" data-pick="${i}" data-t="${esc(t)}">${esc(t)}</button>`).join("")}</div></div>` : ""}
     <div class="row"><label>English</label><input type="text" data-c="${i}" data-k="title_en" value="${esc(c.title_en)}"></div>
     <div class="row"><label>유형</label><select data-c="${i}" data-k="type">${types.map(t => `<option ${t===c.type?"selected":""}>${t}</option>`).join("")}</select></div>
     <div class="row"><label>근거</label><div class="muted">${esc(c.source||"")}${c.type_reason ? " · 유형: " + esc(c.type_reason) : ""}${c.title_candidate ? " · 제목은 첫 문장으로 만든 후보" : ""}</div></div>
@@ -173,7 +176,11 @@ function renderChapters() {
     `<button class="act" id="addch">+ 지금 위치에 챕터 추가</button>`;
 }
 function collectChapters() {
-  document.querySelectorAll("[data-c]").forEach(el => { const c = D.chapters[+el.dataset.c]; c[el.dataset.k] = el.dataset.k === "start" ? parseT(el.value) : el.value; });
+  document.querySelectorAll("[data-c]").forEach(el => {
+    const c = D.chapters[+el.dataset.c], k = el.dataset.k;
+    if (k === "start") { if (el.value.trim() !== mmss(c.start)) c.start = parseT(el.value); }   // 손대지 않았으면 소수점 시각 유지
+    else c[k] = el.value;
+  });
   D.chapters.sort((a, b) => a.start - b.start);
   return {chapters: D.chapters};
 }
@@ -208,6 +215,7 @@ function render(full=true) {
   document.querySelectorAll("[data-play]").forEach(b => b.onclick = () => play(b.dataset.play, b.dataset.until ? +b.dataset.until : null));
   document.querySelectorAll("[data-save]").forEach(b => b.onclick = () => save(cur, b.dataset.save, R[cur][1]()));
   document.querySelectorAll("[data-here]").forEach(b => b.onclick = () => { collectChapters(); D.chapters[+b.dataset.here].start = Math.round(v.currentTime*10)/10; render(); });
+  document.querySelectorAll("[data-pick]").forEach(b => b.onclick = () => { collectChapters(); D.chapters[+b.dataset.pick].title_ko = b.dataset.t; D.chapters[+b.dataset.pick].title_en = ""; render(); });
   document.querySelectorAll("[data-del]").forEach(b => b.onclick = () => { collectChapters(); D.chapters.splice(+b.dataset.del, 1); render(); });
   const add = $("#addch"); if (add) add.onclick = () => { collectChapters(); D.chapters.push({start: Math.round(v.currentTime*10)/10, title_ko:"", title_en:"", type:"개념", source:"교수님 추가"}); collectChapters(); render(); };
   document.querySelectorAll("[data-cut]").forEach(x => x.onchange = cutSum);
