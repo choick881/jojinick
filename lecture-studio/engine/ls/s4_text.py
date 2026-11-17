@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+import difflib
+import re
+
 from .job import Job
 from .llm import complete_json
 from .util import StageError, read_json
@@ -30,6 +33,25 @@ def _split_long(text: str, width: int, lines: int) -> list[str]:
     return _split_long(text[:cut + 1].strip(), width, lines) + _split_long(text[cut + 1:].strip(), width, lines)
 
 
+def _norm(t: str) -> str:
+    return re.sub(r"[^가-힣A-Za-z0-9]", "", t or "").lower()
+
+
+def mismatched(segs: list[dict], res: dict, thr: float = 0.45) -> list[int]:
+    """AI 결과(교정 글)가 받아쓴 글과 너무 다른 구간 번호. 받아쓰기를 다시 해 구간이 바뀌었는데
+    예전 결과 파일(llm_text.json)을 그대로 쓰면 글이 한두 구간씩 밀려 엉뚱한 시각에 붙는다 — 그걸 막는다."""
+    bad = []
+    for s in res.get("segments", []):
+        i = int(s["id"])
+        ko = "".join(p.get("ko") or "" for p in s.get("parts") or [])
+        if i >= len(segs) or not ko:
+            continue
+        a, b = _norm(segs[i]["text"]), _norm(ko)
+        if a and b and difflib.SequenceMatcher(None, a, b).ratio() < thr:
+            bad.append(i)
+    return bad
+
+
 def run_stage(job: Job, log=print) -> dict:
     asr = read_json(job.work / "asr.json")
     if not asr:
@@ -39,6 +61,15 @@ def run_stage(job: Job, log=print) -> dict:
                "glossary": job.glossary,
                "segments": [{"id": i, "start": s["start"], "end": s["end"], "text": s["text"]} for i, s in enumerate(segs)]}
     res = complete_json(job, "text", payload, log)
+    bad = mismatched(segs, res)
+    used = [s for s in res.get("segments", []) if s.get("parts")]
+    if used and len(bad) > max(2, 0.25 * len(used)):
+        raise StageError(
+            f"AI 결과의 글이 지금 받아쓰기와 맞지 않습니다 (구간 {len(bad)}/{len(used)}곳: {bad[:8]}…).\n"
+            "  받아쓰기를 다시 해서 구간이 바뀐 것으로 보입니다. 이대로 쓰면 자막이 엉뚱한 시각에 붙습니다.\n"
+            f"  → work/llm_request_text.json 로 결과를 다시 만들어 input/llm_text.json 에 저장하세요.")
+    for i in bad:
+        log(f"      ⚠ 구간 {i}: AI 교정 글이 받아쓴 글과 많이 다릅니다 — 검수 때 확인")
     by_id = {int(s["id"]): s.get("parts") or [] for s in res.get("segments", [])}
     dropped = {int(s["id"]) for s in res.get("segments", []) if not s.get("parts")}   # 빈 parts = 겹친 조각이라 버림
 

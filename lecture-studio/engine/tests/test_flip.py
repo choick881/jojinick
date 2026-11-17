@@ -6,7 +6,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from ls import pipeline, review, s8_slides, s9_chapters, s10_trim  # noqa: E402
+from ls import pipeline, review, s4_text, s8_slides, s9_chapters, s10_trim  # noqa: E402
 from ls.job import KINDS  # noqa: E402
 
 
@@ -85,6 +85,15 @@ def test_question_regex_keeps_thinking_time():
     assert s10_trim.QUESTION.search("좋은 가르침이란 과연 무엇일까?")
     assert s10_trim.QUESTION.search("여러분은 어떻게 생각하나요")
     assert not s10_trim.QUESTION.search("가격이 오릅니다.")
+
+
+def test_stale_ai_text_is_detected():
+    segs = [{"text": t} for t in ["안녕하십니까", "한양대학교 교육혁신처의 이종호입니다", "먼저 바쁘신 가운데 감사드립니다",
+                                  "아울러 뜻깊은 자리를 마련해 주셔서", "그 과정에서 늘 품고 있던 질문"]]
+    good = {"segments": [{"id": i, "parts": [{"ko": s["text"]}]} for i, s in enumerate(segs)]}
+    assert s4_text.mismatched(segs, good) == []
+    shifted = {"segments": [{"id": i, "parts": [{"ko": segs[i + 1]["text"]}]} for i in range(len(segs) - 1)]}
+    assert len(s4_text.mismatched(segs, shifted)) >= 3               # 한 칸씩 밀린 예전 결과 → 대부분 불일치
 
 
 def test_tmap_shifts_after_cuts():
