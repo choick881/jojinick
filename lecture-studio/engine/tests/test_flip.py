@@ -96,6 +96,17 @@ def test_stale_ai_text_is_detected():
     assert len(s4_text.mismatched(segs, shifted)) >= 3               # 한 칸씩 밀린 예전 결과 → 대부분 불일치
 
 
+def test_no_ai_backend_keeps_asr_text():
+    from ls import llm
+    class J:
+        data = {"llm": {"backend": "none"}}
+        def get(self, k, d=None): return self.data.get(k, d)
+    r = llm.complete_json(J(), "text", {"segments": [{"id": 0, "text": "안녕하세요"}]}, log=lambda *_: None)
+    assert r["segments"][0]["parts"] == [{"ko": "안녕하세요", "en": ""}]
+    st = llm.complete_json(J(), "study", {}, log=lambda *_: None)
+    assert st["_none"] and st["quiz"] == []
+
+
 def test_tmap_shifts_after_cuts():
     rm = [[10.0, 13.0], [20.0, 22.0]]
     assert review.tmap(5, rm) == 5

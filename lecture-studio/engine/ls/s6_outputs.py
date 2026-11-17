@@ -105,7 +105,7 @@ def run_stage(job: Job, log=print) -> dict:
             ["5%", "13%", "38%", "44%"])
     docs["자막스크립트_한영"] = d
 
-    if study:
+    if study and (study.get("summary_ko") or study.get("quiz")):   # AI 미사용이면 학습지는 만들지 않음
         for with_ans, nm in ((False, "학습지_학생용"), (True, "학습지_교수용_정답포함")):
             d = Doc(f"{title} — 학습지" + (" (교수용·정답 포함)" if with_ans else " (학생용)"),
                     base_meta + ([note("study", "ko")] if with_ans else []))

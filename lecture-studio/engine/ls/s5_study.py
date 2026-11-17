@@ -15,6 +15,10 @@ def run_stage(job: Job, log=print) -> dict:
     payload = {"title": job.get("title"), "lecturer": job.lecturer, "kind": job.kind_label, "quiz_count": n,
                "transcript": [{"start": c["start"], "ko": c["ko"].replace("\n", " ")} for c in txt["cues"]]}
     res = complete_json(job, "study", payload, log)
+    if res.get("_none"):        # AI 미사용: 요약·퀴즈 없이 진행 (챕터는 슬라이드 경계로 만든다)
+        res["review_status"] = "AI 미사용"
+        res["_summary"] = "AI 미사용 — 요약·퀴즈 없음"
+        return res
 
     problems = []
     quiz = res.get("quiz") or []

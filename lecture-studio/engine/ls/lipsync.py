@@ -179,7 +179,8 @@ def measure(path, duration: float, width: int, height: int, log=print) -> dict:
     crop = _crop_for(face, width, height)
     wins = []
     for m in mids:
-        dur = min(WIN_SEC, duration - 2)
+        # 긴 영상은 세 구간(60초씩), 짧은 영상(2.5분 이하)은 전체를 한 구간으로 — 60초만으로는 근거가 부족하다
+        dur = min(WIN_SEC, duration - 2) if len(mids) > 1 else max(10.0, duration - 2)
         t0 = max(0.0, min(m - dur / 2, duration - dur - 1))
         ts, v = lip_series(path, crop, t0, dur)
         ta, a = audio_env(path, t0, dur)

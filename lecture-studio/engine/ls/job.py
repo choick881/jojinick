@@ -45,7 +45,7 @@ consent:                      # 하나라도 비어 있으면 AI 단계를 시�
   lecturer_agreed: false      # 교수님이 AI 후반작업·글 전송에 동의했습니다
   external_ai_text: false     # 번역·요약·퀴즈를 위해 '글'을 외부 AI 서비스(Claude)에 보내도 됩니다
 asr: {{ backend: sherpa-whisper, model: medium }}   # sherpa-whisper | faster-whisper | words-file
-llm: {{ backend: file }}                            # anthropic (API 키 필요) | file (직접 작성한 결과)
+llm: {{ backend: file }}                            # anthropic (API 키 필요) | file (직접 작성한 결과) | none (AI 미사용)
 """
 
 

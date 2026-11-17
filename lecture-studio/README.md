@@ -3,7 +3,15 @@
 촬영한 강의 영상 1편 = 작업 1건. 영상을 넣으면 **자막(한/영) · 요약 · 퀴즈 · 강의 스크립트 · 자막 스크립트 · 인쇄용 PDF** 가 나옵니다.
 `profile: flip` 작업은 여기에 **슬라이드 전환 감지 · 챕터 · 군더더기 컷 제안 · 교수 검수 화면**이 더해집니다 (플립러닝 사전학습 영상용).
 
-## 설치 (처음 한 번)
+## Windows PC 에서 쓰기 (교수님용 · 권장)
+1. 이 폴더를 PC 에 둡니다 (예: `C:\강의편집기`).
+2. `windows\1_설치하기.bat` 더블클릭 → Python 3.12·ffmpeg·받아쓰기 모델을 이 폴더 안에 설치하고 바탕화면에 「강의 편집기」를 만듭니다.
+3. 「강의 편집기」 위에 강의 영상을 **끌어다 놓기** → 제목·성함 입력 → 자동 처리 → 검수 화면 → 다시 만들기.
+   - 영상은 복사하지 않고 원래 자리에서 읽습니다 → **용량 제한 없음** (60분 이상 강의도 가능).
+   - API 키가 없거나 학교가 외부 AI 를 막으면 `AI 미사용`으로 동작 (자막 = 받아쓴 글, 요약·퀴즈 없음).
+자세한 내용: `windows\사용설명서.txt`
+
+## 설치 (처음 한 번 · 개발자용)
 ```
 python -m venv .venv && .venv/bin/pip install sherpa-onnx numpy pyyaml python-docx pillow   # Windows: .venv\Scripts\pip
 python engine/setup_models.py          # 받아쓰기 모델 (medium, 약 940MB) — 저사양 PC 는: setup_models.py small
@@ -18,6 +26,7 @@ python engine/ls_cli.py run my-lecture                  # 끝까지 실행 (바�
 python engine/ls_cli.py review my-lecture               # 교수 검수 화면 → http://127.0.0.1:8765
 python engine/ls_cli.py run my-lecture                  # 검수·승인 내용을 반영해 산출물 다시 만들기
 python engine/ls_cli.py status my-lecture               # 단계별 상태
+python engine/studio.py 영상.mp4                         # 대화식 실행 (Windows 의 끌어다 놓기와 같음)
 ```
 
 ## 단계

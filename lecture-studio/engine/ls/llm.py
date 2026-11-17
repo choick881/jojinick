@@ -4,6 +4,7 @@
   anthropic  Claude API 로 '글'을 보내 결과를 받는다.  환경변수 ANTHROPIC_API_KEY 필요 (키는 코드·작업서에 쓰지 않는다).
              모델은 LS_MODEL 환경변수로 바꿀 수 있다.  외부 전송 동의(consent.external_ai_text)가 있어야 한다.
   file       input/llm_<작업>.json 에 미리 써 둔 결과를 그대로 쓴다 (API 키가 없을 때·시연·검수 후 재사용).
+  none       AI 를 쓰지 않는다. 자막 = 받아쓴 글 그대로(번역 없음), 요약·퀴즈 없음. 아무것도 외부로 보내지 않는다.
              처음 실행하면 work/llm_request_<작업>.json 에 'AI 에게 보낼 요청'을 만들어 준다.
 """
 
@@ -42,7 +43,16 @@ def complete_json(job: Job, task: str, payload: dict, log=print) -> dict:
         return _file(job, task, payload, log)
     if backend == "anthropic":
         return _anthropic(job, task, payload, log)
+    if backend == "none":
+        return _none(task, payload, log)
     raise StageError(f"알 수 없는 AI 연결 방식: {backend}")
+
+
+def _none(task: str, payload: dict, log) -> dict:
+    log("      AI 미사용 — 받아쓴 글 그대로 (검수 화면에서 고칠 수 있음)")
+    if task == "text":
+        return {"segments": [{"id": s["id"], "parts": [{"ko": s["text"], "en": ""}]} for s in payload.get("segments", [])]}
+    return {"learning_goals": [], "summary_ko": "", "summary_en": "", "keywords": [], "chapters": [], "quiz": [], "_none": True}
 
 
 def _file(job: Job, task: str, payload: dict, log) -> dict:
