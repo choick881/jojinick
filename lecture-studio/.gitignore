@@ -1,0 +1,7 @@
+.venv/
+models/
+__pycache__/
+jobs/*/work/
+jobs/*/out/
+jobs/*/input/*.mp4
+jobs/*/*.zip
