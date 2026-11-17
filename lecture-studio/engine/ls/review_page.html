@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>교수 검수 화면</title>
+<style>
+:root{--ink:#1b2430;--muted:#5b6677;--line:#d8dee8;--bg:#f4f6f9;--card:#fff;--navy:#0f2a4a;--blue:#2b6cb0;--ok:#1f7a4d;--okbg:#e6f4ec;--wait:#9a5b00;--waitbg:#fff4df;--keep:#8a4b00;--keepbg:#fff1d6;--sel:#eaf2fd}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Pretendard","Apple SD Gothic Neo","Malgun Gothic",sans-serif}
+header{background:var(--navy);color:#fff;padding:12px 20px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+header h1{font-size:18px;margin:0;font-weight:800}
+header .who{opacity:.8;font-size:14px}
+.wrap{display:grid;grid-template-columns:minmax(320px,44%) 1fr;gap:16px;padding:16px;max-width:1600px;margin:0 auto}
+@media (max-width:900px){.wrap{grid-template-columns:1fr}}
+.player{position:sticky;top:12px;align-self:start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px}
+video{width:100%;border-radius:6px;background:#000}
+.now{font-size:14px;color:var(--muted);margin-top:6px}
+.help{font-size:14px;color:var(--muted);background:#fff;border:1px dashed var(--line);border-radius:8px;padding:10px 12px;margin-top:10px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.tab{border:1px solid var(--line);background:#fff;border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer;display:flex;gap:8px;align-items:center}
+.tab[aria-selected=true]{border-color:var(--blue);background:var(--sel);font-weight:700}
+.badge{font-size:12px;border-radius:99px;padding:1px 8px;font-weight:700;white-space:nowrap}
+.b-wait{background:var(--waitbg);color:var(--wait)}.b-ok{background:var(--okbg);color:var(--ok)}.b-keep{background:var(--keepbg);color:var(--keep)}.b-cut{background:#fde8e8;color:#a12a2a}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px}
+.bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:12px;position:sticky;top:0;background:var(--card);padding:6px 0;z-index:2;border-bottom:1px solid var(--line)}
+.bar .sp{flex:1}
+button.act{font:inherit;border-radius:8px;padding:8px 14px;cursor:pointer;border:1px solid var(--line);background:#fff}
+button.primary{background:var(--ok);border-color:var(--ok);color:#fff;font-weight:700}
+button.small{font-size:13px;padding:3px 8px}
+.t{font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700;cursor:pointer;white-space:nowrap;background:none;border:0;font:inherit;font-size:14px;padding:0}
+table{width:100%;border-collapse:collapse}
+td,th{border-bottom:1px solid var(--line);padding:6px;vertical-align:top;text-align:left}
+th{font-size:13px;color:var(--muted);font-weight:600}
+tr.cur td{background:var(--sel)}
+textarea,input[type=text],select{width:100%;font:inherit;font-size:15px;border:1px solid var(--line);border-radius:6px;padding:6px 8px;background:#fff;color:var(--ink)}
+textarea{resize:vertical;min-height:40px}
+.long{border-color:#d9822b;background:#fffaf2}
+.card{border:1px solid var(--line);border-radius:8px;padding:12px;margin-bottom:10px}
+.card h3{margin:0 0 8px;font-size:16px}
+.row{display:grid;grid-template-columns:110px 1fr;gap:8px;align-items:start;margin-bottom:6px}
+.row label{font-size:14px;color:var(--muted);padding-top:7px}
+.muted{color:var(--muted);font-size:14px}
+.thumbs{display:flex;gap:4px;flex-wrap:wrap}.thumbs img{width:96px;border-radius:4px;border:1px solid var(--line)}
+.cut{display:grid;grid-template-columns:32px 1fr auto;gap:10px;align-items:start}
+.cut input[type=checkbox]{width:22px;height:22px;margin-top:4px}
+.why{background:var(--keepbg);color:var(--keep);border-radius:6px;padding:4px 8px;font-size:14px;margin-top:4px}
+.sum{font-weight:700}
+.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:var(--navy);color:#fff;padding:10px 18px;border-radius:8px;display:none}
+.empty{color:var(--muted);padding:20px;text-align:center}
+</style>
+</head>
+<body>
+<header><h1 id="title">교수 검수 화면</h1><span class="who" id="who"></span></header>
+<div class="wrap">
+  <div class="player">
+    <video id="v" src="/video" controls preload="metadata"></video>
+    <div class="now" id="now">시간을 누르면 그 장면부터 재생합니다.</div>
+    <div class="help">
+      <b>검수 방법</b><br>
+      ① 탭마다 내용을 확인하고 고칩니다. ② <b>임시 저장</b>은 고친 내용만 저장합니다(상태는 '검토 대기').
+      ③ <b>승인</b>을 눌러야 확정됩니다. ④ 다 마치면 작업을 다시 실행하세요: <code>ls_cli.py run 작업ID</code><br>
+      AI 결과는 승인 전까지 모든 산출물에 '검토 대기'로 표시됩니다. 이 화면은 이 컴퓨터 안에서만 열립니다.
+    </div>
+  </div>
+  <div>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <div class="panel" id="panel"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const K = {text:"자막", study:"요약·퀴즈", chapters:"챕터", cuts:"군더더기 컷"};
+let D = null, cur = "text";
+const $ = (s, r=document) => r.querySelector(s);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const mmss = s => { s = Math.max(0, Math.round(+s||0)); return Math.floor(s/60) + ":" + String(s%60).padStart(2,"0"); };
+const parseT = s => { s = String(s).trim(); if (s.includes(":")) { const [m, x] = s.split(":"); return (+m)*60 + (+x); } return +s; };
+const v = $("#v");
+let stopAt = null;
+function play(t, until) { v.currentTime = Math.max(0, +t); stopAt = until ?? null; v.play(); }
+v.addEventListener("timeupdate", () => {
+  if (stopAt !== null && v.currentTime >= stopAt) { v.pause(); stopAt = null; }
+  $("#now").textContent = "현재 " + mmss(v.currentTime);
+  if (cur === "text") {
+    document.querySelectorAll("tr[data-s]").forEach(tr => tr.classList.toggle("cur", v.currentTime >= +tr.dataset.s && v.currentTime < +tr.dataset.e));
+  }
+});
+function toast(m) { const t = $("#toast"); t.textContent = m; t.style.display = "block"; setTimeout(() => t.style.display = "none", 2600); }
+const badge = st => `<span class="badge ${st === "승인" ? "b-ok" : "b-wait"}">${st}</span>`;
+function tabs() {
+  $("#tabs").innerHTML = Object.entries(K).filter(([k]) => D.kinds.includes(k)).map(([k, l]) =>
+    `<button class="tab" role="tab" aria-selected="${k===cur}" data-k="${k}">${l} ${badge(D.status[k])}</button>`).join("");
+  document.querySelectorAll(".tab").forEach(b => b.onclick = () => { cur = b.dataset.k; render(); });
+}
+function bar(note) {
+  return `<div class="bar"><span>${badge(D.status[cur])}</span><span class="muted">${note||""}</span><span class="sp"></span>
+  <button class="act" data-save="검토 대기">임시 저장</button><button class="act primary" data-save="승인">승인</button></div>`;
+}
+async function save(kind, status, body) {
+  const r = await fetch("/api/save/" + kind, {method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({...body, status})});
+  if (!r.ok) { toast("저장하지 못했습니다: " + await r.text()); return; }
+  D.status[kind] = status; tabs(); render(false);
+  toast(status === "승인" ? `${K[kind]} 승인했습니다` : `${K[kind]} 임시 저장했습니다 (검토 대기)`);
+}
+// ---------------- 자막
+function renderText() {
+  if (!D.cues.length) return `<div class="empty">자막이 아직 없습니다.</div>`;
+  const rows = D.cues.map((c, i) => {
+    const longKo = (c.ko||"").split("\n").some(l => l.length > 20);
+    return `<tr data-s="${c.start}" data-e="${c.end}"><td><button class="t" data-play="${c.start}">${mmss(c.start)}</button><div class="muted">#${c.i??i+1}</div></td>
+    <td><textarea data-i="${i}" data-k="ko" rows="2" class="${longKo?"long":""}">${esc(c.ko)}</textarea></td>
+    <td><textarea data-i="${i}" data-k="en" rows="2">${esc(c.en)}</textarea></td></tr>`;
+  }).join("");
+  const warn = D.text_warnings.length ? `경고 ${D.text_warnings.length}건 · ` : "";
+  return bar(`${warn}${D.cues.length}장면 · 주황 칸 = 한 줄이 너무 김`) +
+    `<table><thead><tr><th style="width:70px">시간</th><th>한국어</th><th>English</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function collectText() {
+  document.querySelectorAll("textarea[data-i]").forEach(t => D.cues[+t.dataset.i][t.dataset.k] = t.value);
+  return {cues: D.cues};
+}
+// ---------------- 요약·퀴즈
+function renderStudy() {
+  const s = D.study || {};
+  if (!s.summary_ko && !(s.quiz||[]).length) return `<div class="empty">요약·퀴즈가 아직 없습니다.</div>`;
+  const kinds = {mcq:"객관식", ox:"O/X", short:"서술형"};
+  const quiz = (s.quiz||[]).map((q, i) => `<div class="card"><h3>Q${i+1}. ${kinds[q.type]||q.type} · ${esc(q.bloom||"")}
+     <button class="t" data-play="${q.evidence_start||0}" title="대본 근거 위치 재생">근거 ${mmss(q.evidence_start||0)} ▶</button></h3>
+    <div class="row"><label>질문</label><textarea data-q="${i}" data-k="question_ko">${esc(q.question_ko)}</textarea></div>
+    ${q.choices_ko ? `<div class="row"><label>보기 (한 줄에 하나)</label><textarea data-q="${i}" data-k="choices_ko" rows="4">${esc((q.choices_ko||[]).join("\n"))}</textarea></div>` : ""}
+    <div class="row"><label>정답</label><input type="text" data-q="${i}" data-k="answer" value="${esc(q.answer)}"></div>
+    <div class="row"><label>해설</label><textarea data-q="${i}" data-k="explanation_ko">${esc(q.explanation_ko)}</textarea></div>
+    <div class="row"><label>근거 시각</label><input type="text" data-q="${i}" data-k="evidence_start" value="${mmss(q.evidence_start||0)}"></div></div>`).join("");
+  return bar("근거 시각을 눌러 대본과 맞는지 확인") + `
+    <div class="card"><h3>학습 목표 (한 줄에 하나)</h3><textarea id="goals" rows="3">${esc((s.learning_goals||[]).join("\n"))}</textarea></div>
+    <div class="card"><h3>강의 요약</h3><textarea id="sko" rows="4">${esc(s.summary_ko)}</textarea>
+      <div class="muted" style="margin-top:6px">English</div><textarea id="sen" rows="3">${esc(s.summary_en)}</textarea></div>
+    <div class="card"><h3>핵심 키워드 (한국어 = English, 한 줄에 하나)</h3><textarea id="kw" rows="4">${esc((s.keywords||[]).map(k => k.ko + " = " + (k.en||"")).join("\n"))}</textarea></div>
+    ${quiz}`;
+}
+function collectStudy() {
+  const s = D.study;
+  s.learning_goals = $("#goals").value.split("\n").map(x => x.trim()).filter(Boolean);
+  s.summary_ko = $("#sko").value; s.summary_en = $("#sen").value;
+  s.keywords = $("#kw").value.split("\n").filter(x => x.trim()).map(l => { const [ko, en] = l.split("="); return {ko:(ko||"").trim(), en:(en||"").trim()}; });
+  document.querySelectorAll("[data-q]").forEach(el => {
+    const q = s.quiz[+el.dataset.q], k = el.dataset.k;
+    q[k] = k === "choices_ko" ? el.value.split("\n").map(x => x.trim()).filter(Boolean) : k === "evidence_start" ? parseT(el.value) : el.value;
+  });
+  return {study: s};
+}
+// ---------------- 챕터
+function renderChapters() {
+  if (!D.chapters.length) return `<div class="empty">챕터가 아직 없습니다.</div>`;
+  const types = D.chapter_types;
+  const thumbs = c => D.slides.filter(s => s.start < (c._end ?? 1e9) && s.end > c.start).slice(0, 4)
+    .map(s => `<img src="/${s.thumb}" alt="슬라이드 ${s.i}" title="슬라이드 ${s.i} · ${mmss(s.start)}">`).join("");
+  D.chapters.forEach((c, i) => c._end = D.chapters[i+1] ? D.chapters[i+1].start : 1e9);
+  const cards = D.chapters.map((c, i) => `<div class="card">
+    <div class="row"><label>시작</label><div style="display:flex;gap:6px;align-items:center">
+      <input type="text" data-c="${i}" data-k="start" value="${mmss(c.start)}" style="width:90px">
+      <button class="t" data-play="${c.start}">▶ 재생</button>
+      <button class="act small" data-here="${i}">지금 위치로</button>
+      <button class="act small" data-del="${i}">지우기</button></div></div>
+    <div class="row"><label>제목</label><input type="text" data-c="${i}" data-k="title_ko" value="${esc(c.title_ko)}"></div>
+    <div class="row"><label>English</label><input type="text" data-c="${i}" data-k="title_en" value="${esc(c.title_en)}"></div>
+    <div class="row"><label>유형</label><select data-c="${i}" data-k="type">${types.map(t => `<option ${t===c.type?"selected":""}>${t}</option>`).join("")}</select></div>
+    <div class="row"><label>근거</label><div class="muted">${esc(c.source||"")}${c.type_reason ? " · 유형: " + esc(c.type_reason) : ""}${c.title_candidate ? " · 제목은 첫 문장으로 만든 후보" : ""}</div></div>
+    ${D.slides.length ? `<div class="row"><label>슬라이드</label><div class="thumbs">${thumbs(c)}</div></div>` : ""}
+  </div>`).join("");
+  return bar("어긋나면 재생 후 '지금 위치로'") + cards +
+    `<button class="act" id="addch">+ 지금 위치에 챕터 추가</button>`;
+}
+function collectChapters() {
+  document.querySelectorAll("[data-c]").forEach(el => { const c = D.chapters[+el.dataset.c]; c[el.dataset.k] = el.dataset.k === "start" ? parseT(el.value) : el.value; });
+  D.chapters.sort((a, b) => a.start - b.start);
+  return {chapters: D.chapters};
+}
+// ---------------- 군더더기 컷
+function renderCuts() {
+  if (!D.cuts.length) return bar("") + `<div class="empty">제안된 컷이 없습니다. 승인하면 '컷 없음'으로 확정됩니다.</div>`;
+  const ok = new Set(D.cuts_review.approved || []);
+  const items = D.cuts.map(c => `<div class="card cut">
+    <input type="checkbox" data-cut="${c.id}" ${ok.has(c.id)?"checked":""} aria-label="${c.id} 자르기 승인">
+    <div><b>${c.id}</b> · ${esc(c.kind)} · <button class="t" data-play="${Math.max(0,c.start-1.5)}" data-until="${c.end+1.5}">${mmss(c.start)}–${mmss(c.end)} ▶ 앞뒤 들어보기</button>
+      <span class="badge ${c.recommend==="보존 권장"?"b-keep":"b-cut"}">${esc(c.recommend)}</span>
+      <div>${esc(c.reason)}</div>${c.text ? `<div class="muted">“${esc(c.text)}”</div>` : ""}
+      ${c.keep_reason ? `<div class="why">⚠ ${esc(c.keep_reason)}</div>` : ""}</div>
+    <div class="muted">${c.saving}초</div></div>`).join("");
+  return bar(`체크한 것만 잘라냅니다 (자동 확정 없음) · 선택 <span class="sum" id="cutsum"></span>`) +
+    `<div style="margin-bottom:10px"><button class="act small" id="selsug">'컷 제안'만 모두 선택</button> <button class="act small" id="selnone">모두 해제</button></div>` + items;
+}
+function cutSum() {
+  const ids = [...document.querySelectorAll("[data-cut]:checked")].map(x => x.dataset.cut);
+  const s = D.cuts.filter(c => ids.includes(c.id)).reduce((a, c) => a + c.saving, 0);
+  const el = $("#cutsum"); if (el) el.textContent = `${ids.length}건 · ${s.toFixed(1)}초 줄임`;
+}
+function collectCuts() {
+  const all = [...document.querySelectorAll("[data-cut]")];
+  return {approved: all.filter(x => x.checked).map(x => x.dataset.cut), rejected: all.filter(x => !x.checked).map(x => x.dataset.cut)};
+}
+// ---------------- 공통
+const R = {text:[renderText, collectText], study:[renderStudy, collectStudy], chapters:[renderChapters, collectChapters], cuts:[renderCuts, collectCuts]};
+function render(full=true) {
+  tabs();
+  $("#panel").innerHTML = R[cur][0]();
+  document.querySelectorAll("[data-play]").forEach(b => b.onclick = () => play(b.dataset.play, b.dataset.until ? +b.dataset.until : null));
+  document.querySelectorAll("[data-save]").forEach(b => b.onclick = () => save(cur, b.dataset.save, R[cur][1]()));
+  document.querySelectorAll("[data-here]").forEach(b => b.onclick = () => { collectChapters(); D.chapters[+b.dataset.here].start = Math.round(v.currentTime*10)/10; render(); });
+  document.querySelectorAll("[data-del]").forEach(b => b.onclick = () => { collectChapters(); D.chapters.splice(+b.dataset.del, 1); render(); });
+  const add = $("#addch"); if (add) add.onclick = () => { collectChapters(); D.chapters.push({start: Math.round(v.currentTime*10)/10, title_ko:"", title_en:"", type:"개념", source:"교수님 추가"}); collectChapters(); render(); };
+  document.querySelectorAll("[data-cut]").forEach(x => x.onchange = cutSum);
+  const ss = $("#selsug"); if (ss) ss.onclick = () => { document.querySelectorAll("[data-cut]").forEach(x => x.checked = D.cuts.find(c => c.id === x.dataset.cut).recommend === "컷 제안"); cutSum(); };
+  const sn = $("#selnone"); if (sn) sn.onclick = () => { document.querySelectorAll("[data-cut]").forEach(x => x.checked = false); cutSum(); };
+  cutSum();
+}
+fetch("/api/data").then(r => r.json()).then(d => {
+  D = d; D.study = D.study || {};
+  $("#title").textContent = (d.job.title || "강의") + " — 교수 검수";
+  $("#who").textContent = [d.job.lecturer?.name, d.job.kind].filter(Boolean).join(" · ");
+  if (!d.has_video) $("#now").textContent = "정리된 영상(clean.mp4)이 아직 없습니다. 먼저 작업을 실행하세요.";
+  render();
+});
+</script>
+</body>
+</html>

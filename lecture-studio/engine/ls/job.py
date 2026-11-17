@@ -20,6 +20,7 @@ KINDS = {
     "language": "외국어 강의",
     "special": "초청강의·특강",
     "event": "행사 강의",
+    "flip": "플립러닝 사전학습 영상",
 }
 
 JOB_TEMPLATE = """# 강의 후반작업 작업서 — HY FLIP 강의 편집 시스템
@@ -45,6 +46,38 @@ consent:                      # 하나라도 비어 있으면 AI 단계를 시�
   external_ai_text: false     # 번역·요약·퀴즈를 위해 '글'을 외부 AI 서비스(Claude)에 보내도 됩니다
 asr: {{ backend: sherpa-whisper, model: medium }}   # sherpa-whisper | faster-whisper | words-file
 llm: {{ backend: file }}                            # anthropic (API 키 필요) | file (직접 작성한 결과)
+"""
+
+
+FLIP_TEMPLATE = """# 플립러닝 사전학습 영상 작업서 — HY FLIP 강의 편집 시스템 (profile: flip)
+id: {id}
+profile: flip                 # flip = 슬라이드 전환·챕터·군더더기 컷 제안 단계 포함
+kind: flip
+title: ""                     # 차시 제목 (예: 3주차 1차시 — 수요와 공급)
+subtitle: ""
+lecturer:
+  name: ""
+  name_en: ""
+  affiliation: ""
+  affiliation_en: ""
+course: {{ name: "", term: "", week: "" }}   # 과목명·학기·주차
+event: {{ host: "", date: "" }}
+video: input.mp4              # input/ 폴더 안의 영상 (슬라이드 PDF 를 같이 넣으면 슬라이드 감지가 더 정확해집니다)
+source_language: ko
+target_languages: [en]
+glossary: {{}}
+mask: auto
+quiz: {{ count: 3 }}
+slides: {{ sensitivity: normal }}            # low | normal | high — 슬라이드 전환 감지 민감도
+chapters: {{ min_sec: 45, max_count: 8 }}    # 챕터 최소 길이(초)·최대 개수
+trim:                                       # 군더더기 컷 '제안' 기준 (자동 확정하지 않음 — 승인한 것만 적용)
+  min_pause: 2.5              # 이 이상 쉬면 '긴 무음' 제안 (질문 뒤 생각할 시간은 보존 권장으로 표시)
+  keep_pause: 0.8             # 컷을 적용해도 남겨 둘 쉼(초)
+consent:
+  lecturer_agreed: false
+  external_ai_text: false
+asr: {{ backend: sherpa-whisper, model: medium }}
+llm: {{ backend: file }}
 """
 
 
@@ -95,13 +128,14 @@ class Job:
         return self.data.get("glossary") or {}
 
 
-def create(job_id: str) -> Path:
+def create(job_id: str, profile: str = "default") -> Path:
     d = JOBS / job_id
     if d.exists():
         raise JobError(f"이미 있는 작업입니다: {d}")
     for sub in ("input", "work", "out"):
         (d / sub).mkdir(parents=True)
-    (d / "job.yaml").write_text(JOB_TEMPLATE.format(id=job_id), encoding="utf-8")
+    tpl = FLIP_TEMPLATE if profile == "flip" else JOB_TEMPLATE
+    (d / "job.yaml").write_text(tpl.format(id=job_id), encoding="utf-8")
     return d
 
 

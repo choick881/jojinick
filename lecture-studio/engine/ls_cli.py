@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """강의 후반작업 도구 — 사용법
-  ls_cli.py new <작업ID>                  새 작업 폴더·작업서 만들기
+  ls_cli.py new <작업ID> [--profile flip]  새 작업 폴더·작업서 만들기 (flip = 플립러닝 사전학습 영상)
   ls_cli.py run <작업ID> [--from 단계] [--only 단계] [--force]
   ls_cli.py status <작업ID>
-단계: ingest clean asr text study outputs print
+  ls_cli.py review <작업ID> [--port 8765]  교수 검수 화면 열기 (이 컴퓨터 안에서만)
+단계(기본): ingest clean asr text study outputs print
+단계(flip): ingest clean asr slides text study chapters trim edit outputs print
 """
 import argparse
 import sys
@@ -18,25 +20,34 @@ from ls.util import need_tools, read_json  # noqa: E402
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    sub.add_parser("new").add_argument("id")
+    n = sub.add_parser("new")
+    n.add_argument("id")
+    n.add_argument("--profile", default="default", choices=list(pipeline.PROFILES))
     r = sub.add_parser("run")
     r.add_argument("id")
-    r.add_argument("--from", dest="start", choices=pipeline.NAMES)
-    r.add_argument("--only", choices=pipeline.NAMES)
+    r.add_argument("--from", dest="start", choices=pipeline.ALL_NAMES)
+    r.add_argument("--only", choices=pipeline.ALL_NAMES)
     r.add_argument("--force", action="store_true")
     sub.add_parser("status").add_argument("id")
+    rv = sub.add_parser("review")
+    rv.add_argument("id")
+    rv.add_argument("--port", type=int, default=8765)
     a = ap.parse_args()
     need_tools()
     if a.cmd == "new":
-        d = jobmod.create(a.id)
+        d = jobmod.create(a.id, profile=a.profile)
         print(f"만들었습니다: {d}\n  1) {d/'input'} 에 영상을 넣고  2) {d/'job.yaml'} 을 채운 뒤  3) ls_cli.py run {a.id}")
         return
     try:
         job = jobmod.load(a.id, need_consent=(a.cmd == "run"))
     except jobmod.JobError as e:
         raise SystemExit(str(e))
+    if a.cmd == "review":
+        from ls import review
+        review.serve(job, port=a.port)
+        return
     if a.cmd == "status":
-        for n in pipeline.NAMES:
+        for n in pipeline.names_for(job):
             d = read_json(job.work / f"{n}.json")
             print(f"{pipeline.LABEL[n]}  {'완료 · ' + d.get('_summary', '') if d else '아직'}")
         return
