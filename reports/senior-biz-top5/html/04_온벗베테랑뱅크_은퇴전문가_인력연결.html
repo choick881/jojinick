@@ -1,0 +1,904 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>온벗 베테랑뱅크 은퇴 베테랑 인력 연결 사업추진 보고서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>/* 시니어 비즈니스 TOP5 사업추진 보고서 — 인쇄(A4) 우선 스타일 */
+:root {
+  --paper: #FBF8F2;
+  --ink: #2A2621;
+  --muted: #6B6358;
+  --forest: #2F4A3A;
+  --forest-2: #4E6B57;
+  --sage: #E5EADF;
+  --clay: #B3603A;
+  --clay-soft: #F4E3D8;
+  --sand: #EFE7DA;
+  --line: #D9D0C2;
+  --gold: #A9822F;
+}
+
+@page { size: A4; margin: 20mm 17mm 20mm 17mm; }
+@page :first { margin: 0; }
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Pretendard", "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 10.6pt;
+  line-height: 1.72;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@media screen {
+  body { background: #E9E4DA; }
+  .doc { max-width: 210mm; margin: 24px auto; background: #fff; padding: 20mm 17mm; box-shadow: 0 2px 18px rgba(0,0,0,.12); }
+  .cover { margin: -20mm -17mm 20mm; }
+  .printbar { position: sticky; top: 0; z-index: 9; background: var(--forest); color: #fff; padding: 10px 16px; text-align: center; font-size: 14px; }
+  .printbar button { font: inherit; margin-left: 10px; padding: 4px 14px; border-radius: 6px; border: 0; background: #fff; color: var(--forest); cursor: pointer; }
+}
+@media print { .printbar { display: none; } .doc { padding: 0; } }
+
+/* ---------- 표지 ---------- */
+.cover {
+  height: 297mm; width: 210mm; position: relative; overflow: hidden;
+  background: var(--forest); color: #fff; page-break-after: always; break-after: page;
+  padding: 30mm 22mm 24mm;
+  display: flex; flex-direction: column;
+}
+.cover::after {
+  content: ""; position: absolute; right: -60mm; bottom: -60mm; width: 190mm; height: 190mm;
+  border-radius: 50%; background: radial-gradient(circle at 35% 35%, #B3603A 0%, #8E4A2B 60%, transparent 61%);
+  opacity: .9;
+}
+.cover::before {
+  content: ""; position: absolute; right: 40mm; bottom: 70mm; width: 46mm; height: 46mm;
+  border-radius: 50%; background: #E9D9B8; opacity: .9;
+}
+.cover .kicker { font-size: 11pt; letter-spacing: .18em; color: #E9D9B8; font-weight: 600; }
+.cover .no { font-size: 64pt; font-weight: 800; line-height: 1; margin: 18mm 0 6mm; color: #E9D9B8; }
+.cover h1.title { font-size: 30pt; line-height: 1.32; margin: 0 0 6mm; font-weight: 800; color: #fff; border: 0; padding: 0; }
+.cover .subtitle { font-size: 13.5pt; line-height: 1.6; color: #F2EDE4; max-width: 150mm; }
+.cover .meta { margin-top: auto; position: relative; z-index: 2; font-size: 10.5pt; color: #F2EDE4; line-height: 1.8; }
+.cover .meta b { color: #E9D9B8; font-weight: 700; }
+.cover .tagrow { margin-top: 10mm; display: flex; flex-wrap: wrap; gap: 6px; max-width: 150mm; position: relative; z-index: 2; }
+.cover .tagrow span { border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: 3px 12px; font-size: 9.5pt; }
+
+/* ---------- 제목 체계 ---------- */
+h1 {
+  font-size: 19pt; line-height: 1.35; color: var(--forest); margin: 0 0 6mm; padding: 0 0 3mm;
+  border-bottom: 2.5px solid var(--forest); page-break-before: always; break-before: page; font-weight: 800;
+}
+.chap { display: block; font-size: 8.6pt; letter-spacing: .2em; color: var(--clay); font-weight: 700; margin: -4mm 0 2mm; }
+.nobreak-first > h1:first-child, h1.nobreak { page-break-before: auto; break-before: auto; }
+h2 {
+  font-size: 13.8pt; color: var(--ink); margin: 9mm 0 3mm; padding-left: 9px; font-weight: 800;
+  border-left: 5px solid var(--clay); line-height: 1.4; page-break-after: avoid; break-after: avoid;
+}
+h3 { font-size: 11.6pt; color: var(--forest); margin: 6mm 0 2mm; font-weight: 700; page-break-after: avoid; break-after: avoid; }
+h4 { font-size: 10.8pt; margin: 4mm 0 1.5mm; color: var(--clay); page-break-after: avoid; }
+p { margin: 0 0 2.6mm; }
+ul, ol { margin: 0 0 3mm; padding-left: 5.5mm; }
+li { margin: .6mm 0; }
+li > ul, li > ol { margin: .6mm 0; }
+strong { color: #1F1B17; font-weight: 700; }
+em { font-style: normal; color: var(--clay); font-weight: 600; }
+a { color: var(--forest-2); text-decoration: none; word-break: break-all; }
+hr { border: 0; border-top: 1px dashed var(--line); margin: 6mm 0; }
+code { font-family: "Pretendard", monospace; background: var(--sand); padding: 0 4px; border-radius: 3px; font-size: .95em; }
+blockquote {
+  margin: 3mm 0 4mm; padding: 3mm 5mm; background: var(--sage); border-left: 4px solid var(--forest-2);
+  border-radius: 0 6px 6px 0; color: #24382C;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+/* ---------- 표 ---------- */
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 5mm; font-size: 9.4pt; line-height: 1.55; page-break-inside: auto; }
+thead { display: table-header-group; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+th { background: var(--forest); color: #fff; font-weight: 700; text-align: left; padding: 2mm 2.4mm; border: 1px solid var(--forest); vertical-align: middle; }
+td { padding: 1.8mm 2.4mm; border: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) td { background: #FAF7F1; }
+td strong { color: var(--forest); }
+.tight table { font-size: 8.8pt; }
+.tight td, .tight th { padding: 1.3mm 1.8mm; }
+
+/* ---------- 박스 ---------- */
+.box { border: 1px solid var(--line); border-radius: 8px; padding: 4mm 5mm; margin: 3mm 0 5mm; background: #fff; page-break-inside: avoid; break-inside: avoid; }
+.box > :last-child { margin-bottom: 0; }
+.box .bt { display: block; font-weight: 800; color: var(--forest); margin-bottom: 1.5mm; font-size: 11pt; }
+.box.key { background: var(--clay-soft); border-color: #E3C3AF; }
+.box.key .bt { color: var(--clay); }
+.box.green { background: var(--sage); border-color: #C9D3C0; }
+.box.warn { background: #FFF5E8; border-color: #EBC995; }
+.box.warn .bt { color: #8A5A12; }
+.box.ask { background: #F1F0FA; border-color: #CFCBEA; }
+.box.ask .bt { color: #463E8C; }
+.box.sum { background: var(--forest); color: #fff; border: 0; }
+.box.sum .bt, .box.sum strong { color: #E9D9B8; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 2mm 0 4mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 2mm 0 4mm; }
+.grid2 > .box, .grid3 > .box { margin: 0; }
+
+.kw { display: flex; flex-wrap: wrap; gap: 5px; margin: 2mm 0 4mm; }
+.kw span { background: var(--sand); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 1px 11px; font-size: 9.4pt; font-weight: 600; }
+.kw span.hot { background: var(--clay); border-color: var(--clay); color: #fff; }
+
+.stat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 2mm 0 5mm; }
+.stat div { border: 1px solid var(--line); border-radius: 8px; padding: 3mm; background: #fff; page-break-inside: avoid; }
+.stat b { display: block; font-size: 17pt; color: var(--forest); line-height: 1.2; font-weight: 800; }
+.stat small { display: block; color: var(--muted); font-size: 8.4pt; line-height: 1.45; margin-top: 1mm; }
+
+.src { font-size: 8.4pt; color: var(--muted); }
+.tag { display: inline-block; font-size: 8.4pt; padding: 0 7px; border-radius: 4px; font-weight: 700; margin-right: 3px; vertical-align: 1px; }
+.tag.must { background: var(--clay); color: #fff; }
+.tag.now { background: var(--forest); color: #fff; }
+.tag.later { background: var(--line); color: var(--ink); }
+.tag.est { background: #F2E6C8; color: #6E5310; }
+
+.toc { columns: 2; column-gap: 8mm; font-size: 10pt; }
+.toc ol { margin: 0; }
+.check li { list-style: none; position: relative; padding-left: 1mm; }
+.check li::before { content: "☐"; position: absolute; left: -5mm; color: var(--forest); }
+.check { padding-left: 6mm; }
+
+/* 간트 표 */
+.gantt table { font-size: 8.3pt; }
+.gantt td, .gantt th { padding: 1.1mm 1.2mm; text-align: center; }
+.gantt td:first-child, .gantt th:first-child { text-align: left; white-space: nowrap; }
+.gantt td.on { background: var(--forest) !important; color: #fff; font-weight: 700; }
+.gantt td.mid { background: #9CB3A2 !important; color: #fff; }
+.gantt td.ms { background: var(--clay) !important; color: #fff; font-weight: 800; }
+
+.avoid { page-break-inside: avoid; break-inside: avoid; }
+.pb { page-break-after: always; break-after: page; height: 0; }
+.center { text-align: center; }
+.small { font-size: 9pt; }
+.muted { color: var(--muted); }
+</style></head>
+<body>
+<div class="printbar">A4 인쇄용 보고서입니다 <button onclick="window.print()">인쇄 / PDF 저장</button></div>
+<div class="doc">
+<section class="cover">
+  <div class="kicker">BUSINESS 04 · 우선순위 4위 · 1월 인재 모집 오픈</div>
+  <div class="no">04</div>
+  <h1 class="title">온벗 베테랑뱅크<br>은퇴 베테랑 인력 연결 사업추진 보고서</h1>
+  <div class="subtitle">도쿄가스 퇴직자 15명으로 시작해 평균 71.4세 사원 1,233명이 된 고레이샤. 비결은 "이력서 대신 30년 동료의 신뢰", "육체가 아니라 경험과 눈썰미"였습니다. 온벗은 우리 사업의 리더·강사·활동가부터 은퇴 베테랑으로 채우고, 검증된 분들을 외부로 연결합니다.</div>
+  <div class="tagrow"><span>고레이샤 벤치마킹</span><span>동료 신뢰 네트워크</span><span>경험·눈썰미 직무</span><span>내부 위촉 먼저</span><span>교육 용역</span><span>소득 공백 10년</span></div>
+  <div class="meta"><b>일본 원형</b> 고레이샤 (高齢社, 60세 이상 전문 인력 파견)<br><b>한국판 가칭</b> 온벗 베테랑뱅크<br><b>1월 런칭</b> 인재 모집·등록 오픈 + 1기 내부 위촉<br><b>핵심 결제자</b> 기관(복지관·학습관·지자체) · 기업 · 안부(02) 고객 자녀</div>
+</section>
+<h1 class="nobreak" id="_1">한 장 요약</h1>
+<p><span class="chap">EXECUTIVE SUMMARY</span></p>
+<div class="box sum">
+<p><span class="bt">온벗 베테랑뱅크는 무엇인가</span></p>
+<p><strong>은퇴한 베테랑(55~72세)의 경력을 영상 프로필로 기록하고, 먼저 온벗 안에서 클럽 리더·안부 활동가·강사로 함께 일한 뒤, 검증된 분들을 복지관·학습관·기업·가정의 일거리로 연결하는 인재 은행</strong>입니다. 이력서보다 "함께 일해 본 신뢰"가 상품입니다.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>해결하는 문제</td>
+<td>퇴직 52.9세 ↔ 국민연금 65세, <strong>10년 이상 소득 공백</strong> / 은퇴자 69.4%가 73세까지 일하고 싶어 함 / 기관은 믿을 만한 강사·인력을 찾기 어려움</td>
+</tr>
+<tr>
+<td>핵심 가치</td>
+<td>은퇴자: 경력을 살린 일·소득·자존감 / 기관: 검증된 베테랑 / 온벗: 사업 확장의 인력 엔진</td>
+</tr>
+<tr>
+<td>1월 범위</td>
+<td>인재 모집·등록 (1기 20명 목표), <strong>내부 위촉 6명</strong> (클럽 리더 4·안부 활동가 2)</td>
+</tr>
+<tr>
+<td>외부 사업 시점</td>
+<td>2분기: 교육 용역(강사 연결), 어르신 집 안전 손보기 / 하반기: 법인 전환 후 유료직업소개 등록 검토</td>
+</tr>
+<tr>
+<td>1월에 하지 않는 것</td>
+<td>근로자파견 (자본금 1억 원·사무실 20㎡·고용노동부 허가 필요), 등록 없는 유료 직업소개</td>
+</tr>
+<tr>
+<td>1년 차 목표</td>
+<td>등록 인재 80명, 위촉 30명, 12월 월 매출 140만 원 (외부) + 내부 인력비 절감 <span class="tag est">추정</span></td>
+</tr>
+<tr>
+<td>런칭 예산</td>
+<td>약 150만 원</td>
+</tr>
+</tbody>
+</table>
+<div class="kw"><span class="hot">이력서보다 동료 신뢰</span><span class="hot">경험·눈썰미 직무</span><span class="hot">내부에서 먼저 검증</span><span>영상 경력 프로필</span><span>교육 용역</span><span>어르신 집 안전 손보기</span><span>파견 아님</span><span>소득 공백 10년</span><span>"사원 > 고객 > 주주"</span></div>
+
+<h1 id="_2">일본 원형 — 고레이샤 심층 분석</h1>
+<p><span class="chap">CHAPTER 1</span></p>
+<h2 id="1-1">1-1. 기업 개요 (첨부 자료 기준)</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>설립</td>
+<td>2000년, 도쿄가스 퇴직자 <strong>우에다 겐지</strong>가 은퇴 동료 15명과 함께</td>
+</tr>
+<tr>
+<td>규모</td>
+<td>2026년 4월 기준 등록 사원 <strong>1,233명</strong>, 평균 나이 <strong>71.4세</strong>, 지난 회계연도 매출 <strong>8억 5천만 엔</strong></td>
+</tr>
+<tr>
+<td>업무</td>
+<td>가스 계량기 검침, 가스 기기 점검 등 <strong>경험과 꼼꼼함이 핵심인 현장 업무</strong></td>
+</tr>
+<tr>
+<td>채용</td>
+<td>이력서 심사 대신 <strong>30년 함께 일한 동료 명부</strong>로 검증</td>
+</tr>
+<tr>
+<td>철학</td>
+<td><strong>"사원이 고객보다 먼저, 고객이 주주보다 먼저"</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2">1-2. 성공 원리</h2>
+<ol>
+<li><strong>업무 선별</strong> — 무거운 짐·야간 근무 대신, 육체적 힘보다 <strong>경험·신뢰·눈썰미</strong>가 중요한 일을 골랐습니다. 안전사고 위험을 낮추고 고객 신뢰는 높였습니다.</li>
+<li><strong>검증 비용 제로</strong> — 같은 회사에서 수십 년 일한 동료가 서로를 보증합니다. 기업은 이력서 검증 비용을 아끼고 품질을 확신합니다.</li>
+<li><strong>이중 해결</strong> — 기업의 구인난과 은퇴자의 구직난을 동시에 풀었습니다.</li>
+<li><strong>사원 우선 철학</strong> — 고령 근로자가 존중받는 문화가 이직률을 낮추고 서비스 품질을 높였습니다.</li>
+</ol>
+<h2 id="1-3">1-3. 한국 환경과 차이</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>일본 고레이샤</th>
+<th>한국 현실</th>
+<th>온벗의 선택</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>사업 형태</td>
+<td>인력 파견</td>
+<td>근로자파견사업은 <strong>허가제</strong>(자본금 1억 원, 전용 20㎡ 사무실, 유효 3년), 파견 가능 업무 제한</td>
+<td>초기에는 <strong>교육·서비스 용역</strong> + 내부 위촉. 파견은 하지 않음</td>
+</tr>
+<tr>
+<td>네트워크</td>
+<td>도쿄가스라는 단일 대기업 퇴직자</td>
+<td>대기업·공기업 퇴직자 모임은 친목(등산·술자리) 중심</td>
+<td>조피디의 <strong>방송·교육계 동료 네트워크</strong>를 1기로</td>
+</tr>
+<tr>
+<td>업무</td>
+<td>가스 점검 (안전 산업)</td>
+<td>어르신 집 안전·생활 수리 수요, 교육 강사 수요</td>
+<td>「어르신 집 안전 손보기」·「시니어 강사」</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_3">한국 시장 분석</h1>
+<p><span class="chap">CHAPTER 2</span></p>
+<div class="stat">
+<div><b>52.9세</b><small>주된 일자리 평균 퇴직 연령 (국민연금연구원 2025, 첨부 자료)</small></div>
+<div><b>65세</b><small>국민연금 수령 연령 → 10년 이상 소득 공백</small></div>
+<div><b>69.4%</b><small>은퇴 후 계속 일하기 희망, 평균 73세까지. 절반 이상이 생활비 목적</small></div>
+<div><b>118.2만 개</b><small>2027 노인일자리 정부 예산안 (2026 대비 +2.8만 개)</small></div>
+</div>
+
+<h2 id="2-1">2-1. 수요처</h2>
+<table>
+<thead>
+<tr>
+<th>수요처</th>
+<th>필요한 인력</th>
+<th>예시</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>노인복지관·평생학습관·주민센터</td>
+<td>시니어 강좌 강사</td>
+<td>스마트폰 영상, 인생 2막 설계, 건강걷기 리더, 서예·사진</td>
+</tr>
+<tr>
+<td>지자체 통합돌봄·고립 예방 사업</td>
+<td>안부 활동가, 모임 리더</td>
+<td>사회적 고립 예방 프로그램</td>
+</tr>
+<tr>
+<td>독거 어르신 가정 (자녀 결제)</td>
+<td>생활 수리, 안전 점검</td>
+<td>안전 손잡이·미끄럼방지·전등·수전 교체</td>
+</tr>
+<tr>
+<td>소상공인·중소기업</td>
+<td>경력 자문</td>
+<td>영상 홍보 자문, 회계·노무 기초 자문, 품질 관리</td>
+</tr>
+<tr>
+<td>온벗 내부</td>
+<td>리더·활동가·강사·편집 보조</td>
+<td>클럽·안부·라이프노트</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-2">2-2. 경쟁·참고</h2>
+<table>
+<thead>
+<tr>
+<th>플레이어</th>
+<th>모델</th>
+<th>시사점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>탤런트뱅크</td>
+<td>고경력 전문가와 기업을 연결하는 긱 플랫폼 (2021 보도: 전문가 약 4,000명) → 2024년 BM 피벗 보도</td>
+<td>순수 매칭 플랫폼만으로는 수익화가 어려움 → <strong>우리가 직접 일을 만들고 운영하는 구조</strong></td>
+</tr>
+<tr>
+<td>서울시50플러스재단·중장년 지원기관</td>
+<td>교육·일자리 연계 (공공)</td>
+<td>협력 대상, 인재 모집 채널</td>
+</tr>
+<tr>
+<td>시니어클럽·노인인력개발원</td>
+<td>노인일자리 수행</td>
+<td>시장형·사회서비스형 사업 협력</td>
+</tr>
+<tr>
+<td>일본 시니어 전문 구인 사이트</td>
+<td>구인 2023.12 약 1만 건 → 2026.3 약 7만 건 (보도)</td>
+<td>시니어 인력 수요의 급증 신호</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_4">고객 정의</h1>
+<p><span class="chap">CHAPTER 3</span></p>
+<div class="grid3">
+<div class="box">
+<p><span class="bt">인재 · 강동훈(64), 전 방송 촬영감독</span></p>
+<ul>
+<li>30년 방송 촬영, 퇴직 4년</li>
+<li>장비 다루는 데 자신 있음, 사람 가르치는 것 좋아함</li>
+<li>월 100만 원 정도 벌고 싶음</li>
+<li><strong>역할</strong>: 사진·영상반 보조강사 → 복지관 영상 강좌 강사, 영상자서전 촬영 보조</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="bt">인재 · 윤미경(61), 전 초등 교사</span></p>
+<ul>
+<li>명예퇴직, 남편과 양주 거주</li>
+<li>걷기·체조 좋아함, 동네 활동 하고 싶음</li>
+<li><strong>역할</strong>: 건강걷기 리더 → 이웃지기 반장 → 기관 고립 예방 프로그램 리더</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="bt">인재 · 김태식(68), 전 아파트 설비 기사</span></p>
+<ul>
+<li>전기·설비 30년</li>
+<li>"몸 쓰는 큰 일은 힘들지만 손재주는 있다"</li>
+<li><strong>역할</strong>: 안부(02) 고객 집 <strong>안전 손보기</strong> 전담</li>
+</ul>
+</div>
+</div>
+<p><strong>구매자</strong>: 노인복지관·평생학습관 프로그램 담당자, 양주시 담당 부서, 안부 고객 자녀, 지역 소상공인.</p>
+<h1 id="_5">사업 모델</h1>
+<p><span class="chap">CHAPTER 4</span></p>
+<h2 id="4-1-3">4-1. 3단계 성장</h2>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>기간</th>
+<th>모델</th>
+<th>법적 형태</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1. 내부 위촉</strong></td>
+<td>2027.1~3</td>
+<td>은퇴 베테랑을 온벗 클럽 리더·안부 활동가·강사로 위촉</td>
+<td>위촉 계약(활동비) 또는 단시간 근로계약 (업무 성격별)</td>
+</tr>
+<tr>
+<td><strong>2. 용역 판매</strong></td>
+<td>2027.4~</td>
+<td>온벗이 기관과 <strong>교육·프로그램 용역 계약</strong> → 베테랑이 강사로 수행 / 가정에 「안전 손보기」 서비스 판매</td>
+<td>온벗이 서비스 제공 주체 (파견 아님)</td>
+</tr>
+<tr>
+<td><strong>3. 직업 연결</strong></td>
+<td>2027 하반기~</td>
+<td>기업·기관이 베테랑을 직접 고용하도록 소개</td>
+<td><strong>유료직업소개사업 등록</strong> 후 (법인 납입자본금 5천만 원·자격 갖춘 임원 2명 등)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-2">4-2. 상품표 <span class="tag est">추정</span></h2>
+<table>
+<thead>
+<tr>
+<th>상품</th>
+<th>가격</th>
+<th>온벗 몫</th>
+<th>베테랑 몫</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기관 강좌 용역 (회당 2시간)</td>
+<td>10~20만 원</td>
+<td>30%</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>기관 프로그램 패키지 (8~12주)</td>
+<td>150~400만 원</td>
+<td>30~35%</td>
+<td>65~70%</td>
+</tr>
+<tr>
+<td>어르신 집 안전 손보기 (1회 2시간, 자재 별도)</td>
+<td>59,000원</td>
+<td>30%</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>소상공인 미디어·경영 자문 (1회 2시간)</td>
+<td>15만 원</td>
+<td>30%</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>유료직업소개 (3단계)</td>
+<td>법정 요금 상한 내</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-3">4-3. "온벗 베테랑" 인증 제도 (한국판 동료 명부)</h2>
+<ol>
+<li><strong>등록</strong>: 온라인 신청서 + 경력 증빙 + 추천인 1명 (전 직장 동료 우대)</li>
+<li><strong>영상 인터뷰 (1시간)</strong>: 조피디가 촬영 → AI로 <strong>경력 프로필 1장 + 1분 소개 영상</strong> 제작</li>
+<li><strong>기본 교육 (8시간)</strong>: 시니어 이해·안전·개인정보·온벗 서비스 기준</li>
+<li><strong>현장 검증 (3개월)</strong>: 온벗 내부 활동으로 평가 (출석, 회원 만족도, 동료 평가)</li>
+<li><strong>베테랑 인증</strong>: 외부 연결 대상. 매년 갱신</li>
+</ol>
+<div class="box green"><span class="bt">조피디의 강점이 들어가는 곳</span>
+베테랑 1분 소개 영상은 기관 담당자에게 이력서보다 강력합니다. 등록자에게는 "내 경력이 작품으로 남는" 경험이 되고, 그 자체로 홍보 콘텐츠(「다시 현장으로」 시리즈)가 됩니다.
+</div>
+
+<h1 id="_6">운영 설계</h1>
+<p><span class="chap">CHAPTER 5</span></p>
+<h2 id="5-1">5-1. 직무 선별 원칙 (고레이샤 방식)</h2>
+<table>
+<thead>
+<tr>
+<th>넣는 일</th>
+<th>빼는 일</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>강의·코칭·해설</td>
+<td>무거운 짐 운반</td>
+</tr>
+<tr>
+<td>모임 리더·인솔 보조</td>
+<td>야간·장시간 근무</td>
+</tr>
+<tr>
+<td>말벗·안부 방문</td>
+<td>고소 작업 (사다리 2단 이상), 전기 배선 공사</td>
+</tr>
+<tr>
+<td>간단한 생활 수리 (손잡이·전등·미끄럼방지)</td>
+<td>면허·등록이 필요한 공사</td>
+</tr>
+<tr>
+<td>영상 촬영·편집 보조</td>
+<td>단독 운전 장거리 이동</td>
+</tr>
+<tr>
+<td>자문·멘토링</td>
+<td>금전 취급</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-2">5-2. 매칭·품질 관리</h2>
+<ul>
+<li><strong>배정 원칙</strong>: 거주지 30분 이내, 경력·성향 매칭, 신규는 선배와 2인 1조</li>
+<li><strong>평가</strong>: 매 활동 후 고객 만족도(5점) + 분기 동료 평가 + 연 1회 대표 면담</li>
+<li><strong>보상 원칙 (고레이샤 철학)</strong>: 베테랑 몫 70% 원칙, 연말 성과 공유, 존칭·존중 문화</li>
+<li><strong>건강 관리</strong>: 연 1회 건강 상태 자기 신고, 무리한 일정 배정 금지</li>
+</ul>
+<h2 id="5-3">5-3. 계약 구조 주의 (불법 파견·위장 도급 방지)</h2>
+<div class="box warn">
+<p><span class="bt">반드시 지킬 선</span></p>
+<ul>
+<li>온벗이 기관에 <strong>사람을 보내 기관의 지휘를 받게 하는 구조는 "근로자파견"</strong>이 될 수 있습니다 → 허가 없이 하지 않습니다.</li>
+<li>용역 계약에서는 <strong>업무 내용·결과물·진행 방식을 온벗이 책임</strong>지고, 기관은 결과를 받는 구조로 설계합니다.</li>
+<li>기관이 베테랑을 직접 채용하도록 소개하고 수수료를 받는 것은 <strong>직업소개</strong>이며 등록이 필요합니다.</li>
+<li>내부 위촉자가 정해진 시간·장소에서 지휘를 받으며 일하면 근로자로 판단될 수 있어 <strong>단시간 근로계약</strong>이 맞을 수 있습니다.</li>
+<li>→ 런칭 전 노무사 자문 1회로 계약서 3종(위촉·근로·용역)을 확정합니다.</li>
+</ul>
+</div>
+<h1 id="ai">AI 자동화 설계</h1>
+<p><span class="chap">CHAPTER 6</span></p>
+<table>
+<thead>
+<tr>
+<th>업무</th>
+<th>AI 활용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>경력 프로필</td>
+<td>인터뷰 녹취 → 경력 요약·강점 키워드·추천 직무 자동 생성 → 본인 확인</td>
+</tr>
+<tr>
+<td>1분 소개 영상</td>
+<td>인터뷰 영상에서 핵심 답변 자동 추출·자막 → 조피디 마무리</td>
+</tr>
+<tr>
+<td>매칭 추천</td>
+<td>기관 요청서(주제·지역·일정) → 등록 인재 DB에서 후보 3명 추천</td>
+</tr>
+<tr>
+<td>강의 교안 지원</td>
+<td>베테랑의 경험을 시니어 대상 90분 강의안으로 구조화 (Claude)</td>
+</tr>
+<tr>
+<td>일정·정산</td>
+<td>활동 기록 → 월말 활동비·정산서 자동 생성</td>
+</tr>
+<tr>
+<td>제안서</td>
+<td>기관별 맞춤 프로그램 제안서 초안 자동 작성</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_7">마케팅</h1>
+<p><span class="chap">CHAPTER 7</span></p>
+<h2 id="7-1">7-1. 인재 모집 (공급)</h2>
+<ul>
+<li>조피디 지인 네트워크 1차 연락 20명 (방송·교육·복지 분야)</li>
+<li>퇴직자 모임·동문회·교원 퇴직 모임에 모집 안내</li>
+<li>중장년 지원기관(경기도·서울시50플러스재단 등) 게시판</li>
+<li>숏폼 시리즈 「다시 현장으로」 — 베테랑 1분 소개 영상</li>
+<li>메시지: <strong>"당신의 30년은 아직 현역입니다"</strong></li>
+</ul>
+<h2 id="7-2">7-2. 기관 영업 (수요)</h2>
+<ul>
+<li>양주·의정부·동두천 노인복지관·평생학습관·주민센터 목록 30곳 → 프로그램 담당자 방문</li>
+<li>제안 패키지 3종: 「스마트폰 영상 8주」, 「건강걷기 리더 12주」, 「인생 2막 설계 4주」</li>
+<li>상반기 공모·위탁 일정(1~3월 연간 프로그램 확정 시기)에 맞춰 1월 중순 제안서 발송</li>
+</ul>
+<h1 id="_8">인허가·법률</h1>
+<p><span class="chap">CHAPTER 8</span></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>요건 (검색 자료 기준)</th>
+<th>온벗 계획</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>근로자파견사업</td>
+<td>고용노동부 허가, <strong>자본금 1억 원 이상</strong>(개인은 자산평가액), <strong>전용 20㎡ 이상 사무실</strong>, 허가 유효기간 3년, 건설현장 등 파견 금지 업무 존재</td>
+<td>하지 않음 (장기 검토)</td>
+</tr>
+<tr>
+<td>유료직업소개사업</td>
+<td>시군구 등록, 법인은 <strong>납입자본금 5천만 원 이상</strong>(사업소 추가 시 1개소당 2천만 원 가산)·<strong>임원 2명 이상</strong>, 직업상담사 1·2급 등 자격자 요건, 소개 요금 상한 고시 준수</td>
+<td>2027 하반기 법인 전환 후 검토 (직업상담사 자격 취득 또는 자격자 영입)</td>
+</tr>
+<tr>
+<td>교육·서비스 용역</td>
+<td>사업자등록 내 업종 추가</td>
+<td>2분기</td>
+</tr>
+<tr>
+<td>생활 수리</td>
+<td>경미한 수리 범위 내 (건설업 등록이 필요한 공사 금지), 배상책임보험</td>
+<td>2분기</td>
+</tr>
+<tr>
+<td>근로 관계</td>
+<td>위촉·근로 구분, 최저임금, 산재보험</td>
+<td>런칭 전 노무 자문</td>
+</tr>
+<tr>
+<td>고령자친화기업</td>
+<td>고용노동부 지정 사업 (시니어 고용 기업 지원) — 2027 공고 확인</td>
+<td>하반기 검토</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_9">예산과 재무 추정</h1>
+<p><span class="chap">CHAPTER 9</span></p>
+<h2 id="9-1">9-1. 런칭 예산</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>금액(만 원)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>모집 안내물·온라인 신청서</td>
+<td>20</td>
+</tr>
+<tr>
+<td>영상 인터뷰 10명 (촬영 소모품·교통)</td>
+<td>30</td>
+</tr>
+<tr>
+<td>기본 교육 8시간 (교재·장소) — 클럽 리더 교육과 통합</td>
+<td>40</td>
+</tr>
+<tr>
+<td>노무 자문 (계약서 3종)</td>
+<td>40</td>
+</tr>
+<tr>
+<td>위촉 증서·명찰·조끼</td>
+<td>20</td>
+</tr>
+<tr>
+<td><strong>합계</strong></td>
+<td><strong>150</strong></td>
+</tr>
+</tbody>
+</table>
+<h2 id="9-2-12">9-2. 12개월 매출 추정 (외부 매출만) <span class="tag est">추정치</span></h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>3월</th>
+<th>6월</th>
+<th>9월</th>
+<th>12월</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>기관 강좌·프로그램 용역</td>
+<td>—</td>
+<td>4회 · 40</td>
+<td>8회 · 80</td>
+<td>10회 · 100</td>
+</tr>
+<tr>
+<td>안전 손보기·자문</td>
+<td>—</td>
+<td>—</td>
+<td>20</td>
+<td>40</td>
+</tr>
+<tr>
+<td><strong>월 매출 (만 원)</strong></td>
+<td><strong>0</strong></td>
+<td><strong>40</strong></td>
+<td><strong>100</strong></td>
+<td><strong>140</strong></td>
+</tr>
+<tr>
+<td>베테랑 지급 (70%)</td>
+<td>—</td>
+<td>28</td>
+<td>70</td>
+<td>98</td>
+</tr>
+<tr>
+<td><strong>온벗 공헌이익</strong></td>
+<td><strong>0</strong></td>
+<td><strong>12</strong></td>
+<td><strong>30</strong></td>
+<td><strong>42</strong></td>
+</tr>
+</tbody>
+</table>
+<p class="src">이 사업의 1년 차 가치는 외부 매출보다 <strong>내부 인력 공급</strong>입니다. 클럽·안부·라이프노트의 리더·활동가 30명을 검증된 베테랑으로 채우는 것 자체가 다른 사업의 품질과 확장 속도를 결정합니다. 시니어 일자리 창출 실적은 사회적기업 지정·지원사업 심사에서 핵심 지표입니다.</p>
+
+<h1 id="_10">실행 일정</h1>
+<p><span class="chap">CHAPTER 10</span></p>
+<table>
+<thead>
+<tr>
+<th>주</th>
+<th>기간</th>
+<th>할 일</th>
+<th>완료 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1~W2</td>
+<td>11/9~22</td>
+<td>고레이샤·탤런트뱅크 분석, 지인 네트워크 명단 40명</td>
+<td>명단</td>
+</tr>
+<tr>
+<td>W3~W4</td>
+<td>11/23~12/6</td>
+<td>노무 자문 요청, 위촉·근로 계약서 초안, 직무 선별표</td>
+<td>계약서 초안</td>
+</tr>
+<tr>
+<td>W5</td>
+<td>12/7~13</td>
+<td>모집 공고 초안, 지인 1차 연락 20명</td>
+<td>관심자 10명</td>
+</tr>
+<tr>
+<td>W6</td>
+<td>12/14~20</td>
+<td>영상 인터뷰 5명, 프로필 템플릿</td>
+<td>프로필 5개</td>
+</tr>
+<tr>
+<td>W7</td>
+<td>12/21~27</td>
+<td>클럽 리더 4명·안부 활동가 2명 확정</td>
+<td>6명 확정</td>
+</tr>
+<tr>
+<td>W8</td>
+<td>12/28~1/3</td>
+<td><strong>기본 교육 8시간</strong> (클럽 리더 교육과 통합)</td>
+<td>수료 6명</td>
+</tr>
+<tr>
+<td>W9</td>
+<td>1/4~10</td>
+<td>1기 활동 시작 (클럽·안부 현장)</td>
+<td>현장 투입</td>
+</tr>
+<tr>
+<td>W10</td>
+<td>1/11~17</td>
+<td><strong>1/16 인재 모집 공식 오픈</strong>, 「다시 현장으로」 영상 2편</td>
+<td>신청 20명</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2027 로드맵</strong>: 1분기 1기 20명 등록·내부 검증 → 2분기 기관 제안 30곳·용역 첫 수주·안전 손보기 시작 → 3분기 법인 전환·직업상담사 확보·유료직업소개 등록 준비 → 4분기 등록 80명·위촉 30명·고령자친화기업 공모</p>
+<h1 id="kpi">KPI</h1>
+<p><span class="chap">CHAPTER 11</span></p>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>1월</th>
+<th>3월</th>
+<th>6월</th>
+<th>12월</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>등록 인재 (누적)</td>
+<td>10</td>
+<td>20</td>
+<td>40</td>
+<td>80</td>
+</tr>
+<tr>
+<td>위촉·고용 인원</td>
+<td>6</td>
+<td>10</td>
+<td>18</td>
+<td>30</td>
+</tr>
+<tr>
+<td>베테랑 월평균 소득 (활동비·강사료)</td>
+<td>—</td>
+<td>30만 원</td>
+<td>45만 원</td>
+<td>60만 원</td>
+</tr>
+<tr>
+<td>기관 거래처</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>8</td>
+</tr>
+<tr>
+<td>고객 만족도</td>
+<td>4.3</td>
+<td>4.4</td>
+<td>4.5</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>베테랑 유지율 (6개월)</td>
+<td>—</td>
+<td>—</td>
+<td>80%</td>
+<td>80%</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_11">리스크와 대응</h1>
+<p><span class="chap">CHAPTER 12</span></p>
+<table>
+<thead>
+<tr>
+<th>리스크</th>
+<th>대응</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>불법 파견·직업소개 판정</td>
+<td>용역 구조 설계, 노무 자문, 등록 전 소개 수수료 받지 않음</td>
+</tr>
+<tr>
+<td>현장 안전사고 (수리 중 낙상 등)</td>
+<td>직무 선별표, 사다리 2단 이상 금지, 보험</td>
+</tr>
+<tr>
+<td>베테랑의 '왕년' 태도 (권위적 응대)</td>
+<td>기본 교육의 시니어 서비스 태도 모듈, 3개월 현장 검증</td>
+</tr>
+<tr>
+<td>일감 부족으로 이탈</td>
+<td>내부 일감 우선 배정, 분기 모임, 기대 소득 사전 안내</td>
+</tr>
+<tr>
+<td>수익성 낮음</td>
+<td>내부 인력 공급 가치로 평가, 기관 패키지(고단가) 중심 영업</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_12">결정이 필요한 질문</h1>
+<p><span class="chap">CHAPTER 13</span></p>
+<div class="box ask">
+<p><span class="bt">조피디님께 묻습니다</span></p>
+<ol>
+<li>1기로 모실 수 있는 <strong>은퇴 동료</strong>가 몇 분 계신가요? 분야는? (방송·교육·복지·기술)</li>
+<li>직업상담사 자격 취득 또는 자격자 영입 의향이 있으신가요? (유료직업소개 등록 조건)</li>
+<li>「어르신 집 안전 손보기」를 2분기에 시작할까요? (안부 고객 자녀의 수요가 클 것으로 봅니다)</li>
+<li>베테랑 몫 70% 원칙에 동의하시나요?</li>
+</ol>
+</div>
+<h1 id="_13">핵심 키워드 요약·출처</h1>
+<p><span class="chap">CHAPTER 14</span></p>
+<div class="kw"><span class="hot">이력서보다 동료 신뢰</span><span class="hot">경험·눈썰미 직무</span><span class="hot">내부 위촉 → 용역 → 직업소개</span><span>파견 허가 1억 원</span><span>직업소개 법인 5천만 원</span><span>영상 경력 프로필</span><span>베테랑 몫 70%</span><span>어르신 집 안전 손보기</span><span>소득 공백 10년</span><span>시니어 일자리 실적</span></div>
+
+<div class="small">
+<p><strong>출처</strong></p>
+<ul>
+<li>첨부 자료 3~4 (고레이샤 설립·우에다 겐지·등록 1,233명·평균 71.4세·매출 8억 5천만 엔·경영 철학, 퇴직 52.9세·연금 65세·69.4%·73세)</li>
+<li>근로자파견·직업소개 요건: <a href="https://korea.legal/wiki/%ed%8c%8c%ea%b2%ac%ea%b7%bc%eb%a1%9c%ec%9e%90-%eb%b3%b4%ed%98%b8-%eb%93%b1%ec%97%90-%ea%b4%80%ed%95%9c-%eb%b2%95%eb%a5%a0-%ec%a0%9c7%ec%a1%b0/">파견법 제7조</a>, <a href="https://www.guard1004.com/441?category=1018677">근로자파견업 허가(행정사 자료)</a>, <a href="https://www.help-me.kr/blog/article/%EC%A7%81%EC%97%85%EC%86%8C%EA%B0%9C%EC%82%AC%EC%97%85%EB%B2%95%EC%9D%B8%EC%84%A4%EB%A6%BD/">직업소개사업 법인설립(헬프미)</a></li>
+<li>탤런트뱅크: <a href="https://www.unicornfactory.co.kr/article/2024070814382918761">유니콘팩토리</a>, <a href="https://bravo.etoday.co.kr/view/atc_view/13017">브라보마이라이프</a></li>
+<li>중장년 일자리 흐름: <a href="https://www.unicornfactory.co.kr/article/2025112613495356919">유니콘팩토리</a>, <a href="https://eopla.net/magazines/43662">이오플랫폼</a></li>
+<li>노인일자리 2027 예산안: <a href="https://bravo.etoday.co.kr/view/atc_view/20232">브라보마이라이프</a></li>
+<li>고령자친화기업: <a href="https://gangneungcci.korcham.net/file/dext5uploaddata/2026/3.%20[리플릿]%202026%20고령자친화기업%20안내.pdf">2026 고령자친화기업 안내 리플릿</a></li>
+<li>파견법·직업안정법 원문과 소개 요금 고시는 국가법령정보센터·고용노동부에서 확인 필요</li>
+</ul>
+</div>
+</div></body></html>

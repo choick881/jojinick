@@ -1,0 +1,1431 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>온벗 클럽 취미·테마 커뮤니티 여행 사업추진 보고서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>/* 시니어 비즈니스 TOP5 사업추진 보고서 — 인쇄(A4) 우선 스타일 */
+:root {
+  --paper: #FBF8F2;
+  --ink: #2A2621;
+  --muted: #6B6358;
+  --forest: #2F4A3A;
+  --forest-2: #4E6B57;
+  --sage: #E5EADF;
+  --clay: #B3603A;
+  --clay-soft: #F4E3D8;
+  --sand: #EFE7DA;
+  --line: #D9D0C2;
+  --gold: #A9822F;
+}
+
+@page { size: A4; margin: 20mm 17mm 20mm 17mm; }
+@page :first { margin: 0; }
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Pretendard", "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 10.6pt;
+  line-height: 1.72;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@media screen {
+  body { background: #E9E4DA; }
+  .doc { max-width: 210mm; margin: 24px auto; background: #fff; padding: 20mm 17mm; box-shadow: 0 2px 18px rgba(0,0,0,.12); }
+  .cover { margin: -20mm -17mm 20mm; }
+  .printbar { position: sticky; top: 0; z-index: 9; background: var(--forest); color: #fff; padding: 10px 16px; text-align: center; font-size: 14px; }
+  .printbar button { font: inherit; margin-left: 10px; padding: 4px 14px; border-radius: 6px; border: 0; background: #fff; color: var(--forest); cursor: pointer; }
+}
+@media print { .printbar { display: none; } .doc { padding: 0; } }
+
+/* ---------- 표지 ---------- */
+.cover {
+  height: 297mm; width: 210mm; position: relative; overflow: hidden;
+  background: var(--forest); color: #fff; page-break-after: always; break-after: page;
+  padding: 30mm 22mm 24mm;
+  display: flex; flex-direction: column;
+}
+.cover::after {
+  content: ""; position: absolute; right: -60mm; bottom: -60mm; width: 190mm; height: 190mm;
+  border-radius: 50%; background: radial-gradient(circle at 35% 35%, #B3603A 0%, #8E4A2B 60%, transparent 61%);
+  opacity: .9;
+}
+.cover::before {
+  content: ""; position: absolute; right: 40mm; bottom: 70mm; width: 46mm; height: 46mm;
+  border-radius: 50%; background: #E9D9B8; opacity: .9;
+}
+.cover .kicker { font-size: 11pt; letter-spacing: .18em; color: #E9D9B8; font-weight: 600; }
+.cover .no { font-size: 64pt; font-weight: 800; line-height: 1; margin: 18mm 0 6mm; color: #E9D9B8; }
+.cover h1.title { font-size: 30pt; line-height: 1.32; margin: 0 0 6mm; font-weight: 800; color: #fff; border: 0; padding: 0; }
+.cover .subtitle { font-size: 13.5pt; line-height: 1.6; color: #F2EDE4; max-width: 150mm; }
+.cover .meta { margin-top: auto; position: relative; z-index: 2; font-size: 10.5pt; color: #F2EDE4; line-height: 1.8; }
+.cover .meta b { color: #E9D9B8; font-weight: 700; }
+.cover .tagrow { margin-top: 10mm; display: flex; flex-wrap: wrap; gap: 6px; max-width: 150mm; position: relative; z-index: 2; }
+.cover .tagrow span { border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: 3px 12px; font-size: 9.5pt; }
+
+/* ---------- 제목 체계 ---------- */
+h1 {
+  font-size: 19pt; line-height: 1.35; color: var(--forest); margin: 0 0 6mm; padding: 0 0 3mm;
+  border-bottom: 2.5px solid var(--forest); page-break-before: always; break-before: page; font-weight: 800;
+}
+.chap { display: block; font-size: 8.6pt; letter-spacing: .2em; color: var(--clay); font-weight: 700; margin: -4mm 0 2mm; }
+.nobreak-first > h1:first-child, h1.nobreak { page-break-before: auto; break-before: auto; }
+h2 {
+  font-size: 13.8pt; color: var(--ink); margin: 9mm 0 3mm; padding-left: 9px; font-weight: 800;
+  border-left: 5px solid var(--clay); line-height: 1.4; page-break-after: avoid; break-after: avoid;
+}
+h3 { font-size: 11.6pt; color: var(--forest); margin: 6mm 0 2mm; font-weight: 700; page-break-after: avoid; break-after: avoid; }
+h4 { font-size: 10.8pt; margin: 4mm 0 1.5mm; color: var(--clay); page-break-after: avoid; }
+p { margin: 0 0 2.6mm; }
+ul, ol { margin: 0 0 3mm; padding-left: 5.5mm; }
+li { margin: .6mm 0; }
+li > ul, li > ol { margin: .6mm 0; }
+strong { color: #1F1B17; font-weight: 700; }
+em { font-style: normal; color: var(--clay); font-weight: 600; }
+a { color: var(--forest-2); text-decoration: none; word-break: break-all; }
+hr { border: 0; border-top: 1px dashed var(--line); margin: 6mm 0; }
+code { font-family: "Pretendard", monospace; background: var(--sand); padding: 0 4px; border-radius: 3px; font-size: .95em; }
+blockquote {
+  margin: 3mm 0 4mm; padding: 3mm 5mm; background: var(--sage); border-left: 4px solid var(--forest-2);
+  border-radius: 0 6px 6px 0; color: #24382C;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+/* ---------- 표 ---------- */
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 5mm; font-size: 9.4pt; line-height: 1.55; page-break-inside: auto; }
+thead { display: table-header-group; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+th { background: var(--forest); color: #fff; font-weight: 700; text-align: left; padding: 2mm 2.4mm; border: 1px solid var(--forest); vertical-align: middle; }
+td { padding: 1.8mm 2.4mm; border: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) td { background: #FAF7F1; }
+td strong { color: var(--forest); }
+.tight table { font-size: 8.8pt; }
+.tight td, .tight th { padding: 1.3mm 1.8mm; }
+
+/* ---------- 박스 ---------- */
+.box { border: 1px solid var(--line); border-radius: 8px; padding: 4mm 5mm; margin: 3mm 0 5mm; background: #fff; page-break-inside: avoid; break-inside: avoid; }
+.box > :last-child { margin-bottom: 0; }
+.box .bt { display: block; font-weight: 800; color: var(--forest); margin-bottom: 1.5mm; font-size: 11pt; }
+.box.key { background: var(--clay-soft); border-color: #E3C3AF; }
+.box.key .bt { color: var(--clay); }
+.box.green { background: var(--sage); border-color: #C9D3C0; }
+.box.warn { background: #FFF5E8; border-color: #EBC995; }
+.box.warn .bt { color: #8A5A12; }
+.box.ask { background: #F1F0FA; border-color: #CFCBEA; }
+.box.ask .bt { color: #463E8C; }
+.box.sum { background: var(--forest); color: #fff; border: 0; }
+.box.sum .bt, .box.sum strong { color: #E9D9B8; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 2mm 0 4mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 2mm 0 4mm; }
+.grid2 > .box, .grid3 > .box { margin: 0; }
+
+.kw { display: flex; flex-wrap: wrap; gap: 5px; margin: 2mm 0 4mm; }
+.kw span { background: var(--sand); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 1px 11px; font-size: 9.4pt; font-weight: 600; }
+.kw span.hot { background: var(--clay); border-color: var(--clay); color: #fff; }
+
+.stat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 2mm 0 5mm; }
+.stat div { border: 1px solid var(--line); border-radius: 8px; padding: 3mm; background: #fff; page-break-inside: avoid; }
+.stat b { display: block; font-size: 17pt; color: var(--forest); line-height: 1.2; font-weight: 800; }
+.stat small { display: block; color: var(--muted); font-size: 8.4pt; line-height: 1.45; margin-top: 1mm; }
+
+.src { font-size: 8.4pt; color: var(--muted); }
+.tag { display: inline-block; font-size: 8.4pt; padding: 0 7px; border-radius: 4px; font-weight: 700; margin-right: 3px; vertical-align: 1px; }
+.tag.must { background: var(--clay); color: #fff; }
+.tag.now { background: var(--forest); color: #fff; }
+.tag.later { background: var(--line); color: var(--ink); }
+.tag.est { background: #F2E6C8; color: #6E5310; }
+
+.toc { columns: 2; column-gap: 8mm; font-size: 10pt; }
+.toc ol { margin: 0; }
+.check li { list-style: none; position: relative; padding-left: 1mm; }
+.check li::before { content: "☐"; position: absolute; left: -5mm; color: var(--forest); }
+.check { padding-left: 6mm; }
+
+/* 간트 표 */
+.gantt table { font-size: 8.3pt; }
+.gantt td, .gantt th { padding: 1.1mm 1.2mm; text-align: center; }
+.gantt td:first-child, .gantt th:first-child { text-align: left; white-space: nowrap; }
+.gantt td.on { background: var(--forest) !important; color: #fff; font-weight: 700; }
+.gantt td.mid { background: #9CB3A2 !important; color: #fff; }
+.gantt td.ms { background: var(--clay) !important; color: #fff; font-weight: 800; }
+
+.avoid { page-break-inside: avoid; break-inside: avoid; }
+.pb { page-break-after: always; break-after: page; height: 0; }
+.center { text-align: center; }
+.small { font-size: 9pt; }
+.muted { color: var(--muted); }
+</style></head>
+<body>
+<div class="printbar">A4 인쇄용 보고서입니다 <button onclick="window.print()">인쇄 / PDF 저장</button></div>
+<div class="doc">
+<section class="cover">
+  <div class="kicker">BUSINESS 01 · 우선순위 1위 · 1월 정식 오픈</div>
+  <div class="no">01</div>
+  <h1 class="title">온벗 클럽<br>취미·테마 커뮤니티 여행 사업추진 보고서</h1>
+  <div class="subtitle">일본 클럽 투어리즘(회원 700만 명)이 증명한 "목적지가 아니라 '할 것'을 파는 여행"을 경기 북부 동네 단위로 다시 만듭니다. 노인스포츠지도사의 건강걷기와 25년 PD의 사진·영상 동아리가 이 사업의 심장입니다.</div>
+  <div class="tagrow"><span>클럽 투어리즘 벤치마킹</span><span>테마 동아리</span><span>당일 테마여행</span><span>이웃지기</span><span>하이라이트 영상</span><span>사회적 고립 예방</span></div>
+  <div class="meta"><b>일본 원형</b> 클럽 투어리즘 (Club Tourism, 테마 여행·에코 스태프·취미인 클럽)<br><b>한국판 가칭</b> 온벗 클럽<br><b>1월 런칭</b> 정식 오픈 (2027.1.4 소프트 · 1.16 그랜드)<br><b>핵심 결제자</b> 본인 70% · 자녀 선물 15% · 기관 위탁 15%</div>
+</section>
+<h1 class="nobreak" id="_1">한 장 요약</h1>
+<p><span class="chap">EXECUTIVE SUMMARY</span></p>
+<div class="box sum">
+<p><span class="bt">온벗 클럽은 무엇인가</span></p>
+<p><strong>취미가 같은 또래(58~75세)가 동네에서 매주 만나 걷고, 찍고, 배우고, 한 달에 한 번 함께 떠나는 회원제 클럽</strong>입니다. 여행은 목적이 아니라 동아리 활동의 "졸업여행"입니다. 활동마다 조피디가 만든 하이라이트 영상이 회원과 자녀에게 전달되고, 그 영상이 다음 회원을 부릅니다.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>해결하는 문제</td>
+<td>은퇴 후 직장이라는 울타리가 사라진 뒤 찾아오는 <strong>고립</strong>. 효도관광은 1회로 끝나고 관계가 남지 않음</td>
+</tr>
+<tr>
+<td>핵심 가치</td>
+<td>① 매주 갈 곳과 만날 사람 ② 함께하는 취미 ③ 내 모습이 담긴 영상 ④ 안전한 인솔</td>
+</tr>
+<tr>
+<td>상품 구성</td>
+<td>동아리 정기권 4종(건강걷기·폰카 사진영상·역사문화 탐방·실내 실버체조) + 월 1회 당일 테마여행 + 자녀 선물권 + 기관 위탁 프로그램</td>
+</tr>
+<tr>
+<td>1월 오픈 범위</td>
+<td>동아리 4개 반, 1월 23일(토) 첫 당일 테마여행(실내 중심 코스)</td>
+</tr>
+<tr>
+<td>인허가 전략</td>
+<td>여행 상품은 <strong>등록 여행사와 제휴</strong>해 여행사가 판매·계약 주체. 2분기 국내여행업 직접 등록 (자본금 1,500만 원)</td>
+</tr>
+<tr>
+<td>1년 차 목표</td>
+<td>유료 회원 320명, 12월 월 매출 950만 원, 재참여율 60%, 안전사고 0건 <span class="tag est">추정</span></td>
+</tr>
+<tr>
+<td>런칭 예산</td>
+<td>약 900만 원 (통합 예산 2,000만 원 중)</td>
+</tr>
+<tr>
+<td>다른 사업과의 연결</td>
+<td>회원 명부·신뢰를 안부(02)·라이프노트(03)·동행친구(05)로, 시니어 리더 일자리를 베테랑뱅크(04)로 연결</td>
+</tr>
+</tbody>
+</table>
+<div class="kw"><span class="hot">목적지보다 '할 것'</span><span class="hot">동연배 커뮤니티</span><span class="hot">이웃지기(한국판 에코 스태프)</span><span>구간 완주 프로젝트</span><span>하이라이트 영상</span><span>여행사 제휴 판매</span><span>자녀 선물권</span><span>B2G 고립 예방</span><span>겨울 실내 60%</span></div>
+
+<h3 id="_2">목차</h3>
+<ol>
+<li>일본 원형 — 클럽 투어리즘 심층 분석</li>
+<li>한국 시장 분석</li>
+<li>경쟁·벤치마킹</li>
+<li>고객 정의 (페르소나)</li>
+<li>사업 모델과 상품 설계</li>
+<li>운영 설계와 안전 매뉴얼</li>
+<li>AI 자동화 설계</li>
+<li>마케팅·SNS 전략</li>
+<li>인허가·법률·보험</li>
+<li>조직·파트너</li>
+<li>예산과 재무 추정</li>
+<li>실행 일정 (10주 + 2027 로드맵)</li>
+<li>KPI</li>
+<li>리스크와 대응</li>
+<li>런칭 체크리스트</li>
+<li>결정이 필요한 질문</li>
+<li>핵심 키워드 요약·출처</li>
+</ol>
+<h1 id="_3">일본 원형 — 클럽 투어리즘 심층 분석</h1>
+<p><span class="chap">CHAPTER 1</span></p>
+<h2 id="1-1">1-1. 기업 개요</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용 (첨부 자료·2026 보도 기준)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>회원</td>
+<td>약 <strong>700만 명(300만 가구)</strong>. 중장년·시니어 중심</td>
+</tr>
+<tr>
+<td>사업 방식</td>
+<td>목적지가 아닌 <strong>'무엇을 할 것인가'</strong> 중심의 테마 여행 (옛 성 걷기, 철도 여행, 고산 야생화 촬영, 옛길 구간별 완주)</td>
+</tr>
+<tr>
+<td>인적 네트워크</td>
+<td><strong>에코 스태프</strong> 약 5,000명(회원)이 여행 소식지 「여행의 벗(旅の友)」의 약 <strong>80%를 이웃 회원 집에 직접 배달</strong></td>
+</tr>
+<tr>
+<td>온라인</td>
+<td>DeNA와 합작한 시니어 SNS <strong>「취미인 클럽(趣味人倶楽部)」</strong>, 회원의 70% 이상이 50대 이상</td>
+</tr>
+<tr>
+<td>위기</td>
+<td>코로나19 시기 매출 77% 감소, 285억 엔 적자</td>
+</tr>
+<tr>
+<td>확장</td>
+<td>충성 회원 자산을 기반으로 <strong>요양·생활지원(라이프케어)</strong> 계열사로 확장</td>
+</tr>
+<tr>
+<td>2026년 동향</td>
+<td>75세 이상도 체력에 맞게 참여하는 「大人のゆるり旅(어른의 느긋한 여행)」 5주년 / 2026.7.21 기업·지자체 대상 신규 서비스 「クラツーで」 시작 / 2026.5 「百年料亭ネットワーク」와 포괄 연계 협정 / 테마 여행 대설명회(2026.9, 신주쿠)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2-5">1-2. 성공 메커니즘 5가지 (첨부 자료 분석)</h2>
+<ol>
+<li><strong>역발상 상품 설계</strong> — 보통 여행사는 "오사카 3일"을 팔지만 클럽 투어리즘은 "옛 성 100곳 걷기"를 팝니다. 같은 취미를 가진 사람이 자연스럽게 같은 버스에 탑니다.</li>
+<li><strong>여행이 끝나도 이어지는 관계</strong> — 서로 찍은 사진을 나누고 다음 구간을 함께 신청합니다. 회사는 일회성 상품이 아니라 <strong>"다시 찾아올 이유가 있는 공동체"</strong>를 팝니다. 대형 광고 없이도 회원이 다음 일정을 기다립니다.</li>
+<li><strong>회원이 회원을 돌보는 배달 네트워크</strong> — 소식지 배달이 곧 동네 안부 확인입니다. 마케팅 비용이 줄고 지역 오프라인 연결망이 생깁니다.</li>
+<li><strong>온·오프라인 연결</strong> — 여행이 없는 날에도 취미 SNS에서 대화가 이어집니다.</li>
+<li><strong>여행 신뢰를 생애 돌봄으로 확장</strong> — 10년 넘게 함께 다닌 브랜드가 노후 생활 돌봄까지 맡는 구조입니다.</li>
+</ol>
+<h2 id="1-3-3">1-3. 한국에 그대로 옮기면 안 되는 3가지</h2>
+<table>
+<thead>
+<tr>
+<th>일본의 전제</th>
+<th>한국의 현실</th>
+<th>온벗의 수정</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>경제적·시간적 여유가 있는 시니어가 직접 비용 지불</td>
+<td>노인 상대적 빈곤율 39.7% (일본 25.7%)</td>
+<td><strong>월 1~3만 원대 동네 동아리</strong>를 기본으로, 비싼 여행은 월 1회 선택. 자녀 선물권·기관 위탁으로 결제자 분산</td>
+</tr>
+<tr>
+<td>전국 단위 대형 여행사</td>
+<td>1인 창업, 경기 북부 거점</td>
+<td><strong>동네 단위(버스 30분 이내)</strong> 클럽부터 시작해 지역 복제</td>
+</tr>
+<tr>
+<td>오래된 회원 기반 (수십 년)</td>
+<td>한국 시니어 여행은 1회성 효도관광 위주</td>
+<td>첫 6개월은 <strong>여행보다 매주 만나는 동아리</strong>로 관계부터 만들기</td>
+</tr>
+</tbody>
+</table>
+<div class="box key"><span class="bt">현실적 한계도 기억할 것 (첨부 원고)</span>
+700만 회원 중 실제 지속 활동자는 일부이고, 여유 있는 노인층에 편중되어 있다는 비판이 있습니다. 온벗은 처음부터 <strong>"작고 촘촘한 클럽"</strong>을 목표로 하고, 저소득 어르신은 <strong>기관 위탁·나눔 회원권</strong>으로 참여하게 설계합니다.
+</div>
+
+<h1 id="_4">한국 시장 분석</h1>
+<p><span class="chap">CHAPTER 2</span></p>
+<h2 id="2-1">2-1. 수요를 만드는 숫자</h2>
+<div class="stat">
+<div><b>1,112만 명</b><small>65세 이상 인구 (2026), 전체의 21.6%</small></div>
+<div><b>38.0%</b><small>고령자 가구 중 1인 가구 비중 (2026)</small></div>
+<div><b>239만 명+</b><small>경기도 노인 인구, 전국 최대 (경기연구원)</small></div>
+<div><b>19.3%</b><small>양주시 고령 인구 비중 (2026.6, 총인구 29.7만 명)</small></div>
+</div>
+
+<ul>
+<li><strong>베이비붐 세대의 특성</strong> (첨부 원고): 학력이 높고 해외 경험과 취미 활동에 익숙합니다. 효도관광에 만족하지 않는 첫 세대입니다.</li>
+<li><strong>은퇴 후 가장 큰 공포는 가난보다 고립</strong> (첨부 원고): 직장이라는 울타리가 사라진 뒤 갈 곳과 만날 사람이 없어지는 것이 문제입니다.</li>
+<li><strong>제도 기회</strong>: 2026년 3월 27일 본사업이 시작된 <strong>돌봄통합지원법</strong>은 시군구가 지역특화서비스를 직접 기획하게 했습니다. 사회적 고립 예방은 지자체의 직접적인 정책 과제입니다.</li>
+<li><strong>산업 규모</strong>: 국내 시니어 산업 약 83조 원(2024, 경희대 에이지테크연구소), 2030년 126~271조 원 전망.</li>
+</ul>
+<h2 id="2-2">2-2. 경기 북부(양주) 지역 자원</h2>
+<table>
+<thead>
+<tr>
+<th>자원</th>
+<th>활용 아이디어</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>불곡산, 감악산, 천보산 둘레길</td>
+<td>난이도 ★~★★ 건강걷기 코스</td>
+</tr>
+<tr>
+<td>회암사지(사적), 양주관아지, 양주별산대놀이</td>
+<td>역사문화 탐방반 "양주 600년 이야기"</td>
+</tr>
+<tr>
+<td>장흥 관광지·조각공원·미술관</td>
+<td>사진·영상반 출사지</td>
+</tr>
+<tr>
+<td>경기둘레길 (60개 코스·약 860km, 경기도 확인 필요)</td>
+<td><strong>"5년 완주 프로젝트"</strong> — 클럽 투어리즘의 '옛길 구간별 완주'를 한국판으로</td>
+</tr>
+<tr>
+<td>경원선·경의중앙선·GTX-C(개통 예정)</td>
+<td>기차 여행반 (2분기 이후)</td>
+</tr>
+<tr>
+<td>노인복지관·평생학습관·작은도서관</td>
+<td>겨울 실내 프로그램 장소</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_5">경쟁·벤치마킹</h1>
+<p><span class="chap">CHAPTER 3</span></p>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>대표 사례</th>
+<th>장점</th>
+<th>한계</th>
+<th>온벗의 차별점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>효도관광 버스 여행</td>
+<td>지역 여행사·관광버스 상품</td>
+<td>저렴, 익숙함</td>
+<td>1회성, 쇼핑 강요 논란, 관계 없음</td>
+<td>같은 동아리 회원과 가는 <strong>"졸업여행"</strong></td>
+</tr>
+<tr>
+<td>노인복지관 나들이·프로그램</td>
+<td>시군구 복지관</td>
+<td>무료·저렴, 신뢰</td>
+<td>대기자 많음, 프로그램 경직, 젊은 시니어 기피</td>
+<td><strong>58~75세 액티브 시니어</strong> 감성, 영상 기록</td>
+</tr>
+<tr>
+<td>50+ 소셜 플랫폼</td>
+<td>시놀(시니어놀이터, 2023 설립) — 모임·매칭·여행·커머스</td>
+<td>앱 기반 확장성</td>
+<td>앱 사용 장벽, 오프라인 신뢰 약함</td>
+<td><strong>동네 오프라인 우선 + 카톡·밴드</strong>(행동 변화 최소)</td>
+</tr>
+<tr>
+<td>산악회·동호회</td>
+<td>지역 산악회, 밴드 모임</td>
+<td>강한 유대</td>
+<td>음주·안전 관리 부재, 회원 고령화</td>
+<td>노인스포츠지도사 안전 관리, 금주 원칙</td>
+</tr>
+<tr>
+<td>평생학습 강좌</td>
+<td>평생학습관, 문화센터</td>
+<td>저렴</td>
+<td>학기 끝나면 관계 끝</td>
+<td>강좌가 <strong>여행·영상·커뮤니티로 이어짐</strong></td>
+</tr>
+<tr>
+<td>일본</td>
+<td>클럽 투어리즘, 취미인 클럽</td>
+<td>30년 노하우</td>
+<td>부유층 편중</td>
+<td>저가 동아리 + 자녀·기관 결제</td>
+</tr>
+</tbody>
+</table>
+<div class="box green">
+<p><span class="bt">벤치마킹 체크리스트 (W2~W3 미스터리 쇼핑)</span></p>
+<ul>
+<li>지역 효도관광 상품 3개: 가격, 포함 내역, 쇼핑 일정, 인솔자 수, 보험</li>
+<li>복지관 프로그램 3곳: 대기 인원, 강사료, 인기 프로그램, 참여자 연령</li>
+<li>시놀 앱: 가입 절차, 모임 개설 방식, 결제, 안전 정책</li>
+<li>지역 산악회·밴드 2곳: 회비, 운영 방식, 사고 대응</li>
+<li>클럽 투어리즘 웹사이트: 테마 분류 방식, 난이도 표시, 「大人のゆるり旅」 설계</li>
+</ul>
+</div>
+<h1 id="_6">고객 정의</h1>
+<p><span class="chap">CHAPTER 4</span></p>
+<div class="grid3">
+<div class="box">
+<p><span class="bt">페르소나 A · 김정숙(66)</span></p>
+<ul>
+<li>사별 3년, 양주 옥정 아파트 혼자 거주</li>
+<li>하루 대화 상대가 경로당 몇 명뿐</li>
+<li>스마트폰 카톡·사진은 가능</li>
+<li>월 여가비 3만 원 정도</li>
+<li><strong>원하는 것</strong>: "혼자 가기 쑥스러운데 같이 걸을 친구"</li>
+<li><strong>상품</strong>: 건강걷기 정기권 + 월 1회 여행 (가끔)</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="bt">페르소나 B · 박영수(63)</span></p>
+<ul>
+<li>공기업 퇴직 2년, 아내와 의정부 거주</li>
+<li>등산·카메라 좋아함, 시간 많음</li>
+<li>월 여가비 10만 원 이상</li>
+<li><strong>원하는 것</strong>: "실력 늘리고 작품 남기기, 뭔가 역할"</li>
+<li><strong>상품</strong>: 사진·영상반 + 테마여행, 6개월 뒤 <strong>시니어 리더 위촉</strong>(→ 04권)</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="bt">페르소나 C · 이수진(46, 자녀)</span></p>
+<ul>
+<li>서울 직장인, 양주에 홀로 사는 어머니(74)</li>
+<li>주말마다 못 가 죄책감</li>
+<li><strong>원하는 것</strong>: "엄마가 밖에 나가 웃는 모습을 보고 싶다"</li>
+<li><strong>상품</strong>: <strong>자녀 선물권 3개월</strong>, 활동 영상 수신, 이후 안부 구독(→ 02권)</li>
+</ul>
+</div>
+</div>
+<p><strong>기관 고객</strong>: 양주시(노인장애인과·통합돌봄 담당), 노인복지관, 행정복지센터, 시니어클럽, 아파트 관리사무소(커뮤니티 프로그램), 기업(퇴직 예정자 프로그램).</p>
+<h1 id="_7">사업 모델과 상품 설계</h1>
+<p><span class="chap">CHAPTER 5</span></p>
+<h2 id="5-1">5-1. 가치 제안</h2>
+<blockquote>
+<p>"또래와 함께 걷고, 찍고, 떠나요. 매주 갈 곳이 생기고, 내 모습이 영상으로 남습니다." — 시니어 본인</p>
+<p>"부모님의 웃는 얼굴을 매주 영상으로 받아 보세요." — 자녀</p>
+</blockquote>
+<h2 id="5-2-1-4">5-2. 1월 오픈 동아리 4개 반</h2>
+<table>
+<thead>
+<tr>
+<th>반</th>
+<th>운영</th>
+<th>일정</th>
+<th>정원</th>
+<th>담당</th>
+<th>겨울 대비</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① 온벗 건강걷기</strong></td>
+<td>공원·둘레길 5~7km 걷기 + 준비·정리 체조, 난이도 ★</td>
+<td>주 2회 (화·금 10시)</td>
+<td>반당 25명</td>
+<td>조피디(노인스포츠지도사) + 시니어 리더 1</td>
+<td>한파·빙판 시 실내 체조로 대체</td>
+</tr>
+<tr>
+<td><strong>② 폰카 사진·영상반</strong></td>
+<td>스마트폰 사진·영상 촬영·편집, 출사, 손주에게 보내는 영상 편지</td>
+<td>주 1회 (수 14시, 90분)</td>
+<td>반당 12명</td>
+<td><strong>조피디 직강</strong></td>
+<td>실내 강의 70%</td>
+</tr>
+<tr>
+<td><strong>③ 역사문화 탐방반</strong></td>
+<td>회암사지·양주관아지·박물관 해설 탐방</td>
+<td>격주 토 10시</td>
+<td>20명</td>
+<td>지역 문화해설사(위촉)</td>
+<td>박물관·실내 전시 위주</td>
+</tr>
+<tr>
+<td><strong>④ 실내 실버체조·라인댄스</strong></td>
+<td>근력·균형 운동, 낙상 예방</td>
+<td>주 1회 (목 10시)</td>
+<td>20명</td>
+<td>노인스포츠지도사 / 위촉 강사</td>
+<td>겨울 주력 상품</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2분기 추가 후보</strong>: 기차 여행반, 야생화·꽃 사진반, 시니어 맛집 탐방반, 손주 영상편지 특강, 경기둘레길 완주반.</p>
+<h2 id="5-3-1">5-3. 월 1회 당일 테마여행</h2>
+<table>
+<thead>
+<tr>
+<th>월</th>
+<th>테마</th>
+<th>코스 예시 (확정 전)</th>
+<th>연결 동아리</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1월 23일(토)</td>
+<td>겨울 실내 명소</td>
+<td>국립중앙박물관 또는 수원화성박물관 + 따뜻한 점심</td>
+<td>역사문화</td>
+</tr>
+<tr>
+<td>2월</td>
+<td>설 이후 첫 출사</td>
+<td>두물머리 일출 사진 + 세미원</td>
+<td>사진·영상</td>
+</tr>
+<tr>
+<td>3월</td>
+<td>봄맞이 걷기</td>
+<td>경기둘레길 1개 코스 + 지역 장터</td>
+<td>건강걷기</td>
+</tr>
+<tr>
+<td>4월</td>
+<td>꽃길</td>
+<td>지역 벚꽃길·수목원</td>
+<td>사진·영상</td>
+</tr>
+<tr>
+<td>5월</td>
+<td>기차 여행</td>
+<td>경원선·경춘선 기차 + 걷기</td>
+<td>전체</td>
+</tr>
+<tr>
+<td>6월</td>
+<td><strong>첫 1박 2일</strong></td>
+<td>강원 또는 충청 (여행업 등록 후)</td>
+<td>전체</td>
+</tr>
+</tbody>
+</table>
+<p><strong>여행 운영 원칙</strong> — 쇼핑센터 방문 없음, 걷기 난이도 표시(★~★★★), 버스 1대(최대 40명) 당 인솔 4명(조피디·리더 2·여행사 인솔자 1), 전 일정 사진·영상 기록.</p>
+<h2 id="5-4-3">5-4. 가격표 3종 <span class="tag est">추정 · 인터뷰로 검증</span></h2>
+<table>
+<thead>
+<tr>
+<th>상품</th>
+<th>본인 가격</th>
+<th>자녀 선물 가격</th>
+<th>기관 위탁 가격</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>건강걷기 정기권 (월 8회)</td>
+<td><strong>월 19,000원</strong></td>
+<td>3개월 57,000원 + 활동영상 앨범</td>
+<td>12주 프로그램 회당 20만 원 (강사 2인)</td>
+</tr>
+<tr>
+<td>폰카 사진·영상반 (월 4회)</td>
+<td><strong>월 49,000원</strong></td>
+<td>3개월 147,000원 + 작품 포토북</td>
+<td>8주 과정 200~350만 원</td>
+</tr>
+<tr>
+<td>역사문화 탐방반 (월 2회)</td>
+<td><strong>월 25,000원</strong> (입장료 별도)</td>
+<td>—</td>
+<td>회당 25만 원</td>
+</tr>
+<tr>
+<td>실내 실버체조 (월 4회)</td>
+<td><strong>월 25,000원</strong></td>
+<td>—</td>
+<td>회당 15만 원</td>
+</tr>
+<tr>
+<td>당일 테마여행</td>
+<td><strong>59,000~79,000원</strong> (교통·점심·입장·보험·인솔 포함, 여행사 판매)</td>
+<td>부모님 동반 2인 할인</td>
+<td>기관 단체여행 기획 대행</td>
+</tr>
+<tr>
+<td>온벗 클럽 3개월 선물권</td>
+<td>—</td>
+<td><strong>199,000원</strong> (동아리 1개 3개월 + 여행 1회 + 하이라이트 영상)</td>
+<td>—</td>
+</tr>
+<tr>
+<td>나눔 회원권</td>
+<td>저소득 어르신 무료 (기금 운영)</td>
+<td>선물권 10장당 1장 적립</td>
+<td>지자체 매칭</td>
+</tr>
+</tbody>
+</table>
+<p><strong>무료 회원</strong>: 월간 소식지, 체험 1회, 공개 행사 참여. 가입만으로 회원 명부에 들어오게 합니다.</p>
+<h2 id="5-5">5-5. 수익 구조</h2>
+<table>
+<thead>
+<tr>
+<th>수익원</th>
+<th>방식</th>
+<th>1년 차 비중(목표)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>동아리 정기권</td>
+<td>매월 자동결제</td>
+<td>55%</td>
+</tr>
+<tr>
+<td>테마여행</td>
+<td>1분기: 제휴 여행사로부터 <strong>기획·인솔료</strong>(1인당 약 1만~1.5만 원 또는 판매가의 15% 협의) / 2분기 이후 직접 판매</td>
+<td>20%</td>
+</tr>
+<tr>
+<td>자녀 선물권</td>
+<td>일시불</td>
+<td>10%</td>
+</tr>
+<tr>
+<td>기관 위탁</td>
+<td>복지관·지자체·아파트 프로그램</td>
+<td>15%</td>
+</tr>
+<tr>
+<td>(2년 차) 영상 앨범·굿즈·제휴</td>
+<td>포토북, 단체복, 제휴 할인</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<h2 id="5-6">5-6. 한국판 에코 스태프 — 「온벗 이웃지기」</h2>
+<ul>
+<li><strong>누가</strong>: 3개월 이상 활동한 회원 중 희망자 (60~75세)</li>
+<li><strong>하는 일</strong>: 월 1회 종이 소식지 「온벗 소식」을 이웃 회원 10가구에 직접 전달 + 안부 인사 + 이상 징후(연락 두절, 건강 악화) 매니저에게 알림</li>
+<li><strong>보상</strong>: 월 활동비 5~10만 원 (위촉 계약), 클럽 회비 할인, 연말 감사 행사</li>
+<li><strong>효과</strong>: 우편·광고비 절감, 안부(02)로 연결되는 지역 안부망, 시니어 일자리(04)</li>
+<li><strong>2월 시작</strong> (1월은 소식지 1호를 대표·매니저가 직접 배포)</li>
+</ul>
+<h1 id="_8">운영 설계와 안전 매뉴얼</h1>
+<p><span class="chap">CHAPTER 6</span></p>
+<h2 id="6-1">6-1. 회원 여정</h2>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>접점</th>
+<th>해야 할 일</th>
+<th>자동화</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>알게 됨</td>
+<td>복지관 게시판, 소식지, 자녀의 인스타, 지인 추천</td>
+<td>큰 글씨 전단, 숏폼</td>
+<td>광고·숏폼 예약 발행</td>
+</tr>
+<tr>
+<td>문의</td>
+<td>카톡 채널, 전화</td>
+<td>친절한 첫 통화 (사람)</td>
+<td>챗봇 1차 응답 → 매니저 연결</td>
+</tr>
+<tr>
+<td>체험</td>
+<td>무료 체험 1회</td>
+<td>건강 문진표, 단체 사진</td>
+<td>체험 다음 날 감사 문자 + 영상</td>
+</tr>
+<tr>
+<td>가입</td>
+<td>결제 (본인 카드·계좌이체·자녀 결제 링크)</td>
+<td>회원 카드, 단톡/밴드 초대, 단체 조끼</td>
+<td>결제 → 환영 메시지 → 단톡 초대</td>
+</tr>
+<tr>
+<td>활동</td>
+<td>매주 동아리</td>
+<td>출석, 사진·영상</td>
+<td>전날 알림톡, 출석 기록</td>
+</tr>
+<tr>
+<td>관계</td>
+<td>단톡·밴드, 소식지</td>
+<td>생일 축하, 결석자 안부</td>
+<td>결석 2회 → 자동 안부 → 매니저 전화</td>
+</tr>
+<tr>
+<td>확장</td>
+<td>여행·안부·라이프노트·리더</td>
+<td>맞춤 제안</td>
+<td>참여 이력 기반 추천</td>
+</tr>
+</tbody>
+</table>
+<h2 id="6-2">6-2. 안전 매뉴얼 (런칭 전 필수 완성)</h2>
+<div class="box warn">
+<p><span class="bt">5대 안전 원칙</span></p>
+<ol>
+<li><strong>사전 건강 문진</strong>: 가입 시 심혈관·관절·복용약·비상연락처(자녀) 확인. 고위험군은 의사 소견 권고·난이도 제한</li>
+<li><strong>난이도 등급</strong>: ★(평지 5km 이내) / ★★(완만한 경사 7km) / ★★★(산길 10km). 처음 3회는 ★만</li>
+<li><strong>인솔 비율</strong>: 걷기 1:10 (선두·후미 리더 필수), 여행 버스 1대당 4명</li>
+<li><strong>응급 대응</strong>: 응급키트·혈압계·보온 담요 휴대, 코스별 AED 위치·가까운 응급실 사전 확인, 리더 전원 심폐소생술 교육 이수</li>
+<li><strong>기상 기준</strong>: 체감온도 영하 10도 이하·미세먼지 '나쁨' 이상·폭염경보 시 실내 전환 (전날 18시 판단, 알림톡 공지)</li>
+</ol>
+</div>
+<p><strong>사고 발생 시 흐름</strong>: 현장 응급조치 → 119 → 보호자(자녀) 연락 → 대표 보고 → 보험사 접수 → 24시간 내 경위서 → 재발 방지 회의</p>
+<h2 id="6-3-w4w5">6-3. 운영 매뉴얼 목록 (W4~W5 작성)</h2>
+<ol>
+<li>동아리 진행 매뉴얼 (반별 90분 표준 진행표)</li>
+<li>여행 인솔 매뉴얼 (출발 전 점검표, 인원 확인, 화장실 휴식 90분 간격)</li>
+<li>사진·영상 촬영 동의 및 초상권 관리 지침</li>
+<li>회원 갈등·민원 처리 지침 (정치·종교·영업 활동 금지)</li>
+<li>이웃지기 활동 지침</li>
+<li>개인정보 처리 지침</li>
+</ol>
+<h1 id="ai">AI 자동화 설계</h1>
+<p><span class="chap">CHAPTER 7</span></p>
+<table>
+<thead>
+<tr>
+<th>업무</th>
+<th>수작업 시간 (주)</th>
+<th>자동화 방법</th>
+<th>자동화 후</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>문의 응대</td>
+<td>5시간</td>
+<td>카카오 챗봇 (일정·가격·준비물 FAQ)</td>
+<td>1시간</td>
+</tr>
+<tr>
+<td>예약·결제 확인</td>
+<td>3시간</td>
+<td>결제 → 시트 기록 → 단톡 초대 → 환영 메시지 (Make/Zapier)</td>
+<td>0.5시간</td>
+</tr>
+<tr>
+<td>전날 알림</td>
+<td>2시간</td>
+<td>알림톡 예약 발송 (날씨 API 연동 문구)</td>
+<td>0</td>
+</tr>
+<tr>
+<td>출석·결석 관리</td>
+<td>2시간</td>
+<td>리더 휴대폰 체크 → 결석 2회 자동 안부</td>
+<td>0.5시간</td>
+</tr>
+<tr>
+<td>하이라이트 영상</td>
+<td>6시간</td>
+<td>촬영 → AI 컷 편집·자막(Vrew/CapCut) → 조피디 최종 손질</td>
+<td>2시간</td>
+</tr>
+<tr>
+<td>소식지 원고</td>
+<td>4시간</td>
+<td>지난달 활동·사진 → Claude 초안 → 편집</td>
+<td>1.5시간</td>
+</tr>
+<tr>
+<td>여행 코스 기획</td>
+<td>6시간</td>
+<td>Claude로 코스·동선·식당 후보·위험요소 정리 → 답사 확인</td>
+<td>3시간</td>
+</tr>
+<tr>
+<td>만족도 조사 분석</td>
+<td>2시간</td>
+<td>구글폼 → AI 요약</td>
+<td>0.3시간</td>
+</tr>
+</tbody>
+</table>
+<div class="box green">
+<p><span class="bt">조피디만의 AI 무기 — "30초 하이라이트 자동 공장"</span></p>
+<ol>
+<li>리더 2명이 활동 중 스마트폰으로 촬영 → 공유 앨범 자동 업로드</li>
+<li>AI 편집 도구가 장면 선별·자막·배경음 초안 생성</li>
+<li>조피디가 10분 손질 (얼굴 나온 회원 동의 확인)</li>
+<li>회원 단톡·자녀 알림톡으로 전송 + 동의한 영상만 인스타·유튜브 숏츠 발행</li>
+</ol>
+<p>→ <strong>회원 만족(내 영상) + 자녀 안심 + 신규 회원 유입</strong>을 한 번에 만드는 온벗의 핵심 엔진입니다.</p>
+</div>
+<h1 id="sns">마케팅·SNS 전략</h1>
+<p><span class="chap">CHAPTER 8</span></p>
+<h2 id="8-1-1-40">8-1. 런칭 전 사전 모집 (목표: 1월 유료 회원 40명)</h2>
+<table>
+<thead>
+<tr>
+<th>채널</th>
+<th>활동</th>
+<th>목표</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>노인복지관·행정복지센터</td>
+<td>무료 체험 걷기 공동 개최 (12/12), 게시판 전단</td>
+<td>체험 30명</td>
+</tr>
+<tr>
+<td>지역 맘카페·커뮤니티 (옥정·회천·덕정)</td>
+<td>"부모님 새해 선물" 사연 글</td>
+<td>선물권 문의 20건</td>
+</tr>
+<tr>
+<td>인스타그램·유튜브 숏츠</td>
+<td>코스 답사 영상, 조피디 소개, 체험 하이라이트</td>
+<td>팔로워 500</td>
+</tr>
+<tr>
+<td>지역 언론</td>
+<td>"25년 PD가 만든 시니어 클럽" 보도자료 (1월 2주)</td>
+<td>기사 2건</td>
+</tr>
+<tr>
+<td>지인 네트워크</td>
+<td>조피디 지인 중 은퇴자·부모님 소개</td>
+<td>15명</td>
+</tr>
+<tr>
+<td>종이 소식지</td>
+<td>1,000부 (아파트 커뮤니티센터·경로당·병원 대기실)</td>
+<td>문의 20건</td>
+</tr>
+</tbody>
+</table>
+<h2 id="8-2-4">8-2. 콘텐츠 캘린더 (주 4편)</h2>
+<ul>
+<li>월: 「건강 1분」 앉아서 하는 체조</li>
+<li>수: 「오늘의 온벗」 동아리 하이라이트</li>
+<li>금: 「이번 주 코스」 걷기·여행 코스 소개</li>
+<li>일: 「회원 이야기」 인터뷰 1분 (동의 회원)</li>
+</ul>
+<h2 id="8-3">8-3. 메시지 가이드</h2>
+<ul>
+<li>쓰는 말: "또래 친구", "함께", "천천히", "내 영상", "동네"</li>
+<li>피하는 말: "노인", "어르신 여행"(→ "시니어 클럽"), "효도관광", "실버" 남용</li>
+<li>사진 원칙: 실제 회원, 밝은 야외, 단체 조끼, 과장된 연출 없음</li>
+</ul>
+<h1 id="_9">인허가·법률·보험</h1>
+<p><span class="chap">CHAPTER 9</span></p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+<th>시점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>동아리·클래스 운영</td>
+<td>교육·여가 서비스로 별도 인허가 없음 (사업자등록·통신판매업 신고)</td>
+<td>W3</td>
+</tr>
+<tr>
+<td><strong>당일 테마여행</strong></td>
+<td>여행 상품을 우리가 직접 모객·판매하면 <strong>여행업 등록 대상</strong>. 1분기는 <strong>제휴 여행사가 판매·계약 주체</strong>, 온벗은 동아리 회원에게 안내하고 기획·인솔 용역을 제공</td>
+<td>W3 MOU</td>
+</tr>
+<tr>
+<td>국내여행업 등록</td>
+<td>자본금(개인은 자산평가액) <strong>1,500만 원 이상</strong> (750만 원 특례는 2026.6.30 종료), 사무실 사용권, 공인회계사·세무사 확인 재무제표, 보증보험</td>
+<td>2027 2분기</td>
+</tr>
+<tr>
+<td>전세버스</td>
+<td>반드시 <strong>등록된 전세버스 운송사업자</strong> 차량, 기사 경력·보험 확인</td>
+<td>여행마다</td>
+</tr>
+<tr>
+<td>보험</td>
+<td>영업배상책임보험 + 단체상해보험(동아리), 여행자보험(여행사 가입 확인)</td>
+<td>W3~W4</td>
+</tr>
+<tr>
+<td>초상권·개인정보</td>
+<td>촬영·SNS 게시 동의서 (게시 범위 3단계: 내부 단톡만 / 자녀 공유 / 공개 SNS)</td>
+<td>W4</td>
+</tr>
+<tr>
+<td>표시·광고</td>
+<td>"건강 개선 효과" 등 의학적 효능 표현 금지</td>
+<td>상시</td>
+</tr>
+</tbody>
+</table>
+<div class="box warn"><span class="bt">제휴 여행사 MOU 핵심 조항</span>
+① 판매·계약·환불 주체는 여행사 ② 보험(여행자보험·영업보증) 여행사 가입 ③ 온벗은 기획·인솔·영상 용역, 용역료 기준 ④ 사고 시 책임 분담 ⑤ 온벗 회원 정보는 온벗 소유, 여행사는 해당 여행에만 사용 ⑥ 쇼핑 일정 금지 ⑦ 계약 기간 6개월(2분기 직접 등록 전환 대비). <br>※ 구조의 적법성은 런칭 전 법률 자문으로 확인합니다.
+</div>
+
+<h1 id="_10">조직·파트너</h1>
+<p><span class="chap">CHAPTER 10</span></p>
+<table>
+<thead>
+<tr>
+<th>역할</th>
+<th>인원</th>
+<th>시점</th>
+<th>업무</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>클럽 대표 강사</td>
+<td>조피디</td>
+<td>1월~</td>
+<td>건강걷기·사진영상반 진행, 여행 기획·인솔</td>
+</tr>
+<tr>
+<td>운영 매니저</td>
+<td>0.5명 (통합 매니저와 공유)</td>
+<td>1월~</td>
+<td>예약·결제·회원 응대</td>
+</tr>
+<tr>
+<td>시니어 리더</td>
+<td>4명 (베테랑뱅크 1기)</td>
+<td>1월~</td>
+<td>걷기 선두·후미, 출석, 촬영</td>
+</tr>
+<tr>
+<td>문화해설사</td>
+<td>1명 위촉</td>
+<td>1월~</td>
+<td>역사문화 탐방반</td>
+</tr>
+<tr>
+<td>실버체조 강사</td>
+<td>1명 위촉 (또는 조피디)</td>
+<td>1월~</td>
+<td>실내 체조</td>
+</tr>
+<tr>
+<td>이웃지기</td>
+<td>4~10명</td>
+<td>2월~</td>
+<td>소식지 전달·안부</td>
+</tr>
+<tr>
+<td>제휴 여행사</td>
+<td>1곳</td>
+<td>11월 MOU</td>
+<td>여행 판매·운송·보험</td>
+</tr>
+<tr>
+<td>협력 기관</td>
+<td>양주 노인복지관·평생학습관</td>
+<td>12월~</td>
+<td>장소·모집 협력</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_11">예산과 재무 추정</h1>
+<p><span class="chap">CHAPTER 11</span></p>
+<h2 id="11-1-111">11-1. 런칭 예산 (11월~1월)</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>금액(만 원)</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>단체 조끼·모자 30벌, 깃발</td>
+<td>120</td>
+<td>소속감·안전(눈에 띄는 색)</td>
+</tr>
+<tr>
+<td>응급키트·무전기·휴대 마이크</td>
+<td>80</td>
+<td></td>
+</tr>
+<tr>
+<td>보험 (배상책임·단체상해, 클럽 몫)</td>
+<td>70</td>
+<td></td>
+</tr>
+<tr>
+<td>무료 체험 2회 (간식·대관)</td>
+<td>60</td>
+<td></td>
+</tr>
+<tr>
+<td>코스 답사 교통비</td>
+<td>40</td>
+<td>6회</td>
+</tr>
+<tr>
+<td>리더 교육 (심폐소생술·안전)</td>
+<td>60</td>
+<td>외부 강사 1회</td>
+</tr>
+<tr>
+<td>소식지 1호 (클럽 몫)</td>
+<td>80</td>
+<td></td>
+</tr>
+<tr>
+<td>SNS 광고 (클럽 몫)</td>
+<td>120</td>
+<td></td>
+</tr>
+<tr>
+<td>런칭 행사 (클럽 몫)</td>
+<td>150</td>
+<td>1/16</td>
+</tr>
+<tr>
+<td>1월 리더 활동비</td>
+<td>80</td>
+<td></td>
+</tr>
+<tr>
+<td>예비비</td>
+<td>40</td>
+<td></td>
+</tr>
+<tr>
+<td><strong>합계</strong></td>
+<td><strong>900</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="11-2-12">11-2. 12개월 매출 추정 <span class="tag est">추정치</span></h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>3월</th>
+<th>6월</th>
+<th>9월</th>
+<th>12월</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>건강걷기 (월 19,000원)</td>
+<td>40명 · 76</td>
+<td>80명 · 152</td>
+<td>120명 · 228</td>
+<td>150명 · 285</td>
+</tr>
+<tr>
+<td>사진·영상반 (월 49,000원)</td>
+<td>24명 · 118</td>
+<td>36명 · 176</td>
+<td>48명 · 235</td>
+<td>60명 · 294</td>
+</tr>
+<tr>
+<td>탐방·체조반</td>
+<td>10명 · 25</td>
+<td>30명 · 75</td>
+<td>40명 · 100</td>
+<td>50명 · 125</td>
+</tr>
+<tr>
+<td>테마여행 (수수료·직판 마진)</td>
+<td>1회 · 30</td>
+<td>2회 · 60</td>
+<td>2회+1박 · 120</td>
+<td>3회 · 150</td>
+</tr>
+<tr>
+<td>선물권·기관 위탁</td>
+<td>11</td>
+<td>57</td>
+<td>97</td>
+<td>96</td>
+</tr>
+<tr>
+<td><strong>월 매출 (만 원)</strong></td>
+<td><strong>260</strong></td>
+<td><strong>520</strong></td>
+<td><strong>780</strong></td>
+<td><strong>950</strong></td>
+</tr>
+<tr>
+<td>변동비 (리더·강사·대관·보험)</td>
+<td>110</td>
+<td>220</td>
+<td>330</td>
+<td>400</td>
+</tr>
+<tr>
+<td><strong>공헌이익</strong></td>
+<td><strong>150</strong></td>
+<td><strong>300</strong></td>
+<td><strong>450</strong></td>
+<td><strong>550</strong></td>
+</tr>
+</tbody>
+</table>
+<p class="src">가정: 회원 1인이 여러 반에 참여할 수 있어 '명'은 반 등록 수 기준. 2분기 여행업 등록 후 여행 매출은 총액 기준으로 늘어나지만 마진은 비슷하게 가정. 통합 손익은 00권 11장.</p>
+
+<h2 id="11-3">11-3. 손익분기 감각</h2>
+<ul>
+<li>건강걷기 1개 반(25명) = 월 47.5만 원, 리더비 24만 원 → <strong>반당 공헌이익 약 23만 원</strong></li>
+<li>사진·영상반 1개 반(12명) = 월 58.8만 원, 대관 10만 원 → <strong>반당 약 49만 원</strong> (조피디 직강)</li>
+<li>클럽 고정비(매니저 절반·도구·보험) 월 약 120만 원 → <strong>걷기 2반 + 사진 2반이면 클럽 단독 손익분기</strong></li>
+</ul>
+<h1 id="_12">실행 일정</h1>
+<p><span class="chap">CHAPTER 12</span></p>
+<h2 id="12-1-10">12-1. 10주 상세 일정 (클럽)</h2>
+<table>
+<thead>
+<tr>
+<th>주</th>
+<th>기간</th>
+<th>할 일</th>
+<th>완료 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W1</td>
+<td>11/9~15</td>
+<td>코스 답사 3곳(불곡산 자락길·회암사지·장흥), 복지관 미팅 요청</td>
+<td>답사 영상·코스 메모</td>
+</tr>
+<tr>
+<td>W2</td>
+<td>11/16~22</td>
+<td>시니어 인터뷰(취미·가격), 여행사 5곳 접촉, 효도관광·복지관 미스터리 쇼핑</td>
+<td>인터뷰 15명</td>
+</tr>
+<tr>
+<td>W3</td>
+<td>11/23~29</td>
+<td>여행사 MOU, 보험 견적, 동아리 4개 반 시간표 초안</td>
+<td>MOU 서명</td>
+</tr>
+<tr>
+<td>W4</td>
+<td>11/30~12/6</td>
+<td>가격 확정, 건강 문진표·동의서, 안전 매뉴얼, 리더 후보 6명 면담</td>
+<td>매뉴얼 v1</td>
+</tr>
+<tr>
+<td>W5</td>
+<td>12/7~13</td>
+<td><strong>12/12(토) 무료 체험 걷기+사진 클래스</strong> (15~30명)</td>
+<td>만족도 4.3↑</td>
+</tr>
+<tr>
+<td>W6</td>
+<td>12/14~20</td>
+<td>체험 피드백 반영, 1월 23일 테마여행 확정(여행사), 단체복 주문</td>
+<td>1월 여행 상품 페이지</td>
+</tr>
+<tr>
+<td>W7</td>
+<td>12/21~27</td>
+<td>사전 예약 오픈, 선물권 캠페인, 숏폼 주 4편</td>
+<td>예약 30명</td>
+</tr>
+<tr>
+<td>W8</td>
+<td>12/28~1/3</td>
+<td>리더 교육 8시간(안전·응급·진행), 출석·알림 자동화 테스트</td>
+<td>리더 4명 위촉</td>
+</tr>
+<tr>
+<td>W9</td>
+<td>1/4~10</td>
+<td><strong>소프트 오픈</strong>: 걷기(화·금), 사진반(수), 체조(목) 첫 수업</td>
+<td>첫 주 출석 40명</td>
+</tr>
+<tr>
+<td>W10</td>
+<td>1/11~17</td>
+<td>탐방반 첫 회(1/16 오전 행사와 연계), <strong>1/16 그랜드 오픈</strong>, 1/23 여행 최종 점검</td>
+<td>회원 100명(무료 포함)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="12-2-2027">12-2. 2027 로드맵</h2>
+<table>
+<thead>
+<tr>
+<th>분기</th>
+<th>클럽</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1분기</td>
+<td>4개 반 안정화, 월 1회 당일여행, 이웃지기 시작(2월), 복지관 위탁 제안</td>
+</tr>
+<tr>
+<td>2분기</td>
+<td><strong>국내여행업 등록</strong>, 기차여행반·완주반 개설, 첫 1박 2일(6월), 의정부 체험 행사</td>
+</tr>
+<tr>
+<td>3분기</td>
+<td>기관 위탁 2건, 회원 작품 사진전(양주 문화공간), 2호 클럽(의정부) 준비</td>
+</tr>
+<tr>
+<td>4분기</td>
+<td>2호 클럽 오픈, 연말 회원의 밤 + 1년 다큐 상영, 동행친구(05) 소모임 연결</td>
+</tr>
+</tbody>
+</table>
+<h1 id="kpi">KPI</h1>
+<p><span class="chap">CHAPTER 13</span></p>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>정의</th>
+<th>1월</th>
+<th>3월</th>
+<th>6월</th>
+<th>12월</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>동아리 등록 수</td>
+<td>유료 반 등록 합계</td>
+<td>40</td>
+<td>74</td>
+<td>146</td>
+<td>260</td>
+</tr>
+<tr>
+<td>월 재참여율</td>
+<td>지난달 참여자 중 이번 달 참여 비율</td>
+<td>40%</td>
+<td>50%</td>
+<td>55%</td>
+<td>60%</td>
+</tr>
+<tr>
+<td>출석률</td>
+<td>정기권 회원 평균 출석 / 예정 횟수</td>
+<td>60%</td>
+<td>65%</td>
+<td>70%</td>
+<td>70%</td>
+</tr>
+<tr>
+<td>테마여행 모객률</td>
+<td>모객 인원 / 정원 40</td>
+<td>60%</td>
+<td>75%</td>
+<td>85%</td>
+<td>90%</td>
+</tr>
+<tr>
+<td>자녀 영상 수신 가구</td>
+<td>알림톡 영상 받는 자녀 수</td>
+<td>20</td>
+<td>50</td>
+<td>100</td>
+<td>200</td>
+</tr>
+<tr>
+<td>추천 가입 비율</td>
+<td>신규 중 지인 추천 비율</td>
+<td>—</td>
+<td>20%</td>
+<td>30%</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>안전사고</td>
+<td>병원 이송 사고</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_13">리스크와 대응</h1>
+<p><span class="chap">CHAPTER 14</span></p>
+<table>
+<thead>
+<tr>
+<th>리스크</th>
+<th>대응</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>겨울 런칭으로 야외 활동 저조</td>
+<td>1~2월 실내 비중 60%(사진 편집 교실·박물관·실내 체조), 걷기는 오전 11시 가장 따뜻한 시간대</td>
+</tr>
+<tr>
+<td>낙상·심혈관 사고</td>
+<td>6장 안전 원칙, 보험, 리더 교육, 문진</td>
+</tr>
+<tr>
+<td>무등록 여행업 문제</td>
+<td>여행사가 판매 주체, 우리 결제 링크로 여행 대금 받지 않기</td>
+</tr>
+<tr>
+<td>회원 간 갈등 (정치·종교·영업)</td>
+<td>가입 시 3대 금지 서약, 2회 경고 후 퇴출</td>
+</tr>
+<tr>
+<td>대표 1인 의존</td>
+<td>리더 4명 육성, 6월까지 걷기반은 리더 단독 진행 가능하게</td>
+</tr>
+<tr>
+<td>가격 저항</td>
+<td>체험 무료, 첫 달 50% 할인, 걷기반 저가 유지, 나눔 회원권</td>
+</tr>
+<tr>
+<td>복지관 무료 프로그램과 겹침</td>
+<td>복지관과 경쟁 대신 <strong>협력(공동 개최·위탁)</strong>, 차별점은 영상·여행·나이대</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_14">런칭 체크리스트</h1>
+<p><span class="chap">CHAPTER 15</span></p>
+<div class="grid2">
+<div class="box">
+<p><span class="bt">12월 18일까지</span></p>
+<ul class="check">
+<li>제휴 여행사 MOU 서명</li>
+<li>보험 가입 (배상책임·단체상해)</li>
+<li>1월 동아리 장소 확정 (대관 계약)</li>
+<li>건강 문진표·촬영 동의서·개인정보 동의서</li>
+<li>안전 매뉴얼 v1</li>
+<li>가격표·결제 링크</li>
+<li>단체 조끼 주문</li>
+<li>1/23 테마여행 상품 페이지 (여행사)</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="bt">1월 3일까지</span></p>
+<ul class="check">
+<li>시니어 리더 4명 위촉 계약·교육 수료</li>
+<li>응급키트·무전기 준비, 코스별 AED 위치표</li>
+<li>카톡 채널·챗봇·알림톡 테스트</li>
+<li>단톡/밴드 4개 반 개설</li>
+<li>사전 예약자 명단·연락 완료</li>
+<li>런칭 행사 도시락(온담찬)·대관·현수막</li>
+<li>소식지 1호 인쇄</li>
+<li>보도자료 배포 리스트</li>
+</ul>
+</div>
+</div>
+<h1 id="_15">결정이 필요한 질문</h1>
+<p><span class="chap">CHAPTER 16</span></p>
+<div class="box ask">
+<p><span class="bt">조피디님께 묻습니다</span></p>
+<ol>
+<li><strong>첫 동아리 4개 반 구성</strong>이 괜찮으신가요? 바꾸고 싶은 테마가 있나요? (예: 등산반, 노래교실, 텃밭반)</li>
+<li>직접 진행이 가능한 <strong>요일·시간</strong>은 언제인가요? 재직 중이시면 주말 중심으로 재설계합니다.</li>
+<li>제휴할 만한 <strong>아는 여행사</strong>가 있으신가요?</li>
+<li>여행 1회 가격 <strong>59,000~79,000원</strong>이 지역 시니어에게 적정할까요? (인터뷰로 검증 예정)</li>
+<li>사진·영상반 장소로 쓸 수 있는 <strong>스튜디오·강의실</strong>이 있나요?</li>
+<li>클럽의 <strong>공식 소통 채널</strong>: 카카오톡 단톡방과 네이버 밴드 중 어느 쪽이 좋을까요? (기본값: 밴드 — 5060 사용률·사진첩 기능)</li>
+</ol>
+</div>
+<h1 id="_16">핵심 키워드 요약·출처</h1>
+<p><span class="chap">CHAPTER 17</span></p>
+<div class="kw"><span class="hot">목적지보다 '할 것'</span><span class="hot">동아리가 먼저, 여행은 졸업여행</span><span class="hot">이웃지기</span><span class="hot">하이라이트 영상 엔진</span><span>동네 단위 30분</span><span>난이도 ★ 표시</span><span>인솔 1:10</span><span>여행사 제휴 → 2분기 직접 등록</span><span>본인·자녀·기관 3가지 가격</span><span>나눔 회원권</span><span>경기둘레길 완주</span><span>겨울 실내 60%</span><span>리더 = 시니어 일자리</span></div>
+
+<div class="small">
+<p><strong>출처</strong></p>
+<ul>
+<li>첨부 자료 1~4 (클럽 투어리즘 회원 700만 명·300만 가구, 에코 스태프 5,000명·소식지 80%, 취미인 클럽 50대 이상 70%, 코로나 매출 77% 감소·285억 엔 적자, 라이프케어 확장, 빈곤율 39.7%/25.7%)</li>
+<li>국가데이터처 「2026 고령자 통계」 보도: <a href="https://www.fnnews.com/news/202610011059514009">파이낸셜뉴스</a></li>
+<li>클럽 투어리즘 2026 동향: <a href="https://www.travelvoice.jp/20260608-159899">트래블보이스</a>, <a href="https://www.zaikei.co.jp/releases/3423598/">자이케이 보도자료</a>, <a href="https://koubo.jp/press-release/prtimes/c1864_r1404">koubo.jp</a></li>
+<li>시놀(시니어놀이터): <a href="https://www.nextunicorn.kr/company/fa70b49d1615553a">넥스트유니콘</a>, <a href="https://www.unicornfactory.co.kr/article/2025110417274131300">유니콘팩토리</a></li>
+<li>시니어 산업 규모(경희대 에이지테크연구소) 인용: <a href="https://bravo.etoday.co.kr/view/atc_view/18590">브라보마이라이프</a></li>
+<li>여행업 등록 기준: <a href="https://www.law.go.kr/LSW/flDownload.do?flSeq=155102853">관광진흥법 시행령(국가법령정보센터)</a></li>
+<li>돌봄통합지원법: <a href="https://m.dailypharm.com/user/news/336217">데일리팜</a></li>
+<li>양주시 인구: <a href="https://k-calc.com/region/Gyeonggi-do/Yangju-si">k-calc</a> · 경기도 노인 인구: <a href="https://www.kyeonggi.com/article/20260514580228">경기일보</a></li>
+<li>경기둘레길 코스 수·거리는 경기도 공식 안내에서 재확인 필요</li>
+</ul>
+</div>
+</div></body></html>

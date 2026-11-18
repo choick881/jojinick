@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>온벗 동행친구 중장년 동반자·동행 매칭 사업추진 보고서</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>/* 시니어 비즈니스 TOP5 사업추진 보고서 — 인쇄(A4) 우선 스타일 */
+:root {
+  --paper: #FBF8F2;
+  --ink: #2A2621;
+  --muted: #6B6358;
+  --forest: #2F4A3A;
+  --forest-2: #4E6B57;
+  --sage: #E5EADF;
+  --clay: #B3603A;
+  --clay-soft: #F4E3D8;
+  --sand: #EFE7DA;
+  --line: #D9D0C2;
+  --gold: #A9822F;
+}
+
+@page { size: A4; margin: 20mm 17mm 20mm 17mm; }
+@page :first { margin: 0; }
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body {
+  margin: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: "Pretendard", "Pretendard Variable", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-size: 10.6pt;
+  line-height: 1.72;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+@media screen {
+  body { background: #E9E4DA; }
+  .doc { max-width: 210mm; margin: 24px auto; background: #fff; padding: 20mm 17mm; box-shadow: 0 2px 18px rgba(0,0,0,.12); }
+  .cover { margin: -20mm -17mm 20mm; }
+  .printbar { position: sticky; top: 0; z-index: 9; background: var(--forest); color: #fff; padding: 10px 16px; text-align: center; font-size: 14px; }
+  .printbar button { font: inherit; margin-left: 10px; padding: 4px 14px; border-radius: 6px; border: 0; background: #fff; color: var(--forest); cursor: pointer; }
+}
+@media print { .printbar { display: none; } .doc { padding: 0; } }
+
+/* ---------- 표지 ---------- */
+.cover {
+  height: 297mm; width: 210mm; position: relative; overflow: hidden;
+  background: var(--forest); color: #fff; page-break-after: always; break-after: page;
+  padding: 30mm 22mm 24mm;
+  display: flex; flex-direction: column;
+}
+.cover::after {
+  content: ""; position: absolute; right: -60mm; bottom: -60mm; width: 190mm; height: 190mm;
+  border-radius: 50%; background: radial-gradient(circle at 35% 35%, #B3603A 0%, #8E4A2B 60%, transparent 61%);
+  opacity: .9;
+}
+.cover::before {
+  content: ""; position: absolute; right: 40mm; bottom: 70mm; width: 46mm; height: 46mm;
+  border-radius: 50%; background: #E9D9B8; opacity: .9;
+}
+.cover .kicker { font-size: 11pt; letter-spacing: .18em; color: #E9D9B8; font-weight: 600; }
+.cover .no { font-size: 64pt; font-weight: 800; line-height: 1; margin: 18mm 0 6mm; color: #E9D9B8; }
+.cover h1.title { font-size: 30pt; line-height: 1.32; margin: 0 0 6mm; font-weight: 800; color: #fff; border: 0; padding: 0; }
+.cover .subtitle { font-size: 13.5pt; line-height: 1.6; color: #F2EDE4; max-width: 150mm; }
+.cover .meta { margin-top: auto; position: relative; z-index: 2; font-size: 10.5pt; color: #F2EDE4; line-height: 1.8; }
+.cover .meta b { color: #E9D9B8; font-weight: 700; }
+.cover .tagrow { margin-top: 10mm; display: flex; flex-wrap: wrap; gap: 6px; max-width: 150mm; position: relative; z-index: 2; }
+.cover .tagrow span { border: 1px solid rgba(255,255,255,.45); border-radius: 999px; padding: 3px 12px; font-size: 9.5pt; }
+
+/* ---------- 제목 체계 ---------- */
+h1 {
+  font-size: 19pt; line-height: 1.35; color: var(--forest); margin: 0 0 6mm; padding: 0 0 3mm;
+  border-bottom: 2.5px solid var(--forest); page-break-before: always; break-before: page; font-weight: 800;
+}
+.chap { display: block; font-size: 8.6pt; letter-spacing: .2em; color: var(--clay); font-weight: 700; margin: -4mm 0 2mm; }
+.nobreak-first > h1:first-child, h1.nobreak { page-break-before: auto; break-before: auto; }
+h2 {
+  font-size: 13.8pt; color: var(--ink); margin: 9mm 0 3mm; padding-left: 9px; font-weight: 800;
+  border-left: 5px solid var(--clay); line-height: 1.4; page-break-after: avoid; break-after: avoid;
+}
+h3 { font-size: 11.6pt; color: var(--forest); margin: 6mm 0 2mm; font-weight: 700; page-break-after: avoid; break-after: avoid; }
+h4 { font-size: 10.8pt; margin: 4mm 0 1.5mm; color: var(--clay); page-break-after: avoid; }
+p { margin: 0 0 2.6mm; }
+ul, ol { margin: 0 0 3mm; padding-left: 5.5mm; }
+li { margin: .6mm 0; }
+li > ul, li > ol { margin: .6mm 0; }
+strong { color: #1F1B17; font-weight: 700; }
+em { font-style: normal; color: var(--clay); font-weight: 600; }
+a { color: var(--forest-2); text-decoration: none; word-break: break-all; }
+hr { border: 0; border-top: 1px dashed var(--line); margin: 6mm 0; }
+code { font-family: "Pretendard", monospace; background: var(--sand); padding: 0 4px; border-radius: 3px; font-size: .95em; }
+blockquote {
+  margin: 3mm 0 4mm; padding: 3mm 5mm; background: var(--sage); border-left: 4px solid var(--forest-2);
+  border-radius: 0 6px 6px 0; color: #24382C;
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+/* ---------- 표 ---------- */
+table { width: 100%; border-collapse: collapse; margin: 2mm 0 5mm; font-size: 9.4pt; line-height: 1.55; page-break-inside: auto; }
+thead { display: table-header-group; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+th { background: var(--forest); color: #fff; font-weight: 700; text-align: left; padding: 2mm 2.4mm; border: 1px solid var(--forest); vertical-align: middle; }
+td { padding: 1.8mm 2.4mm; border: 1px solid var(--line); vertical-align: top; }
+tbody tr:nth-child(even) td { background: #FAF7F1; }
+td strong { color: var(--forest); }
+.tight table { font-size: 8.8pt; }
+.tight td, .tight th { padding: 1.3mm 1.8mm; }
+
+/* ---------- 박스 ---------- */
+.box { border: 1px solid var(--line); border-radius: 8px; padding: 4mm 5mm; margin: 3mm 0 5mm; background: #fff; page-break-inside: avoid; break-inside: avoid; }
+.box > :last-child { margin-bottom: 0; }
+.box .bt { display: block; font-weight: 800; color: var(--forest); margin-bottom: 1.5mm; font-size: 11pt; }
+.box.key { background: var(--clay-soft); border-color: #E3C3AF; }
+.box.key .bt { color: var(--clay); }
+.box.green { background: var(--sage); border-color: #C9D3C0; }
+.box.warn { background: #FFF5E8; border-color: #EBC995; }
+.box.warn .bt { color: #8A5A12; }
+.box.ask { background: #F1F0FA; border-color: #CFCBEA; }
+.box.ask .bt { color: #463E8C; }
+.box.sum { background: var(--forest); color: #fff; border: 0; }
+.box.sum .bt, .box.sum strong { color: #E9D9B8; }
+
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 2mm 0 4mm; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 2mm 0 4mm; }
+.grid2 > .box, .grid3 > .box { margin: 0; }
+
+.kw { display: flex; flex-wrap: wrap; gap: 5px; margin: 2mm 0 4mm; }
+.kw span { background: var(--sand); border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 1px 11px; font-size: 9.4pt; font-weight: 600; }
+.kw span.hot { background: var(--clay); border-color: var(--clay); color: #fff; }
+
+.stat { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 2mm 0 5mm; }
+.stat div { border: 1px solid var(--line); border-radius: 8px; padding: 3mm; background: #fff; page-break-inside: avoid; }
+.stat b { display: block; font-size: 17pt; color: var(--forest); line-height: 1.2; font-weight: 800; }
+.stat small { display: block; color: var(--muted); font-size: 8.4pt; line-height: 1.45; margin-top: 1mm; }
+
+.src { font-size: 8.4pt; color: var(--muted); }
+.tag { display: inline-block; font-size: 8.4pt; padding: 0 7px; border-radius: 4px; font-weight: 700; margin-right: 3px; vertical-align: 1px; }
+.tag.must { background: var(--clay); color: #fff; }
+.tag.now { background: var(--forest); color: #fff; }
+.tag.later { background: var(--line); color: var(--ink); }
+.tag.est { background: #F2E6C8; color: #6E5310; }
+
+.toc { columns: 2; column-gap: 8mm; font-size: 10pt; }
+.toc ol { margin: 0; }
+.check li { list-style: none; position: relative; padding-left: 1mm; }
+.check li::before { content: "☐"; position: absolute; left: -5mm; color: var(--forest); }
+.check { padding-left: 6mm; }
+
+/* 간트 표 */
+.gantt table { font-size: 8.3pt; }
+.gantt td, .gantt th { padding: 1.1mm 1.2mm; text-align: center; }
+.gantt td:first-child, .gantt th:first-child { text-align: left; white-space: nowrap; }
+.gantt td.on { background: var(--forest) !important; color: #fff; font-weight: 700; }
+.gantt td.mid { background: #9CB3A2 !important; color: #fff; }
+.gantt td.ms { background: var(--clay) !important; color: #fff; font-weight: 800; }
+
+.avoid { page-break-inside: avoid; break-inside: avoid; }
+.pb { page-break-after: always; break-after: page; height: 0; }
+.center { text-align: center; }
+.small { font-size: 9pt; }
+.muted { color: var(--muted); }
+</style></head>
+<body>
+<div class="printbar">A4 인쇄용 보고서입니다 <button onclick="window.print()">인쇄 / PDF 저장</button></div>
+<div class="doc">
+<section class="cover">
+  <div class="kicker">BUSINESS 05 · 우선순위 5위 · 1월 대기자 등록 · 2027 하반기 베타</div>
+  <div class="no">05</div>
+  <h1 class="title">온벗 동행친구<br>중장년 동반자·동행 매칭 사업추진 보고서</h1>
+  <div class="subtitle">일본 마리슈(누적 회원 400만 명)는 이혼·사별을 약점이 아닌 기본값으로 바꾸고, '편견 없는 태도'를 상품으로 만들었습니다. 한국판은 법적 재혼이 아니라 "함께 밥 먹고 여행할 동행친구"이며, 화려한 매칭보다 안전장치가 먼저입니다.</div>
+  <div class="tagrow"><span>마리슈 벤치마킹</span><span>약점의 기본값화</span><span>태도의 상품화</span><span>그룹 동행 소모임</span><span>로맨스 스캠 차단</span><span>안전이 먼저</span></div>
+  <div class="meta"><b>일본 원형</b> 마리슈 (Marrish, 중장년·재혼 매칭, 핑크 리본)<br><b>한국판 가칭</b> 온벗 동행친구<br><b>1월 런칭</b> 대기자 등록·수요조사만 (유료 베타 2027년 9월)<br><b>핵심 결제자</b> 본인 (클럽 멤버십 추가) · 자녀 (안심 옵션)</div>
+</section>
+<h1 class="nobreak" id="_1">한 장 요약</h1>
+<p><span class="chap">EXECUTIVE SUMMARY</span></p>
+<div class="box sum">
+<p><span class="bt">온벗 동행친구는 무엇인가</span></p>
+<p><strong>클럽에서 6개월 이상 함께 활동해 서로를 아는 싱글 회원(이혼·사별·비혼)이, 같은 취미를 가진 4~6명 소모임으로 식사·전시·산책·여행을 함께하는 "동행" 서비스</strong>입니다. 1:1 데이팅 앱이 아니고, 결혼을 중개하지도 않습니다. 사람이 먼저 검증되고, 그룹이 먼저 만나고, 돈 이야기는 금지입니다.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>해결하는 문제</td>
+<td>황혼 이혼·사별 후 "아플 때 곁을 지킬 사람, 함께 저녁 먹을 사람"이 없음 / 데이팅 앱은 낯설고 위험(로맨스 스캠)</td>
+</tr>
+<tr>
+<td>핵심 가치</td>
+<td>① 검증된 사람 ② 부담 없는 그룹 만남 ③ 같은 취미 ④ 금전 사기로부터의 보호</td>
+</tr>
+<tr>
+<td>왜 5순위인가</td>
+<td>수요는 크지만 <strong>사고 1건이 브랜드 전체를 무너뜨릴 위험</strong>, 결혼중개업 해당 여부 법률 검토 필요, 신뢰 데이터가 쌓인 뒤에야 안전한 운영 가능</td>
+</tr>
+<tr>
+<td>1월 범위</td>
+<td><strong>대기자 등록 + 수요 설문</strong>만. 서비스 이름·안전 원칙 공개로 기대 형성</td>
+</tr>
+<tr>
+<td>일정</td>
+<td>2~5월 법률 검토·안전 설계 → 6월 무료 시범 소모임 → <strong>9월 유료 베타</strong></td>
+</tr>
+<tr>
+<td>1년 차 목표</td>
+<td>대기자 100명, 12월 유료 베타 25명, 안전사고·금전 피해 0건 <span class="tag est">추정</span></td>
+</tr>
+<tr>
+<td>런칭 예산</td>
+<td>약 50만 원 (1월 대기자 페이지·설문)</td>
+</tr>
+</tbody>
+</table>
+<div class="kw"><span class="hot">약점을 기본값으로</span><span class="hot">태도를 상품으로</span><span class="hot">1:1 앱이 아니라 그룹 동행</span><span class="hot">안전이 기능보다 먼저</span><span>클럽 6개월 활동 조건</span><span>금전거래 금지 서약</span><span>송금 경고 AI</span><span>자녀 안심 옵션</span><span>결혼중개업 법률 검토</span></div>
+
+<h1 id="_2">일본 원형 — 마리슈 심층 분석</h1>
+<p><span class="chap">CHAPTER 1</span></p>
+<h2 id="1-1">1-1. 서비스 개요 (첨부 자료 기준)</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>타깃</td>
+<td>재혼, 사별, 한부모(싱글맘·싱글파더) 등 <strong>기존 데이팅 앱·결혼정보회사에서 소외되던 중장년</strong></td>
+</tr>
+<tr>
+<td>규모</td>
+<td>2025년 기준 누적 회원 <strong>400만 명</strong> 돌파, 회원 절반 이상이 결혼 경험자</td>
+</tr>
+<tr>
+<td>핵심 장치</td>
+<td><strong>핑크 리본</strong>: 남성 회원이 유료 포인트를 써서 프로필에 달면 "상대의 이혼 경력·자녀 유무를 수용한다"는 의사 표시</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-2-5">1-2. 성공 요인 5가지</h2>
+<ol>
+<li><strong>약점의 기본값화</strong> — 이혼 경력·자녀 유무가 다른 앱에서는 감점 요인이지만, 마리슈에서는 모두가 같은 처지라 설명할 필요가 없습니다.</li>
+<li><strong>태도의 가시화</strong> — 외모·나이가 아니라 상대를 이해하겠다는 태도를 보여 줍니다.</li>
+<li><strong>유료로 증명한 진정성</strong> — 무료가 아닌 유료 포인트로 리본을 달게 해 빈말이 아님을 증명하고, 가벼운 접근을 걸러 냅니다.</li>
+<li><strong>현실적 외로움에 맞춘 매칭</strong> — "아플 때 곁을 지킬 사람", "함께 저녁 먹을 사람"이라는 구체적 필요에 가치관·생활양식 매칭으로 답했습니다.</li>
+<li><strong>안전·신원 검증</strong> — 고령 1인 가구를 노린 범죄 우려 속에서 신원 확인과 경고 기능이 평판의 핵심입니다.</li>
+</ol>
+<h2 id="1-3">1-3. 한국판으로 바꿀 때</h2>
+<table>
+<thead>
+<tr>
+<th>일본 마리슈</th>
+<th>한국 상황 (첨부 자료)</th>
+<th>온벗 동행친구</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>재혼 플랫폼</td>
+<td>이혼 후 <strong>법적 재혼을 꺼리는 경향</strong> (재산 상속·가족 관계 부담)</td>
+<td><strong>동반자·동행친구</strong> 중심, 결혼 중개 아님</td>
+</tr>
+<tr>
+<td>앱 기반 1:1</td>
+<td>앱 사용 장벽, 로맨스 스캠 우려</td>
+<td><strong>오프라인 클럽 기반 그룹 소모임</strong></td>
+</tr>
+<tr>
+<td>남성이 핑크 리본 구매</td>
+<td>한국 시니어 여성의 안전 우려가 더 큼</td>
+<td>모든 회원의 <strong>「열린 마음 서약」 + 안전 교육 이수 배지</strong></td>
+</tr>
+<tr>
+<td>본인 결제</td>
+<td>3040·4050 자녀가 부모의 새 인연을 응원하고 비용을 낼 가능성</td>
+<td>자녀가 함께 확인하는 <strong>안심 옵션</strong></td>
+</tr>
+</tbody>
+</table>
+<h1 id="_3">한국 시장 분석</h1>
+<p><span class="chap">CHAPTER 2</span></p>
+<div class="stat">
+<div><b>121만 명</b><small>60세 이상 이혼 인구 (2024.8), 2016년 31만 명의 약 4배</small></div>
+<div><b>15.6%</b><small>남녀 모두 60세 이상 황혼 이혼 비중, 1만 3천 건+ (역대 최고)</small></div>
+<div><b>30%</b><small>2025년 1~8월 보이스피싱 피해자 중 60대 이상 비중 (2020년 16%)</small></div>
+<div><b>8,850억 원</b><small>60세 이상 전기통신금융사기 피해 (2022~2026 상반기, 5만 3천여 건, 금감원)</small></div>
+</div>
+
+<p class="src">첨부 자료는 고령층 로맨스 스캠 신고 2,192건(전년 대비 73% 증가)을 인용합니다. 2026년 경찰청 분석은 로맨스 스캠이 감소세로 돌아섰지만 중장년·1인 가구·이혼·사별 경험자에게서 두드러진다고 설명합니다. 연령별 로맨스 스캠 통계는 경찰청 원자료 확인이 필요합니다.</p>
+
+<h2 id="2-1">2-1. 수요의 모양</h2>
+<ul>
+<li><strong>시니어 솔로 시장의 성장</strong> — 이혼·사별로 홀로 남은 고령층이 빠르게 늘고 있습니다.</li>
+<li><strong>원하는 관계</strong> — 법적 재혼보다 "함께 밥 먹고, 여행 다닐 곁의 사람". 가족·재산 문제는 피하고 싶어 합니다.</li>
+<li><strong>결제 가능성</strong> — 홀로 계신 부모의 고립을 걱정하는 자녀가 부모의 새 인연을 응원하고 비용을 대신 낼 수 있습니다 (첨부 자료).</li>
+</ul>
+<h2 id="2-2">2-2. 경쟁 지형</h2>
+<table>
+<thead>
+<tr>
+<th>플레이어</th>
+<th>모델</th>
+<th>한계 / 온벗 차별점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>시놀(시니어놀이터)</td>
+<td>50+ 소셜 플랫폼, 모임·매칭·여행 (2023 설립)</td>
+<td>앱 중심 → 온벗은 <strong>오프라인 클럽에서 6개월 이상 서로를 본 사람들</strong></td>
+</tr>
+<tr>
+<td>재혼정보회사</td>
+<td>결혼 목적 1:1 중개, 고가 회비</td>
+<td>결혼 부담 → 온벗은 <strong>동행·우정 중심</strong></td>
+</tr>
+<tr>
+<td>일반 데이팅 앱</td>
+<td>젊은 층 중심</td>
+<td>시니어 소외, 사기 위험</td>
+</tr>
+<tr>
+<td>동호회·산악회</td>
+<td>자연스러운 만남</td>
+<td>안전·검증 장치 없음</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_4">고객 정의</h1>
+<p><span class="chap">CHAPTER 3</span></p>
+<div class="grid2">
+<div class="box">
+<p><span class="bt">이용자 · 서경자(67), 사별 5년</span></p>
+<ul>
+<li>클럽 사진반 8개월 회원</li>
+<li>"재혼은 생각 없어요. 전시회나 맛집 같이 갈 친구가 있으면"</li>
+<li>앱으로 모르는 남자를 만나는 건 무서움</li>
+<li><strong>원하는 것</strong>: 검증된 사람, 여럿이 함께, 부담 없는 만남</li>
+</ul>
+</div>
+<div class="box">
+<p><span class="bt">이용자 · 문재호(70), 황혼 이혼 3년</span></p>
+<ul>
+<li>클럽 걷기반 리더</li>
+<li>혼자 밥 먹는 저녁이 가장 힘듦</li>
+<li>자녀와 관계 서먹, 새 출발에 조심스러움</li>
+<li><strong>원하는 것</strong>: 저녁 식사 모임, 여행 동반자</li>
+</ul>
+</div>
+</div>
+<p><strong>자녀</strong> — "아버지가 누군가를 만나신다니 다행이지만 사기는 아닐지 걱정" → 자녀 안심 옵션(본인 동의 시 활동 일정 공유·이상 금전 요청 알림).</p>
+<h1 id="_5">사업 모델과 서비스 설계</h1>
+<p><span class="chap">CHAPTER 4</span></p>
+<h2 id="4-1">4-1. 참여 조건 (안전의 첫 관문)</h2>
+<ol>
+<li>온벗 클럽 <strong>정회원 6개월 이상</strong>, 출석률 50% 이상</li>
+<li><strong>본인 인증</strong> (휴대폰 실명 인증) + 대면 오리엔테이션 1회 (2시간)</li>
+<li><strong>혼인 상태 자기 신고</strong> (법적 배우자가 있는 경우 참여 불가)</li>
+<li><strong>「열린 마음 서약」</strong>: 상대의 이혼·사별·자녀·경제 상황을 묻거나 평가하지 않음, 금전 거래·투자 권유·물품 판매 금지, 거절 존중</li>
+<li><strong>안전 교육 이수</strong>: 로맨스 스캠 수법, 개인정보 보호, 거절하는 법, 신고 방법</li>
+<li>(법률 검토 후 결정) 추가 신원 확인 수단</li>
+</ol>
+<h2 id="4-2">4-2. 운영 방식 — 그룹이 먼저</h2>
+<table>
+<thead>
+<tr>
+<th>단계</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>동행 소모임</strong></td>
+<td>같은 관심사 4~6명 (성비 균형 노력), 공개된 장소(식당·전시·공원), 첫 2회는 온벗 리더 동석</td>
+</tr>
+<tr>
+<td><strong>활동 메뉴</strong></td>
+<td>저녁 식사 모임, 전시·공연 관람, 시장·맛집 탐방, 당일 여행 동행 좌석(클럽 테마여행에서 동행친구 테이블)</td>
+</tr>
+<tr>
+<td><strong>개인적 만남</strong></td>
+<td>소모임 이후 개인 연락은 <strong>본인 선택</strong> (온벗이 1:1 데이트를 주선하지 않음)</td>
+</tr>
+<tr>
+<td><strong>신고·퇴출</strong></td>
+<td>금전 요청·무례·스토킹 신고 시 즉시 활동 정지 → 사실 확인 → 영구 퇴출</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-3">4-3. 한국판 핑크 리본 — 「열린 마음 배지」</h2>
+<ul>
+<li>마리슈는 남성이 유료로 리본을 달아 진정성을 증명했습니다.</li>
+<li>온벗은 <strong>모든 회원</strong>이 서약·교육·6개월 활동으로 배지를 얻습니다. 돈이 아니라 <strong>시간과 행동</strong>으로 증명하는 방식입니다.</li>
+<li>배지는 클럽 단체복 명찰에 작은 표시로 붙습니다 (원하는 회원만).</li>
+</ul>
+<h2 id="4-4">4-4. 가격 <span class="tag est">추정</span></h2>
+<table>
+<thead>
+<tr>
+<th>상품</th>
+<th>가격</th>
+<th>구성</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>동행친구 멤버십 (클럽 회비 별도)</td>
+<td>월 19,900원</td>
+<td>월 2회 소모임, 리더 동석(초기), 안전 시스템</td>
+</tr>
+<tr>
+<td>동행 테마여행 좌석</td>
+<td>여행비 + 1만 원</td>
+<td>클럽 여행에서 동행친구 테이블·좌석 배정</td>
+</tr>
+<tr>
+<td>자녀 안심 옵션</td>
+<td>월 4,900원 (자녀 결제)</td>
+<td>본인 동의 시 활동 일정 공유, 금전 요청 감지 알림</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-5">4-5. 매출 추정 <span class="tag est">추정치</span></h2>
+<table>
+<thead>
+<tr>
+<th>구분</th>
+<th>6월</th>
+<th>9월</th>
+<th>12월</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>시범 소모임 (무료)</td>
+<td>2개 그룹 12명</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>유료 멤버 (월 19,900원)</td>
+<td>—</td>
+<td>10명 · 20</td>
+<td>25명 · 50</td>
+</tr>
+<tr>
+<td><strong>월 매출 (만 원)</strong></td>
+<td><strong>0</strong></td>
+<td><strong>20</strong></td>
+<td><strong>50</strong></td>
+</tr>
+</tbody>
+</table>
+<p class="src">이 사업은 1년 차 매출보다 <strong>클럽 회원 유지율</strong>(싱글 회원의 이탈 방지)과 2028년 이후 성장 가능성에 의미가 있습니다.</p>
+
+<h1 id="_6">안전 시스템 설계</h1>
+<p><span class="chap">CHAPTER 5</span></p>
+<div class="box warn">
+<p><span class="bt">안전 시스템 3층 구조</span></p>
+<p><strong>1층 · 사람 검증</strong> — 6개월 클럽 활동, 리더·이웃지기의 관찰, 대면 오리엔테이션, 본인 인증</p>
+<p><strong>2층 · 구조적 안전</strong> — 그룹 만남, 공개 장소, 첫 2회 리더 동석, 금전 거래 금지 규칙, 개인 연락처 교환은 본인 선택</p>
+<p><strong>3층 · 기술 감시와 신고</strong> — 온벗 공식 소모임 단톡방에서 송금·투자·코인·대출·급전·병원비 등 위험 표현 감지 시 경고 메시지와 운영자 확인(사전 고지·동의), 원클릭 신고, 자녀 안심 옵션</p>
+</div>
+<h2 id="5-1">5-1. 로맨스 스캠 경고 신호 교육 (오리엔테이션 내용)</h2>
+<ol>
+<li>만난 지 얼마 안 되어 급한 돈(병원비·사업·해외 송금)을 요청한다</li>
+<li>투자·코인·부동산 "좋은 기회"를 권한다</li>
+<li>공식 단톡방 밖 개인 메신저로 대화를 옮기자고 한다</li>
+<li>가족·친구에게 비밀로 하자고 한다</li>
+<li>신분이 확인되지 않는 해외 거주·군인·의사라고 한다</li>
+</ol>
+<p>→ <strong>하나라도 해당하면 온벗 운영자에게 알리고 송금하지 않는다.</strong> 금융사기 피해 시 112·금융감독원(1332) 신고 안내.</p>
+<h2 id="5-2">5-2. 사고 대응</h2>
+<table>
+<thead>
+<tr>
+<th>상황</th>
+<th>대응</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>금전 요청 신고</td>
+<td>해당 회원 즉시 정지 → 양측 면담 → 퇴출 및 다른 회원 주의 공지(개인정보 보호 범위 내) → 피해 시 경찰 신고 지원</td>
+</tr>
+<tr>
+<td>무례·성희롱</td>
+<td>즉시 정지, 피해자 보호 우선, 사실 확인 후 퇴출</td>
+</tr>
+<tr>
+<td>스토킹</td>
+<td>즉시 퇴출, 피해자 경찰 신고 지원</td>
+</tr>
+<tr>
+<td>관계 갈등 (이별 후 불편)</td>
+<td>소모임 재배정, 리더 중재</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_7">법률 검토 사항</h1>
+<p><span class="chap">CHAPTER 6</span></p>
+<table>
+<thead>
+<tr>
+<th>쟁점</th>
+<th>내용</th>
+<th>검토 시점</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>결혼중개업 해당 여부</strong></td>
+<td>「결혼중개업의 관리에 관한 법률」상 국내결혼중개업은 <strong>시군구 신고</strong> 대상이며 보증보험·중개사무소 기준을 갖춰야 함(30일 내 수리 통지). 동행친구가 '결혼 목적 중개'로 해석되는지가 핵심</td>
+<td>2~3월 (변호사 자문)</td>
+</tr>
+<tr>
+<td>신고가 필요하다고 판단되면</td>
+<td>신고 요건을 갖춰 정식 신고 후 운영, 또는 서비스 범위를 '모임 운영'으로 엄격히 한정</td>
+<td>4~5월</td>
+</tr>
+<tr>
+<td>개인정보</td>
+<td>혼인 상태 등 민감할 수 있는 정보의 최소 수집, 단톡 모니터링 사전 고지·동의</td>
+<td>5월</td>
+</tr>
+<tr>
+<td>신원 확인 수단</td>
+<td>범죄 경력 등 확인 수단의 적법성·동의 방식</td>
+<td>2~3월</td>
+</tr>
+<tr>
+<td>광고</td>
+<td>"재혼 성공", "인연 보장" 등 표현 금지</td>
+<td>상시</td>
+</tr>
+</tbody>
+</table>
+<div class="box key"><span class="bt">원칙</span>
+법률 검토 결과가 나오기 전에는 <strong>어떤 매칭 행위도, 유료 판매도 하지 않습니다.</strong> 1월에는 대기자 등록과 설문만 받습니다.
+</div>
+
+<h1 id="ai">AI 자동화 설계</h1>
+<p><span class="chap">CHAPTER 7</span></p>
+<table>
+<thead>
+<tr>
+<th>기능</th>
+<th>방식</th>
+<th>주의</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>소모임 구성 추천</td>
+<td>관심사·지역·활동 시간·성비를 고려해 그룹 후보 생성 → 운영자 확정</td>
+<td>외모·재산·나이 기준 사용 금지</td>
+</tr>
+<tr>
+<td>위험 표현 감지</td>
+<td>공식 단톡방 메시지에서 금전·투자 관련 키워드·패턴 감지 → 경고 + 운영자 알림</td>
+<td>사전 동의, 운영자만 열람, 감지 결과로 자동 처벌하지 않음</td>
+</tr>
+<tr>
+<td>안전 교육</td>
+<td>스캠 수법 카드뉴스·퀴즈 자동 생성</td>
+<td>최신 수법 분기 업데이트</td>
+</tr>
+<tr>
+<td>만족도·이탈 분석</td>
+<td>활동 후 설문 분석</td>
+<td>익명 처리</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_8">실행 일정</h1>
+<p><span class="chap">CHAPTER 8</span></p>
+<table>
+<thead>
+<tr>
+<th>시기</th>
+<th>할 일</th>
+<th>완료 기준</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>W7~W9 (12/21~1/10)</td>
+<td>대기자 등록 페이지·설문 (원하는 관계, 우려, 지불 의향, 원하는 활동)</td>
+<td>설문 문항 확정</td>
+</tr>
+<tr>
+<td>W10 (1/11~17)</td>
+<td><strong>1/16 대기자 등록 오픈</strong>, 안전 원칙 공개</td>
+<td>대기자 30명</td>
+</tr>
+<tr>
+<td>2~3월</td>
+<td>설문 분석, 변호사 자문(결혼중개업 해당 여부), 일본 마리슈·국내 시니어 매칭 서비스 약관 분석</td>
+<td>법률 의견서</td>
+</tr>
+<tr>
+<td>4~5월</td>
+<td>안전 시스템·서약서·오리엔테이션 교안, 리더 교육</td>
+<td>운영 매뉴얼 v1</td>
+</tr>
+<tr>
+<td>6월</td>
+<td><strong>무료 시범 소모임</strong> 2개 그룹 (클럽 6개월 회원 중 지원자)</td>
+<td>안전사고 0, 만족도 4.3↑</td>
+</tr>
+<tr>
+<td>7~8월</td>
+<td>시범 결과 반영, 결제·자녀 안심 옵션 준비</td>
+<td>베타 결정 회의</td>
+</tr>
+<tr>
+<td><strong>9월</strong></td>
+<td><strong>유료 베타</strong> 10명</td>
+<td>금전 피해 0</td>
+</tr>
+<tr>
+<td>10~12월</td>
+<td>25명으로 확대, 동행 테마여행 좌석</td>
+<td>유지율 70%</td>
+</tr>
+</tbody>
+</table>
+<h1 id="kpi">KPI</h1>
+<p><span class="chap">CHAPTER 9</span></p>
+<table>
+<thead>
+<tr>
+<th>지표</th>
+<th>1월</th>
+<th>3월</th>
+<th>6월</th>
+<th>9월</th>
+<th>12월</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>대기자 (누적)</td>
+<td>30</td>
+<td>60</td>
+<td>100</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>시범·베타 참여</td>
+<td>—</td>
+<td>—</td>
+<td>12</td>
+<td>10 (유료)</td>
+<td>25 (유료)</td>
+</tr>
+<tr>
+<td>안전사고·금전 피해</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>신고 처리 시간</td>
+<td>—</td>
+<td>—</td>
+<td>24시간 내</td>
+<td>24시간 내</td>
+<td>24시간 내</td>
+</tr>
+<tr>
+<td>만족도</td>
+<td>—</td>
+<td>—</td>
+<td>4.3</td>
+<td>4.4</td>
+<td>4.5</td>
+</tr>
+<tr>
+<td>싱글 클럽 회원 유지율</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>+10%p</td>
+<td>+15%p</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_9">리스크와 대응</h1>
+<p><span class="chap">CHAPTER 10</span></p>
+<table>
+<thead>
+<tr>
+<th>리스크</th>
+<th>가능성</th>
+<th>영향</th>
+<th>대응</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>로맨스 스캠·금전 피해</td>
+<td>중</td>
+<td><strong>매우 큼</strong></td>
+<td>3층 안전 시스템, 금전 거래 금지, 신고 즉시 정지</td>
+</tr>
+<tr>
+<td>결혼중개업 미신고 판정</td>
+<td>중</td>
+<td>큼</td>
+<td>사전 법률 자문, 필요 시 신고</td>
+</tr>
+<tr>
+<td>성희롱·스토킹</td>
+<td>낮음~중</td>
+<td>매우 큼</td>
+<td>그룹·공개 장소 원칙, 즉시 퇴출, 피해자 보호</td>
+</tr>
+<tr>
+<td>클럽 분위기 변질 (짝 찾기 모임화)</td>
+<td>중</td>
+<td>중</td>
+<td>동행친구는 별도 소모임으로 분리, 클럽 본 활동과 섞지 않음</td>
+</tr>
+<tr>
+<td>가족 갈등 (자녀 반대·재산 우려)</td>
+<td>중</td>
+<td>중</td>
+<td>결혼 중개 아님 명시, 자녀 안심 옵션</td>
+</tr>
+<tr>
+<td>성비 불균형</td>
+<td>높음</td>
+<td>중</td>
+<td>소모임 주제 다양화(여성 선호 활동), 성비보다 관심사 우선</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_10">결정이 필요한 질문</h1>
+<p><span class="chap">CHAPTER 11</span></p>
+<div class="box ask">
+<p><span class="bt">조피디님께 묻습니다</span></p>
+<ol>
+<li>이 사업을 <strong>2027년 하반기 베타</strong>로 미루는 데 동의하시나요? (빠르게 하고 싶으시면 법률 자문을 1월로 앞당길 수 있습니다)</li>
+<li>결혼 목적 매칭까지 장기적으로 고려하시나요, 아니면 <strong>동행·우정 중심</strong>으로만 가실까요? (기본값: 동행·우정)</li>
+<li>참여 조건 "클럽 6개월 이상"이 너무 길다고 보시나요? (대안: 3개월 + 추가 검증)</li>
+<li>동행친구 모임 리더로 신뢰할 만한 분(사회복지 경력, 상담 경험)을 아시나요?</li>
+</ol>
+</div>
+<h1 id="_11">핵심 키워드 요약·출처</h1>
+<p><span class="chap">CHAPTER 12</span></p>
+<div class="kw"><span class="hot">약점의 기본값화</span><span class="hot">태도의 상품화(열린 마음 배지)</span><span class="hot">그룹 동행, 1:1 주선 없음</span><span class="hot">안전이 먼저</span><span>클럽 6개월 검증</span><span>금전 거래 금지</span><span>위험 표현 감지</span><span>자녀 안심 옵션</span><span>결혼중개업 법률 검토</span><span>9월 유료 베타</span></div>
+
+<div class="small">
+<p><strong>출처</strong></p>
+<ul>
+<li>첨부 자료 1·3·4 (마리슈 누적 회원 400만 명·핑크 리본·회원 절반 결혼 경험, 60세 이상 이혼 인구 121만 명·황혼 이혼 15.6%·1만 3천 건, 고령층 로맨스 스캠 신고 2,192건·73% 증가, 한국 고령층의 법적 재혼 회피 경향)</li>
+<li>고령층 금융사기: <a href="https://bravo.etoday.co.kr/view/atc_view/20271">브라보마이라이프(금감원 자료)</a>, <a href="https://www.mt.co.kr/tech/2026/02/16/2026021308115896668">머니투데이(경찰청 자료)</a>, <a href="https://nocutnews.co.kr/news/6569146">노컷뉴스 기고</a></li>
+<li>결혼중개업 신고 요건: <a href="https://www.mogef.go.kr/hotissue/hotissue_5.html">여성가족부 안내</a>, <a href="https://ko.wikisource.org/wiki/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD_%EA%B2%B0%ED%98%BC%EC%A4%91%EA%B0%9C%EC%97%85%EC%9D%98_%EA%B4%80%EB%A6%AC%EC%97%90_%EA%B4%80%ED%95%9C_%EB%B2%95%EB%A5%A0">결혼중개업법</a>, <a href="https://www.nepla.ai/wiki/근로-직업과-자격/자격-직업관리/-유권해석-결혼중개업의-관리에-관한-법률-제3조-국내결혼중개업의-신고-zr592wo0g96k">법제처 유권해석</a></li>
+<li>시놀: <a href="https://www.unicornfactory.co.kr/article/2025110417274131300">유니콘팩토리</a></li>
+<li>결혼중개업법 원문·최신 시행령은 국가법령정보센터 확인 필요</li>
+</ul>
+</div>
+</div></body></html>
