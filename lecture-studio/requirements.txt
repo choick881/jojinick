@@ -1,0 +1,6 @@
+# 강의 편집기 필수 패키지 (설치: windows/1_설치하기.bat 이 자동으로 설치)
+sherpa-onnx
+numpy
+pyyaml
+python-docx
+pillow
